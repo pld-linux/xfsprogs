@@ -82,7 +82,7 @@ Biblioteki statyczne do XFS.
 DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}"
 OPTIMIZER="%{rpmcflags}"
 export DEBUG OPTIMIZER
-aclocal
+%{__aclocal}
 %{__autoconf}
 %configure \
 	%{!?_with_static:--enable-shared-uuid=yes} \
