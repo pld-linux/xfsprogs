@@ -4,7 +4,7 @@ Summary:	Tools for the XFS filesystem
 Summary(pl):	Narzêdzia do systemu plików XFS
 Name:		xfsprogs
 Version:	2.0.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/download/cmd_tars/%{name}-%{version}.src.tar.gz
@@ -43,6 +43,7 @@ B-drzewa by uzyskaæ wysok± wydajno¶æ oraz skalowalno¶æ.
 Summary:	Header files and libraries to develop XFS software
 Summary(pl):	Pliki nag³ówkowe i biblioteki
 Group:		Development/Libraries
+Requires:       %{name} = %{version}
 
 %description devel
 Header files and libraries to develop software which operates on XFS
@@ -104,6 +105,7 @@ done
 
 rm -f $RPM_BUILD_ROOT%{_mandir}/man8/xfs_info.8
 echo ".so man8/xfs_growfs.8" > $RPM_BUILD_ROOT%{_mandir}/man8/xfs_info.8
+ln -sf /lib/libhandle.so.1.0.0 $RPM_BUILD_ROOT%{_libdir}/libhandle.so
 
 gzip -9nf doc/{CHANGES,CREDITS,README.*}
 
@@ -118,7 +120,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/*.gz
 %attr(755,root,root) /sbin/*
 %attr(755,root,root) %{_sbindir}/*
-%{!?_with_static:%attr(755,root,root) /lib/lib*.so.*}
+%{!?_with_static:%attr(755,root,root) /lib/lib*.so*}
 %{_mandir}/man[185]/*
 
 %files devel
