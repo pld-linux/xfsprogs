@@ -139,7 +139,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 %{_includedir}/disk
 %{_includedir}/xfs
-%attr(755,root,root) %{_libexecdir}/*.la
+%{_libexecdir}/*.la
 %attr(755,root,root) %{_libexecdir}/*.so
 
 %files static
