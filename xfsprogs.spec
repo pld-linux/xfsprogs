@@ -136,6 +136,9 @@ ln -sf %{_libdir}/$(cd $RPM_BUILD_ROOT%{_libdir}; echo libxfs.so.*.*.*) \
 ln -sf %{_libdir}/$(cd $RPM_BUILD_ROOT%{_libdir}; echo libxlog.so.*.*.*) \
 	$RPM_BUILD_ROOT%{_libexecdir}/libxlog.so
 
+%{__sed} -e "s|libdir='%{_libdir}'|libdir='%{_libexecdir}'|" \
+	$RPM_BUILD_ROOT%{_libexecdir}/lib{disk,handle,xfs,xlog}.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
