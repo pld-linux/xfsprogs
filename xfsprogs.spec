@@ -1,8 +1,8 @@
 Summary:	Tools for the XFS filesystem
-Summary(pl):	Narzêdzia do systemu plikowego XFS
+Summary(pl):	Narzêdzia do systemu plików XFS
 Name:		xfsprogs
 Version:	1.3.13
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/System
 Group(de):	Applikationen/System
@@ -39,8 +39,8 @@ XFS.
 Zbiór komend do u¿ytku z systemem plików XFS, w³±czaj±c w to mkfs.xfs.
 
 XFS jest wysoko wydajnym systemem plików z kronik±, który oryginalnie
-by³ u¿ywany na platformie SGI IRIX. Jest to w pe³ni wielo-w±tkowy,
-obs³uguj±cy wielkie pliki oraz wielkie systemy, o rozsze¿onych
+by³ u¿ywany na platformie SGI IRIX. Jest to w pe³ni wielow±tkowy,
+obs³uguj±cy wielkie pliki oraz wielkie systemy, o rozszerzonych
 atrybutach, zmiennych wielko¶ciach bloków, mocno wykorzystuj±cy
 B-drzewa by uzyskaæ wysok± wydajno¶æ oraz skalowalno¶æ.
 
@@ -49,8 +49,12 @@ Summary:	Header files and libraries to develop XFS software
 Summary(pl):	Pliki nag³ówkowe i biblioteki
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
+Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 
 %description devel
 Header files and libraries to develop software which operates on XFS
@@ -60,16 +64,18 @@ filesystems.
 Pliki nag³ówkowe i biblioteki potrzebne do rozwoju oprogramowania
 operuj±cego na systemie plików XFS.
 
-%if %{?BOOT:1}%{!?BOOT:0}
 %package BOOT
 Summary:	xfs for bootdisk
+Summary(pl):	xfs dla bootkietki
 Group:		Applications/System
 Group(de):	Applikationen/System
 Group(pl):	Aplikacje/System
 
 %description BOOT
 xfs for bootdisk.
-%endif
+
+%description BOOT -l pl
+xfs dla bootkietki.
 
 %prep
 %setup  -q
@@ -87,7 +93,7 @@ autoconf
 %{__make} -C libxfs
 %{__make} -C libdisk
 %{__make} -C mkfs LLDFLAGS=-all-static
-mv mkfs/mkfs.xfs mkfs.xfs-BOOT
+mv -f mkfs/mkfs.xfs mkfs.xfs-BOOT
 %{__make} clean
 %endif
 
@@ -116,14 +122,15 @@ for man in attr_list_by_handle.3 attr_multi_by_handle.3 \
 done
 
 %if %{?BOOT:1}%{!?BOOT:0}
-install -d $RPM_BUILD_ROOT/usr/lib/bootdisk/sbin
-install mkfs.xfs-BOOT $RPM_BUILD_ROOT/usr/lib/bootdisk/sbin/mkfs.xfs
+install -d $RPM_BUILD_ROOT%{_libdir}/bootdisk/sbin
+install mkfs.xfs-BOOT $RPM_BUILD_ROOT%{_libdir}/bootdisk/sbin/mkfs.xfs
 %endif
 
 rm -f $RPM_BUILD_ROOT%{_mandir}/man8/xfs_info.8
 echo ".so man8/xfs_growfs.8" > $RPM_BUILD_ROOT%{_mandir}/man8/xfs_info.8
 
 gzip -9nf doc/{CHANGES,CREDITS,README.*}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -143,5 +150,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %if %{?BOOT:1}%{!?BOOT:0}
 %files BOOT
-%attr(755,root,root) /usr/lib/bootdisk/sbin/*
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/bootdisk/sbin/*
 %endif
