@@ -27,8 +27,8 @@ Obsoletes:	libxfs1
 
 %define		_sbindir	/sbin
 %define		_bindir		/usr/sbin
-%define		_libdir		/lib
-%define		_libexecdir	/usr/lib
+%define		_libdir		/%{_lib}
+%define		_libexecdir	/usr/%{_lib}
 
 %description
 A set of commands to use the XFS filesystem, including mkfs.xfs.
@@ -145,7 +145,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/{CHANGES,CREDITS,README.*}
 %attr(755,root,root) %{_sbindir}/*
 %attr(755,root,root) %{_bindir}/*
-%{!?with_static:%attr(755,root,root) /lib/lib*.so.*.*}
+%{!?with_static:%attr(755,root,root) /%{_lib}/lib*.so.*.*}
 %{_mandir}/man[185]/*
 
 %files devel
