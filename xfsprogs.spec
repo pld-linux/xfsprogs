@@ -53,7 +53,7 @@ B-drzewa by uzyskaæ wysok± wydajno¶æ oraz skalowalno¶æ.
 Summary:	Header files and libraries to develop XFS software
 Summary(pl):	Pliki nag³ówkowe i biblioteki
 Group:		Development/Libraries
-Requires:       %{name} = %{version}
+Requires:	%{name} = %{version}
 Obsoletes:	libxfs1-devel
 
 %description devel
@@ -106,10 +106,10 @@ export DIST_ROOT DIST_INSTALL DIST_INSTALL_DEV
 %{__make} install-dev DIST_MANIFEST="$DIST_INSTALL_DEV"
 
 for man in attr_list_by_handle.3 attr_multi_by_handle.3 \
-           fd_to_handle.3 free_handle.3 fssetdm_by_handle.3 \
-	   handle_to_fshandle.3 open_by_handle.3 path_to_fshandle.3 \
-	   readlink_by_handle.3; do
-	   	rm -f $RPM_BUILD_ROOT%{_mandir}/man3/$man
+	fd_to_handle.3 free_handle.3 fssetdm_by_handle.3 \
+	handle_to_fshandle.3 open_by_handle.3 path_to_fshandle.3 \
+	readlink_by_handle.3; do
+		rm -f $RPM_BUILD_ROOT%{_mandir}/man3/$man
 		echo ".so path_to_handle.3" \
 			> $RPM_BUILD_ROOT%{_mandir}/man3/$man
 done
@@ -131,7 +131,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc doc/{CHANGES,CREDITS,README.*}
-%attr(755,root,root) %{_sbindir}*
+%attr(755,root,root) %{_sbindir}/*
 %attr(755,root,root) %{_bindir}/*
 %{!?_with_static:%attr(755,root,root) /lib/lib*.so.*.*}
 %{_mandir}/man[185]/*
