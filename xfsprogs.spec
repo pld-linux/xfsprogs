@@ -4,7 +4,7 @@ Summary:	Tools for the XFS filesystem
 Summary(pl):	Narzêdzia do systemu plików XFS
 Name:		xfsprogs
 Version:	2.0.1
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/download/cmd_tars/%{name}-%{version}.src.tar.gz
@@ -99,12 +99,12 @@ for man in attr_list_by_handle.3 attr_multi_by_handle.3 \
 	   handle_to_fshandle.3 open_by_handle.3 path_to_fshandle.3 \
 	   readlink_by_handle.3; do
 	   	rm -f $RPM_BUILD_ROOT%{_mandir}/man3/$man
-		echo ".so man3/path_to_handle.3" \
+		echo ".so path_to_handle.3" \
 			> $RPM_BUILD_ROOT%{_mandir}/man3/$man
 done
 
 rm -f $RPM_BUILD_ROOT%{_mandir}/man8/xfs_info.8
-echo ".so man8/xfs_growfs.8" > $RPM_BUILD_ROOT%{_mandir}/man8/xfs_info.8
+echo ".so xfs_growfs.8" > $RPM_BUILD_ROOT%{_mandir}/man8/xfs_info.8
 ln -sf /lib/libhandle.so.1.0.0 $RPM_BUILD_ROOT%{_libdir}/libhandle.so
 
 gzip -9nf doc/{CHANGES,CREDITS,README.*}
