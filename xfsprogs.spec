@@ -18,9 +18,10 @@ URL:		http://oss.sgi.com/projects/xfs/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bash
-BuildRequires:	libtool
 BuildRequires:	e2fsprogs-devel
 %{?_with_static:BuildRequires:	e2fsprogs-static}
+BuildRequires:	libtool
+%{?_with_static:BuildRequires:	sed >= 4.0}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libxfs1
 
