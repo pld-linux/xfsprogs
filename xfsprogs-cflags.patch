@@ -1,0 +1,11 @@
+--- include/builddefs.in~	2004-04-05 05:12:56.000000000 +0200
++++ include/builddefs.in	2004-05-25 17:10:39.165846544 +0200
+@@ -108,7 +108,7 @@
+ PCFLAGS = -I/usr/local/include
+ endif
+ 
+-GCFLAGS += -O1 $(OPTIMIZER) $(DEBUG) -funsigned-char -Wall -I$(TOPDIR)/include \
++GCFLAGS += $(OPTIMIZER) $(DEBUG) -funsigned-char -Wall -I$(TOPDIR)/include \
+ 	-DVERSION=\"$(PKG_VERSION)\" -DLOCALEDIR=\"$(PKG_LOCALE_DIR)\" \
+ 	-DPACKAGE=\"$(PKG_NAME)\"
+ 
