@@ -124,7 +124,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/{CHANGES,CREDITS,README.*}
 %attr(755,root,root) %{_sbindir}*
 %attr(755,root,root) %{_bindir}/*
-%{!?_with_static:%attr(755,root,root) /lib/lib*.so*}
+%{!?_with_static:%attr(755,root,root) /lib/lib*.so.*.*}
 %{_mandir}/man[185]/*
 
 %files devel
