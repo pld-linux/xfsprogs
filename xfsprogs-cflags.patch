@@ -1,11 +1,11 @@
---- include/builddefs.in~	2004-04-05 05:12:56.000000000 +0200
-+++ include/builddefs.in	2004-05-25 17:10:39.165846544 +0200
-@@ -108,7 +108,7 @@
+--- xfsprogs-2.6.25/include/builddefs.in.orig	2004-10-13 02:26:03.000000000 +0200
++++ xfsprogs-2.6.25/include/builddefs.in	2004-10-17 16:10:37.832771624 +0200
+@@ -113,7 +113,7 @@
  PCFLAGS = -I/usr/local/include
  endif
  
--GCFLAGS += -O1 $(OPTIMIZER) $(DEBUG) -funsigned-char -Wall -I$(TOPDIR)/include \
-+GCFLAGS += $(OPTIMIZER) $(DEBUG) -funsigned-char -Wall -I$(TOPDIR)/include \
- 	-DVERSION=\"$(PKG_VERSION)\" -DLOCALEDIR=\"$(PKG_LOCALE_DIR)\" \
- 	-DPACKAGE=\"$(PKG_NAME)\"
+-GCFLAGS = -O1 $(OPTIMIZER) $(DEBUG) -funsigned-char -fno-strict-aliasing -Wall \
++GCFLAGS = $(OPTIMIZER) $(DEBUG) -funsigned-char -fno-strict-aliasing -Wall \
+ 	  -DVERSION=\"$(PKG_VERSION)\" -DLOCALEDIR=\"$(PKG_LOCALE_DIR)\"  \
+ 	  -DPACKAGE=\"$(PKG_NAME)\" -I$(TOPDIR)/include
  

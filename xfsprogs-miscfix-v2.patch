@@ -13,16 +13,3 @@
 -    done
      AC_SUBST(have_zipped_manpages)
    ])
---- xfsprogs-2.5.4/m4/package_utilies.m4.orig	2003-07-25 19:42:03.000000000 +0200
-+++ xfsprogs-2.5.4/m4/package_utilies.m4	2003-08-08 08:45:27.000000000 +0200
-@@ -17,9 +17,7 @@
- #  MSGFMT MSGMERGE RPM
- #
- AC_DEFUN([AC_PACKAGE_UTILITIES],
--  [ if test -z "$CC"; then
--        AC_PROG_CC
--    fi
-+  [ AC_PROG_CC
-     cc="$CC"
-     AC_SUBST(cc)
-     AC_PACKAGE_NEED_UTILITY($1, "$cc", cc, [C compiler])
