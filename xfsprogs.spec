@@ -5,8 +5,6 @@ Version:	1.3.17
 Release:	1
 License:	GPL
 Group:		Applications/System
-Group(de):	Applikationen/System
-Group(pl):	Aplikacje/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/download/cmd_tars/%{name}-%{version}.src.tar.gz
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-install-sh.patch
@@ -48,13 +46,6 @@ B-drzewa by uzyskaÊ wysok± wydajno∂Ê oraz skalowalno∂Ê.
 Summary:	Header files and libraries to develop XFS software
 Summary(pl):	Pliki nag≥Ûwkowe i biblioteki
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Ú¡⁄“¡¬œ‘À¡/‚…¬Ã…œ‘≈À…
-Group(uk):	Úœ⁄“œ¬À¡/‚¶¬Ã¶œ‘≈À…
 
 %description devel
 Header files and libraries to develop software which operates on XFS
@@ -68,8 +59,6 @@ operuj±cego na systemie plikÛw XFS.
 Summary:	xfs for bootdisk
 Summary(pl):	xfs dla bootkietki
 Group:		Applications/System
-Group(de):	Applikationen/System
-Group(pl):	Aplikacje/System
 
 %description BOOT
 xfs for bootdisk.
