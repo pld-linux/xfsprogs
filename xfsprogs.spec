@@ -51,7 +51,7 @@ Group:		Development/Libraries
 Header files and libraries to develop software which operates on XFS
 filesystems.
 
-%description -l pl devel
+%description devel -l pl
 Pliki nag³ówkowe i biblioteki potrzebne do rozwoju oprogramowania
 operuj±cego na systemie plików XFS.
 
@@ -81,7 +81,7 @@ autoconf
 	--disable-shared-uuid
 %{__make} -C libxfs
 %{__make} -C libdisk
-%{__make} -C mkfs LLDFLAGS=-all-static
+%{__make} -C mkfs LLDFLAGS=-all%{rpmldflags} tatic"
 mv -f mkfs/mkfs.xfs mkfs.xfs-BOOT
 %{__make} clean
 %endif
@@ -97,7 +97,7 @@ rm -rf $RPM_BUILD_ROOT
 DIST_ROOT="$RPM_BUILD_ROOT"
 DIST_INSTALL=`pwd`/install.manifest
 DIST_INSTALL_DEV=`pwd`/install-dev.manifest
-export DIST_ROOT DIST_INSTALL DIST_INSTALL_DEV 
+export DIST_ROOT DIST_INSTALL DIST_INSTALL_DEV
 %{__make} install DIST_MANIFEST="$DIST_INSTALL"
 %{__make} install-dev DIST_MANIFEST="$DIST_INSTALL_DEV"
 
