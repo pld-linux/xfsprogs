@@ -1,0 +1,53 @@
+diff -urN xfsprogs-1.2.0.org/configure.in xfsprogs-1.2.0/configure.in
+--- xfsprogs-1.2.0.org/configure.in	Tue May  1 21:06:43 2001
++++ xfsprogs-1.2.0/configure.in	Tue May  1 21:51:08 2001
+@@ -28,7 +28,10 @@
+ AC_SUBST(malloc_lib)
+ 
+ dnl Set version
+-. VERSION
++PKG_MAJOR=1
++PKG_MINOR=2
++PKG_REVISION=0
++PKG_BUILD=0
+ 
+ pkg_version=${PKG_MAJOR}.${PKG_MINOR}.${PKG_REVISION}
+ pkg_release=$PKG_BUILD
+@@ -115,15 +118,15 @@
+ 	echo 'Install either the e2fsprogs-devel (rpm) or the uuid-dev (deb) package.'
+ 	exit 1
+ ])
+-libuuid="/usr/lib/libuuid.a"
++libuuid="-luuid"
+ AC_SUBST(libuuid)
+ 
+ dnl Checks for LVM library
+-AC_MSG_CHECKING([for liblvm.a])
++AC_MSG_CHECKING([for liblvm.so])
+ liblvm=""
+ for dir in /usr/local/lib /usr/lib /lib; do
+-        if test -f $dir/liblvm.a; then
+-                liblvm=$dir/liblvm.a
++        if test -f $dir/liblvm.so; then
++                liblvm="-L$dir -llvm"
+         fi
+ done
+ if test -n "$liblvm"; then
+@@ -201,16 +204,8 @@
+ dnl man pages (source)
+ dnl also check if man page source is gzipped
+ dnl (usually on Debian, but not Redhat pre-7.0)
+-pkg_man_dir=${prefix}/man
++pkg_man_dir=${prefix}/share/man
+ have_zipped_manpages=false
+-for d in ${prefix}/share/man ${prefix}/man ; do
+-    if test -f $d/man1/man.1.gz
+-    then
+-	pkg_man_dir=$d
+-	have_zipped_manpages=true
+-	break
+-    fi
+-done
+ AC_SUBST(pkg_man_dir)
+ AC_SUBST(have_zipped_manpages)
+ 
