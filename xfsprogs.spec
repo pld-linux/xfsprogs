@@ -76,7 +76,7 @@ DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}"
 OPTIMIZER="%{rpmcflags}"
 export DEBUG OPTIMIZER
 aclocal
-autoconf
+%{__autoconf}
 %configure \
 	%{!?_with_static:--enable-shared-uuid=yes} \
 	%{?_with_static:--disable-shared --disable-shared-uuid}
