@@ -3,7 +3,7 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl):	Narzêdzia do systemu plików XFS
 Name:		xfsprogs
-Version:	2.0.3
+Version:	2.0.6
 Release:	1
 License:	GPL
 Group:		Applications/System
@@ -109,8 +109,6 @@ rm -f $RPM_BUILD_ROOT%{_mandir}/man8/xfs_info.8
 echo ".so xfs_growfs.8" > $RPM_BUILD_ROOT%{_mandir}/man8/xfs_info.8
 ln -sf /lib/libhandle.so.1.0.0 $RPM_BUILD_ROOT%{_libdir}/libhandle.so
 
-gzip -9nf doc/{CHANGES,CREDITS,README.*}
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -119,7 +117,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc doc/*.gz
+%doc doc/{CHANGES,CREDITS,README.*}
 %attr(755,root,root) /sbin/*
 %attr(755,root,root) %{_sbindir}/*
 %{!?_with_static:%attr(755,root,root) /lib/lib*.so*}
