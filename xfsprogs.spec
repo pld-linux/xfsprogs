@@ -9,7 +9,7 @@ Version:	2.5.6
 Release:	2
 License:	GPL
 Group:		Applications/System
-Source0:	ftp://linux-xfs.sgi.com/projects/xfs/download/Release-1.3/cmd_tars/%{name}-%{version}.src.tar.gz
+Source0:	ftp://linux-xfs.sgi.com/projects/xfs/download/Release-1.3.1/cmd_tars/%{name}-%{version}.src.tar.gz
 # Source0-md5:	4b21a904e5511bd97d87484ba403b120
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-install-sh.patch
