@@ -16,6 +16,7 @@ BuildRequires:	bash
 BuildRequires:	e2fsprogs-devel
 URL:		http://oss.sgi.com/projects/xfs/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Obsoletes:	libxfs1
 
 %description
 A set of commands to use the XFS filesystem, including mkfs.xfs.
@@ -44,6 +45,7 @@ Summary:	Header files and libraries to develop XFS software
 Summary(pl):	Pliki nag³ówkowe i biblioteki
 Group:		Development/Libraries
 Requires:       %{name} = %{version}
+Obsoletes:	libxfs1-devel
 
 %description devel
 Header files and libraries to develop software which operates on XFS
