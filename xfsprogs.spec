@@ -1,6 +1,6 @@
 #
 # Conditional build:
-# _with_static	- link statically with -luuid
+%bcond_with	static	# link statically with -luuid
 #
 Summary:	Tools for the XFS filesystem
 Summary(pl):	Narzêdzia do systemu plików XFS
@@ -18,10 +18,10 @@ URL:		http://oss.sgi.com/projects/xfs/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bash
-BuildRequires:	e2fsprogs-devel
-%{?_with_static:BuildRequires:	e2fsprogs-static}
 BuildRequires:	libtool
-%{?_with_static:BuildRequires:	sed >= 4.0}
+BuildRequires:	libuuid-devel
+%{?with_static:BuildRequires:	libuuid-static}
+%{?with_static:BuildRequires:	sed >= 4.0}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libxfs1
 
@@ -93,11 +93,11 @@ rm -f aclocal.m4
 %{__aclocal} -I m4
 %{__autoconf}
 %configure \
-	%{!?_with_static:--enable-shared-uuid=yes} \
-	%{?_with_static:--disable-shared --disable-shared-uuid}
+	%{!?with_static:--enable-shared-uuid=yes} \
+	%{?with_static:--disable-shared --disable-shared-uuid}
 
 %{__make} \
-	%{?_with_static:LTLINK='$(LIBTOOL) --mode=link %{__cc} -all-static' LDFLAGS=-static}
+	%{?with_static:LTLINK='$(LIBTOOL) --mode=link %{__cc} -all-static' LDFLAGS=-static}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -106,7 +106,7 @@ DIST_ROOT="$RPM_BUILD_ROOT"
 DIST_INSTALL=`pwd`/install.manifest
 DIST_INSTALL_DEV=`pwd`/install-dev.manifest
 export DIST_ROOT DIST_INSTALL DIST_INSTALL_DEV
-%{?_with_static:sed -i -e 's/\.lai/.la/' include/buildmacros}
+%{?with_static:sed -i -e 's/\.lai/.la/' include/buildmacros}
 
 %{__make} install \
 	DIST_MANIFEST="$DIST_INSTALL"
@@ -145,7 +145,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/{CHANGES,CREDITS,README.*}
 %attr(755,root,root) %{_sbindir}/*
 %attr(755,root,root) %{_bindir}/*
-%{!?_with_static:%attr(755,root,root) /lib/lib*.so.*.*}
+%{!?with_static:%attr(755,root,root) /lib/lib*.so.*.*}
 %{_mandir}/man[185]/*
 
 %files devel
@@ -153,7 +153,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 %{_includedir}/disk
 %{_includedir}/xfs
-%{!?_with_static:%{_libexecdir}/*.la}
+%{!?with_static:%{_libexecdir}/*.la}
 %attr(755,root,root) %{_libexecdir}/*.so
 
 %files static
