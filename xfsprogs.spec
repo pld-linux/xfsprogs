@@ -16,6 +16,7 @@ BuildRequires:	automake
 BuildRequires:	bash
 BuildRequires:	libtool
 BuildRequires:	e2fsprogs-devel
+%{?_with_static:BuildRequires:	e2fsprogs-static}
 URL:		http://oss.sgi.com/projects/xfs/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libxfs1
@@ -99,8 +100,7 @@ DIST_ROOT="$RPM_BUILD_ROOT"
 DIST_INSTALL=`pwd`/install.manifest
 DIST_INSTALL_DEV=`pwd`/install-dev.manifest
 export DIST_ROOT DIST_INSTALL DIST_INSTALL_DEV
-%{?_with_static:cp include/builddefs include/builddefs.tmp}
-%{?_with_static:sed -e 's/\.lai/.la/' include/builddefs.tmp > include/builddefs}
+%{?_with_static:sed -i -e 's/\.lai/.la/' include/buildmacros}
 %{__make} install DIST_MANIFEST="$DIST_INSTALL"
 %{__make} install-dev DIST_MANIFEST="$DIST_INSTALL_DEV"
 
@@ -140,7 +140,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 %{_includedir}/disk
 %{_includedir}/xfs
-%{_libexecdir}/*.la
+%{!?_with_static:%{_libexecdir}/*.la}
 %attr(755,root,root) %{_libexecdir}/*.so
 
 %files static
