@@ -98,7 +98,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/*.gz
 %attr(755,root,root) /sbin/*
 %attr(755,root,root) %{_sbindir}/*
-%{_mandir}/man[18]/*
+%{_mandir}/man[185]/*
 
 %files devel
 %defattr(644,root,root,755)
