@@ -1,24 +1,26 @@
-# conditional build
-#  --with static
+#
+# Conditional build:
+# _with_static	- link statically with -luuid
+#
 Summary:	Tools for the XFS filesystem
 Summary(pl):	Narzêdzia do systemu plików XFS
 Name:		xfsprogs
-Version:	2.3.9
+Version:	2.5.4
 Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/download/cmd_tars/%{name}-%{version}.src.tar.gz
-# Source0-md5: 54aa76cfa24e8b3d3dec9432269fbc5a
+# Source0-md5:	0e7fcda7f4b286b4f703193af7d7de45
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-install-sh.patch
 Patch2:		%{name}-sharedlibs.patch
+URL:		http://oss.sgi.com/projects/xfs/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bash
 BuildRequires:	libtool
 BuildRequires:	e2fsprogs-devel
 %{?_with_static:BuildRequires:	e2fsprogs-static}
-URL:		http://oss.sgi.com/projects/xfs/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libxfs1
 
@@ -68,6 +70,7 @@ operuj±cego na systemie plików XFS.
 Summary:	Static XFS software libraries
 Summary(pl):	Biblioteki statyczne do XFS
 Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}
 
 %description static
 Static XFS software libraries.
@@ -85,7 +88,8 @@ Biblioteki statyczne do XFS.
 DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}"
 OPTIMIZER="%{rpmcflags}"
 export DEBUG OPTIMIZER
-%{__aclocal}
+rm -f aclocal.m4
+%{__aclocal} -I m4
 %{__autoconf}
 %configure \
 	%{!?_with_static:--enable-shared-uuid=yes} \
@@ -102,8 +106,11 @@ DIST_INSTALL=`pwd`/install.manifest
 DIST_INSTALL_DEV=`pwd`/install-dev.manifest
 export DIST_ROOT DIST_INSTALL DIST_INSTALL_DEV
 %{?_with_static:sed -i -e 's/\.lai/.la/' include/buildmacros}
-%{__make} install DIST_MANIFEST="$DIST_INSTALL"
-%{__make} install-dev DIST_MANIFEST="$DIST_INSTALL_DEV"
+
+%{__make} install \
+	DIST_MANIFEST="$DIST_INSTALL"
+%{__make} install-dev \
+	DIST_MANIFEST="$DIST_INSTALL_DEV"
 
 for man in attr_list_by_handle.3 attr_multi_by_handle.3 \
 	fd_to_handle.3 free_handle.3 fssetdm_by_handle.3 \
@@ -117,10 +124,14 @@ done
 rm -f $RPM_BUILD_ROOT%{_mandir}/man8/xfs_info.8
 echo ".so xfs_growfs.8" > $RPM_BUILD_ROOT%{_mandir}/man8/xfs_info.8
 
-ln -sf %{_libdir}/libhandle.so.1.0.1 $RPM_BUILD_ROOT%{_libexecdir}/libhandle.so
-ln -sf %{_libdir}/libdisk.so.0.0.0 $RPM_BUILD_ROOT%{_libexecdir}/libdisk.so
-ln -sf %{_libdir}/libxfs.so.0.0.0 $RPM_BUILD_ROOT%{_libexecdir}/libxfs.so
-ln -sf %{_libdir}/libxlog.so.0.0.0 $RPM_BUILD_ROOT%{_libexecdir}/libxlog.so
+ln -sf %{_libdir}/$(cd $RPM_BUILD_ROOT%{_libdir}; echo libhandle.so.*.*.*) \
+	 $RPM_BUILD_ROOT%{_libexecdir}/libhandle.so
+ln -sf %{_libdir}/$(cd $RPM_BUILD_ROOT%{_libdir}; echo libdisk.so.*.*.*) \
+	$RPM_BUILD_ROOT%{_libexecdir}/libdisk.so
+ln -sf %{_libdir}/$(cd $RPM_BUILD_ROOT%{_libdir}; echo libxfs.so.*.*.*) \
+	$RPM_BUILD_ROOT%{_libexecdir}/libxfs.so
+ln -sf %{_libdir}/$(cd $RPM_BUILD_ROOT%{_libdir}; echo libxlog.so.*.*.*) \
+	$RPM_BUILD_ROOT%{_libexecdir}/libxlog.so
 
 %clean
 rm -rf $RPM_BUILD_ROOT
