@@ -56,7 +56,7 @@ B-drzewa by uzyskaæ wysok± wydajno¶æ oraz skalowalno¶æ.
 Summary:	Header files and libraries to develop XFS software
 Summary(pl):	Pliki nag³ówkowe i biblioteki
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Obsoletes:	libxfs1-devel
 
 %description devel
@@ -71,7 +71,7 @@ operuj±cego na systemie plików XFS.
 Summary:	Static XFS software libraries
 Summary(pl):	Biblioteki statyczne do XFS
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static XFS software libraries.
