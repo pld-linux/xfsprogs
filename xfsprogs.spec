@@ -1,7 +1,7 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl):	Narzêdzia do systemu plikowego XFS
 Name:		xfsprogs
-Version:	1.3.7
+Version:	1.3.13
 Release:	1
 License:	GPL
 Group:		Applications/System
@@ -63,7 +63,8 @@ operuj±cego na systemie plików XFS.
 %build
 DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}"; export DEBUG
 autoconf
-%configure --enable-shared-uuid=yes
+%configure2_13 \
+	--enable-shared-uuid=yes
 
 %{__make}
 
@@ -98,6 +99,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/*.gz
 %attr(755,root,root) /sbin/*
 %attr(755,root,root) %{_sbindir}/*
+%attr(755,root,root) /lib/lib*.so.*
 %{_mandir}/man[185]/*
 
 %files devel
