@@ -2,7 +2,7 @@ Summary:	Tools for the XFS filesystem
 Summary(pl):	Narzêdzia do systemu plikowego XFS
 Name:		xfsprogs
 Version:	1.3.13
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/System
 Group(de):	Applikationen/System
@@ -14,6 +14,11 @@ BuildRequires:	e2fsprogs-devel
 BuildRequires:	lvm-devel
 BuildRequires:	autoconf
 BuildRequires:	bash
+%if %{?BOOT:1}%{!?BOOT:0}
+BuildRequires:	lvm-static
+BuildRequires:	glibc-static
+BuildRequires:	e2fsprogs-static
+%endif
 URL:		http://oss.sgi.com/projects/xfs/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -55,6 +60,17 @@ filesystems.
 Pliki nag³ówkowe i biblioteki potrzebne do rozwoju oprogramowania
 operuj±cego na systemie plików XFS.
 
+%if %{?BOOT:1}%{!?BOOT:0}
+%package BOOT
+Summary:	xfs for bootdisk
+Group:		Applications/System
+Group(de):	Applikationen/System
+Group(pl):	Aplikacje/System
+
+%description BOOT
+xfs for bootdisk.
+%endif
+
 %prep
 %setup  -q
 %patch0 -p1
@@ -63,6 +79,18 @@ operuj±cego na systemie plików XFS.
 %build
 DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}"; export DEBUG
 autoconf
+
+%if %{?BOOT:1}%{!?BOOT:0}
+%configure2_13 \
+	--disable-shared \
+	--disable-shared-uuid
+%{__make} -C libxfs
+%{__make} -C libdisk
+%{__make} -C mkfs LLDFLAGS=-all-static
+mv mkfs/mkfs.xfs mkfs.xfs-BOOT
+%{__make} clean
+%endif
+
 %configure2_13 \
 	--enable-shared-uuid=yes
 
@@ -87,6 +115,11 @@ for man in attr_list_by_handle.3 attr_multi_by_handle.3 \
 			> $RPM_BUILD_ROOT%{_mandir}/man3/$man
 done
 
+%if %{?BOOT:1}%{!?BOOT:0}
+install -d $RPM_BUILD_ROOT/usr/lib/bootdisk/sbin
+install mkfs.xfs-BOOT $RPM_BUILD_ROOT/usr/lib/bootdisk/sbin/mkfs.xfs
+%endif
+
 rm -f $RPM_BUILD_ROOT%{_mandir}/man8/xfs_info.8
 echo ".so man8/xfs_growfs.8" > $RPM_BUILD_ROOT%{_mandir}/man8/xfs_info.8
 
@@ -107,3 +140,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 %{_includedir}/xfs
 %{_libdir}/*.a
+
+%if %{?BOOT:1}%{!?BOOT:0}
+%files BOOT
+%attr(755,root,root) /usr/lib/bootdisk/sbin/*
+%endif
