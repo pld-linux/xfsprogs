@@ -153,8 +153,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 %{_includedir}/disk
 %{_includedir}/xfs
-%{!?with_static:%{_libexecdir}/*.la}
+%if %{without static}
+%{_libexecdir}/*.la
 %attr(755,root,root) %{_libexecdir}/*.so
+%endif
 
 %files static
 %defattr(644,root,root,755)
