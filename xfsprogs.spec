@@ -3,7 +3,7 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl):	Narzêdzia do systemu plików XFS
 Name:		xfsprogs
-Version:	2.3.6
+Version:	2.3.9
 Release:	1
 License:	GPL
 Group:		Applications/System
