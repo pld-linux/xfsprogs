@@ -4,12 +4,13 @@ Summary:	Tools for the XFS filesystem
 Summary(pl):	Narzêdzia do systemu plików XFS
 Name:		xfsprogs
 Version:	2.1.2
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/download/cmd_tars/%{name}-%{version}.src.tar.gz
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-install-sh.patch
+Patch2:		%{name}-sharedlibs.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bash
@@ -75,6 +76,7 @@ Biblioteki statyczne do XFS.
 %setup  -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}"
@@ -114,6 +116,9 @@ rm -f $RPM_BUILD_ROOT%{_mandir}/man8/xfs_info.8
 echo ".so xfs_growfs.8" > $RPM_BUILD_ROOT%{_mandir}/man8/xfs_info.8
 
 ln -sf %{_libdir}/libhandle.so.1.0.1 $RPM_BUILD_ROOT%{_libexecdir}/libhandle.so
+ln -sf %{_libdir}/libdisk.so.0.0.0 $RPM_BUILD_ROOT%{_libexecdir}/libdisk.so
+ln -sf %{_libdir}/libxfs.so.0.0.0 $RPM_BUILD_ROOT%{_libexecdir}/libxfs.so
+ln -sf %{_libdir}/libxlog.so.0.0.0 $RPM_BUILD_ROOT%{_libexecdir}/libxlog.so
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -134,7 +139,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 %{_includedir}/disk
 %{_includedir}/xfs
-%{_libexecdir}/*.la
+%attr(755,root,root) %{_libexecdir}/*.la
 %attr(755,root,root) %{_libexecdir}/*.so
 
 %files static

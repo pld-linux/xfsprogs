@@ -1,0 +1,36 @@
+diff -Nur xfsprogs-2.1.2.orig/libdisk/Makefile xfsprogs-2.1.2/libdisk/Makefile
+--- xfsprogs-2.1.2.orig/libdisk/Makefile	Thu Aug  1 21:40:43 2002
++++ xfsprogs-2.1.2/libdisk/Makefile	Tue Aug 20 19:30:56 2002
+@@ -46,6 +46,7 @@
+ include $(BUILDRULES)
+ 
+ install: default
++	$(INSTALL_LTLIB)
+ 
+ install-dev: default
+-	$(INSTALL_LTLIB_STATIC)
++	$(INSTALL_LTLIB_DEV)
+diff -Nur xfsprogs-2.1.2.orig/libxfs/Makefile xfsprogs-2.1.2/libxfs/Makefile
+--- xfsprogs-2.1.2.orig/libxfs/Makefile	Thu Aug  1 21:40:43 2002
++++ xfsprogs-2.1.2/libxfs/Makefile	Tue Aug 20 19:31:04 2002
+@@ -65,6 +65,7 @@
+ include $(BUILDRULES)
+ 
+ install: default
++	$(INSTALL_LTLIB)
+ 
+ install-dev: default
+-	$(INSTALL_LTLIB_STATIC)
++	$(INSTALL_LTLIB_DEV)
+diff -Nur xfsprogs-2.1.2.orig/libxlog/Makefile xfsprogs-2.1.2/libxlog/Makefile
+--- xfsprogs-2.1.2.orig/libxlog/Makefile	Thu Aug  1 21:40:44 2002
++++ xfsprogs-2.1.2/libxlog/Makefile	Tue Aug 20 19:31:12 2002
+@@ -48,6 +48,7 @@
+ include $(BUILDRULES)
+ 
+ install: default
++	$(INSTALL_LTLIB)
+ 
+ install-dev: default
+-	$(INSTALL_LTLIB_STATIC)
++	$(INSTALL_LTLIB_DEV)
