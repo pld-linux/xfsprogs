@@ -9,9 +9,11 @@ Group(de):	Applikationen/System
 Group(pl):	Aplikacje/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/download/cmd_tars/%{name}-%{version}.src.tar.gz
 Patch0:		%{name}-miscfix.patch
+Patch1:		%{name}-install-sh.patch
 BuildRequires:	e2fsprogs-devel
 BuildRequires:	lvm-devel
 BuildRequires:	autoconf
+BuildRequires:	bash
 URL:		http://oss.sgi.com/projects/xfs/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -56,6 +58,7 @@ operuj±cego na systemie plików XFS.
 %prep
 %setup  -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}"; export DEBUG
