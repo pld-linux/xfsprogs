@@ -14,6 +14,7 @@ Patch2:		%{name}-sharedlibs.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bash
+BuildRequires:	libtool
 BuildRequires:	e2fsprogs-devel
 URL:		http://oss.sgi.com/projects/xfs/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
