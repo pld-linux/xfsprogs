@@ -113,6 +113,8 @@ done
 rm -f $RPM_BUILD_ROOT%{_mandir}/man8/xfs_info.8
 echo ".so xfs_growfs.8" > $RPM_BUILD_ROOT%{_mandir}/man8/xfs_info.8
 
+ln -sf %{_libdir}/libhandle.so.1.0.1 $RPM_BUILD_ROOT%{_libexecdir}/libhandle.so
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
