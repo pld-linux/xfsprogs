@@ -134,6 +134,9 @@ gzip -9nf doc/{CHANGES,CREDITS,README.*}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
+
 %files
 %defattr(644,root,root,755)
 %doc doc/*.gz
