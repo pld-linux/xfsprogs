@@ -1,14 +1,14 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl):	Narzêdzia do systemu plikowego XFS
 Name:		xfsprogs
-Version:	1.3.5
+Version:	1.3.7
 Release:	1
 License:	GPL
 Group:		Applications/System
 Group(de):	Applikationen/System
 Group(pl):	Aplikacje/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/download/cmd_tars/%{name}-%{version}.src.tar.gz
-Patch0:		%{name}-miscfix.patch
+Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-install-sh.patch
 BuildRequires:	e2fsprogs-devel
 BuildRequires:	lvm-devel
@@ -63,7 +63,7 @@ operuj±cego na systemie plików XFS.
 %build
 DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}"; export DEBUG
 autoconf
-%configure 
+%configure --enable-shared-uuid=yes
 
 %{__make}
 
