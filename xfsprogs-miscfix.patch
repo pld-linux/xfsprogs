@@ -33,12 +33,9 @@ diff -urN xfsprogs-1.2.0.org/configure.in xfsprogs-1.2.0/configure.in
          fi
  done
  if test -n "$liblvm"; then
-@@ -201,16 +204,8 @@
- dnl man pages (source)
- dnl also check if man page source is gzipped
+@@ -201,14 +204,6 @@
  dnl (usually on Debian, but not Redhat pre-7.0)
--pkg_man_dir=${prefix}/man
-+pkg_man_dir=${prefix}/share/man
+ pkg_man_dir=${prefix}/share/man
  have_zipped_manpages=false
 -for d in ${prefix}/share/man ${prefix}/man ; do
 -    if test -f $d/man1/man.1.gz
