@@ -3,7 +3,7 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl):	Narzêdzia do systemu plików XFS
 Name:		xfsprogs
-Version:	2.0.6
+Version:	2.1.2
 Release:	1
 License:	GPL
 Group:		Applications/System
@@ -17,6 +17,11 @@ BuildRequires:	e2fsprogs-devel
 URL:		http://oss.sgi.com/projects/xfs/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libxfs1
+
+%define		_sbindir	/sbin
+%define		_bindir		/usr/sbin
+%define		_libdir		/lib
+%define		_libexecdir	/usr/lib
 
 %description
 A set of commands to use the XFS filesystem, including mkfs.xfs.
@@ -107,7 +112,6 @@ done
 
 rm -f $RPM_BUILD_ROOT%{_mandir}/man8/xfs_info.8
 echo ".so xfs_growfs.8" > $RPM_BUILD_ROOT%{_mandir}/man8/xfs_info.8
-ln -sf /lib/libhandle.so.1.0.0 $RPM_BUILD_ROOT%{_libdir}/libhandle.so
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -118,16 +122,19 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc doc/{CHANGES,CREDITS,README.*}
-%attr(755,root,root) /sbin/*
-%attr(755,root,root) %{_sbindir}/*
+%attr(755,root,root) %{_sbindir}*
+%attr(755,root,root) %{_bindir}/*
 %{!?_with_static:%attr(755,root,root) /lib/lib*.so*}
 %{_mandir}/man[185]/*
 
 %files devel
 %defattr(644,root,root,755)
 %{_mandir}/man3/*
+%{_includedir}/disk
 %{_includedir}/xfs
+%{_libexecdir}/*.la
+%attr(755,root,root) %{_libexecdir}/*.so
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/*.a
+%{_libexecdir}/*.a
