@@ -1,3 +1,5 @@
+# conditional build
+#  --with static
 Summary:	Tools for the XFS filesystem
 Summary(pl):	Narzêdzia do systemu plików XFS
 Name:		xfsprogs
@@ -9,14 +11,8 @@ Source0:	ftp://linux-xfs.sgi.com/projects/xfs/download/cmd_tars/%{name}-%{versio
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-install-sh.patch
 BuildRequires:	e2fsprogs-devel
-BuildRequires:	lvm-devel
 BuildRequires:	autoconf
 BuildRequires:	bash
-%if %{?BOOT:1}%{!?BOOT:0}
-BuildRequires:	lvm-static
-BuildRequires:	glibc-static
-BuildRequires:	e2fsprogs-static
-%endif
 URL:		http://oss.sgi.com/projects/xfs/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -55,17 +51,6 @@ filesystems.
 Pliki nag³ówkowe i biblioteki potrzebne do rozwoju oprogramowania
 operuj±cego na systemie plików XFS.
 
-%package BOOT
-Summary:	xfs for bootdisk
-Summary(pl):	xfs dla bootkietki
-Group:		Applications/System
-
-%description BOOT
-xfs for bootdisk.
-
-%description BOOT -l pl
-xfs dla bootkietki.
-
 %prep
 %setup  -q
 %patch0 -p1
@@ -81,15 +66,17 @@ autoconf
 	--disable-shared-uuid
 %{__make} -C libxfs
 %{__make} -C libdisk
-%{__make} -C mkfs LLDFLAGS=-all%{rpmldflags} tatic"
+%{__make} -C mkfs LLDFLAGS=-alltatic
 mv -f mkfs/mkfs.xfs mkfs.xfs-BOOT
 %{__make} clean
 %endif
 
 %configure2_13 \
-	--enable-shared-uuid=yes
+	%{!?_with_static:--enable-shared-uuid=yes} \
+	%{?_with_static:--disable-shared --disable-shared-uuid}
 
-%{__make}
+%{__make} \
+	%{?_with_static:LTLINK='$(LIBTOOL) --mode=link $(CC) -all-static' LDFLAGS=-static}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -98,6 +85,8 @@ DIST_ROOT="$RPM_BUILD_ROOT"
 DIST_INSTALL=`pwd`/install.manifest
 DIST_INSTALL_DEV=`pwd`/install-dev.manifest
 export DIST_ROOT DIST_INSTALL DIST_INSTALL_DEV
+%{?_with_static:cp include/builddefs include/builddefs.tmp}
+%{?_with_static:sed -e 's/\.lai/.la/' include/builddefs.tmp > include/builddefs}
 %{__make} install DIST_MANIFEST="$DIST_INSTALL"
 %{__make} install-dev DIST_MANIFEST="$DIST_INSTALL_DEV"
 
@@ -109,11 +98,6 @@ for man in attr_list_by_handle.3 attr_multi_by_handle.3 \
 		echo ".so man3/path_to_handle.3" \
 			> $RPM_BUILD_ROOT%{_mandir}/man3/$man
 done
-
-%if %{?BOOT:1}%{!?BOOT:0}
-install -d $RPM_BUILD_ROOT%{_libdir}/bootdisk/sbin
-install mkfs.xfs-BOOT $RPM_BUILD_ROOT%{_libdir}/bootdisk/sbin/mkfs.xfs
-%endif
 
 rm -f $RPM_BUILD_ROOT%{_mandir}/man8/xfs_info.8
 echo ".so man8/xfs_growfs.8" > $RPM_BUILD_ROOT%{_mandir}/man8/xfs_info.8
@@ -131,7 +115,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/*.gz
 %attr(755,root,root) /sbin/*
 %attr(755,root,root) %{_sbindir}/*
-%attr(755,root,root) /lib/lib*.so.*
+%{!?_with_static:%attr(755,root,root) /lib/lib*.so.*}
 %{_mandir}/man[185]/*
 
 %files devel
@@ -139,9 +123,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 %{_includedir}/xfs
 %{_libdir}/*.a
-
-%if %{?BOOT:1}%{!?BOOT:0}
-%files BOOT
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/bootdisk/sbin/*
-%endif
