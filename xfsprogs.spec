@@ -10,9 +10,10 @@ Group:		Applications/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/download/cmd_tars/%{name}-%{version}.src.tar.gz
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-install-sh.patch
-BuildRequires:	e2fsprogs-devel
 BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	bash
+BuildRequires:	e2fsprogs-devel
 URL:		http://oss.sgi.com/projects/xfs/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -51,32 +52,34 @@ filesystems.
 Pliki nag³ówkowe i biblioteki potrzebne do rozwoju oprogramowania
 operuj±cego na systemie plików XFS.
 
+%package static
+Summary:	Static XFS software libraries
+Summary(pl):	Biblioteki statyczne do XFS
+Group:		Development/Libraries
+
+%description static
+Static XFS software libraries.
+
+%description static -l pl
+Biblioteki statyczne do XFS.
+
 %prep
 %setup  -q
 %patch0 -p1
 %patch1 -p1
 
 %build
-DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}"; export DEBUG
+DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}"
+OPTIMIZER="%{rpmcflags}"
+export DEBUG OPTIMIZER
+aclocal
 autoconf
-
-%if %{?BOOT:1}%{!?BOOT:0}
-%configure2_13 \
-	--disable-shared \
-	--disable-shared-uuid
-%{__make} -C libxfs
-%{__make} -C libdisk
-%{__make} -C mkfs LLDFLAGS=-alltatic
-mv -f mkfs/mkfs.xfs mkfs.xfs-BOOT
-%{__make} clean
-%endif
-
-%configure2_13 \
+%configure \
 	%{!?_with_static:--enable-shared-uuid=yes} \
 	%{?_with_static:--disable-shared --disable-shared-uuid}
 
 %{__make} \
-	%{?_with_static:LTLINK='$(LIBTOOL) --mode=link $(CC) -all-static' LDFLAGS=-static}
+	%{?_with_static:LTLINK='$(LIBTOOL) --mode=link %{__cc} -all-static' LDFLAGS=-static}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -107,7 +110,7 @@ gzip -9nf doc/{CHANGES,CREDITS,README.*}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post -p /sbin/ldconfig
+%post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %files
@@ -122,4 +125,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_mandir}/man3/*
 %{_includedir}/xfs
+
+%files static
+%defattr(644,root,root,755)
 %{_libdir}/*.a
