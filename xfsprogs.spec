@@ -20,6 +20,7 @@ URL:		http://oss.sgi.com/projects/xfs/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bash
+BuildRequires:	gettext-devel
 BuildRequires:	libtool
 BuildRequires:	libuuid-devel
 %{?with_static:BuildRequires:	libuuid-static}
