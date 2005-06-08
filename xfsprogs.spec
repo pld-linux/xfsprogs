@@ -6,7 +6,7 @@ Summary:	Tools for the XFS filesystem
 Summary(pl):	Narzêdzia do systemu plików XFS
 Name:		xfsprogs
 Version:	2.6.25
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/download/cmd_tars/%{name}-%{version}.src.tar.gz
@@ -59,6 +59,7 @@ B-drzewa by uzyskaæ wysok± wydajno¶æ oraz skalowalno¶æ.
 Summary:	Header files and libraries to develop XFS software
 Summary(pl):	Pliki nag³ówkowe i biblioteki
 Group:		Development/Libraries
+Requires:	libuuid-devel
 Requires:	%{name} = %{version}-%{release}
 Obsoletes:	libxfs1-devel
 
