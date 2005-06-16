@@ -1,34 +1,36 @@
 #
 # Conditional build:
-# _with_static	- link statically with -luuid
+%bcond_with	static	# link statically with \-luuid
 #
 Summary:	Tools for the XFS filesystem
 Summary(pl):	Narzêdzia do systemu plików XFS
 Name:		xfsprogs
-Version:	2.5.6
+Version:	2.6.25
 Release:	1
 License:	GPL
 Group:		Applications/System
-Source0:	ftp://linux-xfs.sgi.com/projects/xfs/download/Release-1.3/cmd_tars/%{name}-%{version}.src.tar.gz
-# Source0-md5:	4b21a904e5511bd97d87484ba403b120
+Source0:	ftp://linux-xfs.sgi.com/projects/xfs/download/cmd_tars/%{name}-%{version}.src.tar.gz
+# Source0-md5:	65fbf692f348b57f21edd4813733d9ae
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-install-sh.patch
 Patch2:		%{name}-sharedlibs.patch
+Patch3:		%{name}-cflags.patch
 URL:		http://oss.sgi.com/projects/xfs/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bash
-BuildRequires:	e2fsprogs-devel
-%{?_with_static:BuildRequires:	e2fsprogs-static}
+BuildRequires:	gettext-devel
 BuildRequires:	libtool
-%{?_with_static:BuildRequires:	perl}
+BuildRequires:	e2fsprogs-devel
+%{?with_static:BuildRequires:	e2fsprogs-static}
+%{?with_static:BuildRequires:	sed >= 4.0}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libxfs1
 
 %define		_sbindir	/sbin
 %define		_bindir		/usr/sbin
-%define		_libdir		/lib
-%define		_libexecdir	/usr/lib
+%define		_libdir		/%{_lib}
+%define		_libexecdir	/usr/%{_lib}
 
 %description
 A set of commands to use the XFS filesystem, including mkfs.xfs.
@@ -56,7 +58,8 @@ B-drzewa by uzyskaæ wysok± wydajno¶æ oraz skalowalno¶æ.
 Summary:	Header files and libraries to develop XFS software
 Summary(pl):	Pliki nag³ówkowe i biblioteki
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	e2fsprogs-devel
+Requires:	%{name} = %{version}-%{release}
 Obsoletes:	libxfs1-devel
 
 %description devel
@@ -71,7 +74,7 @@ operuj±cego na systemie plików XFS.
 Summary:	Static XFS software libraries
 Summary(pl):	Biblioteki statyczne do XFS
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static XFS software libraries.
@@ -80,10 +83,11 @@ Static XFS software libraries.
 Biblioteki statyczne do XFS.
 
 %prep
-%setup  -q
+%setup -q
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}"
@@ -93,11 +97,11 @@ rm -f aclocal.m4
 %{__aclocal} -I m4
 %{__autoconf}
 %configure \
-	%{!?_with_static:--enable-shared-uuid=yes} \
-	%{?_with_static:--disable-shared --disable-shared-uuid}
+	%{!?with_static:--enable-shared-uuid=yes} \
+	%{?with_static:--disable-shared --disable-shared-uuid}
 
 %{__make} \
-	%{?_with_static:LTLINK='$(LIBTOOL) --mode=link %{__cc} -all-static' LDFLAGS=-static}
+	%{?with_static:LTLINK='$(LIBTOOL) --mode=link %{__cc} -all-static' LDFLAGS=-static}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -106,7 +110,7 @@ DIST_ROOT="$RPM_BUILD_ROOT"
 DIST_INSTALL=`pwd`/install.manifest
 DIST_INSTALL_DEV=`pwd`/install-dev.manifest
 export DIST_ROOT DIST_INSTALL DIST_INSTALL_DEV
-%{?_with_static:perl -i -e 's/\.lai/.la/' include/buildmacros}
+%{?with_static:sed -i -e 's/\.lai/.la/' include/buildmacros}
 
 %{__make} install \
 	DIST_MANIFEST="$DIST_INSTALL"
@@ -134,10 +138,13 @@ ln -sf %{_libdir}/$(cd $RPM_BUILD_ROOT%{_libdir}; echo libxfs.so.*.*.*) \
 ln -sf %{_libdir}/$(cd $RPM_BUILD_ROOT%{_libdir}; echo libxlog.so.*.*.*) \
 	$RPM_BUILD_ROOT%{_libexecdir}/libxlog.so
 
+%{__sed} -e "s|libdir='%{_libdir}'|libdir='%{_libexecdir}'|" \
+	$RPM_BUILD_ROOT%{_libexecdir}/lib{disk,handle,xfs,xlog}.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post   -p /sbin/ldconfig
+%post	-p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %files
@@ -145,7 +152,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/{CHANGES,CREDITS,README.*}
 %attr(755,root,root) %{_sbindir}/*
 %attr(755,root,root) %{_bindir}/*
-%{!?_with_static:%attr(755,root,root) /lib/lib*.so.*.*}
+%{!?with_static:%attr(755,root,root) /%{_lib}/lib*.so.*.*}
 %{_mandir}/man[185]/*
 
 %files devel
@@ -153,8 +160,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 %{_includedir}/disk
 %{_includedir}/xfs
-%{!?_with_static:%{_libexecdir}/*.la}
+%if %{without static}
+%{_libexecdir}/*.la
 %attr(755,root,root) %{_libexecdir}/*.so
+%endif
 
 %files static
 %defattr(644,root,root,755)
