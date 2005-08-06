@@ -5,17 +5,16 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl):	Narzêdzia do systemu plików XFS
 Name:		xfsprogs
-Version:	2.6.25
-Release:	3
-License:	GPL
+Version:	2.6.36
+Release:	1
+License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/download/cmd_tars/%{name}-%{version}.src.tar.gz
-# Source0-md5:	65fbf692f348b57f21edd4813733d9ae
+# Source0-md5:	41850e643b3c0c5f1690467f3a9d187f
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-install-sh.patch
 Patch2:		%{name}-sharedlibs.patch
 Patch3:		%{name}-cflags.patch
-Patch4:		%{name}-gcc4.patch
 URL:		http://oss.sgi.com/projects/xfs/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -89,7 +88,6 @@ Biblioteki statyczne do XFS.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
 
 %build
 DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}"
@@ -151,7 +149,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc doc/{CHANGES,CREDITS,README.*}
+%doc README doc/{CHANGES,CREDITS}
 %attr(755,root,root) %{_sbindir}/*
 %attr(755,root,root) %{_bindir}/*
 %{!?with_static:%attr(755,root,root) /%{_lib}/lib*.so.*.*}
