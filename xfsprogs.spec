@@ -5,12 +5,12 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl):	Narzêdzia do systemu plików XFS
 Name:		xfsprogs
-Version:	2.6.36
-Release:	3
+Version:	2.7.3
+Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/download/cmd_tars/%{name}-%{version}.src.tar.gz
-# Source0-md5:	41850e643b3c0c5f1690467f3a9d187f
+# Source0-md5:	89728c0d84258c94e629bf39e4ba1509
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-install-sh.patch
 Patch2:		%{name}-sharedlibs.patch
@@ -24,8 +24,8 @@ BuildRequires:	libtool
 BuildRequires:	libuuid-devel
 %{?with_static:BuildRequires:	libuuid-static}
 %{?with_static:BuildRequires:	sed >= 4.0}
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libxfs1
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sbindir	/sbin
 %define		_bindir		/usr/sbin
