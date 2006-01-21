@@ -5,17 +5,17 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl):	Narzêdzia do systemu plików XFS
 Name:		xfsprogs
-Version:	2.7.3
+Version:	2.7.11
 Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/download/cmd_tars/%{name}-%{version}.src.tar.gz
-# Source0-md5:	89728c0d84258c94e629bf39e4ba1509
+# Source0-md5:	d4a78fced98c0f3f32627a473e8e0a59
+Source1:	%{name}-pl.po
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-install-sh.patch
 Patch2:		%{name}-sharedlibs.patch
-Patch3:		%{name}-cflags.patch
-Patch4:		%{name}-xfs_db-segv.patch
+Patch3:		%{name}-po.patch
 URL:		http://oss.sgi.com/projects/xfs/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -89,11 +89,12 @@ Biblioteki statyczne do XFS.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
+
+cp %{SOURCE1} po/pl.po
 
 %build
 DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}"
-OPTIMIZER="%{rpmcflags}"
+OPTIMIZER="%{rpmcflags} -DENABLE_GETTEXT"
 export DEBUG OPTIMIZER
 rm -f aclocal.m4
 %{__aclocal} -I m4
@@ -143,13 +144,15 @@ ln -sf %{_libdir}/$(cd $RPM_BUILD_ROOT%{_libdir}; echo libxlog.so.*.*.*) \
 %{__sed} -e "s|libdir='%{_libdir}'|libdir='%{_libexecdir}'|" \
 	$RPM_BUILD_ROOT%{_libexecdir}/lib{disk,handle,xfs,xlog}.la
 
+%find_lang %{name}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post	-p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc README doc/{CHANGES,CREDITS}
 %attr(755,root,root) %{_sbindir}/*
