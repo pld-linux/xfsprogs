@@ -1,0 +1,1 @@
+- run ldconfig in %post(un)
