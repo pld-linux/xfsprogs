@@ -1,0 +1,4 @@
+- remove all obsoleted BOOT modyfications,
+- pass correctly %{rpmcflags} to compile ption,
+- added static subpackage,
+- regenereate ac files.
