@@ -1,0 +1,3 @@
+- add link to libhandle.so
+- added Requires %{name} = %{version} to devel package
+- Relese 2, STBR
