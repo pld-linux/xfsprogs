@@ -16,6 +16,7 @@ Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-install-sh.patch
 Patch2:		%{name}-sharedlibs.patch
 Patch3:		%{name}-po.patch
+Patch4:		%{name}-cflags.patch
 URL:		http://oss.sgi.com/projects/xfs/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -24,7 +25,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	libtool
 BuildRequires:	libuuid-devel
 %{?with_static:BuildRequires:	libuuid-static}
-BuildRequires:	sed >= 4.0
+%{?with_static:BuildRequires:	sed >= 4.0}
 Obsoletes:	libxfs1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -89,7 +90,7 @@ Biblioteki statyczne do XFS.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-sed 's/-O3//' -i fsck/Makefile
+%patch4 -p1
 
 cp %{SOURCE1} po/pl.po
 
