@@ -1,0 +1,1 @@
+- added Requires %{name} = %{version} to devel package
