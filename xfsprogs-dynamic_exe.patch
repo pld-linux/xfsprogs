@@ -1,0 +1,131 @@
+diff -Nur xfsprogs-2.7.11/copy/Makefile xfsprogs-2.7.11.dynamic/copy/Makefile
+--- xfsprogs-2.7.11/copy/Makefile	2006-01-17 04:46:46.000000000 +0100
++++ xfsprogs-2.7.11.dynamic/copy/Makefile	2006-03-10 18:13:45.000000000 +0100
+@@ -11,7 +11,7 @@
+ 
+ LLDLIBS = $(LIBXFS) $(LIBUUID) $(LIBPTHREAD)
+ LTDEPENDENCIES = $(LIBXFS)
+-LLDFLAGS = -static
++LLDFLAGS = 
+ 
+ default: $(LTCOMMAND)
+ 
+diff -Nur xfsprogs-2.7.11/db/Makefile xfsprogs-2.7.11.dynamic/db/Makefile
+--- xfsprogs-2.7.11/db/Makefile	2006-01-17 04:46:46.000000000 +0100
++++ xfsprogs-2.7.11.dynamic/db/Makefile	2006-03-10 18:13:45.000000000 +0100
+@@ -18,7 +18,7 @@
+ LSRCFILES = xfs_admin.sh xfs_check.sh xfs_ncheck.sh
+ LLDLIBS	= $(LIBXFS) $(LIBXLOG) $(LIBUUID)
+ LTDEPENDENCIES = $(LIBXFS) $(LIBXLOG)
+-LLDFLAGS += -static
++LLDFLAGS += 
+ 
+ ifeq ($(ENABLE_READLINE),yes)
+ LLDLIBS += $(LIBREADLINE) $(LIBTERMCAP)
+diff -Nur xfsprogs-2.7.11/fsck/Makefile xfsprogs-2.7.11.dynamic/fsck/Makefile
+--- xfsprogs-2.7.11/fsck/Makefile	2006-03-10 18:12:35.000000000 +0100
++++ xfsprogs-2.7.11.dynamic/fsck/Makefile	2006-03-10 18:13:45.000000000 +0100
+@@ -8,7 +8,7 @@
+ LTCOMMAND = fsck.xfs
+ CFILES = xfs_fsck.c
+ LCFLAGS = -s 
+-LLDFLAGS += -static
++LLDFLAGS += 
+ 
+ default: $(LTCOMMAND)
+ 
+diff -Nur xfsprogs-2.7.11/growfs/Makefile xfsprogs-2.7.11.dynamic/growfs/Makefile
+--- xfsprogs-2.7.11/growfs/Makefile	2006-01-17 04:46:48.000000000 +0100
++++ xfsprogs-2.7.11.dynamic/growfs/Makefile	2006-03-10 18:13:45.000000000 +0100
+@@ -11,7 +11,7 @@
+ 
+ LLDLIBS = $(LIBXFS) $(LIBXCMD) $(LIBUUID)
+ LTDEPENDENCIES = $(LIBXFS) $(LIBXCMD)
+-LLDFLAGS = -static
++LLDFLAGS = 
+ LSRCFILES = xfs_info.sh
+ 
+ default: $(LTCOMMAND)
+diff -Nur xfsprogs-2.7.11/io/Makefile xfsprogs-2.7.11.dynamic/io/Makefile
+--- xfsprogs-2.7.11/io/Makefile	2006-01-17 04:46:49.000000000 +0100
++++ xfsprogs-2.7.11.dynamic/io/Makefile	2006-03-10 18:13:45.000000000 +0100
+@@ -14,7 +14,7 @@
+ 
+ LLDLIBS = $(LIBXCMD)
+ LTDEPENDENCIES = $(LIBXCMD)
+-LLDFLAGS = -static
++LLDFLAGS = 
+ 
+ ifeq ($(HAVE_FADVISE),yes)
+ CFILES += fadvise.c
+diff -Nur xfsprogs-2.7.11/libxcmd/Makefile xfsprogs-2.7.11.dynamic/libxcmd/Makefile
+--- xfsprogs-2.7.11/libxcmd/Makefile	2006-01-17 04:46:49.000000000 +0100
++++ xfsprogs-2.7.11.dynamic/libxcmd/Makefile	2006-03-10 18:13:51.000000000 +0100
+@@ -25,6 +25,7 @@
+ include $(BUILDRULES)
+ 
+ install: default
++	$(INSTALL_LTLIB)
+ 
+ install-dev: default
+ 	$(INSTALL_LTLIB_STATIC)
+diff -Nur xfsprogs-2.7.11/logprint/Makefile xfsprogs-2.7.11.dynamic/logprint/Makefile
+--- xfsprogs-2.7.11/logprint/Makefile	2006-01-17 04:46:50.000000000 +0100
++++ xfsprogs-2.7.11.dynamic/logprint/Makefile	2006-03-10 18:13:45.000000000 +0100
+@@ -14,7 +14,7 @@
+ 
+ LLDLIBS	= $(LIBXFS) $(LIBXLOG) $(LIBUUID)
+ LTDEPENDENCIES = $(LIBXFS) $(LIBXLOG)
+-LLDFLAGS = -static
++LLDFLAGS = 
+ 
+ default: $(LTCOMMAND)
+ 
+diff -Nur xfsprogs-2.7.11/mkfs/Makefile xfsprogs-2.7.11.dynamic/mkfs/Makefile
+--- xfsprogs-2.7.11/mkfs/Makefile	2006-01-17 04:46:51.000000000 +0100
++++ xfsprogs-2.7.11.dynamic/mkfs/Makefile	2006-03-10 18:13:45.000000000 +0100
+@@ -13,7 +13,7 @@
+ 
+ LLDLIBS = $(LIBXFS) $(LIBUUID) $(LIBDISK)
+ LTDEPENDENCIES = $(LIBXFS) $(LIBDISK)
+-LLDFLAGS = -static
++LLDFLAGS = 
+ 
+ LSRCFILES = $(FSTYP).c
+ LDIRT = $(FSTYP)
+diff -Nur xfsprogs-2.7.11/quota/Makefile xfsprogs-2.7.11.dynamic/quota/Makefile
+--- xfsprogs-2.7.11/quota/Makefile	2006-01-17 04:46:51.000000000 +0100
++++ xfsprogs-2.7.11.dynamic/quota/Makefile	2006-03-10 18:13:45.000000000 +0100
+@@ -16,7 +16,7 @@
+ 
+ LLDLIBS = $(LIBXCMD)
+ LTDEPENDENCIES = $(LIBXCMD)
+-LLDFLAGS = -static
++LLDFLAGS = 
+ 
+ ifeq ($(ENABLE_READLINE),yes)
+ LLDLIBS += $(LIBREADLINE) $(LIBTERMCAP)
+diff -Nur xfsprogs-2.7.11/repair/Makefile xfsprogs-2.7.11.dynamic/repair/Makefile
+--- xfsprogs-2.7.11/repair/Makefile	2006-01-17 04:46:52.000000000 +0100
++++ xfsprogs-2.7.11.dynamic/repair/Makefile	2006-03-10 18:13:45.000000000 +0100
+@@ -19,7 +19,7 @@
+ 
+ LLDLIBS = $(LIBXFS) $(LIBXLOG) $(LIBUUID)
+ LTDEPENDENCIES = $(LIBXFS) $(LIBXLOG)
+-LLDFLAGS = -static
++LLDFLAGS = 
+ 
+ default: $(LTCOMMAND)
+ 
+diff -Nur xfsprogs-2.7.11/rtcp/Makefile xfsprogs-2.7.11.dynamic/rtcp/Makefile
+--- xfsprogs-2.7.11/rtcp/Makefile	2006-01-17 04:46:52.000000000 +0100
++++ xfsprogs-2.7.11.dynamic/rtcp/Makefile	2006-03-10 18:13:45.000000000 +0100
+@@ -7,7 +7,7 @@
+ 
+ LTCOMMAND = xfs_rtcp
+ CFILES = xfs_rtcp.c
+-LLDFLAGS = -static
++LLDFLAGS = 
+ 
+ default: $(LTCOMMAND)
+ 
