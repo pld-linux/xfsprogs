@@ -1,6 +1,7 @@
 #
 # Conditional build:
 %bcond_with	static	# link statically with \-luuid
+%bcond_with	dynamic_exe	# link executables dinamically with xfs libs
 #
 Summary:	Tools for the XFS filesystem
 Summary(pl):	Narzêdzia do systemu plików XFS
@@ -17,6 +18,7 @@ Patch1:		%{name}-install-sh.patch
 Patch2:		%{name}-sharedlibs.patch
 Patch3:		%{name}-po.patch
 Patch4:		%{name}-cflags.patch
+Patch5:		%{name}-dynamic_exe.patch
 URL:		http://oss.sgi.com/projects/xfs/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -91,6 +93,7 @@ Biblioteki statyczne do XFS.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%{?with_dynamic_exe:%patch5 -p1}
 
 cp %{SOURCE1} po/pl.po
 
