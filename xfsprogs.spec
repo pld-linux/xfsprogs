@@ -1,7 +1,7 @@
 #
 # Conditional build:
-%bcond_with	static	# link statically with \-luuid
-%bcond_with	dynamic_exe	# link executables dinamically with xfs libs
+%bcond_with	static		# link statically with \-luuid
+%bcond_with	dynamic_exe	# link executables dynamically with xfs libs
 #
 Summary:	Tools for the XFS filesystem
 Summary(pl):	Narzêdzia do systemu plików XFS
@@ -12,12 +12,10 @@ License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/download/cmd_tars/%{name}_%{version}-1.tar.gz
 # Source0-md5:	88703cf432f3e958f15a193e508c0e5c
-Source1:	%{name}-pl.po
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-install-sh.patch
 Patch2:		%{name}-sharedlibs.patch
-Patch3:		%{name}-po.patch
-Patch5:		%{name}-dynamic_exe.patch
+Patch3:		%{name}-dynamic_exe.patch
 URL:		http://oss.sgi.com/projects/xfs/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -90,10 +88,7 @@ Biblioteki statyczne do XFS.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-#%patch3 -p1
-%{?with_dynamic_exe:%patch5 -p1}
-
-cp %{SOURCE1} po/pl.po
+%{?with_dynamic_exe:%patch3 -p1}
 
 %build
 DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}"
