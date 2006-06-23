@@ -22,18 +22,6 @@ diff -Nur xfsprogs-2.7.11/db/Makefile xfsprogs-2.7.11.dynamic/db/Makefile
  
  ifeq ($(ENABLE_READLINE),yes)
  LLDLIBS += $(LIBREADLINE) $(LIBTERMCAP)
-diff -Nur xfsprogs-2.7.11/fsck/Makefile xfsprogs-2.7.11.dynamic/fsck/Makefile
---- xfsprogs-2.7.11/fsck/Makefile	2006-03-10 18:12:35.000000000 +0100
-+++ xfsprogs-2.7.11.dynamic/fsck/Makefile	2006-03-10 18:13:45.000000000 +0100
-@@ -8,7 +8,7 @@
- LTCOMMAND = fsck.xfs
- CFILES = xfs_fsck.c
- LCFLAGS = -s 
--LLDFLAGS += -static
-+LLDFLAGS += 
- 
- default: $(LTCOMMAND)
- 
 diff -Nur xfsprogs-2.7.11/growfs/Makefile xfsprogs-2.7.11.dynamic/growfs/Makefile
 --- xfsprogs-2.7.11/growfs/Makefile	2006-01-17 04:46:48.000000000 +0100
 +++ xfsprogs-2.7.11.dynamic/growfs/Makefile	2006-03-10 18:13:45.000000000 +0100
@@ -51,8 +39,8 @@ diff -Nur xfsprogs-2.7.11/io/Makefile xfsprogs-2.7.11.dynamic/io/Makefile
 +++ xfsprogs-2.7.11.dynamic/io/Makefile	2006-03-10 18:13:45.000000000 +0100
 @@ -14,7 +14,7 @@
  
- LLDLIBS = $(LIBXCMD)
- LTDEPENDENCIES = $(LIBXCMD)
+ LLDLIBS = $(LIBXCMD) $(LIBHANDLE)
+ LTDEPENDENCIES = $(LIBXCMD) $(LIBHANDLE)
 -LLDFLAGS = -static
 +LLDFLAGS = 
  
