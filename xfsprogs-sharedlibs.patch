@@ -25,7 +25,15 @@ diff -Nur xfsprogs-2.1.2.orig/libxfs/Makefile xfsprogs-2.1.2/libxfs/Makefile
 diff -Nur xfsprogs-2.1.2.orig/libxlog/Makefile xfsprogs-2.1.2/libxlog/Makefile
 --- xfsprogs-2.1.2.orig/libxlog/Makefile	Thu Aug  1 21:40:44 2002
 +++ xfsprogs-2.1.2/libxlog/Makefile	Tue Aug 20 19:31:12 2002
-@@ -48,6 +48,7 @@
+@@ -9,6 +9,7 @@
+ LT_CURRENT = 0
+ LT_REVISION = 0
+ LT_AGE = 0
++LTLIBS = $(LIBUUID)
+ 
+ CFILES = xfs_log_recover.c util.c
+ 
+@@ -48,6 +49,7 @@
  include $(BUILDRULES)
  
  install: default
