@@ -25,7 +25,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	libtool
 BuildRequires:	libuuid-devel
 %{?with_static:BuildRequires:	libuuid-static}
-%{?with_static:BuildRequires:	sed >= 4.0}
+BuildRequires:	sed >= 4.0
 Obsoletes:	libxfs1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -91,6 +91,7 @@ Biblioteki statyczne do XFS.
 %patch2 -p1
 %patch3 -p1
 %{?with_dynamic_exe:%patch4 -p1}
+sed '/@LDFLAGS@/a\LTLDFLAGS = @LDFLAGS@' -i include/builddefs.in
 
 %build
 DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}"
