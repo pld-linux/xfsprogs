@@ -17,6 +17,7 @@ Patch1:		%{name}-install-sh.patch
 Patch2:		%{name}-sharedlibs.patch
 Patch3:		%{name}-pl.po-update.patch
 Patch4:		%{name}-dynamic_exe.patch
+Patch5:		%{name}-LDFLAGS.patch
 URL:		http://oss.sgi.com/projects/xfs/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -25,7 +26,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	libtool
 BuildRequires:	libuuid-devel
 %{?with_static:BuildRequires:	libuuid-static}
-BuildRequires:	sed >= 4.0
+%{?with_static:BuildRequires:	sed >= 4.0}
 Obsoletes:	libxfs1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -60,8 +61,8 @@ B-drzewa by uzyskaæ wysok± wydajno¶æ oraz skalowalno¶æ.
 Summary:	Header files and libraries to develop XFS software
 Summary(pl):	Pliki nag³ówkowe i biblioteki
 Group:		Development/Libraries
-Requires:	libuuid-devel
 Requires:	%{name} = %{version}-%{release}
+Requires:	libuuid-devel
 Obsoletes:	libxfs1-devel
 
 %description devel
@@ -91,7 +92,7 @@ Biblioteki statyczne do XFS.
 %patch2 -p1
 %patch3 -p1
 %{?with_dynamic_exe:%patch4 -p1}
-sed '/@LDFLAGS@/a\LTLDFLAGS = @LDFLAGS@' -i include/builddefs.in
+%patch5 -p1
 
 %build
 DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}"
