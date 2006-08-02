@@ -1,0 +1,11 @@
+diff -Nur xfsprogs-2.8.4/include/builddefs.in xfsprogs-2.8.4.LDFLAGS/include/builddefs.in
+--- xfsprogs-2.8.4/include/builddefs.in	2006-06-26 07:01:15.000000000 +0200
++++ xfsprogs-2.8.4.LDFLAGS/include/builddefs.in	2006-08-02 02:58:14.000000000 +0200
+@@ -24,6 +24,7 @@
+ OPTIMIZER = @opt_build@
+ MALLOCLIB = @malloc_lib@
+ LOADERFLAGS = @LDFLAGS@
++LTLDFLAGS = @LDFLAGS@
+ 
+ LIBRT = @librt@
+ LIBUUID = @libuuid@
