@@ -18,6 +18,7 @@ Patch2:		%{name}-sharedlibs.patch
 Patch3:		%{name}-pl.po-update.patch
 Patch4:		%{name}-dynamic_exe.patch
 Patch5:		%{name}-LDFLAGS.patch
+Patch6:		%{name}-libtool.patch
 URL:		http://oss.sgi.com/projects/xfs/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -93,6 +94,7 @@ Biblioteki statyczne do XFS.
 %patch3 -p1
 %{?with_dynamic_exe:%patch4 -p1}
 %patch5 -p1
+%patch6 -p1
 
 %build
 DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}"
