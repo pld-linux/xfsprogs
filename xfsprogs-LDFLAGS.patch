@@ -16,7 +16,7 @@ diff -Nur xfsprogs-2.8.11.orig/libxfs/Makefile xfsprogs-2.8.11.LDFLAGS/libxfs/Ma
  
  FCFLAGS = -I.
  
-+LTLIBS = $(LIBPTHREAD)
++LTLIBS = $(LIBPTHREAD) $(LIBRT)
 +
  # don't try linking xfs_repair with a debug libxfs.
  DEBUG = -DNDEBUG
