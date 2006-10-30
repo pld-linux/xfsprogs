@@ -6,12 +6,12 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl):	Narzêdzia do systemu plików XFS
 Name:		xfsprogs
-Version:	2.8.11
+Version:	2.8.16
 Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/download/cmd_tars/%{name}_%{version}-1.tar.gz
-# Source0-md5:	fcae4dea0acf79e30d986a38a609be43
+# Source0-md5:	632c7745f884dc5e6fd707a18971aca3
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-install-sh.patch
 Patch2:		%{name}-sharedlibs.patch
@@ -19,6 +19,7 @@ Patch3:		%{name}-pl.po-update.patch
 Patch4:		%{name}-dynamic_exe.patch
 Patch5:		%{name}-LDFLAGS.patch
 Patch6:		%{name}-libtool.patch
+Patch7:		%{name}-gettext.patch
 URL:		http://oss.sgi.com/projects/xfs/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -95,6 +96,7 @@ Biblioteki statyczne do XFS.
 %{?with_dynamic_exe:%patch4 -p1}
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 
 %build
 DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}"
@@ -166,14 +168,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%{_mandir}/man3/*
+%if %{without static}
+%attr(755,root,root) %{_libexecdir}/lib*.so
+%{_libexecdir}/lib*.la
+%endif
 %{_includedir}/disk
 %{_includedir}/xfs
-%if %{without static}
-%{_libexecdir}/*.la
-%attr(755,root,root) %{_libexecdir}/*.so
-%endif
+%{_mandir}/man3/*
 
 %files static
 %defattr(644,root,root,755)
-%{_libexecdir}/*.a
+%{_libexecdir}/lib*.a
