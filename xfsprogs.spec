@@ -168,7 +168,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%if %{without static}
+%if !%{with static}
 %attr(755,root,root) %{_libexecdir}/lib*.so
 %{_libexecdir}/lib*.la
 %endif
