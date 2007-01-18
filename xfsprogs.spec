@@ -7,7 +7,7 @@ Summary:	Tools for the XFS filesystem
 Summary(pl):	Narzêdzia do systemu plików XFS
 Name:		xfsprogs
 Version:	2.8.18
-Release:	1
+Release:	2
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/download/cmd_tars/%{name}_%{version}-1.tar.gz
@@ -128,6 +128,7 @@ export DIST_ROOT DIST_INSTALL DIST_INSTALL_DEV
 
 for man in attr_list_by_handle.3 attr_multi_by_handle.3 \
 	fd_to_handle.3 free_handle.3 fssetdm_by_handle.3 \
+	getparentpaths_by_handle.3 getparents_by_handle.3 \
 	handle_to_fshandle.3 open_by_handle.3 path_to_fshandle.3 \
 	readlink_by_handle.3; do
 		rm -f $RPM_BUILD_ROOT%{_mandir}/man3/$man
