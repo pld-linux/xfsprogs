@@ -4,7 +4,7 @@
 %bcond_with	dynamic_exe	# link executables dynamically with xfs libs
 #
 Summary:	Tools for the XFS filesystem
-Summary(pl):	Narzêdzia do systemu plików XFS
+Summary(pl.UTF-8):   NarzÄ™dzia do systemu plikÃ³w XFS
 Name:		xfsprogs
 Version:	2.8.18
 Release:	2
@@ -50,18 +50,18 @@ scalability.
 This implementation is on-disk compatible with the IRIX version of
 XFS.
 
-%description -l pl
-Zbiór komend do u¿ytku z systemem plików XFS, w³±czaj±c w to mkfs.xfs.
+%description -l pl.UTF-8
+ZbiÃ³r komend do uÅ¼ytku z systemem plikÃ³w XFS, wÅ‚Ä…czajÄ…c w to mkfs.xfs.
 
-XFS jest wysoko wydajnym systemem plików z kronik±, który oryginalnie
-by³ u¿ywany na platformie SGI IRIX. Jest to w pe³ni wielow±tkowy,
-obs³uguj±cy wielkie pliki oraz wielkie systemy, o rozszerzonych
-atrybutach, zmiennych wielko¶ciach bloków, mocno wykorzystuj±cy
-B-drzewa by uzyskaæ wysok± wydajno¶æ oraz skalowalno¶æ.
+XFS jest wysoko wydajnym systemem plikÃ³w z kronikÄ…, ktÃ³ry oryginalnie
+byÅ‚ uÅ¼ywany na platformie SGI IRIX. Jest to w peÅ‚ni wielowÄ…tkowy,
+obsÅ‚ugujÄ…cy wielkie pliki oraz wielkie systemy, o rozszerzonych
+atrybutach, zmiennych wielkoÅ›ciach blokÃ³w, mocno wykorzystujÄ…cy
+B-drzewa by uzyskaÄ‡ wysokÄ… wydajnoÅ›Ä‡ oraz skalowalnoÅ›Ä‡.
 
 %package devel
 Summary:	Header files and libraries to develop XFS software
-Summary(pl):	Pliki nag³ówkowe i biblioteki
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe i biblioteki
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	libuuid-devel
@@ -71,20 +71,20 @@ Obsoletes:	libxfs1-devel
 Header files and libraries to develop software which operates on XFS
 filesystems.
 
-%description devel -l pl
-Pliki nag³ówkowe i biblioteki potrzebne do rozwoju oprogramowania
-operuj±cego na systemie plików XFS.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe i biblioteki potrzebne do rozwoju oprogramowania
+operujÄ…cego na systemie plikÃ³w XFS.
 
 %package static
 Summary:	Static XFS software libraries
-Summary(pl):	Biblioteki statyczne do XFS
+Summary(pl.UTF-8):   Biblioteki statyczne do XFS
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static XFS software libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Biblioteki statyczne do XFS.
 
 %prep
