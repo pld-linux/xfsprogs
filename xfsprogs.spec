@@ -4,7 +4,7 @@
 %bcond_with	dynamic_exe	# link executables dynamically with xfs libs
 #
 Summary:	Tools for the XFS filesystem
-Summary(pl.UTF-8):   Narzędzia do systemu plików XFS
+Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
 Version:	2.8.18
 Release:	2
@@ -61,7 +61,7 @@ B-drzewa by uzyskać wysoką wydajność oraz skalowalność.
 
 %package devel
 Summary:	Header files and libraries to develop XFS software
-Summary(pl.UTF-8):   Pliki nagłówkowe i biblioteki
+Summary(pl.UTF-8):	Pliki nagłówkowe i biblioteki
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	libuuid-devel
@@ -77,7 +77,7 @@ operującego na systemie plików XFS.
 
 %package static
 Summary:	Static XFS software libraries
-Summary(pl.UTF-8):   Biblioteki statyczne do XFS
+Summary(pl.UTF-8):	Biblioteki statyczne do XFS
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
