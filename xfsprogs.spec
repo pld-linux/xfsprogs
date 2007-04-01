@@ -6,12 +6,12 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	2.8.18
-Release:	2
+Version:	2.8.20
+Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/download/cmd_tars/%{name}_%{version}-1.tar.gz
-# Source0-md5:	6ce9e198cc79ebec6f6fb1f34ffa7709
+# Source0-md5:	9639b4f1c89a8cddad16fb1060f0861c
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-install-sh.patch
 Patch2:		%{name}-sharedlibs.patch
