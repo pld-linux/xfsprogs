@@ -1,16 +1,20 @@
---- xfsprogs-2.8.18/po/pl.po.orig	2006-12-13 05:57:23.000000000 +0100
-+++ xfsprogs-2.8.18/po/pl.po	2006-12-20 20:57:47.689027107 +0100
-@@ -4,177 +4,177 @@
+--- xfsprogs-2.8.20/po/pl.po.orig	2007-01-23 06:57:08.000000000 +0100
++++ xfsprogs-2.8.20/po/pl.po	2007-04-02 17:08:52.298977049 +0200
+@@ -1,180 +1,180 @@
+ # Polish translation for xfsprogs.
+ # This file is distributed under the same license as the xfsprogs package.
+-# Jakub Bogusz <qboosh@pld-linux.org>, 2006.
++# Jakub Bogusz <qboosh@pld-linux.org>, 2006-2007.
  #
  msgid ""
  msgstr ""
 -"Project-Id-Version: xfsprogs 2.8.11\n"
-+"Project-Id-Version: xfsprogs 2.8.18\n"
++"Project-Id-Version: xfsprogs 2.8.20\n"
  "Report-Msgid-Bugs-To: \n"
 -"POT-Creation-Date: 2006-08-23 19:22+0200\n"
 -"PO-Revision-Date: 2006-08-23 19:24+0200\n"
-+"POT-Creation-Date: 2006-12-13 16:30+1100\n"
-+"PO-Revision-Date: 2006-12-20 20:56+0100\n"
++"POT-Creation-Date: 2007-03-16 14:02+1100\n"
++"PO-Revision-Date: 2007-04-02 17:04+0200\n"
  "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
  "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
  "MIME-Version: 1.0\n"
@@ -367,7 +371,156 @@
  msgid "none"
  msgstr "brak"
  
-@@ -874,14 +874,14 @@
+@@ -663,6 +663,10 @@
+ msgid "[-R|-D] [+/-"
+ msgstr "[-R|-D] [+/-"
+ 
++#: ../io/attr.c:335
++msgid "]"
++msgstr "]"
++
+ #: ../io/attr.c:340
+ msgid "change extended inode flags on the currently open file"
+ msgstr "zmiana rozszerzonych flag i-wêz³ów aktualnie otwartego pliku"
+@@ -722,113 +726,113 @@
+ " otwarty tylko do odczytu).\n"
+ "\n"
+ 
+-#: ../io/bmap.c:116
++#: ../io/bmap.c:117
+ #, c-format
+ msgid "%s: can't get geometry [\"%s\"]: %s\n"
+ msgstr "%s: nie mo¿na uzyskaæ geometrii [\"%s\"]: %s\n"
+ 
+-#: ../io/bmap.c:124
++#: ../io/bmap.c:125
+ #, c-format
+ msgid "%s: cannot read attrs on \"%s\": %s\n"
+ msgstr "%s: nie mo¿na odczytaæ atrybutów \"%s\": %s\n"
+ 
+-#: ../io/bmap.c:142
++#: ../io/bmap.c:143
+ #, c-format
+ msgid "%s: malloc of %d bytes failed.\n"
+ msgstr "%s: przydzielenie %d bajtów nie powiod³o siê.\n"
+ 
+-#: ../io/bmap.c:190
++#: ../io/bmap.c:191
+ #, c-format
+ msgid "%s: xfsctl(XFS_IOC_GETBMAPX) iflags=0x%x [\"%s\"]: %s\n"
+ msgstr "%s: xfsctl(XFS_IOC_GETBMAPX) iflags=0x%x [\"%s\"]: %s\n"
+ 
+-#: ../io/bmap.c:221
++#: ../io/bmap.c:222
+ #, c-format
+ msgid "%s: cannot realloc %d bytes\n"
+ msgstr "%s: nie mo¿na wykonaæ realloc na %d bajtów\n"
+ 
+-#: ../io/bmap.c:230
++#: ../io/bmap.c:231
+ #, c-format
+ msgid "%s: no extents\n"
+ msgstr "%s: brak fragmentów\n"
+ 
+-#: ../io/bmap.c:243 ../io/bmap.c:361
++#: ../io/bmap.c:245 ../io/bmap.c:363
+ #, c-format
+ msgid "hole"
+ msgstr "dziura"
+ 
+-#: ../io/bmap.c:252
++#: ../io/bmap.c:254
+ #, c-format
+ msgid " %lld blocks\n"
+ msgstr " %lld bloków\n"
+ 
+-#: ../io/bmap.c:321
++#: ../io/bmap.c:323
+ msgid "EXT"
+ msgstr "EXT"
+ 
+-#: ../io/bmap.c:322
++#: ../io/bmap.c:324
+ msgid "FILE-OFFSET"
+ msgstr "OFFSET-W-PLIKU"
+ 
+-#: ../io/bmap.c:323
++#: ../io/bmap.c:325
+ msgid "BLOCK-RANGE"
+ msgstr "ZAKRES-BLOKÓW"
+ 
+-#: ../io/bmap.c:324
++#: ../io/bmap.c:326
+ msgid "AG"
+ msgstr "AG"
+ 
+-#: ../io/bmap.c:325
++#: ../io/bmap.c:327
+ msgid "AG-OFFSET"
+ msgstr "OFFSET-AG"
+ 
+-#: ../io/bmap.c:326
++#: ../io/bmap.c:328
+ msgid "TOTAL"
+ msgstr "RAZEM"
+ 
+-#: ../io/bmap.c:327
++#: ../io/bmap.c:329
+ msgid " FLAGS"
+ msgstr " FLAGI"
+ 
+-#: ../io/bmap.c:390
++#: ../io/bmap.c:392
+ #, c-format
+ msgid " FLAG Values:\n"
+ msgstr " Warto¶ci FLAG:\n"
+ 
+-#: ../io/bmap.c:391
++#: ../io/bmap.c:393
+ #, c-format
+ msgid "    %*.*o Unwritten preallocated extent\n"
+ msgstr "    %*.*o Nie zapisany, ju¿ przydzielony fragment\n"
+ 
+-#: ../io/bmap.c:393
++#: ../io/bmap.c:395
+ #, c-format
+ msgid "    %*.*o Doesn't begin on stripe unit\n"
+ msgstr "    %*.*o Nie zaczyna siê od jednostki pasa\n"
+ 
+-#: ../io/bmap.c:395
++#: ../io/bmap.c:397
+ #, c-format
+ msgid "    %*.*o Doesn't end   on stripe unit\n"
+ msgstr "    %*.*o Nie koñczy siê na jednostce pasa\n"
+ 
+-#: ../io/bmap.c:397
++#: ../io/bmap.c:399
+ #, c-format
+ msgid "    %*.*o Doesn't begin on stripe width\n"
+ msgstr "    %*.*o Nie zaczyna siê na szeroko¶ci pasa\n"
+ 
+-#: ../io/bmap.c:399
++#: ../io/bmap.c:401
+ #, c-format
+ msgid "    %*.*o Doesn't end   on stripe width\n"
+ msgstr "    %*.*o Nie koñczy siê na szeroko¶ci pasa\n"
+ 
+-#: ../io/bmap.c:410
++#: ../io/bmap.c:412
+ msgid "bmap"
+ msgstr "bmap"
+ 
+-#: ../io/bmap.c:415
++#: ../io/bmap.c:417
+ msgid "[-adlpv] [-n nx]"
+ msgstr "[-adlpv] [-n nx]"
+ 
+-#: ../io/bmap.c:416
++#: ../io/bmap.c:418
+ msgid "print block mapping for an XFS file"
+ msgstr "wypisanie mapowania bloków dla pliku na XFS-ie"
+ 
+@@ -874,15 +878,15 @@
  "\n"
  
  #: ../io/fadvise.c:93 ../io/madvise.c:87 ../io/mincore.c:48 ../io/mmap.c:206
@@ -380,11 +533,13 @@
  
  #: ../io/fadvise.c:100 ../io/madvise.c:94 ../io/mincore.c:54 ../io/mmap.c:212
 -#: ../io/mmap.c:308 ../io/mmap.c:414 ../io/mmap.c:561 ../io/pread.c:360
-+#: ../io/mmap.c:308 ../io/mmap.c:394 ../io/mmap.c:553 ../io/pread.c:360
- #: ../io/pread.c:368 ../io/prealloc.c:48 ../io/pwrite.c:288
+-#: ../io/pread.c:368 ../io/prealloc.c:48 ../io/pwrite.c:288
++#: ../io/mmap.c:308 ../io/mmap.c:394 ../io/mmap.c:553 ../io/pread.c:330
++#: ../io/pread.c:338 ../io/prealloc.c:48 ../io/pwrite.c:288
  #: ../io/sendfile.c:133
  #, c-format
-@@ -1291,7 +1291,7 @@
+ msgid "non-numeric length argument -- %s\n"
+@@ -1291,7 +1295,7 @@
  " -s - wykonanie zapisu synchronicznego (MS_SYNC)\n"
  "\n"
  
@@ -393,7 +548,7 @@
  #, c-format
  msgid ""
  "\n"
-@@ -1336,7 +1336,7 @@
+@@ -1336,7 +1340,7 @@
  "   etapie nie ma prób wy³apania sygna³ów...\n"
  "\n"
  
@@ -402,129 +557,232 @@
  #, c-format
  msgid ""
  "\n"
-@@ -1366,84 +1366,84 @@
+@@ -1366,84 +1370,84 @@
  " Zapisy s± wykonywane kolejno, domy¶lnie od offsetu pocz±tkowego.\n"
  "\n"
  
 -#: ../io/mmap.c:538 ../io/pread.c:345 ../io/pwrite.c:249 ../io/pwrite.c:268
-+#: ../io/mmap.c:530 ../io/pread.c:345 ../io/pwrite.c:249 ../io/pwrite.c:268
++#: ../io/mmap.c:530 ../io/pread.c:315 ../io/pwrite.c:249 ../io/pwrite.c:268
  #, c-format
  msgid "non-numeric seed -- %s\n"
  msgstr "nieliczbowy zarodek - %s\n"
  
 -#: ../io/mmap.c:587
-+#: ../io/mmap.c:579
++#: ../io/mmap.c:580
  msgid "mmap"
  msgstr "mmap"
  
 -#: ../io/mmap.c:588
-+#: ../io/mmap.c:580
++#: ../io/mmap.c:581
  msgid "mm"
  msgstr "mm"
  
 -#: ../io/mmap.c:593
-+#: ../io/mmap.c:585
++#: ../io/mmap.c:586
  msgid "[N] | [-rwx] [off len]"
  msgstr "[N] | [-rwx] [offset d³ugo¶æ]"
  
 -#: ../io/mmap.c:595
-+#: ../io/mmap.c:587
++#: ../io/mmap.c:588
  msgid "mmap a range in the current file, show mappings"
  msgstr "odwzorowanie przedzia³u w bie¿±cym pliku, pokazanie odwzorowañ"
  
 -#: ../io/mmap.c:598
-+#: ../io/mmap.c:590
++#: ../io/mmap.c:591
  msgid "mread"
  msgstr "mread"
  
 -#: ../io/mmap.c:599
-+#: ../io/mmap.c:591
++#: ../io/mmap.c:592
  msgid "mr"
  msgstr "mr"
  
 -#: ../io/mmap.c:604
-+#: ../io/mmap.c:596
++#: ../io/mmap.c:597
  msgid "[-r] [off len]"
  msgstr "[-r] [offset d³ugo¶æ]"
  
 -#: ../io/mmap.c:606
-+#: ../io/mmap.c:598
++#: ../io/mmap.c:599
  msgid "reads data from a region in the current memory mapping"
  msgstr "odczyt danych z regionu w bie¿±cym odwzorowaniu pamiêci"
  
 -#: ../io/mmap.c:609
-+#: ../io/mmap.c:601
++#: ../io/mmap.c:602
  msgid "msync"
  msgstr "msync"
  
 -#: ../io/mmap.c:610
-+#: ../io/mmap.c:602
++#: ../io/mmap.c:603
  msgid "ms"
  msgstr "ms"
  
 -#: ../io/mmap.c:615
-+#: ../io/mmap.c:607
++#: ../io/mmap.c:608
  msgid "[-ais] [off len]"
  msgstr "[-ais] [offset d³ugo¶æ]"
  
 -#: ../io/mmap.c:616
-+#: ../io/mmap.c:608
++#: ../io/mmap.c:609
  msgid "flush a region in the current memory mapping"
  msgstr "zrzucenie regionu w bie¿±cym odwzorowaniu pamiêci"
  
 -#: ../io/mmap.c:619
-+#: ../io/mmap.c:611
++#: ../io/mmap.c:612
  msgid "munmap"
  msgstr "munmap"
  
 -#: ../io/mmap.c:620
-+#: ../io/mmap.c:612
++#: ../io/mmap.c:613
  msgid "mu"
  msgstr "mu"
  
 -#: ../io/mmap.c:625
-+#: ../io/mmap.c:617
++#: ../io/mmap.c:618
  msgid "unmaps the current memory mapping"
  msgstr "usuniêcie bie¿±cego odwzorowania pamiêci"
  
 -#: ../io/mmap.c:627
-+#: ../io/mmap.c:619
++#: ../io/mmap.c:620
  msgid "mwrite"
  msgstr "mwrite"
  
 -#: ../io/mmap.c:628
-+#: ../io/mmap.c:620
++#: ../io/mmap.c:621
  msgid "mw"
  msgstr "mw"
  
 -#: ../io/mmap.c:633
-+#: ../io/mmap.c:625
++#: ../io/mmap.c:626
  msgid "[-r] [-S seed] [off len]"
  msgstr "[-r] [-S warto¶æ] [offset d³ugo¶æ]"
  
 -#: ../io/mmap.c:635
-+#: ../io/mmap.c:627
++#: ../io/mmap.c:628
  msgid "writes data into a region in the current memory mapping"
  msgstr "zapis danych do regionu w bie¿±cym odwzorowaniu pamiêci"
  
-@@ -2531,13 +2531,13 @@
+@@ -2122,34 +2126,34 @@
+ " (dowolny offset mo¿e byæ w tym trybie czytany wiêcej ni¿ raz).\n"
+ "\n"
+ 
+-#: ../io/pread.c:316 ../io/pwrite.c:215
++#: ../io/pread.c:286 ../io/pwrite.c:215
+ #, c-format
+ msgid "non-numeric bsize -- %s\n"
+ msgstr "nieliczbowy rozmiar bloku - %s\n"
+ 
+-#: ../io/pread.c:407
++#: ../io/pread.c:375
+ #, c-format
+ msgid "read %lld/%lld bytes at offset %lld\n"
+ msgstr "odczytano %lld/%lld bajtów od offsetu %lld\n"
+ 
+-#: ../io/pread.c:409 ../io/pwrite.c:335 ../io/sendfile.c:163
++#: ../io/pread.c:377 ../io/pwrite.c:334 ../io/sendfile.c:163
+ #, c-format
+ msgid "%s, %d ops; %s (%s/sec and %.4f ops/sec)\n"
+ msgstr "%s, %d operacji; %s (%s/sek i %.4f operacji/sek)\n"
+ 
+-#: ../io/pread.c:422
++#: ../io/pread.c:390
+ msgid "pread"
+ msgstr "pread"
+ 
+-#: ../io/pread.c:423
++#: ../io/pread.c:391
+ msgid "r"
+ msgstr "r"
+ 
+-#: ../io/pread.c:428
++#: ../io/pread.c:396
+ msgid "[-b bs] [-v] off len"
+ msgstr "[-b rozm_bloku] [-v] offset d³ugo¶æ"
+ 
+-#: ../io/pread.c:429
++#: ../io/pread.c:397
+ msgid "reads a number of bytes at a specified offset"
+ msgstr "odczyt podanej liczby bajtów od podanego offsetu"
+ 
+@@ -2246,7 +2250,7 @@
+ msgid "non-numeric skip -- %s\n"
+ msgstr "nieliczbowy liczba bajtów do pominiêcia - %s\n"
+ 
+-#: ../io/pwrite.c:333
++#: ../io/pwrite.c:332
+ #, c-format
+ msgid "wrote %lld/%lld bytes at offset %lld\n"
+ msgstr "zapisano %lld/%lld bajtów od offsetu %lld\n"
+@@ -2521,64 +2525,64 @@
+ msgid "exit the program"
+ msgstr "wyj¶cie z programu"
+ 
+-#: ../libxfs/darwin.c:39
++#: ../libxfs/darwin.c:40
+ #, c-format
+ msgid "%s: error opening the device special file \"%s\": %s\n"
+ msgstr "%s: b³±d podczas otwierania pliku specjalnego urz±dzenia \"%s\": %s\n"
+ 
+-#: ../libxfs/darwin.c:46
++#: ../libxfs/darwin.c:47
+ #, c-format
  msgid "%s: can't tell if \"%s\" is writable: %s\n"
  msgstr "%s: nie mo¿na stwierdziæ czy \"%s\" jest zapisywalny: %s\n"
  
 -#: ../libxfs/darwin.c:73 ../libxfs/freebsd.c:114 ../libxfs/irix.c:57
 -#: ../libxfs/linux.c:132
-+#: ../libxfs/darwin.c:74 ../libxfs/freebsd.c:114 ../libxfs/irix.c:58
-+#: ../libxfs/linux.c:136
++#: ../libxfs/darwin.c:75 ../libxfs/freebsd.c:115 ../libxfs/irix.c:59
++#: ../libxfs/linux.c:137
  #, c-format
  msgid "%s: cannot stat the device file \"%s\": %s\n"
  msgstr "%s: nie mo¿na wykonaæ stat na pliku urz±dzenia \"%s\": %s\n"
  
 -#: ../libxfs/darwin.c:83
-+#: ../libxfs/darwin.c:84
++#: ../libxfs/darwin.c:85
  #, c-format
  msgid "%s: can't determine device size: %s\n"
  msgstr "%s: nie mo¿na okre¶liæ rozmiaru urz±dzenia: %s\n"
-@@ -2578,7 +2578,7 @@
+ 
+-#: ../libxfs/freebsd.c:47
++#: ../libxfs/freebsd.c:48
+ #, c-format
+ msgid "%s: %s possibly contains a mounted filesystem\n"
+ msgstr "%s: %s mo¿e zawieraæ podmontowany system plików\n"
+ 
+-#: ../libxfs/freebsd.c:58 ../libxfs/linux.c:65
++#: ../libxfs/freebsd.c:59 ../libxfs/linux.c:66
+ #, c-format
+ msgid "%s: %s contains a mounted filesystem\n"
+ msgstr "%s: %s zawiera podmontowany system plików\n"
+ 
+-#: ../libxfs/freebsd.c:73 ../libxfs/linux.c:83
++#: ../libxfs/freebsd.c:74 ../libxfs/linux.c:84
+ #, c-format
+ msgid "%s: %s contains a possibly writable, mounted filesystem\n"
+ msgstr "%s: %s zawiera podmontowany, byæ mo¿e zapisywalny system plików\n"
+ 
+-#: ../libxfs/freebsd.c:87 ../libxfs/linux.c:97
++#: ../libxfs/freebsd.c:88 ../libxfs/linux.c:98
+ #, c-format
+ msgid "%s: %s contains a mounted and writable filesystem\n"
+ msgstr "%s: %s zawiera podmontowany, zapisywalny system plików\n"
+ 
+ # XXX: msgid bug
+-#: ../libxfs/freebsd.c:127
++#: ../libxfs/freebsd.c:128
+ #, c-format
+ msgid "%s: Not a device or file: \"%s\"n"
+ msgstr "%s: Nie jest urz±dzeniem ani plikiem: \"%s\"n"
+ 
+-#: ../libxfs/freebsd.c:134
++#: ../libxfs/freebsd.c:135
+ #, c-format
+ msgid "%s: DIOCGMEDIASIZE failed on \"%s\": %s\n"
+ msgstr "%s: DIOCGMEDIASIE nie powiod³o siê dla \"%s\": %s\n"
+ 
+-#: ../libxfs/freebsd.c:141
++#: ../libxfs/freebsd.c:142
+ #, c-format
  msgid "%s: DIOCGSECTORSIZE failed on \"%s\": %s\n"
  msgstr "%s: DIOCGSECTORSIZE nie powiod³o siê dla \"%s\": %s\n"
  
@@ -533,7 +791,7 @@
  #, c-format
  msgid "%s: %s: device %lld is not open\n"
  msgstr "%s: %s: urz±dzenie %lld nie jest otwarte\n"
-@@ -2588,107 +2588,107 @@
+@@ -2588,107 +2592,107 @@
  msgid "%s: cannot stat %s: %s\n"
  msgstr "%s: nie mo¿na wykonaæ stat na %s: %s\n"
  
@@ -646,7 +904,7 @@
  msgstr "%s: nie mo¿na odczytaæ i-wêz³a g³ównego (%d)\n"
  
 -#: ../libxfs/linux.c:110
-+#: ../libxfs/linux.c:112
++#: ../libxfs/linux.c:113
  #, c-format
 -msgid "%s: warning - cannot set blocksize on block device %s: %s\n"
 -msgstr "%s: uwaga - nie mo¿na ustawiæ rozmiaru bloku urz±dzenia blokowego %s: %s\n"
@@ -654,17 +912,62 @@
 +msgstr "%s: %s - nie mo¿na ustawiæ rozmiaru bloku urz±dzenia blokowego %s: %s\n"
  
 -#: ../libxfs/linux.c:155
-+#: ../libxfs/linux.c:159
++#: ../libxfs/linux.c:160
  #, c-format
  msgid "%s: can't determine device size\n"
  msgstr "%s: nie mo¿na okre¶liæ rozmiaru urz±dzenia\n"
  
 -#: ../libxfs/linux.c:163
-+#: ../libxfs/linux.c:167
++#: ../libxfs/linux.c:168
  #, c-format
  msgid "%s: warning - cannot get sector size from block device %s: %s\n"
  msgstr "%s: uwaga - nie mo¿na pobraæ rozmiaru sektora urz±dzenia blokowego %s: %s\n"
-@@ -3041,194 +3041,194 @@
+@@ -2718,37 +2722,37 @@
+ msgid "%s: %s can't memalign %u bytes: %s\n"
+ msgstr "%s: %s nie mo¿na wykonaæ memalign dla %u bajtów: %s\n"
+ 
+-#: ../libxfs/rdwr.c:349
++#: ../libxfs/rdwr.c:350
+ #, c-format
+ msgid "%s: read failed: %s\n"
+ msgstr "%s: odczyt nie powiód³ siê: %s\n"
+ 
+-#: ../libxfs/rdwr.c:391
++#: ../libxfs/rdwr.c:392
+ #, c-format
+ msgid "%s: pwrite64 failed: %s\n"
+ msgstr "%s: pwrite64 nie powiod³o siê: %s\n"
+ 
+-#: ../libxfs/rdwr.c:398
++#: ../libxfs/rdwr.c:399
+ #, c-format
+ msgid "%s: error - wrote only %d of %d bytes\n"
+ msgstr "%s: b³±d - zapisano tylko %d z %d bajtów\n"
+ 
+-#: ../libxfs/rdwr.c:493
++#: ../libxfs/rdwr.c:495
+ #, c-format
+ msgid "%s: zone init failed (%s, %d bytes): %s\n"
+ msgstr "%s: inicjalizacja strefy nie powiod³a siê (%s, %d bajtów): %s\n"
+ 
+-#: ../libxfs/rdwr.c:512
++#: ../libxfs/rdwr.c:514
+ #, c-format
+ msgid "%s: zone calloc failed (%s, %d bytes): %s\n"
+ msgstr "%s: calloc dla strefy nie powiod³o siê (%s, %d bajtów): %s\n"
+ 
+-#: ../libxfs/rdwr.c:547
++#: ../libxfs/rdwr.c:549
+ #, c-format
+ msgid "%s: calloc failed (%d bytes): %s\n"
+ msgstr "%s: calloc nie powiod³o siê (%d bajtów): %s\n"
+ 
+-#: ../libxfs/rdwr.c:576
++#: ../libxfs/rdwr.c:578
+ #, c-format
+ msgid "%s: realloc failed (%d bytes): %s\n"
+ msgstr "%s: realloc nie powiod³o siê (%d bajtów): %s\n"
+@@ -3041,194 +3045,194 @@
  msgid "%lld allocation groups is too many, maximum is %lld\n"
  msgstr "%lld grup alokacji to zbyt du¿o, maksimum to %lld\n"
  
@@ -898,7 +1201,7 @@
  #, c-format
  msgid ""
  "Warning: the data subvolume sector size %u is less than the sector size \n"
-@@ -3237,7 +3237,7 @@
+@@ -3237,7 +3241,7 @@
  "Uwaga: rozmiar sektora podwolumenu danych %u jest mniejszy od rozmiaru\n"
  "sektora zg³aszanego przez urz±dzenie (%u).\n"
  
@@ -907,7 +1210,7 @@
  #, c-format
  msgid ""
  "Warning: the log subvolume sector size %u is less than the sector size\n"
-@@ -3246,7 +3246,7 @@
+@@ -3246,7 +3250,7 @@
  "Uwaga: rozmiar sektora podwolumenu loga %u jest mniejszy od rozmiaru\n"
  "sektora zg³aszanego przez urz±dzenie (%u).\n"
  
@@ -916,7 +1219,7 @@
  #, c-format
  msgid ""
  "Warning: the realtime subvolume sector size %u is less than the sector size\n"
-@@ -3255,57 +3255,57 @@
+@@ -3255,57 +3259,57 @@
  "Uwaga: rozmiar sektora podwolumenu realtime %u jest mniejszy od rozmiaru\n"
  "sektora zg³aszanego przez urz±dzenie (%u).\n"
  
@@ -985,7 +1288,7 @@
  #, c-format
  msgid ""
  "Warning: AG size is a multiple of stripe width.  This can cause performance\n"
-@@ -3317,37 +3317,37 @@
+@@ -3317,37 +3321,37 @@
  "Aby temu zapobiec, nale¿y uruchomiæ mkfs z rozmiarem AG o jedn± jednostkê\n"
  "pasa mniejszym, na przyk³ad %llu.\n"
  
@@ -1030,7 +1333,7 @@
  #, c-format
  msgid ""
  "meta-data=%-22s isize=%-6d agcount=%lld, agsize=%lld blks\n"
-@@ -3368,52 +3368,52 @@
+@@ -3368,52 +3372,52 @@
  "        =%-22s sectsz=%-5u sunit=%d bloków\n"
  "realtime=%-22s extsz=%-6d blocks=%lld, rtextents=%lld\n"
  
@@ -1093,7 +1396,7 @@
  #, c-format
  msgid ""
  "Usage: %s\n"
-@@ -3774,7 +3774,7 @@
+@@ -3774,7 +3778,7 @@
  msgid "df"
  msgstr "df"
  
@@ -1102,16 +1405,16 @@
  msgid "free"
  msgstr "free"
  
-@@ -4915,7 +4915,7 @@
+@@ -4915,7 +4919,7 @@
  msgid "bad attribute leaf magic # %#x for dir ino %llu\n"
  msgstr "b³êdna liczba magiczna li¶cia atrybutu %#x dla i-wêz³a katalogu %llu\n"
  
 -#: ../repair/attr_repair.c:991 ../repair/dinode.c:2539
-+#: ../repair/attr_repair.c:991 ../repair/dinode.c:2576
++#: ../repair/attr_repair.c:991 ../repair/dinode.c:2572
  #, c-format
  msgid "illegal attribute format %d, ino %llu\n"
  msgstr "niedozwolony format atrybutu %d, i-wêze³ %llu\n"
-@@ -4955,746 +4955,746 @@
+@@ -4955,746 +4959,751 @@
  msgid "realloc failed in blkmap_grow (%u bytes)\n"
  msgstr "realloc nie powiod³o siê w blkmap_grow (%u bajtów)\n"
  
@@ -1268,12 +1571,12 @@
  msgstr "atrybuty i-wêz³a %llu zosta³yby wyczyszczone\n"
  
 -#: ../repair/dinode.c:557 ../repair/dinode.c:1207 ../repair/scan.c:154
-+#: ../repair/dinode.c:583 ../repair/dinode.c:1234 ../repair/scan.c:155
++#: ../repair/dinode.c:583 ../repair/dinode.c:1236 ../repair/scan.c:155
  msgid "data"
  msgstr "danych"
  
 -#: ../repair/dinode.c:559 ../repair/dinode.c:1209 ../repair/scan.c:156
-+#: ../repair/dinode.c:585 ../repair/dinode.c:1236 ../repair/scan.c:157
++#: ../repair/dinode.c:585 ../repair/dinode.c:1238 ../repair/scan.c:157
  msgid "attr"
  msgstr "atrybutów"
  
@@ -1470,257 +1773,264 @@
 -#: ../repair/dinode.c:1225
 +#: ../repair/dinode.c:1252
  #, c-format
- msgid "bad level 0 in inode %llu bmap btree root block\n"
- msgstr "b³êdny poziom 0 w bloku g³ównym bmap btree i-wêz³a %llu\n"
+-msgid "bad level 0 in inode %llu bmap btree root block\n"
+-msgstr "b³êdny poziom 0 w bloku g³ównym bmap btree i-wêz³a %llu\n"
++msgid "bad level %d in inode %llu bmap btree root block\n"
++msgstr "b³êdny poziom %d w bloku g³ównym bmap btree i-wêz³a %llu\n"
  
 -#: ../repair/dinode.c:1239
-+#: ../repair/dinode.c:1266
++#: ../repair/dinode.c:1257
++#, c-format
++msgid "bad numrecs 0 in inode %llu bmap btree root block\n"
++msgstr "b³êdne numrecs 0 w bloku g³ównym bmap btree i-wêz³a %llu\n"
++
++#: ../repair/dinode.c:1268
  #, c-format
  msgid "indicated size of %s btree root (%d bytes) greater than space in inode %llu %s fork\n"
  msgstr "oznaczony rozmiar korzenia b-drzewa %s (%d bajtów) wiêkszy ni¿ miejsce w i-wê¼le %llu ga³êzi %s\n"
  
 -#: ../repair/dinode.c:1269 ../repair/scan.c:380
-+#: ../repair/dinode.c:1296 ../repair/scan.c:381
++#: ../repair/dinode.c:1298 ../repair/scan.c:381
  #, c-format
  msgid "bad bmap btree ptr 0x%llx in ino %llu\n"
  msgstr "b³êdny wska¼nik bmap btree 0x%llx w i-wê¼le %llu\n"
  
 -#: ../repair/dinode.c:1291
-+#: ../repair/dinode.c:1318
++#: ../repair/dinode.c:1319
  #, c-format
  msgid "correcting key in bmbt root (was %llu, now %llu) in inode %llu %s fork\n"
  msgstr "poprawiono klucz w korzeniu bmbt (by³ %llu, jest %llu) w i-wê¼le %llu ga³êzi %s\n"
  
 -#: ../repair/dinode.c:1305
-+#: ../repair/dinode.c:1332
++#: ../repair/dinode.c:1331
  #, c-format
  msgid "bad key in bmbt root (is %llu, would reset to %llu) in inode %llu %s fork\n"
  msgstr "b³êdny klucz w korzeniu bmbt (jest %llu, zosta³y przestawiony na %llu) w i-wê¼le %llu ga³êzi %s\n"
  
 -#: ../repair/dinode.c:1324
-+#: ../repair/dinode.c:1351
++#: ../repair/dinode.c:1348
  #, c-format
  msgid "out of order bmbt root key %llu in inode %llu %s fork\n"
  msgstr "niepoprawny klucz korzenia bmbt %llu w i-wê¼le %llu ga³êzi %s\n"
  
 -#: ../repair/dinode.c:1341
-+#: ../repair/dinode.c:1368
++#: ../repair/dinode.c:1364
  #, c-format
  msgid "bad fwd (right) sibling pointer (saw %llu should be NULLDFSBNO)\n"
  msgstr "b³êdny wska¼nik fwd (prawy) (widziano %llu, powinno byæ NULLDFSBNO)\n"
  
 -#: ../repair/dinode.c:1344
-+#: ../repair/dinode.c:1371
++#: ../repair/dinode.c:1367
  #, c-format
  msgid "\tin inode %u (%s fork) bmap btree block %llu\n"
  msgstr "\tw i-wê¼le %u (ga³êzi %s) bloku bmap btree %llu\n"
  
 -#: ../repair/dinode.c:1425
-+#: ../repair/dinode.c:1452
++#: ../repair/dinode.c:1448
  #, c-format
  msgid "local inode %llu data fork is too large (size = %lld, max = %d)\n"
  msgstr "ga³±¼ danych lokalnego i-wêz³a %llu zbyt du¿a (rozmiar = %lld, maksimum = %d)\n"
  
 -#: ../repair/dinode.c:1435
-+#: ../repair/dinode.c:1462
++#: ../repair/dinode.c:1458
  #, c-format
  msgid "local inode %llu attr fork too large (size %d, max = %d)\n"
  msgstr "ga³±¼ atrybutów lokalnego i-wêz³a %llu zbyt du¿a (rozmiar %d, maksimum = %d)\n"
  
 -#: ../repair/dinode.c:1443
-+#: ../repair/dinode.c:1470
++#: ../repair/dinode.c:1466
  #, c-format
  msgid "local inode %llu attr too small (size = %d, min size = %d)\n"
  msgstr "ga³±¼ atrybutów lokalnego i-wêz³a %llu zbyt ma³a (rozmiar = %d, minimum = %d)\n"
  
 -#: ../repair/dinode.c:1473
-+#: ../repair/dinode.c:1500
++#: ../repair/dinode.c:1496
  #, c-format
  msgid "mismatch between format (%d) and size (%lld) in symlink ino %llu\n"
  msgstr "niezgodno¶æ miêdzy formatem (%d) i rozmiarem (%lld) w i-wê¼le dowi±zania symbolicznego %llu\n"
  
 -#: ../repair/dinode.c:1481
-+#: ../repair/dinode.c:1508
++#: ../repair/dinode.c:1504
  #, c-format
  msgid "mismatch between format (%d) and size (%lld) in symlink inode %llu\n"
  msgstr "niezgodno¶æ miêdzy formatem (%d) i rozmiarem (%lld) w i-wê¼le dowi±zania symbolicznego %llu\n"
  
 -#: ../repair/dinode.c:1497
-+#: ../repair/dinode.c:1524
++#: ../repair/dinode.c:1520
  #, c-format
  msgid "bad number of extents (%d) in symlink %llu data fork\n"
  msgstr "b³êdna liczba fragmentów (%d) w ga³êzi danych dowi±zania symbolicznego %llu\n"
  
 -#: ../repair/dinode.c:1510
-+#: ../repair/dinode.c:1537
++#: ../repair/dinode.c:1533
  #, c-format
  msgid "bad extent #%d offset (%llu) in symlink %llu data fork\n"
  msgstr "b³êdny offset fragmentu %d (%llu) w ga³êzi danych dowi±zania symbolicznego %llu\n"
  
 -#: ../repair/dinode.c:1516
-+#: ../repair/dinode.c:1543
++#: ../repair/dinode.c:1539
  #, c-format
  msgid "bad extent #%d count (%llu) in symlink %llu data fork\n"
  msgstr "b³êdna liczba fragmentu #%d (%llu) w ga³êzi danych dowi±zania symbolicznego %llu\n"
  
 -#: ../repair/dinode.c:1569
-+#: ../repair/dinode.c:1596
++#: ../repair/dinode.c:1592
  #, c-format
  msgid "symlink in inode %llu too long (%lld chars)\n"
  msgstr "dowi±zanie symboliczne w i-wê¼le %llu zbyt d³ugie (%lld znaków)\n"
  
 -#: ../repair/dinode.c:1603
-+#: ../repair/dinode.c:1630
++#: ../repair/dinode.c:1626
  #, c-format
  msgid "cannot read inode %llu, file block %d, disk block %llu\n"
  msgstr "nie mo¿na odczytaæ i-wêz³a %llu, blok pliku %d, blok dysku %llu\n"
  
 -#: ../repair/dinode.c:1625
-+#: ../repair/dinode.c:1652
++#: ../repair/dinode.c:1648
  #, c-format
  msgid "found illegal null character in symlink inode %llu\n"
  msgstr "znaleziono niedozwolony znak null w i-wê¼le dowi±zania symbolicznego %llu\n"
  
 -#: ../repair/dinode.c:1639 ../repair/dinode.c:1649
-+#: ../repair/dinode.c:1666 ../repair/dinode.c:1676
++#: ../repair/dinode.c:1662 ../repair/dinode.c:1672
  #, c-format
  msgid "component of symlink in inode %llu too long\n"
  msgstr "sk³adnik dowi±zania symbolicznego w i-wê¼le %llu zbyt d³ugi\n"
  
 -#: ../repair/dinode.c:1675
-+#: ../repair/dinode.c:1702
++#: ../repair/dinode.c:1698
  #, c-format
  msgid "inode %llu has bad inode type (IFMNT)\n"
  msgstr "i-wêze³ %llu ma b³êdny typ i-wêz³a (IFMNT)\n"
  
 -#: ../repair/dinode.c:1685
-+#: ../repair/dinode.c:1712
++#: ../repair/dinode.c:1708
  #, c-format
  msgid "size of character device inode %llu != 0 (%lld bytes)\n"
  msgstr "rozmiar i-wêz³a urz±dzenia znakowego %llu != 0 (%lld bajtów)\n"
  
 -#: ../repair/dinode.c:1690
-+#: ../repair/dinode.c:1717
++#: ../repair/dinode.c:1713
  #, c-format
  msgid "size of block device inode %llu != 0 (%lld bytes)\n"
  msgstr "rozmiar i-wêz³a urz±dzenia blokowego %llu != 0 (%lld bajtów)\n"
  
 -#: ../repair/dinode.c:1695
-+#: ../repair/dinode.c:1722
++#: ../repair/dinode.c:1718
  #, c-format
  msgid "size of socket inode %llu != 0 (%lld bytes)\n"
  msgstr "rozmiar i-wêz³a gniazda %llu != 0 (%lld bajtów)\n"
  
 -#: ../repair/dinode.c:1700
-+#: ../repair/dinode.c:1727
++#: ../repair/dinode.c:1723
  #, c-format
  msgid "size of fifo inode %llu != 0 (%lld bytes)\n"
  msgstr "rozmiar i-wêz³a potoku %llu != 0 (%lld bajtów)\n"
  
 -#: ../repair/dinode.c:1705
-+#: ../repair/dinode.c:1732
++#: ../repair/dinode.c:1728
  #, c-format
  msgid "Internal error - process_misc_ino_types, illegal type %d\n"
  msgstr "B³±d wewnêtrzny - process_misc_ino_types, niedozwolony typ %d\n"
  
 -#: ../repair/dinode.c:1732
-+#: ../repair/dinode.c:1759
++#: ../repair/dinode.c:1755
  #, c-format
  msgid "size of character device inode %llu != 0 (%llu blocks)\n"
  msgstr "rozmiar i-wêz³a urz±dzenia znakowego %llu != 0 (%llu bloków)\n"
  
 -#: ../repair/dinode.c:1737
-+#: ../repair/dinode.c:1764
++#: ../repair/dinode.c:1760
  #, c-format
  msgid "size of block device inode %llu != 0 (%llu blocks)\n"
  msgstr "rozmiar i-wêz³a urz±dzenia blokowego %llu != 0 (%llu bloków)\n"
  
 -#: ../repair/dinode.c:1742
-+#: ../repair/dinode.c:1769
++#: ../repair/dinode.c:1765
  #, c-format
  msgid "size of socket inode %llu != 0 (%llu blocks)\n"
  msgstr "rozmiar i-wêz³a gniazda %llu != 0 (%llu bloków)\n"
  
 -#: ../repair/dinode.c:1747
-+#: ../repair/dinode.c:1774
++#: ../repair/dinode.c:1770
  #, c-format
  msgid "size of fifo inode %llu != 0 (%llu blocks)\n"
  msgstr "rozmiar i-wêz³a potoku %llu != 0 (%llu bloków)\n"
  
 -#: ../repair/dinode.c:1851
-+#: ../repair/dinode.c:1878
++#: ../repair/dinode.c:1874
  #, c-format
  msgid "bad magic number 0x%x on inode %llu, "
  msgstr "b³êdna liczba magiczna 0x%x w i-wê¼le %llu, "
  
 -#: ../repair/dinode.c:1854
-+#: ../repair/dinode.c:1881
++#: ../repair/dinode.c:1877
  msgid "resetting magic number\n"
  msgstr "przestawiono liczbê magiczn±\n"
  
 -#: ../repair/dinode.c:1859
-+#: ../repair/dinode.c:1886
++#: ../repair/dinode.c:1882
  msgid "would reset magic number\n"
  msgstr "liczba magiczna zosta³aby przestawiona\n"
  
 -#: ../repair/dinode.c:1862
-+#: ../repair/dinode.c:1889
++#: ../repair/dinode.c:1885
  #, c-format
  msgid "bad magic number 0x%x on inode %llu\n"
  msgstr "b³êdna liczba magiczna 0x%x w i-wê¼le %llu\n"
  
 -#: ../repair/dinode.c:1871
-+#: ../repair/dinode.c:1898
++#: ../repair/dinode.c:1894
  #, c-format
  msgid "bad version number 0x%x on inode %llu, "
  msgstr "b³êdny numer wersji 0x%x w i-wê¼le %llu, "
  
 -#: ../repair/dinode.c:1874
-+#: ../repair/dinode.c:1901
++#: ../repair/dinode.c:1897
  msgid "resetting version number\n"
  msgstr "przestawiono numer wersji\n"
  
 -#: ../repair/dinode.c:1880
-+#: ../repair/dinode.c:1907
++#: ../repair/dinode.c:1903
  msgid "would reset version number\n"
  msgstr "numer wersji zosta³by przestawiony\n"
  
 -#: ../repair/dinode.c:1883
-+#: ../repair/dinode.c:1910
++#: ../repair/dinode.c:1906
  #, c-format
  msgid "bad version number 0x%x on inode %llu\n"
  msgstr "b³êdny numer wersji 0x%x w i-wê¼le %llu\n"
  
 -#: ../repair/dinode.c:1894 ../repair/dinode.c:1905
-+#: ../repair/dinode.c:1921 ../repair/dinode.c:1932
++#: ../repair/dinode.c:1917 ../repair/dinode.c:1928
  #, c-format
  msgid "bad (negative) size %lld on inode %llu\n"
  msgstr "b³êdny (ujemny) rozmiar %lld w i-wê¼le %llu\n"
  
 -#: ../repair/dinode.c:1936
-+#: ../repair/dinode.c:1963
++#: ../repair/dinode.c:1959
  #, c-format
  msgid "imap claims a free inode %llu is in use, "
  msgstr "imap odwo³uje siê do wolnego bloku %llu, który jest w u¿yciu, "
  
 -#: ../repair/dinode.c:1939
-+#: ../repair/dinode.c:1966
++#: ../repair/dinode.c:1962
  msgid "correcting imap and clearing inode\n"
  msgstr "poprawiono imap i wyczyszczono i-wêze³\n"
  
 -#: ../repair/dinode.c:1948
-+#: ../repair/dinode.c:1975
++#: ../repair/dinode.c:1971
  msgid "would correct imap and clear inode\n"
  msgstr "poprawiono by imap i wyczyszczono by i-wêze³\n"
  
 -#: ../repair/dinode.c:1976
-+#: ../repair/dinode.c:2003
++#: ../repair/dinode.c:1999
  #, c-format
  msgid "bad inode format in inode %llu\n"
  msgstr "b³êdny format i-wêz³a w i-wê¼le %llu\n"
  
 -#: ../repair/dinode.c:2037
-+#: ../repair/dinode.c:2065 ../repair/dinode.c:2074
++#: ../repair/dinode.c:2061 ../repair/dinode.c:2070
  #, c-format
 -msgid "Unexpected inode type %#o inode %llu\n"
 -msgstr "Nieoczekiwany typ i-wêz³a %#o w i-wê¼le %llu\n"
@@ -1728,336 +2038,336 @@
 +msgstr "b³êdny typ i-wêz³a %#o w i-wê¼le %llu\n"
  
 -#: ../repair/dinode.c:2047
-+#: ../repair/dinode.c:2084
++#: ../repair/dinode.c:2080
  #, c-format
  msgid "bad inode type for root inode %llu, "
  msgstr "b³êdny typ i-wêz³a dla g³ównego i-wêz³a %llu, "
  
 -#: ../repair/dinode.c:2051
-+#: ../repair/dinode.c:2088
++#: ../repair/dinode.c:2084
  msgid "resetting to directory\n"
  msgstr "przestawiono na katalog\n"
  
 -#: ../repair/dinode.c:2057
-+#: ../repair/dinode.c:2094
++#: ../repair/dinode.c:2090
  msgid "would reset to directory\n"
  msgstr "zosta³by przestawiony na katalog\n"
  
 -#: ../repair/dinode.c:2061
-+#: ../repair/dinode.c:2098
++#: ../repair/dinode.c:2094
  msgid "summary"
  msgstr "opisu"
  
 -#: ../repair/dinode.c:2065
-+#: ../repair/dinode.c:2102
++#: ../repair/dinode.c:2098
  msgid "bitmap"
  msgstr "bitmapy"
  
 -#: ../repair/dinode.c:2069
-+#: ../repair/dinode.c:2106
++#: ../repair/dinode.c:2102
  #, c-format
  msgid "user quota inode has bad type 0x%x\n"
  msgstr "i-wêze³ limitu u¿ytkownika ma b³êdny typ 0x%x\n"
  
 -#: ../repair/dinode.c:2087
-+#: ../repair/dinode.c:2124
++#: ../repair/dinode.c:2120
  #, c-format
  msgid "group quota inode has bad type 0x%x\n"
  msgstr "i-wêze³ limitu grupy ma b³êdny typ 0x%x\n"
  
 -#: ../repair/dinode.c:2108
-+#: ../repair/dinode.c:2145
++#: ../repair/dinode.c:2141
  #, c-format
  msgid "bad inode type for realtime %s inode %llu, "
  msgstr "b³êdny typ i-wêz³a dla i-wêz³a %s realtime %llu, "
  
 -#: ../repair/dinode.c:2112
-+#: ../repair/dinode.c:2149
++#: ../repair/dinode.c:2145
  msgid "resetting to regular file\n"
  msgstr "przestawiono na zwyk³y plik\n"
  
 -#: ../repair/dinode.c:2118
-+#: ../repair/dinode.c:2155
++#: ../repair/dinode.c:2151
  msgid "would reset to regular file\n"
  msgstr "zosta³by przestawiony na zwyk³y plik\n"
  
 -#: ../repair/dinode.c:2137
-+#: ../repair/dinode.c:2174
++#: ../repair/dinode.c:2170
  #, c-format
  msgid "bad non-zero extent size %u for non-realtime/extsize inode %llu, "
  msgstr "b³êdny niezerowy rozmiar fragmentu %u dla extsize i-wêz³a nie-realtime %llu, "
  
 -#: ../repair/dinode.c:2141
-+#: ../repair/dinode.c:2178
++#: ../repair/dinode.c:2174
  msgid "resetting to zero\n"
  msgstr "przestawiono na zero\n"
  
 -#: ../repair/dinode.c:2145
-+#: ../repair/dinode.c:2182
++#: ../repair/dinode.c:2178
  msgid "would reset to zero\n"
  msgstr "zosta³by przestawiony na zero\n"
  
 -#: ../repair/dinode.c:2164
-+#: ../repair/dinode.c:2201
++#: ../repair/dinode.c:2197
  #, c-format
  msgid "bad size %llu for realtime %s inode %llu\n"
  msgstr "b³êdny rozmiar %llu dla i-wêz³a %s realtime %llu\n"
  
 -#: ../repair/dinode.c:2180
-+#: ../repair/dinode.c:2217
++#: ../repair/dinode.c:2213
  #, c-format
  msgid "bad # of extents (%u) for realtime %s inode %llu\n"
  msgstr "b³êdna liczba fragmentów (%u) dla i-wêz³± %s realtime %llu\n"
  
 -#: ../repair/dinode.c:2222
-+#: ../repair/dinode.c:2259
++#: ../repair/dinode.c:2255
  #, c-format
  msgid "mismatch between format (%d) and size (%lld) in directory ino %llu\n"
  msgstr "niezgodno¶æ miêdzy formatem (%d) i rozmiarem (%lld) w i-wê¼le katalogu %llu\n"
  
 -#: ../repair/dinode.c:2244
-+#: ../repair/dinode.c:2281
++#: ../repair/dinode.c:2277
  #, c-format
  msgid "bad data fork in symlink %llu\n"
  msgstr "b³êdna ga³±¼ danych w dowi±zaniu symbolicznym %llu\n"
  
 -#: ../repair/dinode.c:2286
-+#: ../repair/dinode.c:2323
++#: ../repair/dinode.c:2319
  #, c-format
  msgid "found inode %llu claiming to be a real-time file\n"
  msgstr "znaleziono i-wêze³ %llu twierdz±cy, ¿e nale¿y do pliku realtime\n"
  
 -#: ../repair/dinode.c:2305
-+#: ../repair/dinode.c:2342
++#: ../repair/dinode.c:2338
  #, c-format
  msgid "realtime bitmap inode %llu has bad size %lld (should be %lld)\n"
  msgstr "i-wêze³ bitmapy realtime %llu ma b³êdny rozmiar %lld (powinien byæ %lld)\n"
  
 -#: ../repair/dinode.c:2326
-+#: ../repair/dinode.c:2363
++#: ../repair/dinode.c:2359
  #, c-format
  msgid "realtime summary inode %llu has bad size %lld (should be %d)\n"
  msgstr "i-wêze³ opisu realtime %llu ma b³êdny rozmiar %lld (powinien byæ %d)\n"
  
 -#: ../repair/dinode.c:2357
-+#: ../repair/dinode.c:2394
++#: ../repair/dinode.c:2390
  #, c-format
  msgid "bad attr fork offset %d in dev inode %llu, should be %d\n"
  msgstr "b³êdny offset ga³êzi atrybutów %d w i-wê¼le urz±dzenia %llu, powinien byæ %d\n"
  
 -#: ../repair/dinode.c:2368
-+#: ../repair/dinode.c:2405
++#: ../repair/dinode.c:2401
  #, c-format
  msgid "bad attr fork offset %d in uuid inode %llu, should be %d\n"
  msgstr "b³êdny offset ga³êzi atrybutów %d w i-wê¼le uuid %llu, powinien byæ %d\n"
  
 -#: ../repair/dinode.c:2380
-+#: ../repair/dinode.c:2417
++#: ../repair/dinode.c:2413
  #, c-format
  msgid "bad attr fork offset %d in inode %llu, max=%d\n"
  msgstr "b³êdny offset ga³êzi atrybutów %d w i-wê¼le %llu, maksimum=%d\n"
  
 -#: ../repair/dinode.c:2388
-+#: ../repair/dinode.c:2425
++#: ../repair/dinode.c:2421
  #, c-format
  msgid "unexpected inode format %d\n"
  msgstr "nieoczekiwany format i-wêz³a %d\n"
  
 -#: ../repair/dinode.c:2432 ../repair/dinode.c:2483
-+#: ../repair/dinode.c:2469 ../repair/dinode.c:2520
++#: ../repair/dinode.c:2465 ../repair/dinode.c:2516
  #, c-format
  msgid "unknown format %d, ino %llu (mode = %d)\n"
  msgstr "nieznany format %d, i-wêze³ %llu (tryb = %d)\n"
  
 -#: ../repair/dinode.c:2442
-+#: ../repair/dinode.c:2479
++#: ../repair/dinode.c:2475
  #, c-format
  msgid "bad data fork in inode %llu\n"
  msgstr "b³êdna ga³±¼ danych w i-wê¼le %llu\n"
  
 -#: ../repair/dinode.c:2506
-+#: ../repair/dinode.c:2543
++#: ../repair/dinode.c:2539
  #, c-format
  msgid "bad attribute format %d in inode %llu, "
  msgstr "b³êdny format atrybutów %d w i-wê¼le %llu, "
  
 -#: ../repair/dinode.c:2509
-+#: ../repair/dinode.c:2546
++#: ../repair/dinode.c:2542
  msgid "resetting value\n"
  msgstr "przestawiono warto¶æ\n"
  
 -#: ../repair/dinode.c:2513
-+#: ../repair/dinode.c:2550
++#: ../repair/dinode.c:2546
  msgid "would reset value\n"
  msgstr "warto¶æ zosta³aby przestawiona\n"
  
 -#: ../repair/dinode.c:2554
-+#: ../repair/dinode.c:2591
++#: ../repair/dinode.c:2587
  #, c-format
  msgid "bad attribute fork in inode %llu"
  msgstr "b³êdna ga³±¼ atrybutów w i-wê¼le %llu"
  
 -#: ../repair/dinode.c:2558
-+#: ../repair/dinode.c:2595
++#: ../repair/dinode.c:2591
  msgid ", clearing attr fork\n"
  msgstr ", wyczyszczono ga³±¼ atrybutów\n"
  
 -#: ../repair/dinode.c:2568
-+#: ../repair/dinode.c:2605
++#: ../repair/dinode.c:2601
  msgid ", would clear attr fork\n"
  msgstr ", ga³±¼ atrybutów zosta³aby wyczyszczona\n"
  
 -#: ../repair/dinode.c:2605
-+#: ../repair/dinode.c:2642
++#: ../repair/dinode.c:2638
  #, c-format
  msgid "illegal attribute fmt %d, ino %llu\n"
  msgstr "niedozwolony format atrybutów %d, i-wêze³ %llu\n"
  
 -#: ../repair/dinode.c:2630
-+#: ../repair/dinode.c:2667
++#: ../repair/dinode.c:2663
  #, c-format
  msgid "problem with attribute contents in inode %llu\n"
  msgstr "problem z zawarto¶ci± atrybutu w i-wê¼le %llu\n"
  
 -#: ../repair/dinode.c:2640
-+#: ../repair/dinode.c:2677
++#: ../repair/dinode.c:2673
  msgid "would clear attr fork\n"
  msgstr "ga³±¼ atrybutów zosta³aby wyczyszczona\n"
  
 -#: ../repair/dinode.c:2676
-+#: ../repair/dinode.c:2713
++#: ../repair/dinode.c:2709
  #, c-format
  msgid "correcting nblocks for inode %llu, was %llu - counted %llu\n"
  msgstr "poprawiono nblocks dla i-wêz³a %llu - by³o %llu, naliczono %llu\n"
  
 -#: ../repair/dinode.c:2683
-+#: ../repair/dinode.c:2720
++#: ../repair/dinode.c:2716
  #, c-format
  msgid "bad nblocks %llu for inode %llu, would reset to %llu\n"
  msgstr "b³êdne nblocks %llu dla i-wêz³a %llu, zosta³oby przestawione na %llu\n"
  
 -#: ../repair/dinode.c:2690
-+#: ../repair/dinode.c:2727
++#: ../repair/dinode.c:2723
  #, c-format
  msgid "too many data fork extents (%llu) in inode %llu\n"
  msgstr "zbyt du¿o fragmentów ga³êzi danych (%llu) w i-wê¼le %llu\n"
  
 -#: ../repair/dinode.c:2707
-+#: ../repair/dinode.c:2744
++#: ../repair/dinode.c:2740
  #, c-format
  msgid "correcting nextents for inode %llu, was %d - counted %llu\n"
  msgstr "poprawiono nextents dla i-wêz³a %llu - by³o %d, naliczono %llu\n"
  
 -#: ../repair/dinode.c:2715
-+#: ../repair/dinode.c:2752
++#: ../repair/dinode.c:2748
  #, c-format
  msgid "bad nextents %d for inode %llu, would reset to %llu\n"
  msgstr "b³êdne nextents %d dla i-wêz³a %llu, zosta³oby przestawione na %llu\n"
  
 -#: ../repair/dinode.c:2722
-+#: ../repair/dinode.c:2759
++#: ../repair/dinode.c:2755
  #, c-format
  msgid "too many attr fork extents (%llu) in inode %llu\n"
  msgstr "zbyt du¿o fragmentów ga³êzi atrybutów (%llu) w i-wê¼le %llu\n"
  
 -#: ../repair/dinode.c:2738
-+#: ../repair/dinode.c:2775
++#: ../repair/dinode.c:2771
  #, c-format
  msgid "correcting anextents for inode %llu, was %d - counted %llu\n"
  msgstr "poprawiono anextents dla i-wêz³a %llu - by³o %d, naliczono %llu\n"
  
 -#: ../repair/dinode.c:2747
-+#: ../repair/dinode.c:2784
++#: ../repair/dinode.c:2780
  #, c-format
  msgid "bad anextents %d for inode %llu, would reset to %llu\n"
  msgstr "b³êdne anextents %d dla i-wêz³a %llu, zosta³oby przestawione na %llu\n"
  
 -#: ../repair/dinode.c:2766
-+#: ../repair/dinode.c:2803
++#: ../repair/dinode.c:2799
  #, c-format
  msgid "problem with directory contents in inode %llu\n"
  msgstr "problem z zawarto¶ci± katalogu w i-wê¼le %llu\n"
  
 -#: ../repair/dinode.c:2779
-+#: ../repair/dinode.c:2816
++#: ../repair/dinode.c:2812
  #, c-format
  msgid "problem with symbolic link in inode %llu\n"
  msgstr "problem z dowi±zaniem symbolicznym w i-wê¼le %llu\n"
  
 -#: ../repair/dinode.c:2791
-+#: ../repair/dinode.c:2828
++#: ../repair/dinode.c:2824
  #, c-format
  msgid "Unexpected inode type\n"
  msgstr "Nieoczekiwany typ i-wêz³a\n"
  
 -#: ../repair/dinode.c:2836
-+#: ../repair/dinode.c:2873
++#: ../repair/dinode.c:2869
  #, c-format
  msgid "version 2 inode %llu claims > %u links, "
  msgstr "i-wêze³ %llu w wersji 2 odwo³uje siê do > %u dowi±zañ, "
  
 -#: ../repair/dinode.c:2840
-+#: ../repair/dinode.c:2877
++#: ../repair/dinode.c:2873
  msgid "updating superblock version number\n"
  msgstr "uaktualniono numer wersji superbloku\n"
  
 -#: ../repair/dinode.c:2843
-+#: ../repair/dinode.c:2880
++#: ../repair/dinode.c:2876
  msgid "would update superblock version number\n"
  msgstr "numer wersji superbloku zosta³by uaktualniony\n"
  
 -#: ../repair/dinode.c:2851
-+#: ../repair/dinode.c:2888
++#: ../repair/dinode.c:2884
  #, c-format
  msgid "WARNING:  version 2 inode %llu claims > %u links, "
  msgstr "UWAGA: i-wêze³ %llu w wersji 2 odwo³uje siê do > %u dowi±zañ, "
  
 -#: ../repair/dinode.c:2855
-+#: ../repair/dinode.c:2892
++#: ../repair/dinode.c:2888
  #, c-format
  msgid ""
  "converting back to version 1,\n"
-@@ -5703,7 +5703,7 @@
+@@ -5703,7 +5712,7 @@
  "przekszta³cono z powrotem do wersji 1,\n"
  "\tmo¿e to zniszczyæ %d dowi±zañ\n"
  
 -#: ../repair/dinode.c:2870
-+#: ../repair/dinode.c:2907
++#: ../repair/dinode.c:2903
  #, c-format
  msgid ""
  "would convert back to version 1,\n"
-@@ -5712,25 +5712,25 @@
+@@ -5712,25 +5721,25 @@
  "zosta³by przekszta³cony z powrotem do wersji 1,\n"
  "\tco mog³oby zniszczyæ %d dowi±zañ\n"
  
 -#: ../repair/dinode.c:2885
-+#: ../repair/dinode.c:2922
++#: ../repair/dinode.c:2918
  #, c-format
  msgid "found version 2 inode %llu, "
  msgstr "znaleziono i-wêze³ %llu w wersji 2, "
  
 -#: ../repair/dinode.c:2887
-+#: ../repair/dinode.c:2924
++#: ../repair/dinode.c:2920
  msgid "converting back to version 1\n"
  msgstr "przekszta³cono z powrotem do wersji 1\n"
  
 -#: ../repair/dinode.c:2896
-+#: ../repair/dinode.c:2933
++#: ../repair/dinode.c:2929
  msgid "would convert back to version 1\n"
  msgstr "zosta³by przekszta³cony z powrotem do wersji 1\n"
  
 -#: ../repair/dinode.c:2911
-+#: ../repair/dinode.c:2948
++#: ../repair/dinode.c:2944
  #, c-format
  msgid "clearing obsolete nlink field in version 2 inode %llu, was %d, now 0\n"
  msgstr "wyczyszczono przestarza³e pole nlink w i-wê¼le %llu w wersji 2 - by³o %d, jest 0\n"
  
 -#: ../repair/dinode.c:2917
-+#: ../repair/dinode.c:2954
++#: ../repair/dinode.c:2950
  #, c-format
  msgid "would clear obsolete nlink field in version 2 inode %llu, currently %d\n"
  msgstr "przestarza³e pole nlink w i-wê¼le %llu w wersji 2 zosta³oby wyczyszczone, aktualnie %d\n"
-@@ -5770,12 +5770,12 @@
+@@ -5770,12 +5779,12 @@
  msgid "entry references non-existent inode %llu in shortform dir %llu\n"
  msgstr "wpis odwo³uje siê do nie istniej±cego i-wêz³a %llu w krótkim katalogu %llu\n"
  
@@ -2072,7 +2382,7 @@
  #, c-format
  msgid "zero length entry in shortform dir %llu, would set to %d\n"
  msgstr "wpis zerowej d³ugo¶ci w krótkim katalogu %llu, zosta³by przestawiony na %d\n"
-@@ -5785,103 +5785,103 @@
+@@ -5785,103 +5794,103 @@
  msgid "zero length entry in shortform dir %llu, "
  msgstr "wpis zerowej d³ugo¶ci w krótkim katalogu %llu, "
  
@@ -2199,7 +2509,7 @@
  #, c-format
  msgid "would have corrected root directory %llu .. entry from %llu to %llu\n"
  msgstr "wpis .. g³ównego katalogu %llu zosta³by poprawiony z %llu na %llu\n"
-@@ -5926,8 +5926,8 @@
+@@ -5926,8 +5935,8 @@
  msgid "- derived hole (base %d, size %d) in block %d, dir inode %llu not found\n"
  msgstr "- wyprowadzona dziura (podstawa %d, rozmiar %d) w bloku %d, i-wêze³ katalogu %llu nie znaleziona\n"
  
@@ -2210,7 +2520,7 @@
  #, c-format
  msgid "can't read block %u (fsbno %llu) for directory inode %llu\n"
  msgstr "nie mo¿na odczytaæ bloku %u (fsbno %llu) dla i-wêz³a katalogu %llu\n"
-@@ -5937,17 +5937,17 @@
+@@ -5937,17 +5946,17 @@
  msgid "can't read block %u (fsbno %llu) for attrbute fork of inode %llu\n"
  msgstr "nie mo¿na odczytaæ bloku %u (fsbno %llu) dla ga³êzi atrybutów i-wêz³a %llu\n"
  
@@ -2231,7 +2541,7 @@
  #, c-format
  msgid "bad directory btree for directory inode %llu\n"
  msgstr "b³êdne b-drzewo katalogu dla i-wêz³a katalogu %llu\n"
-@@ -5972,12 +5972,12 @@
+@@ -5972,12 +5981,12 @@
  msgid "directory/attribute block used/count inconsistency - %d/%hu\n"
  msgstr "niespójno¶æ warto¶ci used/count bloku katalogu/atrybutu - %d/%hu\n"
  
@@ -2246,7 +2556,7 @@
  #, c-format
  msgid "bad directory/attribute forward block pointer, expected 0, saw %u\n"
  msgstr "b³êdny wska¼nik bloku w przód katalogu/atrybutu - oczekiwano 0, widziano %u\n"
-@@ -6005,7 +6005,7 @@
+@@ -6005,7 +6014,7 @@
  "b³êdne hashval zosta³oby poprawione w bloku katalogu/atrybutu nie bêd±cego li¶ciem\n"
  "\tw i-wê¼le (poziomu %d) %llu.\n"
  
@@ -2255,7 +2565,7 @@
  #, c-format
  msgid "can't get map info for block %u of directory inode %llu\n"
  msgstr "nie mo¿na uzyskaæ informacji o mapie dla bloku %u i-wêz³a katalogu %llu\n"
-@@ -6232,7 +6232,7 @@
+@@ -6232,7 +6241,7 @@
  msgid "will clear entry\n"
  msgstr "wpis zostanie wyczyszczony\n"
  
@@ -2264,46 +2574,46 @@
  msgid "would clear entry\n"
  msgstr "wpis zosta³by wyczyszczony\n"
  
-@@ -6346,7 +6346,7 @@
+@@ -6346,7 +6355,7 @@
  msgid "- would compact block %u in dir inode %llu\n"
  msgstr "- bloku %u w i-wê¼le katalogu %llu zosta³by zagêszczony\n"
  
 -#: ../repair/dir.c:2661 ../repair/dir2.c:1826
-+#: ../repair/dir.c:2661 ../repair/dir2.c:1821
++#: ../repair/dir.c:2661 ../repair/dir2.c:1822
  #, c-format
  msgid "can't map block %u for directory inode %llu\n"
  msgstr "nie mo¿na odwzorowaæ bloku %u dla i-wêz³a katalogu %llu\n"
-@@ -6366,7 +6366,7 @@
+@@ -6366,7 +6375,7 @@
  msgid "bad sibling back pointer for directory block %u in directory inode %llu\n"
  msgstr "b³êdny wska¼nik wstecz dla bloku katalogu %u w i-wê¼le katalogu %llu\n"
  
 -#: ../repair/dir.c:2757 ../repair/dir2.c:1903
-+#: ../repair/dir.c:2757 ../repair/dir2.c:1898
++#: ../repair/dir.c:2757 ../repair/dir2.c:1899
  #, c-format
  msgid "bad hash path in directory %llu\n"
  msgstr "b³êdna ¶cie¿ka hasza w katalogu %llu\n"
-@@ -6401,17 +6401,17 @@
+@@ -6401,17 +6410,17 @@
  msgid "would clear forw/back pointers for directory inode %llu\n"
  msgstr "wska¼niki w przód/wstecz dla i-wêz³a katalogu %llu zosta³yby wyczyszczone\n"
  
 -#: ../repair/dir.c:3048 ../repair/dir2.c:2114
-+#: ../repair/dir.c:3048 ../repair/dir2.c:2109
++#: ../repair/dir.c:3048 ../repair/dir2.c:2110
  #, c-format
  msgid "no . entry for directory %llu\n"
  msgstr "brak wpisu . dla katalogu %llu\n"
  
 -#: ../repair/dir.c:3058 ../repair/dir2.c:2124
-+#: ../repair/dir.c:3058 ../repair/dir2.c:2119
++#: ../repair/dir.c:3058 ../repair/dir2.c:2120
  #, c-format
  msgid "no .. entry for directory %llu\n"
  msgstr "brak wpisu .. dla katalogu %llu\n"
  
 -#: ../repair/dir.c:3060 ../repair/dir2.c:2126
-+#: ../repair/dir.c:3060 ../repair/dir2.c:2121
++#: ../repair/dir.c:3060 ../repair/dir2.c:2122
  #, c-format
  msgid "no .. entry for root directory %llu\n"
  msgstr "brak wpisu .. dla katalogu g³ównego %llu\n"
-@@ -6433,43 +6433,38 @@
+@@ -6433,43 +6442,38 @@
  msgid "couldn't malloc dir2 buffer data\n"
  msgstr "nie mo¿na przydzieliæ danych bufora dir2\n"
  
@@ -2355,7 +2665,7 @@
  #, c-format
  msgid ""
  "correcting bad hashval in non-leaf dir block\n"
-@@ -6478,7 +6473,7 @@
+@@ -6478,7 +6482,7 @@
  "poprawiono b³êdne hashval w bloku katalogu nie bêd±cego li¶ciem\n"
  "\tw i-wê¼le (poziomu %d) %llu.\n"
  
@@ -2364,7 +2674,7 @@
  #, c-format
  msgid ""
  "would correct bad hashval in non-leaf dir block\n"
-@@ -6487,27 +6482,27 @@
+@@ -6487,27 +6491,27 @@
  "b³êdne hashval w bloku katalogu nie bêd±cego li¶ciem zosta³oby poprawione\n"
  "\tw i-wê¼le (poziomu %d) %llu.\n"
  
@@ -2397,7 +2707,7 @@
  #, c-format
  msgid ""
  "correcting bad hashval in interior dir block\n"
-@@ -6516,7 +6511,7 @@
+@@ -6516,7 +6520,7 @@
  "poprawiono b³êdne hashval w wewnêtrznym bloku katalogu\n"
  "\tw i-wê¼le (poziomu %d) %llu.\n"
  
@@ -2406,7 +2716,7 @@
  #, c-format
  msgid ""
  "would correct bad hashval in interior dir block\n"
-@@ -6525,377 +6520,377 @@
+@@ -6525,377 +6529,377 @@
  "b³êdne hashval w wewnêtrznym bloku katalogu zosta³oby poprawione\n"
  "\tw i-wê¼le (poziomu %d) %llu.\n"
  
@@ -2664,43 +2974,43 @@
  msgstr "b³êdna liczba stale %u i-wêz³a katalogu %llu\n"
  
 -#: ../repair/dir2.c:1836
-+#: ../repair/dir2.c:1831
++#: ../repair/dir2.c:1832
  #, c-format
  msgid "can't read file block %u for directory inode %llu\n"
  msgstr "nie mo¿na odczytaæ bloku pliku %u dla i-wêz³a katalogu %llu\n"
  
 -#: ../repair/dir2.c:1847
-+#: ../repair/dir2.c:1842
++#: ../repair/dir2.c:1843
  #, c-format
  msgid "bad directory leaf magic # %#x for directory inode %llu block %u\n"
  msgstr "b³êdna liczba magiczna li¶cia katalogu %#x dla i-wêz³a katalogu %llu bloku %u\n"
  
 -#: ../repair/dir2.c:1877
-+#: ../repair/dir2.c:1872
++#: ../repair/dir2.c:1873
  #, c-format
  msgid "bad sibling back pointer for block %u in directory inode %llu\n"
  msgstr "b³êdny wska¼nik wstecz dla bloku %u w i-wê¼le katalogu %llu\n"
  
 -#: ../repair/dir2.c:2010
-+#: ../repair/dir2.c:2005
++#: ../repair/dir2.c:2006
  #, c-format
  msgid "block %llu for directory inode %llu is missing\n"
  msgstr "brak bloku %llu dla i-wêz³a katalogu %llu\n"
  
 -#: ../repair/dir2.c:2019
-+#: ../repair/dir2.c:2014
++#: ../repair/dir2.c:2015
  #, c-format
  msgid "can't read block %llu for directory inode %llu\n"
  msgstr "nie mo¿na odczytaæ bloku %llu dla i-wêz³a katalogu %llu\n"
  
 -#: ../repair/dir2.c:2027
-+#: ../repair/dir2.c:2022
++#: ../repair/dir2.c:2023
  #, c-format
  msgid "bad directory block magic # %#x in block %llu for directory inode %llu\n"
  msgstr "b³êdna liczba magiczna bloku katalogu %#x w bloku %llu dla i-wêz³a katalogu %llu\n"
  
 -#: ../repair/dir2.c:2107
-+#: ../repair/dir2.c:2102
++#: ../repair/dir2.c:2103
  #, c-format
  msgid "bad size/format for directory %llu\n"
  msgstr "b³êdny rozmiar/format dla katalogu %llu\n"
@@ -2869,7 +3179,7 @@
  msgid "couldn't malloc uncertain inode cache area\n"
  msgstr "nie uda³o siê przydzieliæ obszaru pamiêci podrêcznej i-wêz³ów niepewnych\n"
  
-@@ -6903,7 +6898,7 @@
+@@ -6903,7 +6907,7 @@
  msgid "ts_alloc: cannot allocate thread specific storage\n"
  msgstr "ts_alloc: nie mo¿na przydzieliæ miejsca dla w±tku\n"
  
@@ -2878,7 +3188,7 @@
  msgid "couldn't initialize XFS library\n"
  msgstr "nie uda³o siê zainicjowaæ biblioteki XFS\n"
  
-@@ -6946,17 +6941,17 @@
+@@ -6946,17 +6950,17 @@
  msgid "would write modified primary superblock\n"
  msgstr "zmodyfikowany g³ówny superblok zosta³by zapisany\n"
  
@@ -2899,7 +3209,7 @@
  msgid ""
  "ALERT: The filesystem has valuable metadata changes in a log which is being\n"
  "destroyed because the -L option was used.\n"
-@@ -6964,7 +6959,7 @@
+@@ -6964,7 +6968,7 @@
  "UWAGA: system plików zawiera warto¶ciowe zmiany metadanych w logu, który jest\n"
  "niszczony, poniewa¿ u¿yto opcji -L.\n"
  
@@ -2908,7 +3218,7 @@
  msgid ""
  "ERROR: The filesystem has valuable metadata changes in a log which needs to\n"
  "be replayed.  Mount the filesystem to replay the log, and unmount it before\n"
-@@ -6981,449 +6976,461 @@
+@@ -6981,449 +6985,461 @@
  "Nale¿y zauwa¿yæ, ¿e zniszczenie loga mo¿e spowodowaæ uszkodzenia danych -\n"
  "proszê najpierw spróbowaæ podmontowaæ system plików.\n"
  
@@ -2976,7 +3286,7 @@
  msgstr "b³±d podczas pod±¿ania za od³±czon± list± ag %d\n"
  
 -#: ../repair/phase3.c:151
-+#: ../repair/phase3.c:159 ../repair/phase4.c:1126 ../repair/phase5.c:1444
++#: ../repair/phase3.c:159 ../repair/phase4.c:1134 ../repair/phase5.c:1444
 +#: ../repair/phase6.c:3834 ../repair/phase7.c:78
 +#, c-format
 +msgid "        - agno = %d\n"
@@ -3081,44 +3391,44 @@
  msgstr "nieznana wersja #%d w g³ównym i-wê¼le\n"
  
 -#: ../repair/phase4.c:1141
-+#: ../repair/phase4.c:1155
++#: ../repair/phase4.c:1163
  msgid "Phase 4 - check for duplicate blocks...\n"
  msgstr "Faza 4 - sprawdzanie powtórzonych bloków...\n"
  
 -#: ../repair/phase4.c:1142
-+#: ../repair/phase4.c:1156
++#: ../repair/phase4.c:1164
  msgid "        - setting up duplicate extent list...\n"
  msgstr "        - tworzenie listy powtórzonych fragmentów...\n"
  
 -#: ../repair/phase4.c:1154
-+#: ../repair/phase4.c:1170
++#: ../repair/phase4.c:1178
  msgid "root inode would be lost\n"
  msgstr "g³ówny i-wêze³ zosta³by utracony\n"
  
 -#: ../repair/phase4.c:1156
-+#: ../repair/phase4.c:1172
++#: ../repair/phase4.c:1180
  msgid "root inode lost\n"
  msgstr "g³ówny i-wêze³ utracony\n"
  
 -#: ../repair/phase4.c:1164
-+#: ../repair/phase4.c:1180
++#: ../repair/phase4.c:1188
  msgid "        - clear lost+found (if it exists) ...\n"
  msgstr "        - czyszczenie lost+found (je¶li istnieje)...\n"
  
 -#: ../repair/phase4.c:1200
-+#: ../repair/phase4.c:1216
++#: ../repair/phase4.c:1224
  #, c-format
  msgid "unknown block state, ag %d, block %d\n"
  msgstr "nieznany stan bloku, ag %d, blok %d\n"
  
 -#: ../repair/phase4.c:1256
-+#: ../repair/phase4.c:1274
++#: ../repair/phase4.c:1282
  #, c-format
  msgid "unknown rt extent state, extent %llu\n"
  msgstr "nieznany stan fragmentu rt, fragment %llu\n"
  
 -#: ../repair/phase4.c:1317
-+#: ../repair/phase4.c:1335
++#: ../repair/phase4.c:1343
  msgid "        - check for inodes claiming duplicate blocks...\n"
  msgstr "        - szukanie i-wêz³ów odwo³uj±cych siê do powtórzonych bloków...\n"
  
@@ -3477,7 +3787,7 @@
  #, c-format
  msgid ""
  "couldn't remove bogus entry \"%s\" in\n"
-@@ -7432,464 +7439,469 @@
+@@ -7432,464 +7448,469 @@
  "nie uda³o siê usun±æ niepoprawnego wpisu \"%s\"\n"
  "\tw i-wê¼le katalogu %llu, b³±d = %d\n"
  
@@ -3901,111 +4211,111 @@
  msgstr "nie mo¿na utworzyæ wpisu \".\" w i-wê¼le katalogu %llu, b³±d createname %d\n"
  
 -#: ../repair/phase6.c:3870
-+#: ../repair/phase6.c:3880
++#: ../repair/phase6.c:3884
  msgid "Phase 6 - check inode connectivity...\n"
  msgstr "Faza 6 - sprawdzanie ³±czno¶ci i-wêz³ów...\n"
  
 -#: ../repair/phase6.c:3889
-+#: ../repair/phase6.c:3899
++#: ../repair/phase6.c:3903
  msgid "reinitializing root directory\n"
  msgstr "ponowne inicjowanie g³ównego katalogu\n"
  
 -#: ../repair/phase6.c:3894
-+#: ../repair/phase6.c:3904
++#: ../repair/phase6.c:3908
  msgid "would reinitialize root directory\n"
  msgstr "g³ówny katalog zosta³by ponownie zainicjowany\n"
  
 -#: ../repair/phase6.c:3900
-+#: ../repair/phase6.c:3910
++#: ../repair/phase6.c:3914
  msgid "reinitializing realtime bitmap inode\n"
  msgstr "ponowne inicjowanie i-wêz³a bitmapy realtime\n"
  
 -#: ../repair/phase6.c:3904
-+#: ../repair/phase6.c:3914
++#: ../repair/phase6.c:3918
  msgid "would reinitialize realtime bitmap inode\n"
  msgstr "i-wêze³ bitmapy realtime zosta³by ponownie zainicjowany\n"
  
 -#: ../repair/phase6.c:3910
-+#: ../repair/phase6.c:3920
++#: ../repair/phase6.c:3924
  msgid "reinitializing realtime summary inode\n"
  msgstr "ponowne inicjowanie i-wêz³a opisu realtime\n"
  
 -#: ../repair/phase6.c:3914
-+#: ../repair/phase6.c:3924
++#: ../repair/phase6.c:3928
  msgid "would reinitialize realtime summary inode\n"
  msgstr "i-wêze³ opisu realtime zosta³by ponownie zainicjowany\n"
  
 -#: ../repair/phase6.c:3920
-+#: ../repair/phase6.c:3930
++#: ../repair/phase6.c:3934
  msgid "        - resetting contents of realtime bitmap and summary inodes\n"
  msgstr "        - przestawianie zawarto¶ci i-wêz³ów bitmapy i opisu realtime\n"
  
 -#: ../repair/phase6.c:3923 ../repair/phase6.c:3928
-+#: ../repair/phase6.c:3933 ../repair/phase6.c:3938
++#: ../repair/phase6.c:3937 ../repair/phase6.c:3942
  msgid "Warning:  realtime bitmap may be inconsistent\n"
  msgstr "Uwaga: bitmapa realtime mo¿e byæ niespójna\n"
  
 -#: ../repair/phase6.c:3936
-+#: ../repair/phase6.c:3946
++#: ../repair/phase6.c:3950
  #, c-format
  msgid "        - ensuring existence of %s directory\n"
  msgstr "        - zapewnianie istnienia katalogu %s\n"
  
 -#: ../repair/phase6.c:3949
-+#: ../repair/phase6.c:3959
++#: ../repair/phase6.c:3963
  msgid "        - traversing filesystem starting at / ... \n"
  msgstr "        - przechodzenie systemu plików pocz±wszy od / ...\n"
  
 -#: ../repair/phase6.c:3958
-+#: ../repair/phase6.c:3968
++#: ../repair/phase6.c:3972
  msgid "        - traversal finished ... \n"
  msgstr "        - przechodzenie zakoñczone...\n"
  
 -#: ../repair/phase6.c:3963
-+#: ../repair/phase6.c:3973
++#: ../repair/phase6.c:3977
  msgid "        - root inode lost, cannot make new one in no modify mode ... \n"
  msgstr "        - utracony g³ówny i-wêze³, nie mo¿na utworzyæ nowego w trybie bez modyfikacji...\n"
  
 -#: ../repair/phase6.c:3965
-+#: ../repair/phase6.c:3975
++#: ../repair/phase6.c:3979
  msgid "        - skipping filesystem traversal from / ... \n"
  msgstr "        - pominiêto przechodzenie systemu plików od / ...\n"
  
 -#: ../repair/phase6.c:3968
-+#: ../repair/phase6.c:3978
++#: ../repair/phase6.c:3982
  msgid "        - traversing all unattached subtrees ... \n"
  msgstr "        - przechodzenie wszystkich niepod³±czonych poddrzew...\n"
  
 -#: ../repair/phase6.c:4019
-+#: ../repair/phase6.c:4029
++#: ../repair/phase6.c:4033
  msgid "        - traversals finished ... \n"
  msgstr "        - przechodzenie zakoñczone...\n"
  
 -#: ../repair/phase6.c:4024
-+#: ../repair/phase6.c:4034
++#: ../repair/phase6.c:4038
  msgid "        - moving disconnected inodes to lost+found ... \n"
  msgstr "        - przenoszenie od³±czonych i-wêz³ów do lost+found...\n"
  
 -#: ../repair/phase6.c:4048
-+#: ../repair/phase6.c:4058
++#: ../repair/phase6.c:4062
  #, c-format
  msgid "disconnected dir inode %llu, "
  msgstr "od³±czony i-wêze³ katalogu %llu, "
  
 -#: ../repair/phase6.c:4052
-+#: ../repair/phase6.c:4062
++#: ../repair/phase6.c:4066
  #, c-format
  msgid "disconnected inode %llu, "
  msgstr "od³±czony i-wêze³ %llu, "
  
 -#: ../repair/phase6.c:4055
-+#: ../repair/phase6.c:4065
++#: ../repair/phase6.c:4069
  #, c-format
  msgid "moving to %s\n"
  msgstr "przeniesiono do %s\n"
  
 -#: ../repair/phase6.c:4061
-+#: ../repair/phase6.c:4071
++#: ../repair/phase6.c:4075
  #, c-format
  msgid "would move to %s\n"
  msgstr "zosta³by przeniesiony do %s\n"
@@ -4050,7 +4360,7 @@
  #, c-format
  msgid "couldn't map inode %llu, err = %d, can't compare link counts\n"
  msgstr "nie uda³o siê odwzorowaæ i-wêz³a %llu, b³±d %d, nie mo¿na porównaæ liczby dowi±zañ\n"
-@@ -8002,22 +8014,22 @@
+@@ -8002,22 +8023,22 @@
  msgid "could not read superblock\n"
  msgstr "nie uda³o siê odczytaæ superbloku\n"
  
@@ -4077,7 +4387,7 @@
  #, c-format
  msgid ""
  "bad fwd (right) sibling pointer (saw %llu parent block says %llu)\n"
-@@ -8026,7 +8038,7 @@
+@@ -8026,7 +8047,7 @@
  "b³êdny wska¼nik w przód (prawy) (widziano %llu, blok nadrzêdny mówi %llu)\n"
  "\tw i-wê¼le %llu (ga³êzi %s) bloku bmap btree %llu\n"
  
@@ -4086,7 +4396,7 @@
  #, c-format
  msgid ""
  "bad back (left) sibling pointer (saw %llu parent block says %llu)\n"
-@@ -8035,7 +8047,7 @@
+@@ -8035,7 +8056,7 @@
  "b³êdny wska¼nik wstecz (lewy) (widziano %llu, blok nadrzêdny mówi %llu)\n"
  "\tw i-wê¼le %llu (ga³êzi %s) bloku bmap btree %llu\n"
  
@@ -4095,7 +4405,7 @@
  #, c-format
  msgid ""
  "bad back (left) sibling pointer (saw %llu should be NULL (0))\n"
-@@ -8044,27 +8056,27 @@
+@@ -8044,27 +8065,27 @@
  "b³êdny wska¼nik wstecz (lewy) (widziano %llu, powinien byæ NULL (0))\n"
  "\tw i-wê¼le %llu (ga³êzi %s) bloku bmap btree %llu\n"
  
@@ -4128,7 +4438,7 @@
  #, c-format
  msgid ""
  "correcting bt key (was %llu, now %llu) in inode %llu\n"
-@@ -8073,7 +8085,7 @@
+@@ -8073,7 +8094,7 @@
  "poprawiono klucz bt (by³o %llu, jest %llu) w i-wê¼le %llu\n"
  "\t\tga³±¼ %s, blok b-drzewa %llu\n"
  
@@ -4137,7 +4447,7 @@
  #, c-format
  msgid ""
  "bad btree key (is %llu, should be %llu) in inode %llu\n"
-@@ -8082,7 +8094,7 @@
+@@ -8082,7 +8103,7 @@
  "b³êdny klucz b-drzewa (by³o %llu, powinno byæ %llu) w i-wê¼le %llu\n"
  "\t\tga³±¼ %s, blok b-drzewa %llu\n"
  
@@ -4146,7 +4456,7 @@
  #, c-format
  msgid ""
  "bad fwd (right) sibling pointer (saw %llu should be NULLDFSBNO)\n"
-@@ -8091,176 +8103,176 @@
+@@ -8091,176 +8112,176 @@
  "b³êdny wska¼nik w przód (prawy) (widziano %llu, powinien byæ NULLDFSBNO)\n"
  "\tw i-wê¼le %llu (ga³êzi %s) bloku bmap btree %llu\n"
  
@@ -4358,7 +4668,7 @@
  #, c-format
  msgid "bad agbno %u for inobt root, agno %d\n"
  msgstr "b³êdne agbno %u dla g³ównego inobt, agno %d\n"
-@@ -8430,102 +8442,102 @@
+@@ -8430,102 +8451,102 @@
  "\tzawiera wyrównane i-wêz³y. System plików zosta³by zdegradowany.\n"
  "\tTrwale zdegradowa³oby to wydajno¶æ tego systemu plików.\n"
  
@@ -4485,7 +4795,7 @@
  #, c-format
  msgid ""
  "\n"
-@@ -8534,52 +8546,52 @@
+@@ -8534,52 +8555,52 @@
  "\n"
  "b³±d krytyczny - "
  
@@ -4548,7 +4858,7 @@
  msgid ""
  "Primary superblock would have been modified.\n"
  "Cannot proceed further in no_modify mode.\n"
-@@ -8589,41 +8601,46 @@
+@@ -8589,41 +8610,46 @@
  "Nie mo¿na kontynuowaæ w trybie bez modyfikacji.\n"
  "Zakoñczono.\n"
  
@@ -4604,7 +4914,7 @@
  msgid ""
  "Warning:  user quota information was cleared.\n"
  "User quotas can not be enforced until limit information is recreated.\n"
-@@ -8631,7 +8648,7 @@
+@@ -8631,7 +8657,7 @@
  "Uwaga: informacje o limitach u¿ytkowników by³y wyczyszczone.\n"
  "Limity u¿ytkowników nie mog± byæ wymuszone do czasu odtworzenia informacji.\n"
  
@@ -4613,7 +4923,7 @@
  msgid ""
  "Warning:  user quota information would be cleared.\n"
  "User quotas could not be enforced until limit information was recreated.\n"
-@@ -8639,7 +8656,7 @@
+@@ -8639,7 +8665,7 @@
  "Uwaga: informacje o limitach u¿ytkowników zosta³yby wyczyszczone.\n"
  "Limity u¿ytkowników nie mog³yby byæ wymuszone do czasu odtworzenia informacji.\n"
  
@@ -4622,7 +4932,7 @@
  msgid ""
  "Warning:  group quota information was cleared.\n"
  "Group quotas can not be enforced until limit information is recreated.\n"
-@@ -8647,7 +8664,7 @@
+@@ -8647,7 +8673,7 @@
  "Uwaga: informacje o limitach grup by³y wyczyszczone.\n"
  "Limity grup nie mog± byæ wymuszone do czasu odtworzenia informacji.\n"
  
@@ -4631,7 +4941,7 @@
  msgid ""
  "Warning:  group quota information would be cleared.\n"
  "Group quotas could not be enforced until limit information was recreated.\n"
-@@ -8655,7 +8672,7 @@
+@@ -8655,7 +8681,7 @@
  "Uwaga: informacje o limitach grup zosta³yby wyczyszczone.\n"
  "Limity grup nie mog³yby byæ wymuszone do czasu odtworzenia informacji.\n"
  
@@ -4640,7 +4950,7 @@
  msgid ""
  "Warning:  project quota information was cleared.\n"
  "Project quotas can not be enforced until limit information is recreated.\n"
-@@ -8663,7 +8680,7 @@
+@@ -8663,7 +8689,7 @@
  "Uwaga: informacje o limitach projektów by³y wyczyszczone.\n"
  "Limity projektów nie mog± byæ wymuszone do czasu odtworzenia informacji.\n"
  
@@ -4649,7 +4959,7 @@
  msgid ""
  "Warning:  project quota information would be cleared.\n"
  "Project quotas could not be enforced until limit information was recreated.\n"
-@@ -8671,15 +8688,15 @@
+@@ -8671,15 +8697,15 @@
  "Uwaga: informacje o limitach projektów zosta³yby wyczyszczone.\n"
  "Limity projektów nie mog³yby byæ wymuszone do czasu odtworzenia informacji.\n"
  
@@ -4668,7 +4978,7 @@
  #, c-format
  msgid ""
  "Note - stripe unit (%d) and width (%d) fields have been reset.\n"
-@@ -8688,7 +8705,7 @@
+@@ -8688,7 +8714,7 @@
  "Uwaga - pola jednostki pasa (%d) i szeroko¶ci pasa (%d) zosta³y przestawione.\n"
  "Proszê ustawiæ przy u¿yciu mount -o sunit=<warto¶æ>,swidth=<warto¶æ>\n"
  
