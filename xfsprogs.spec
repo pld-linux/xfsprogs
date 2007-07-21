@@ -6,12 +6,13 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	2.8.21
+Version:	2.9.2
 Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/download/cmd_tars/%{name}_%{version}-1.tar.gz
-# Source0-md5:	a40b7d656c9ddb775c3f221433cbf08a
+# Source0-md5:	363b5c25ba725984cfe72908eece7d0d
+Source1:	xfs_metadump.h
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-install-sh.patch
 Patch2:		%{name}-sharedlibs.patch
@@ -97,6 +98,9 @@ Biblioteki statyczne do XFS.
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
+
+[ -f include/xfs_metadump.h ] && echo "xfs_metadump.h already exists" && exit 1
+install %{SOURCE1} include/xfs_metadump.h
 
 %build
 DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}"
