@@ -1,0 +1,3 @@
+- perl -pi -e "s/^automake -a -c -f --foreing/\%\{__automake\}/; \
+             s/^automake -a -c -f/\%\{__automake\}/; \
+     s/^autoconf/\%\{__autoconf\}/"
