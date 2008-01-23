@@ -1,11 +1,8 @@
-# Conditional build:
-%bcond_with	dynamic_exe	# link executables dynamically with xfs libs
-#
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
 Version:	2.9.5
-Release:	1
+Release:	2
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/download/cmd_tars/%{name}_%{version}-1.tar.gz
@@ -90,7 +87,7 @@ Biblioteki statyczne do XFS.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%{?with_dynamic_exe:%patch4 -p1}
+%patch4 -p1
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
@@ -152,10 +149,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/libdisk.so.*.*
 %attr(755,root,root) %{_libdir}/libhandle.so.*.*
+%attr(755,root,root) %{_libdir}/libxcmd.so.*.*
 %attr(755,root,root) %{_libdir}/libxfs.so.*.*
 %attr(755,root,root) %{_libdir}/libxlog.so.*.*
 %attr(755,root,root) %ghost %{_libdir}/libdisk.so.0
 %attr(755,root,root) %ghost %{_libdir}/libhandle.so.1
+%attr(755,root,root) %ghost %{_libdir}/libxcmd.so.0
 %attr(755,root,root) %ghost %{_libdir}/libxfs.so.0
 %attr(755,root,root) %ghost %{_libdir}/libxlog.so.0
 %{_mandir}/man[185]/*
