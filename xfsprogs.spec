@@ -1,6 +1,4 @@
-#
 # Conditional build:
-%bcond_with	static		# link statically with \-luuid
 %bcond_with	dynamic_exe	# link executables dynamically with xfs libs
 #
 Summary:	Tools for the XFS filesystem
@@ -27,8 +25,7 @@ BuildRequires:	bash
 BuildRequires:	gettext-devel
 BuildRequires:	libtool
 BuildRequires:	libuuid-devel
-%{?with_static:BuildRequires:	libuuid-static}
-%{?with_static:BuildRequires:	sed >= 4.0}
+BuildRequires:	rpmbuild(macros) >= 1.402
 Obsoletes:	libxfs1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -99,53 +96,33 @@ Biblioteki statyczne do XFS.
 %patch7 -p1
 
 %build
-DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}"
-OPTIMIZER="%{rpmcflags} -DENABLE_GETTEXT"
-export DEBUG OPTIMIZER
-rm -f aclocal.m4
 %{__aclocal} -I m4
 %{__autoconf}
 %configure \
-	%{!?with_static:--enable-shared-uuid=yes} \
-	%{?with_static:--disable-shared --disable-shared-uuid}
-
-%{__make} \
-	%{?with_static:LTLINK='$(LIBTOOL) --mode=link %{__cc} -all-static' LDFLAGS=-static}
+	--enable-gettext=yes \
+	--enable-shared=yes
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-DIST_ROOT="$RPM_BUILD_ROOT"
-DIST_INSTALL=`pwd`/install.manifest
-DIST_INSTALL_DEV=`pwd`/install-dev.manifest
+DIST_ROOT=$RPM_BUILD_ROOT
+DIST_INSTALL=$(pwd)/install.manifest
+DIST_INSTALL_DEV=$(pwd)/install-dev.manifest
 export DIST_ROOT DIST_INSTALL DIST_INSTALL_DEV
-%{?with_static:sed -i -e 's/\.lai/.la/' include/buildmacros}
 
 %{__make} install \
 	DIST_MANIFEST="$DIST_INSTALL"
 %{__make} install-dev \
 	DIST_MANIFEST="$DIST_INSTALL_DEV"
 
-for man in attr_list_by_handle.3 attr_multi_by_handle.3 \
-	fd_to_handle.3 free_handle.3 fssetdm_by_handle.3 \
-	getparentpaths_by_handle.3 getparents_by_handle.3 \
-	handle_to_fshandle.3 open_by_handle.3 path_to_fshandle.3 \
-	readlink_by_handle.3; do
-		rm -f $RPM_BUILD_ROOT%{_mandir}/man3/$man
-		echo ".so path_to_handle.3" \
-			> $RPM_BUILD_ROOT%{_mandir}/man3/$man
-done
-
-rm -f $RPM_BUILD_ROOT%{_mandir}/man8/xfs_info.8
-echo ".so xfs_growfs.8" > $RPM_BUILD_ROOT%{_mandir}/man8/xfs_info.8
-
-ln -sf %{_libdir}/$(cd $RPM_BUILD_ROOT%{_libdir}; echo libhandle.so.*.*.*) \
+ln -sf %{_libdir}/$(basename $RPM_BUILD_ROOT%{_libdir}/libhandle.so.*.*.*) \
 	 $RPM_BUILD_ROOT%{_libexecdir}/libhandle.so
-ln -sf %{_libdir}/$(cd $RPM_BUILD_ROOT%{_libdir}; echo libdisk.so.*.*.*) \
+ln -sf %{_libdir}/$(basename $RPM_BUILD_ROOT%{_libdir}/libdisk.so.*.*.*) \
 	$RPM_BUILD_ROOT%{_libexecdir}/libdisk.so
-ln -sf %{_libdir}/$(cd $RPM_BUILD_ROOT%{_libdir}; echo libxfs.so.*.*.*) \
+ln -sf %{_libdir}/$(basename $RPM_BUILD_ROOT%{_libdir}/libxfs.so.*.*.*) \
 	$RPM_BUILD_ROOT%{_libexecdir}/libxfs.so
-ln -sf %{_libdir}/$(cd $RPM_BUILD_ROOT%{_libdir}; echo libxlog.so.*.*.*) \
+ln -sf %{_libdir}/$(basename $RPM_BUILD_ROOT%{_libdir}/libxlog.so.*.*.*) \
 	$RPM_BUILD_ROOT%{_libexecdir}/libxlog.so
 
 %{__sed} -e "s|libdir='%{_libdir}'|libdir='%{_libexecdir}'|" \
@@ -154,6 +131,13 @@ ln -sf %{_libdir}/$(cd $RPM_BUILD_ROOT%{_libdir}; echo libxlog.so.*.*.*) \
 %find_lang %{name}
 
 rm -rf $RPM_BUILD_ROOT%{_docdir}/%{name}
+
+# already in /usr
+rm -f $RPM_BUILD_ROOT%{_libdir}/libdisk.{a,la,so}
+rm -f $RPM_BUILD_ROOT%{_libdir}/libhandle.{a,la,so}
+rm -f $RPM_BUILD_ROOT%{_libdir}/libxfs.{a,la,so}
+rm -f $RPM_BUILD_ROOT%{_libdir}/libxfslog.{a,la,so}
+rm -f $RPM_BUILD_ROOT%{_libdir}/libxlog.{a,la,so}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -166,15 +150,20 @@ rm -rf $RPM_BUILD_ROOT
 %doc README doc/{CHANGES,CREDITS}
 %attr(755,root,root) %{_sbindir}/*
 %attr(755,root,root) %{_bindir}/*
-%{!?with_static:%attr(755,root,root) /%{_lib}/lib*.so.*.*}
+%attr(755,root,root) %{_libdir}/libdisk.so.*.*
+%attr(755,root,root) %{_libdir}/libhandle.so.*.*
+%attr(755,root,root) %{_libdir}/libxfs.so.*.*
+%attr(755,root,root) %{_libdir}/libxlog.so.*.*
+%attr(755,root,root) %ghost %{_libdir}/libdisk.so.0
+%attr(755,root,root) %ghost %{_libdir}/libhandle.so.1
+%attr(755,root,root) %ghost %{_libdir}/libxfs.so.0
+%attr(755,root,root) %ghost %{_libdir}/libxlog.so.0
 %{_mandir}/man[185]/*
 
 %files devel
 %defattr(644,root,root,755)
-%if !%{with static}
 %attr(755,root,root) %{_libexecdir}/lib*.so
 %{_libexecdir}/lib*.la
-%endif
 %{_includedir}/disk
 %{_includedir}/xfs
 %{_mandir}/man3/*
