@@ -56,7 +56,8 @@ diff -Nur xfsprogs-2.7.11/libxcmd/Makefile xfsprogs-2.7.11.dynamic/libxcmd/Makef
 +	$(INSTALL_LTLIB)
  
  install-dev: default
- 	$(INSTALL_LTLIB_STATIC)
+-	$(INSTALL_LTLIB_STATIC)
++	$(INSTALL_LTLIB_DEV)
 diff -Nur xfsprogs-2.7.11/logprint/Makefile xfsprogs-2.7.11.dynamic/logprint/Makefile
 --- xfsprogs-2.7.11/logprint/Makefile	2006-01-17 04:46:50.000000000 +0100
 +++ xfsprogs-2.7.11.dynamic/logprint/Makefile	2006-03-10 18:13:45.000000000 +0100
