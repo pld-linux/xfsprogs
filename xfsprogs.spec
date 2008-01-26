@@ -95,9 +95,11 @@ Biblioteki statyczne do XFS.
 %build
 %{__aclocal} -I m4
 %{__autoconf}
+# (default) --enable-gettext sets ENABLE_GETTEXT make variable, but not C define
+# CFLAGS are dropped, OPTIMIZER is propagated
 %configure \
-	--enable-gettext=yes \
-	--enable-shared=yes
+	DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}" \
+	OPTIMIZER="%{rpmcflags} -DENABLE_GETTEXT"
 %{__make}
 
 %install
@@ -117,13 +119,15 @@ ln -sf %{_libdir}/$(basename $RPM_BUILD_ROOT%{_libdir}/libhandle.so.*.*.*) \
 	 $RPM_BUILD_ROOT%{_libexecdir}/libhandle.so
 ln -sf %{_libdir}/$(basename $RPM_BUILD_ROOT%{_libdir}/libdisk.so.*.*.*) \
 	$RPM_BUILD_ROOT%{_libexecdir}/libdisk.so
+ln -sf %{_libdir}/$(basename $RPM_BUILD_ROOT%{_libdir}/libxcmd.so.*.*.*) \
+	$RPM_BUILD_ROOT%{_libexecdir}/libxcmd.so
 ln -sf %{_libdir}/$(basename $RPM_BUILD_ROOT%{_libdir}/libxfs.so.*.*.*) \
 	$RPM_BUILD_ROOT%{_libexecdir}/libxfs.so
 ln -sf %{_libdir}/$(basename $RPM_BUILD_ROOT%{_libdir}/libxlog.so.*.*.*) \
 	$RPM_BUILD_ROOT%{_libexecdir}/libxlog.so
 
 %{__sed} -e "s|libdir='%{_libdir}'|libdir='%{_libexecdir}'|" \
-	$RPM_BUILD_ROOT%{_libexecdir}/lib{disk,handle,xfs,xlog}.la
+	$RPM_BUILD_ROOT%{_libexecdir}/lib{disk,handle,xcmd,xfs,xlog}.la
 
 %find_lang %{name}
 
@@ -132,8 +136,8 @@ rm -rf $RPM_BUILD_ROOT%{_docdir}/%{name}
 # already in /usr
 rm -f $RPM_BUILD_ROOT%{_libdir}/libdisk.{a,la,so}
 rm -f $RPM_BUILD_ROOT%{_libdir}/libhandle.{a,la,so}
+rm -f $RPM_BUILD_ROOT%{_libdir}/libxcmd.{a,la,so}
 rm -f $RPM_BUILD_ROOT%{_libdir}/libxfs.{a,la,so}
-rm -f $RPM_BUILD_ROOT%{_libdir}/libxfslog.{a,la,so}
 rm -f $RPM_BUILD_ROOT%{_libdir}/libxlog.{a,la,so}
 
 %clean
@@ -145,8 +149,10 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc README doc/{CHANGES,CREDITS}
-%attr(755,root,root) %{_sbindir}/*
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_sbindir}/fsck.xfs
+%attr(755,root,root) %{_sbindir}/mkfs.xfs
+%attr(755,root,root) %{_sbindir}/xfs_repair
+%attr(755,root,root) %{_bindir}/xfs_*
 %attr(755,root,root) %{_libdir}/libdisk.so.*.*
 %attr(755,root,root) %{_libdir}/libhandle.so.*.*
 %attr(755,root,root) %{_libdir}/libxcmd.so.*.*
@@ -157,16 +163,32 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libxcmd.so.0
 %attr(755,root,root) %ghost %{_libdir}/libxfs.so.0
 %attr(755,root,root) %ghost %{_libdir}/libxlog.so.0
-%{_mandir}/man[185]/*
+%{_mandir}/man5/xfs.5*
+%{_mandir}/man8/fsck.xfs.8*
+%{_mandir}/man8/mkfs.xfs.8*
+%{_mandir}/man8/xfs_*.8*
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libexecdir}/lib*.so
-%{_libexecdir}/lib*.la
+%attr(755,root,root) %{_libexecdir}/libdisk.so
+%attr(755,root,root) %{_libexecdir}/libhandle.so
+%attr(755,root,root) %{_libexecdir}/libxcmd.so
+%attr(755,root,root) %{_libexecdir}/libxfs.so
+%attr(755,root,root) %{_libexecdir}/libxlog.so
+%{_libexecdir}/libdisk.la
+%{_libexecdir}/libhandle.la
+%{_libexecdir}/libxcmd.la
+%{_libexecdir}/libxfs.la
+%{_libexecdir}/libxlog.la
 %{_includedir}/disk
 %{_includedir}/xfs
-%{_mandir}/man3/*
+%{_mandir}/man3/*handle.3*
+%{_mandir}/man3/xfsctl.3*
 
 %files static
 %defattr(644,root,root,755)
-%{_libexecdir}/lib*.a
+%{_libexecdir}/libdisk.a
+%{_libexecdir}/libhandle.a
+%{_libexecdir}/libxcmd.a
+%{_libexecdir}/libxfs.a
+%{_libexecdir}/libxlog.a
