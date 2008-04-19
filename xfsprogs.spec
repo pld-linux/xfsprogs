@@ -15,6 +15,7 @@ Patch4:		%{name}-dynamic_exe.patch
 Patch5:		%{name}-LDFLAGS.patch
 Patch6:		%{name}-libtool.patch
 Patch7:		%{name}-gettext.patch
+Patch8:		%{name}-quota-exitstatus.patch
 URL:		http://oss.sgi.com/projects/xfs/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -91,6 +92,7 @@ Biblioteki statyczne do XFS.
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
+%patch8 -p1
 
 %build
 %{__aclocal} -I m4
