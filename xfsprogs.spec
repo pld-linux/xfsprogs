@@ -127,6 +127,8 @@ ln -sf %{_libdir}/$(basename $RPM_BUILD_ROOT%{_libdir}/libxlog.so.*.*.*) \
 
 %{__sed} -i -e "s|libdir='%{_libdir}'|libdir='%{_libexecdir}'|" \
 	$RPM_BUILD_ROOT%{_libexecdir}/lib{disk,handle,xcmd,xfs,xlog}.la
+%{__sed} -i -e "s| %{_libdir}/libxfs.la | %{_libexecdir}/libxfs.la |" \
+	$RPM_BUILD_ROOT%{_libexecdir}/libxlog.la
 
 %find_lang %{name}
 
