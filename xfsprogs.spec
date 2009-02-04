@@ -1,21 +1,18 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	2.10.2
-Release:	2
+Version:	3.0.0
+Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
-Source0:	ftp://linux-xfs.sgi.com/projects/xfs/cmd_tars/%{name}_%{version}-1.tar.gz
-# Source0-md5:	0a696c6362b39c12bb59c08afd4c5827
+Source0:	ftp://linux-xfs.sgi.com/projects/xfs/cmd_tars/%{name}-%{version}.tar.gz
+# Source0-md5:	7f6efb4e3d988cfd3c34ce1eca97b10e
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-install-sh.patch
 Patch2:		%{name}-sharedlibs.patch
 Patch3:		%{name}-pl.po-update.patch
 Patch4:		%{name}-dynamic_exe.patch
 Patch5:		%{name}-LDFLAGS.patch
-Patch6:		%{name}-libtool.patch
-Patch7:		%{name}-gettext.patch
-Patch8:		%{name}-quota-exitstatus.patch
 URL:		http://oss.sgi.com/projects/xfs/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -87,22 +84,22 @@ Biblioteki statyczne do XFS.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
+# currently obsolete until needed again
+# %patch3 -p1
 %patch4 -p1
 %patch5 -p1
-%patch6 -p1
-%patch7 -p1
-%patch8 -p1
+
+rm -f include/{builddefs,platform_defs}.h
 
 %build
 %{__aclocal} -I m4
 %{__autoconf}
-# (default) --enable-gettext sets ENABLE_GETTEXT make variable, but not C define
-# CFLAGS are dropped, OPTIMIZER is propagated
 %configure \
+	--enable-gettext \
+	--enable-readline \
 	DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}" \
-	OPTIMIZER="%{rpmcflags} -DENABLE_GETTEXT"
-%{__make}
+	OPTIMIZER="%{rpmcflags}"
+%{__make} -j1
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -128,7 +125,7 @@ ln -sf %{_libdir}/$(basename $RPM_BUILD_ROOT%{_libdir}/libxfs.so.*.*.*) \
 ln -sf %{_libdir}/$(basename $RPM_BUILD_ROOT%{_libdir}/libxlog.so.*.*.*) \
 	$RPM_BUILD_ROOT%{_libexecdir}/libxlog.so
 
-%{__sed} -e "s|libdir='%{_libdir}'|libdir='%{_libexecdir}'|" \
+%{__sed} -i -e "s|libdir='%{_libdir}'|libdir='%{_libexecdir}'|" \
 	$RPM_BUILD_ROOT%{_libexecdir}/lib{disk,handle,xcmd,xfs,xlog}.la
 
 %find_lang %{name}
@@ -182,7 +179,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libexecdir}/libxcmd.la
 %{_libexecdir}/libxfs.la
 %{_libexecdir}/libxlog.la
-%{_includedir}/disk
 %{_includedir}/xfs
 %{_mandir}/man3/*handle.3*
 %{_mandir}/man3/xfsctl.3*
