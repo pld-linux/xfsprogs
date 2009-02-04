@@ -1,7 +1,7 @@
-diff -Nur xfsprogs-2.1.2.orig/libdisk/Makefile xfsprogs-2.1.2/libdisk/Makefile
---- xfsprogs-2.1.2.orig/libdisk/Makefile	Thu Aug  1 21:40:43 2002
-+++ xfsprogs-2.1.2/libdisk/Makefile	Tue Aug 20 19:30:56 2002
-@@ -46,6 +46,7 @@
+diff -ur xfsprogs-3.0.0.org/libdisk/Makefile xfsprogs-3.0.0/libdisk/Makefile
+--- xfsprogs-3.0.0.org/libdisk/Makefile	2009-01-28 20:13:16.000000000 +0100
++++ xfsprogs-3.0.0/libdisk/Makefile	2009-02-04 23:09:19.331922399 +0100
+@@ -25,8 +25,9 @@
  include $(BUILDRULES)
  
  install: default
@@ -10,35 +10,43 @@ diff -Nur xfsprogs-2.1.2.orig/libdisk/Makefile xfsprogs-2.1.2/libdisk/Makefile
  install-dev: default
 -	$(INSTALL_LTLIB_STATIC)
 +	$(INSTALL_LTLIB_DEV)
-diff -Nur xfsprogs-2.1.2.orig/libxfs/Makefile xfsprogs-2.1.2/libxfs/Makefile
---- xfsprogs-2.1.2.orig/libxfs/Makefile	Thu Aug  1 21:40:43 2002
-+++ xfsprogs-2.1.2/libxfs/Makefile	Tue Aug 20 19:31:04 2002
-@@ -65,6 +65,7 @@
+ 
+ install-qa: install-dev
+diff -ur xfsprogs-3.0.0.org/libxfs/Makefile xfsprogs-3.0.0/libxfs/Makefile
+--- xfsprogs-3.0.0.org/libxfs/Makefile	2009-01-28 20:13:16.000000000 +0100
++++ xfsprogs-3.0.0/libxfs/Makefile	2009-02-04 23:09:19.331922399 +0100
+@@ -41,7 +41,9 @@
  include $(BUILDRULES)
  
  install: default
 +	$(INSTALL_LTLIB)
  
  install-dev: default
--	$(INSTALL_LTLIB_STATIC)
 +	$(INSTALL_LTLIB_DEV)
-diff -Nur xfsprogs-2.1.2.orig/libxlog/Makefile xfsprogs-2.1.2/libxlog/Makefile
---- xfsprogs-2.1.2.orig/libxlog/Makefile	Thu Aug  1 21:40:44 2002
-+++ xfsprogs-2.1.2/libxlog/Makefile	Tue Aug 20 19:31:12 2002
-@@ -9,6 +9,7 @@
- LT_CURRENT = 0
- LT_REVISION = 0
- LT_AGE = 0
-+LTLIBS = $(LIBUUID)
+ 
+ install-qa: default
+diff -ur xfsprogs-3.0.0.org/libxlog/Makefile xfsprogs-3.0.0/libxlog/Makefile
+--- xfsprogs-3.0.0.org/libxlog/Makefile	2009-01-28 20:13:17.000000000 +0100
++++ xfsprogs-3.0.0/libxlog/Makefile	2009-02-04 23:09:37.878049126 +0100
+@@ -12,6 +12,8 @@
  
  CFILES = xfs_log_recover.c util.c
  
-@@ -48,6 +49,7 @@
++LTLIBS = $(LIBUUID) $(LIBXFS)
++
+ # don't want to link xfs_repair with a debug libxlog.
+ DEBUG = -DNDEBUG
+ 
+@@ -19,4 +21,10 @@
+ 
  include $(BUILDRULES)
  
- install: default
+-install install-dev install-qa: default
++install: default
 +	$(INSTALL_LTLIB)
- 
- install-dev: default
--	$(INSTALL_LTLIB_STATIC)
++
++install-dev: default
 +	$(INSTALL_LTLIB_DEV)
++       
++install-qa: default
+

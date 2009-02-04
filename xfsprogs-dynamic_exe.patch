@@ -49,15 +49,18 @@ diff -Nur xfsprogs-2.7.11/io/Makefile xfsprogs-2.7.11.dynamic/io/Makefile
 diff -Nur xfsprogs-2.7.11/libxcmd/Makefile xfsprogs-2.7.11.dynamic/libxcmd/Makefile
 --- xfsprogs-2.7.11/libxcmd/Makefile	2006-01-17 04:46:49.000000000 +0100
 +++ xfsprogs-2.7.11.dynamic/libxcmd/Makefile	2006-03-10 18:13:51.000000000 +0100
-@@ -25,6 +25,7 @@
+@@ -24,4 +24,10 @@
+ 
  include $(BUILDRULES)
  
- install: default
+-install install-dev install-qa: default
++install: default
 +	$(INSTALL_LTLIB)
- 
- install-dev: default
--	$(INSTALL_LTLIB_STATIC)
++
++install-dev: default
 +	$(INSTALL_LTLIB_DEV)
++       
++install-qa: default
 diff -Nur xfsprogs-2.7.11/logprint/Makefile xfsprogs-2.7.11.dynamic/logprint/Makefile
 --- xfsprogs-2.7.11/logprint/Makefile	2006-01-17 04:46:50.000000000 +0100
 +++ xfsprogs-2.7.11.dynamic/logprint/Makefile	2006-03-10 18:13:45.000000000 +0100
