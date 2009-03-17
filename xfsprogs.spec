@@ -21,7 +21,6 @@ BuildRequires:	gettext-devel
 BuildRequires:	libtool
 BuildRequires:	libuuid-devel
 BuildRequires:	rpmbuild(macros) >= 1.402
-Obsoletes:	libxfs1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sbindir	/sbin
@@ -57,7 +56,6 @@ Summary(pl.UTF-8):	Pliki nagłówkowe i biblioteki
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	libuuid-devel
-Obsoletes:	libxfs1-devel
 
 %description devel
 Header files and libraries to develop software which operates on XFS
