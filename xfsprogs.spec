@@ -23,6 +23,7 @@ URL:		http://oss.sgi.com/projects/xfs/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bash
+%{?with_dietlibc:BuildRequires:	dietlibc-static >= 2:0.31-6}
 BuildRequires:	gettext-devel
 BuildRequires:	libtool
 BuildRequires:	libuuid-devel
