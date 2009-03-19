@@ -19,11 +19,20 @@ Patch3:		%{name}-pl.po-update.patch
 Patch4:		%{name}-dynamic_exe.patch
 Patch5:		%{name}-LDFLAGS.patch
 Patch6:		%{name}-diet.patch
+Patch7:		%{name}-static-librt.patch
 URL:		http://oss.sgi.com/projects/xfs/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bash
-%{?with_dietlibc:BuildRequires:	dietlibc-static >= 2:0.31-6}
+%if %{with initrd}
+	%if %{with dietlibc}
+BuildRequires:	dietlibc-static >= 2:0.31-6
+BuildRequires:	libuuid-dietlibc
+	%else
+BuildRequires:	glibc-static
+BuildRequires:	libuuid-static
+	%endif
+%endif
 BuildRequires:	gettext-devel
 BuildRequires:	libtool
 BuildRequires:	libuuid-devel
@@ -84,6 +93,19 @@ Static XFS software libraries.
 %description static -l pl.UTF-8
 Biblioteki statyczne do XFS.
 
+%package initrd
+Summary:	Tools for the XFS filesystem - initrd version
+Summary(pl.UTF-8):	Narzędzia do systemu plików XFS - wersja dla initrd
+Group:		Base
+
+%description initrd
+A set of commands to use the XFS filesystem, including mkfs.xfs
+ - initrd version.
+
+%description initrd -l pl.UTF-8
+Zbiór komend do użytku z systemem plików XFS, włączając w to mkfs.xfs
+ - wersja dla initrd.
+
 %prep
 %setup -q
 %patch0 -p1
@@ -94,6 +116,7 @@ Biblioteki statyczne do XFS.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 
 rm -f include/{builddefs,platform_defs}.h
 
@@ -101,32 +124,44 @@ rm -f include/{builddefs,platform_defs}.h
 %{__aclocal} -I m4
 
 %if %{with initrd}
+%if %{with dietlibc}
+# dietlibc doesn't have aio.h (and xfsprogs does not need it really)
+# dietlibc has needed librt stuff in libc/libpthread
 sed -i -e 's|^AC_PACKAGE_NEED_AIO_H|dnl AC_PACKAGE_NEED_AIO_H|' \
 	-e 's|^AC_PACKAGE_NEED_LIO_LISTIO|dnl AC_PACKAGE_NEED_LIO_LISTIO|' \
 	configure.in
 sed -i -e 's|\(^LIBRT.*=.*\)|# \1|' include/builddefs.in
 sed -i -e 's|\(^LLDLIBS.*=.*\)|\1 -lcompat|' db/Makefile mkfs/Makefile
+%endif
 
 %{__autoconf}
 %configure \
-	CC="diet %{__cc} -static" \
+	%{?with_dietlibc:CC="diet %{__cc} -static"} \
 	--disable-gettext \
 	--disable-readline \
-	--disable-shared \
-	--enable-static \
 	DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}" \
-	OPTIMIZER="-Wno-deprecated-declarations -Os -D_BSD_SOURCE"
+	OPTIMIZER="-Wno-deprecated-declarations -Os -D_BSD_SOURCE -D__USE_XOPEN_EXTENDED"
 
 %{__make} -j1 include libxfs libxlog libxcmd libhandle libdisk
-%{__make} -j1 db growfs logprint mkfs mdrestore repair
+%{__make} -j1 db growfs logprint mkfs mdrestore repair \
+	LDFLAGS="%{rpmldflags} -all-static"
 
+mv -f db/xfs_db initrd-xfs_db
+mv -f growfs/xfs_growfs initrd-xfs_growfs
+mv -f logprint/xfs_logprint initrd-xfs_logprint
+mv -f mkfs/mkfs.xfs initrd-mkfs.xfs
+mv -f mdrestore/xfs_mdrestore initrd-xfs_mdrestore
+mv -f repair/xfs_repair initrd-xfs_repair
+
+%if %{with dietlibc}
 sed -i -e 's|^dnl AC_PACKAGE_NEED_AIO_H|AC_PACKAGE_NEED_AIO_H|' \
 	-e 's|^dnl AC_PACKAGE_NEED_LIO_LISTIO|AC_PACKAGE_NEED_LIO_LISTIO|' \
 	configure.in
-sed -i -e 's|# \(^LIBRT.*=.*\)|\1|' include/builddefs.in
+sed -i -e 's|^# \(LIBRT.*=.*\)|\1|' include/builddefs.in
 sed -i -e 's|\(^LLDLIBS.*=.*\) -lcompat|\1|' db/Makefile mkfs/Makefile
+%endif
 
-#{__make} clean
+%{__make} clean
 %endif
 
 %{__autoconf}
@@ -166,6 +201,15 @@ ln -sf %{_libdir}/$(basename $RPM_BUILD_ROOT%{_libdir}/libxlog.so.*.*.*) \
 	$RPM_BUILD_ROOT%{_libexecdir}/lib{disk,handle,xcmd,xfs,xlog}.la
 %{__sed} -i -e "s| %{_libdir}/libxfs.la | %{_libexecdir}/libxfs.la |" \
 	$RPM_BUILD_ROOT%{_libexecdir}/libxlog.la
+
+%if %{with initrd}
+install initrd-xfs_db $RPM_BUILD_ROOT%{_sbindir}
+install initrd-xfs_growfs $RPM_BUILD_ROOT%{_sbindir}
+install initrd-xfs_logprint $RPM_BUILD_ROOT%{_sbindir}
+install initrd-mkfs.xfs $RPM_BUILD_ROOT%{_sbindir}
+install initrd-xfs_mdrestore $RPM_BUILD_ROOT%{_sbindir}
+install initrd-xfs_repair $RPM_BUILD_ROOT%{_sbindir}
+%endif
 
 %find_lang %{name}
 
@@ -229,3 +273,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libexecdir}/libxcmd.a
 %{_libexecdir}/libxfs.a
 %{_libexecdir}/libxlog.a
+
+%if %{with initrd}
+%files initrd
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_sbindir}/initrd-*
+%endif
