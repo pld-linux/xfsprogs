@@ -1,0 +1,11 @@
+--- xfsprogs-3.0.0/m4/package_aiodev.m4~	2009-02-04 23:29:25.000000000 +0100
++++ xfsprogs-3.0.0/m4/package_aiodev.m4	2009-03-19 17:11:50.000000000 +0100
+@@ -29,7 +29,7 @@
+ 	AC_CHECK_LIB(rt, lio_listio,, [
+ 	    echo
+ 	    echo 'FATAL ERROR: could not find a library with lio_listio.'
+-	    exit 1])
++	    exit 1],[-lpthread])
+ 	librt="-lrt"
+     fi
+     AC_SUBST(librt)
