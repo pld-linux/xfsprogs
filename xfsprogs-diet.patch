@@ -1,10 +1,11 @@
 --- xfsprogs-3.0.0/include/linux.h~	2009-02-04 23:29:25.000000000 +0100
 +++ xfsprogs-3.0.0/include/linux.h	2009-03-19 16:19:35.000000000 +0100
-@@ -25,6 +25,9 @@
+@@ -25,6 +25,10 @@
  #include <malloc.h>
  #include <getopt.h>
  #include <endian.h>
 +#ifdef __dietlibc__
++#include <libgen.h>
 +#include <xfs/xfs_types.h>
 +#endif
  
@@ -79,14 +80,27 @@ diff -ur xfsprogs-3.0.0/include/xfs_types.h xfsprogs-3.0.0-diet/include/xfs_type
  typedef __uint32_t	xfs_agblock_t;	/* blockno in alloc. group */
  typedef	__uint32_t	xfs_extlen_t;	/* extent length in blocks */
  typedef	__uint32_t	xfs_agnumber_t;	/* allocation group number */
+--- xfsprogs-3.0.0/libdisk/evms.h~	2009-02-04 23:29:25.000000000 +0100
++++ xfsprogs-3.0.0/libdisk/evms.h	2009-03-19 21:52:18.000000000 +0100
+@@ -15,6 +15,9 @@
+  *   along with this program;  if not, write to the Free Software
+  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+  */
++#ifdef __dietlibc__
++#include <xfs/platform_defs.h>
++#endif
+ 
+ #define EVMS_MAJOR			117
+ #define EVMS_GET_VOL_STRIPE_INFO	\
 diff -ur xfsprogs-3.0.0/libdisk/xvm.h xfsprogs-3.0.0-diet/libdisk/xvm.h
 --- xfsprogs-3.0.0/libdisk/xvm.h	2009-02-04 23:29:25.000000000 +0100
 +++ xfsprogs-3.0.0-diet/libdisk/xvm.h	2009-03-19 12:56:54.000000000 +0100
-@@ -15,6 +15,9 @@
+@@ -15,6 +15,10 @@
   * along with this program; if not, write the Free Software Foundation,
   * Inc.,  51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
   */
 +#ifdef __dietlibc__
++#include <xfs/platform_defs.h>
 +#include <xfs/xfs_types.h>
 +#endif
  
@@ -123,30 +137,19 @@ diff -ur xfsprogs-3.0.0/libhandle/jdm.c xfsprogs-3.0.0-diet/libhandle/jdm.c
 diff -ur xfsprogs-3.0.0/libxfs/linux.c xfsprogs-3.0.0-diet/libxfs/linux.c
 --- xfsprogs-3.0.0/libxfs/linux.c	2009-02-04 23:29:25.000000000 +0100
 +++ xfsprogs-3.0.0-diet/libxfs/linux.c	2009-03-19 13:30:12.000000000 +0100
-@@ -21,10 +21,23 @@
+@@ -21,7 +21,12 @@
  #include <mntent.h>
  #include <sys/stat.h>
  #undef ustat
-+#ifndef __dietlibc__
++#ifdef __dietlibc__
++#include <ustat.h>
++#include <sys/types.h>
++#else
  #include <sys/ustat.h>
 +#endif
  #include <sys/mount.h>
  #include <sys/ioctl.h>
  #include <sys/sysinfo.h>
-+#ifdef __dietlibc__
-+#include <sys/types.h>
-+
-+struct ustat
-+{
-+	__daddr_t f_tfree;	/* Number of free blocks.  */
-+	ino_t f_tinode;		/* Number of free inodes.  */
-+	char f_fname[6];
-+	char f_fpack[6];
-+};
-+#endif
- 
- int platform_has_uuid = 1;
- extern char *progname;
 diff -ur xfsprogs-3.0.0/repair/prefetch.c xfsprogs-3.0.0-diet/repair/prefetch.c
 --- xfsprogs-3.0.0/repair/prefetch.c	2009-02-04 23:29:26.000000000 +0100
 +++ xfsprogs-3.0.0-diet/repair/prefetch.c	2009-03-19 16:00:01.000000000 +0100
@@ -162,3 +165,20 @@ diff -ur xfsprogs-3.0.0/repair/prefetch.c xfsprogs-3.0.0-diet/repair/prefetch.c
  	pf_max_bbs = pf_max_bytes >> BBSHIFT;
  	pf_max_fsbs = pf_max_bytes >> mp->m_sb.sb_blocklog;
  	pf_batch_bytes = DEF_BATCH_BYTES;
+--- xfsprogs-3.0.0/include/platform_defs.h.in~	2009-02-04 23:29:25.000000000 +0100
++++ xfsprogs-3.0.0/include/platform_defs.h.in	2009-03-19 21:48:13.000000000 +0100
+@@ -169,4 +169,14 @@
+ #define __arch_pack
+ #endif
+ 
++#if defined(__dietlibc__) && defined(__NO_STAT64)
++#define lstat64 lstat
++#define fstat64 fstat
++#define stat64 stat
++#define pread64 pread
++#define pwrite64 pwrite
++#define lseek64 lseek
++#define ftruncate64 ftruncate
++#endif
++
+ #endif	/* __XFS_PLATFORM_DEFS_H__ */
