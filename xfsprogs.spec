@@ -7,7 +7,7 @@ Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
 Version:	3.0.0
-Release:	4
+Release:	5
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/cmd_tars/%{name}-%{version}.tar.gz
@@ -146,12 +146,13 @@ sed -i -e 's|\(^LLDLIBS.*=.*\)|\1 -lcompat|' db/Makefile mkfs/Makefile
 %{__make} -j1 db growfs logprint mkfs mdrestore repair \
 	LDFLAGS="%{rpmldflags} -all-static"
 
-mv -f db/xfs_db initrd-xfs_db
-mv -f growfs/xfs_growfs initrd-xfs_growfs
-mv -f logprint/xfs_logprint initrd-xfs_logprint
-mv -f mkfs/mkfs.xfs initrd-mkfs.xfs
-mv -f mdrestore/xfs_mdrestore initrd-xfs_mdrestore
-mv -f repair/xfs_repair initrd-xfs_repair
+mkdir -p initrd
+mv -f db/xfs_db initrd/xfs_db
+mv -f growfs/xfs_growfs initrd/xfs_growfs
+mv -f logprint/xfs_logprint initrd/xfs_logprint
+mv -f mkfs/mkfs.xfs initrd/mkfs.xfs
+mv -f mdrestore/xfs_mdrestore initrd/xfs_mdrestore
+mv -f repair/xfs_repair initrd/xfs_repair
 
 %if %{with dietlibc}
 sed -i -e 's|^dnl AC_PACKAGE_NEED_AIO_H|AC_PACKAGE_NEED_AIO_H|' \
@@ -203,12 +204,8 @@ ln -sf %{_libdir}/$(basename $RPM_BUILD_ROOT%{_libdir}/libxlog.so.*.*.*) \
 	$RPM_BUILD_ROOT%{_libexecdir}/libxlog.la
 
 %if %{with initrd}
-install initrd-xfs_db $RPM_BUILD_ROOT%{_sbindir}
-install initrd-xfs_growfs $RPM_BUILD_ROOT%{_sbindir}
-install initrd-xfs_logprint $RPM_BUILD_ROOT%{_sbindir}
-install initrd-mkfs.xfs $RPM_BUILD_ROOT%{_sbindir}
-install initrd-xfs_mdrestore $RPM_BUILD_ROOT%{_sbindir}
-install initrd-xfs_repair $RPM_BUILD_ROOT%{_sbindir}
+install -d $RPM_BUILD_ROOT%{_libexecdir}/initrd
+install initrd/* $RPM_BUILD_ROOT%{_libexecdir}/initrd/
 %endif
 
 %find_lang %{name}
@@ -277,5 +274,10 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with initrd}
 %files initrd
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_sbindir}/initrd-*
+%attr(755,root,root) %{_libexecdir}/initrd/mkfs.xfs
+%attr(755,root,root) %{_libexecdir}/initrd/xfs_db
+%attr(755,root,root) %{_libexecdir}/initrd/xfs_growfs
+%attr(755,root,root) %{_libexecdir}/initrd/xfs_logprint
+%attr(755,root,root) %{_libexecdir}/initrd/xfs_mdrestore
+%attr(755,root,root) %{_libexecdir}/initrd/xfs_repair
 %endif
