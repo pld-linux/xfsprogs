@@ -140,7 +140,7 @@ sed -i -e 's|\(^LLDLIBS.*=.*\)|\1 -lcompat|' db/Makefile mkfs/Makefile
 	--disable-gettext \
 	--disable-readline \
 	DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}" \
-	OPTIMIZER="-Wno-deprecated-declarations -Os -D_BSD_SOURCE -D__USE_XOPEN_EXTENDED"
+	OPTIMIZER="%{rpmcflags} -Wno-deprecated-declarations -Os -D_BSD_SOURCE -D__USE_XOPEN_EXTENDED"
 
 %{__make} -j1 include libxfs libxlog libxcmd libhandle libdisk
 %{__make} -j1 db growfs logprint mkfs mdrestore repair \
