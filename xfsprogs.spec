@@ -36,6 +36,7 @@ BuildRequires:	libuuid-static
 BuildRequires:	gettext-devel
 BuildRequires:	libtool
 BuildRequires:	libuuid-devel
+BuildRequires:	readline-devel
 BuildRequires:	rpmbuild(macros) >= 1.402
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
