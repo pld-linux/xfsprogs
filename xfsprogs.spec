@@ -6,12 +6,12 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	3.0.0
-Release:	5
+Version:	3.0.1
+Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/cmd_tars/%{name}-%{version}.tar.gz
-# Source0-md5:	ec734f935ec87ebb8be890d29380a3e6
+# Source0-md5:	d7f879a21692d4f7abc16a20479b0829
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-install-sh.patch
 Patch2:		%{name}-sharedlibs.patch
@@ -242,6 +242,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libxcmd.so.0
 %attr(755,root,root) %ghost %{_libdir}/libxfs.so.0
 %attr(755,root,root) %ghost %{_libdir}/libxlog.so.0
+%{_mandir}/man5/projects.5*
+%{_mandir}/man5/projid.5*
 %{_mandir}/man5/xfs.5*
 %{_mandir}/man8/fsck.xfs.8*
 %{_mandir}/man8/mkfs.xfs.8*
