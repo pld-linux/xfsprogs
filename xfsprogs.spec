@@ -7,7 +7,7 @@ Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
 Version:	3.0.1
-Release:	1
+Release:	2
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/cmd_tars/%{name}-%{version}.tar.gz
@@ -44,6 +44,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_bindir		/usr/sbin
 %define		_libdir		/%{_lib}
 %define		_libexecdir	/usr/%{_lib}
+# for some reason known only to rpm there must be "\\|" not "\|" here
+%define         dietarch        %(echo %{_target_cpu} | sed -e 's/i.86\\|pentium.\\|athlon/i386/;s/amd64/x86_64/;s/armv.*/arm/')
+%define         dietlibdir      %{_prefix}/lib/dietlibc/lib-%{dietarch}
 
 %description
 A set of commands to use the XFS filesystem, including mkfs.xfs.
@@ -143,9 +146,11 @@ sed -i -e 's|\(^LLDLIBS.*=.*\)|\1 -lcompat|' db/Makefile mkfs/Makefile
 	DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}" \
 	OPTIMIZER="%{rpmcflags} -Wno-deprecated-declarations -Os -D_BSD_SOURCE -D__USE_XOPEN_EXTENDED"
 
-%{__make} -j1 include libxfs libxlog libxcmd libhandle libdisk
+%{__make} -j1 include libxfs libxlog libxcmd libhandle libdisk \
+	LIBUUID="%{dietlibdir}/libuuid.a"
 %{__make} -j1 db growfs logprint mkfs mdrestore repair \
-	LDFLAGS="%{rpmldflags} -all-static"
+	LDFLAGS="%{rpmldflags} -all-static" \
+	LIBUUID="%{dietlibdir}/libuuid.a"
 
 mkdir -p initrd
 mv -f db/xfs_db initrd/xfs_db
