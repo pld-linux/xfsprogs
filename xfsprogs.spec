@@ -37,8 +37,14 @@ BuildRequires:	gettext-devel
 BuildRequires:	libtool
 BuildRequires:	libuuid-devel
 BuildRequires:	readline-devel
+BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpmbuild(macros) >= 1.402
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%if "%{pld_release}" == "ac"
+# libtool in ac doesn't do the reordering of args properly
+%define		filterout_ld -Wl,--as-needed
+%endif
 
 %define		_sbindir	/sbin
 %define		_bindir		/usr/sbin
