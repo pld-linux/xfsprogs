@@ -13,3 +13,4 @@
 -    done
      AC_SUBST(have_zipped_manpages)
    ])
+

@@ -6,12 +6,12 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	3.0.3
-Release:	1
+Version:	3.1.1
+Release:	0.1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/cmd_tars/%{name}-%{version}.tar.gz
-# Source0-md5:	41bac47fb49a98857f346bbc1c164872
+# Source0-md5:	c2308b46ee707597ac50aae418d321b8
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-install-sh.patch
 Patch2:		%{name}-sharedlibs.patch
@@ -20,7 +20,7 @@ Patch4:		%{name}-dynamic_exe.patch
 Patch5:		%{name}-LDFLAGS.patch
 Patch6:		%{name}-diet.patch
 Patch7:		%{name}-static-librt.patch
-URL:		http://oss.sgi.com/projects/xfs/
+URL:		http://www.xfs.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bash
@@ -34,6 +34,7 @@ BuildRequires:	libuuid-static
 	%endif
 %endif
 BuildRequires:	gettext-devel
+BuildRequires:	libblkid-devel
 BuildRequires:	libtool
 BuildRequires:	libuuid-devel
 BuildRequires:	readline-devel
@@ -201,8 +202,6 @@ export DIST_ROOT DIST_INSTALL DIST_INSTALL_DEV
 
 ln -sf %{_libdir}/$(basename $RPM_BUILD_ROOT%{_libdir}/libhandle.so.*.*.*) \
 	 $RPM_BUILD_ROOT%{_libexecdir}/libhandle.so
-ln -sf %{_libdir}/$(basename $RPM_BUILD_ROOT%{_libdir}/libdisk.so.*.*.*) \
-	$RPM_BUILD_ROOT%{_libexecdir}/libdisk.so
 ln -sf %{_libdir}/$(basename $RPM_BUILD_ROOT%{_libdir}/libxcmd.so.*.*.*) \
 	$RPM_BUILD_ROOT%{_libexecdir}/libxcmd.so
 ln -sf %{_libdir}/$(basename $RPM_BUILD_ROOT%{_libdir}/libxfs.so.*.*.*) \
@@ -210,8 +209,11 @@ ln -sf %{_libdir}/$(basename $RPM_BUILD_ROOT%{_libdir}/libxfs.so.*.*.*) \
 ln -sf %{_libdir}/$(basename $RPM_BUILD_ROOT%{_libdir}/libxlog.so.*.*.*) \
 	$RPM_BUILD_ROOT%{_libexecdir}/libxlog.so
 
+mv $RPM_BUILD_ROOT%{_libdir}/lib*.la $RPM_BUILD_ROOT%{_libexecdir}
+mv $RPM_BUILD_ROOT%{_libdir}/lib*.a $RPM_BUILD_ROOT%{_libexecdir}
+
 %{__sed} -i -e "s|libdir='%{_libdir}'|libdir='%{_libexecdir}'|" \
-	$RPM_BUILD_ROOT%{_libexecdir}/lib{disk,handle,xcmd,xfs,xlog}.la
+	$RPM_BUILD_ROOT%{_libexecdir}/lib{handle,xcmd,xfs,xlog}.la
 %{__sed} -i -e "s| %{_libdir}/libxfs.la | %{_libexecdir}/libxfs.la |" \
 	$RPM_BUILD_ROOT%{_libexecdir}/libxlog.la
 
@@ -225,7 +227,6 @@ install initrd/* $RPM_BUILD_ROOT%{_libexecdir}/initrd/
 rm -rf $RPM_BUILD_ROOT%{_docdir}/%{name}
 
 # already in /usr
-rm -f $RPM_BUILD_ROOT%{_libdir}/libdisk.{a,la,so}
 rm -f $RPM_BUILD_ROOT%{_libdir}/libhandle.{a,la,so}
 rm -f $RPM_BUILD_ROOT%{_libdir}/libxcmd.{a,la,so}
 rm -f $RPM_BUILD_ROOT%{_libdir}/libxfs.{a,la,so}
@@ -244,12 +245,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_sbindir}/mkfs.xfs
 %attr(755,root,root) %{_sbindir}/xfs_repair
 %attr(755,root,root) %{_bindir}/xfs_*
-%attr(755,root,root) %{_libdir}/libdisk.so.*.*
 %attr(755,root,root) %{_libdir}/libhandle.so.*.*
 %attr(755,root,root) %{_libdir}/libxcmd.so.*.*
 %attr(755,root,root) %{_libdir}/libxfs.so.*.*
 %attr(755,root,root) %{_libdir}/libxlog.so.*.*
-%attr(755,root,root) %ghost %{_libdir}/libdisk.so.0
 %attr(755,root,root) %ghost %{_libdir}/libhandle.so.1
 %attr(755,root,root) %ghost %{_libdir}/libxcmd.so.0
 %attr(755,root,root) %ghost %{_libdir}/libxfs.so.0
@@ -263,12 +262,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libexecdir}/libdisk.so
 %attr(755,root,root) %{_libexecdir}/libhandle.so
 %attr(755,root,root) %{_libexecdir}/libxcmd.so
 %attr(755,root,root) %{_libexecdir}/libxfs.so
 %attr(755,root,root) %{_libexecdir}/libxlog.so
-%{_libexecdir}/libdisk.la
 %{_libexecdir}/libhandle.la
 %{_libexecdir}/libxcmd.la
 %{_libexecdir}/libxfs.la
@@ -279,7 +276,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files static
 %defattr(644,root,root,755)
-%{_libexecdir}/libdisk.a
 %{_libexecdir}/libhandle.a
 %{_libexecdir}/libxcmd.a
 %{_libexecdir}/libxfs.a
