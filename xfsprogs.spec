@@ -148,7 +148,7 @@ sed -i -e 's|\(^LLDLIBS.*=.*\)|\1 -lcompat|' db/Makefile mkfs/Makefile
 %{__autoconf}
 %configure \
 	%{?with_dietlibc:CC="diet %{__cc} -static"} \
-	--sbindir=/usr/sbin \
+	--sbindir=%{_bindir} \
 	--disable-gettext \
 	--disable-readline \
 	DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}" \
@@ -181,7 +181,7 @@ sed -i -e 's|\(^LLDLIBS.*=.*\) -lcompat|\1|' db/Makefile mkfs/Makefile
 
 %{__autoconf}
 %configure \
-	--sbindir=/usr/sbin \
+	--sbindir=%{_bindir}\
 	--enable-gettext \
 	--enable-readline \
 	DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}" \
