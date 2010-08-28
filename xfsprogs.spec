@@ -6,20 +6,18 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	3.1.2
+Version:	3.1.3
 Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/cmd_tars/%{name}-%{version}.tar.gz
-# Source0-md5:	86d10178ee6897cb099c97303e6d9da0
+# Source0-md5:	a6a4777ded0a36fa692b7eb652a85493
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-install-sh.patch
 Patch2:		%{name}-sharedlibs.patch
 Patch3:		%{name}-pl.po-update.patch
 Patch4:		%{name}-dynamic_exe.patch
-Patch5:		%{name}-LDFLAGS.patch
-Patch6:		%{name}-diet.patch
-Patch7:		%{name}-static-librt.patch
+Patch5:		%{name}-diet.patch
 URL:		http://www.xfs.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -126,8 +124,6 @@ Zbiór komend do użytku z systemem plików XFS, włączając w to mkfs.xfs
 # %patch3 -p1
 %patch4 -p1
 %patch5 -p1
-%patch6 -p1
-%patch7 -p1
 
 rm -f include/{builddefs,platform_defs}.h
 
@@ -184,6 +180,7 @@ sed -i -e 's|\(^LLDLIBS.*=.*\) -lcompat|\1|' db/Makefile mkfs/Makefile
 	--sbindir=%{_bindir}\
 	--enable-gettext \
 	--enable-readline \
+	--enable-blkid \
 	DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}" \
 	OPTIMIZER="%{rpmcflags}"
 
