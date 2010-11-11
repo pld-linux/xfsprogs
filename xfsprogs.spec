@@ -6,14 +6,13 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	3.1.3
+Version:	3.1.4
 Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/cmd_tars/%{name}-%{version}.tar.gz
-# Source0-md5:	a6a4777ded0a36fa692b7eb652a85493
+# Source0-md5:	74081975f148bcabcab26c4c3496ede9
 Patch0:		%{name}-miscfix-v2.patch
-Patch1:		%{name}-install-sh.patch
 Patch2:		%{name}-sharedlibs.patch
 Patch3:		%{name}-pl.po-update.patch
 Patch4:		%{name}-dynamic_exe.patch
@@ -44,6 +43,10 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 # libtool in ac doesn't do the reordering of args properly
 %define		filterout_ld -Wl,--as-needed
 %endif
+
+# libxlog uses symbols from binary that links to libxlog
+# libxcmd uses ("program") symbol from binary that links to libxcmd
+%define		skip_post_check_so	libxlog.so.0.0.0	libxcmd.so.0.0.0
 
 %define		_sbindir	/sbin
 %define		_bindir		/usr/sbin
@@ -118,7 +121,6 @@ Zbiór komend do użytku z systemem plików XFS, włączając w to mkfs.xfs
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 %patch2 -p1
 # currently obsolete until needed again
 # %patch3 -p1

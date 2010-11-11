@@ -53,6 +53,15 @@ diff -ur xfsprogs-3.0.0.org/libxlog/Makefile xfsprogs-3.0.0/libxlog/Makefile
 diff -ur xfsprogs-3.1.1.org/libxcmd/Makefile xfsprogs-3.1.1/libxcmd/Makefile
 --- xfsprogs-3.1.1.org/libxcmd/Makefile	2010-01-29 20:46:13.000000000 +0100
 +++ xfsprogs-3.1.1/libxcmd/Makefile	2010-03-20 21:56:24.000000000 +0100
+@@ -12,6 +12,8 @@
+ 
+ CFILES = command.c input.c paths.c projects.c help.c quit.c
+ 
++LTLIBS = $(LIBREADLINE)
++
+ ifeq ($(HAVE_GETMNTENT),yes)
+ LCFLAGS += -DHAVE_GETMNTENT
+ endif
 @@ -32,6 +32,13 @@
  
  include $(BUILDRULES)
