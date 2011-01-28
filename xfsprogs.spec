@@ -122,12 +122,9 @@ Zbiór komend do użytku z systemem plików XFS, włączając w to mkfs.xfs
 %setup -q
 %patch0 -p1
 %patch2 -p1
-# currently obsolete until needed again
-# %patch3 -p1
+%patch3 -p1
 %patch4 -p1
 %patch5 -p1
-
-rm -f include/{builddefs,platform_defs}.h
 
 %build
 %{__aclocal} -I m4
@@ -153,10 +150,12 @@ sed -i -e 's|\(^LLDLIBS.*=.*\)|\1 -lcompat|' db/Makefile mkfs/Makefile
 	OPTIMIZER="%{rpmcflags} -Wno-deprecated-declarations -Os -D_BSD_SOURCE -D__USE_XOPEN_EXTENDED"
 
 %{__make} -j1 include libxfs libxlog libxcmd libhandle libdisk \
-	LIBUUID="%{dietlibdir}/libuuid.a"
+	LIBUUID="%{dietlibdir}/libuuid.a" \
+	V=1
 %{__make} -j1 db growfs logprint mkfs mdrestore repair \
 	LDFLAGS="%{rpmldflags} -all-static" \
-	LIBUUID="%{dietlibdir}/libuuid.a"
+	LIBUUID="%{dietlibdir}/libuuid.a" \
+	V=1
 
 mkdir -p initrd
 mv -f db/xfs_db initrd/xfs_db
@@ -186,11 +185,11 @@ sed -i -e 's|\(^LLDLIBS.*=.*\) -lcompat|\1|' db/Makefile mkfs/Makefile
 	DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}" \
 	OPTIMIZER="%{rpmcflags}"
 
-%{__make} -j1
+%{__make} -j1 \
+	V=1
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT%{_libexecdir}
 
 DIST_ROOT=$RPM_BUILD_ROOT
@@ -222,18 +221,15 @@ mv $RPM_BUILD_ROOT%{_libdir}/lib*.a $RPM_BUILD_ROOT%{_libexecdir}
 
 %if %{with initrd}
 install -d $RPM_BUILD_ROOT%{_libexecdir}/initrd
-install initrd/* $RPM_BUILD_ROOT%{_libexecdir}/initrd/
+install initrd/* $RPM_BUILD_ROOT%{_libexecdir}/initrd
 %endif
 
 %find_lang %{name}
 
-rm -rf $RPM_BUILD_ROOT%{_docdir}/%{name}
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/%{name}
 
 # already in /usr
-rm -f $RPM_BUILD_ROOT%{_libdir}/libhandle.{a,la,so}
-rm -f $RPM_BUILD_ROOT%{_libdir}/libxcmd.{a,la,so}
-rm -f $RPM_BUILD_ROOT%{_libdir}/libxfs.{a,la,so}
-rm -f $RPM_BUILD_ROOT%{_libdir}/libxlog.{a,la,so}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/lib{handle,xcmd,xfs,xlog}.so
 
 %clean
 rm -rf $RPM_BUILD_ROOT
