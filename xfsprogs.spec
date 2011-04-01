@@ -122,8 +122,7 @@ Zbiór komend do użytku z systemem plików XFS, włączając w to mkfs.xfs
 %setup -q
 %patch0 -p1
 %patch2 -p1
-# merged upstream
-#%patch3 -p1
+%patch3 -p1
 %patch4 -p1
 %patch5 -p1
 
