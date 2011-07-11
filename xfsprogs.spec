@@ -7,7 +7,7 @@ Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
 Version:	3.1.5
-Release:	2
+Release:	3
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/cmd_tars/%{name}-%{version}.tar.gz
@@ -192,7 +192,7 @@ sed -i -e 's|\(^LLDLIBS.*=.*\) -lcompat|\1|' db/Makefile mkfs/Makefile
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_libexecdir}
+install -d $RPM_BUILD_ROOT{%{_libexecdir},etc}
 
 DIST_ROOT=$RPM_BUILD_ROOT
 DIST_INSTALL=$(pwd)/install.manifest
@@ -226,6 +226,9 @@ install -d $RPM_BUILD_ROOT%{_libexecdir}/initrd
 install initrd/* $RPM_BUILD_ROOT%{_libexecdir}/initrd
 %endif
 
+echo "#10:/mnt/ftp/roman"  >> $RPM_BUILD_ROOT/etc/projects
+echo "#ftproman:10" >> $RPM_BUILD_ROOT/etc/projid
+
 %find_lang %{name}
 
 %{__rm} -r $RPM_BUILD_ROOT%{_docdir}/%{name}
@@ -242,6 +245,8 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc README doc/{CHANGES,CREDITS}
+%config(noreplace) %verify(not md5 mtime size) /etc/projects
+%config(noreplace) %verify(not md5 mtime size) /etc/projid
 %attr(755,root,root) %{_sbindir}/fsck.xfs
 %attr(755,root,root) %{_sbindir}/mkfs.xfs
 %attr(755,root,root) %{_sbindir}/xfs_repair
