@@ -192,7 +192,7 @@ sed -i -e 's|\(^LLDLIBS.*=.*\) -lcompat|\1|' db/Makefile mkfs/Makefile
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_libexecdir},etc}
+install -d $RPM_BUILD_ROOT{%{_libexecdir},/etc}
 
 DIST_ROOT=$RPM_BUILD_ROOT
 DIST_INSTALL=$(pwd)/install.manifest
