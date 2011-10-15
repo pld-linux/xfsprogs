@@ -6,18 +6,17 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	3.1.5
-Release:	3
+Version:	3.1.6
+Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/cmd_tars/%{name}-%{version}.tar.gz
-# Source0-md5:	b1db37749e2b4149a0dd178abff956be
+# Source0-md5:	fbd2c1c5abed4b11047bea6ce53bc6e4
 Patch0:		%{name}-miscfix-v2.patch
 Patch2:		%{name}-sharedlibs.patch
 Patch3:		%{name}-pl.po-update.patch
 Patch4:		%{name}-dynamic_exe.patch
 Patch5:		%{name}-diet.patch
-Patch6:		%{name}-notranslate.patch
 URL:		http://www.xfs.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -126,7 +125,6 @@ Zbiór komend do użytku z systemem plików XFS, włączając w to mkfs.xfs
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
-%patch6 -p1
 
 %build
 %{__aclocal} -I m4

@@ -61,15 +61,15 @@ diff -Nur xfsprogs-2.7.11/logprint/Makefile xfsprogs-2.7.11.dynamic/logprint/Mak
 diff -Nur xfsprogs-2.7.11/mkfs/Makefile xfsprogs-2.7.11.dynamic/mkfs/Makefile
 --- xfsprogs-2.7.11/mkfs/Makefile	2006-01-17 04:46:51.000000000 +0100
 +++ xfsprogs-2.7.11.dynamic/mkfs/Makefile	2006-03-10 18:13:45.000000000 +0100
-@@ -13,7 +13,7 @@
+@@ -21,7 +21,7 @@
  
- LLDLIBS = $(LIBXFS) $(LIBUUID) $(LIBRT) $(LIBPTHREAD)
- LTDEPENDENCIES = $(LIBXFS)
+ LLDLIBS += $(LIBXFS) $(LIBUUID) $(LIBRT) $(LIBPTHREAD)
+ LTDEPENDENCIES += $(LIBXFS)
 -LLDFLAGS = -static
 +LLDFLAGS =
  
- ifeq ($(ENABLE_BLKID),yes)
- LLDLIBS += $(LIBBLKID)
+ LSRCFILES = $(FSTYP).c
+ LDIRT = $(FSTYP)
 diff -Nur xfsprogs-2.7.11/quota/Makefile xfsprogs-2.7.11.dynamic/quota/Makefile
 --- xfsprogs-2.7.11/quota/Makefile	2006-01-17 04:46:51.000000000 +0100
 +++ xfsprogs-2.7.11.dynamic/quota/Makefile	2006-03-10 18:13:45.000000000 +0100
@@ -78,7 +78,7 @@ diff -Nur xfsprogs-2.7.11/quota/Makefile xfsprogs-2.7.11.dynamic/quota/Makefile
  LLDLIBS = $(LIBXCMD)
  LTDEPENDENCIES = $(LIBXCMD)
 -LLDFLAGS = -static
-+LLDFLAGS = 
++LLDFLAGS =
  
  ifeq ($(ENABLE_READLINE),yes)
  LLDLIBS += $(LIBREADLINE) $(LIBTERMCAP)
