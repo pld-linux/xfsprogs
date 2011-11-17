@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# simple wrapper to show project id for specified paths, arekm@maven.pl 20111117
+
+xfs_io -p "$0" -c "stat" $@ | awk '
+/^fd\.path =/ { projid=""; path=$3; gsub(/^\"/, "", path); gsub(/\"$/, "", path); }
+/^fsxattr\.projid =/ { projid=$3; print path ": " projid; }
+'
