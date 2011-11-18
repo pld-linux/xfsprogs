@@ -42,6 +42,7 @@ BuildRequires:	libuuid-devel
 BuildRequires:	readline-devel
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpmbuild(macros) >= 1.402
+Requires:	google-perftools >= 1.8.3-2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %if "%{pld_release}" == "ac"
