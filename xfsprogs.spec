@@ -6,18 +6,21 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	3.1.6
-Release:	2
+Version:	3.1.7
+Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/cmd_tars/%{name}-%{version}.tar.gz
-# Source0-md5:	fbd2c1c5abed4b11047bea6ce53bc6e4
+# Source0-md5:	049cf9873794ea49d0bb3f12d45748a4
 Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch2:		%{name}-sharedlibs.patch
 Patch3:		%{name}-pl.po-update.patch
 Patch4:		%{name}-dynamic_exe.patch
 Patch5:		%{name}-diet.patch
+Patch6:		xfsprogs-repair-mem.patch
+Patch7:		xfsprogs-repair-nofutexhang.patch
+Patch8:		xfsprogs-repair-tcmalloc.patch
 URL:		http://www.xfs.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -32,6 +35,7 @@ BuildRequires:	libuuid-static
 	%endif
 %endif
 BuildRequires:	gettext-devel
+BuildRequires:	google-perftools-devel
 BuildRequires:	libblkid-devel
 BuildRequires:	libtool
 BuildRequires:	libuuid-devel
@@ -123,9 +127,12 @@ Zbiór komend do użytku z systemem plików XFS, włączając w to mkfs.xfs
 %setup -q
 %patch0 -p1
 %patch2 -p1
-%patch3 -p1
+#%patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
+%patch7 -p1
+%patch8 -p1
 
 %build
 %{__aclocal} -I m4

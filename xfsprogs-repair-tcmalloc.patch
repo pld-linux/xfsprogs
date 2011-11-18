@@ -1,0 +1,83 @@
+From hch@infradead.org Mon Nov 14 16:57:45 2011
+Delivered-To: arekm@maven.pl
+Received: from gmail-pop.l.google.com [74.125.39.108]
+	by localhost with POP3 (fetchmail-6.3.21)
+	for <arekm@localhost> (single-drop); Mon, 14 Nov 2011 18:12:06 +0100 (CET)
+Received: by 10.142.223.21 with SMTP id v21cs23581wfg;
+        Mon, 14 Nov 2011 08:02:21 -0800 (PST)
+Received: by 10.229.247.139 with SMTP id mc11mr3086235qcb.238.1321286539560;
+        Mon, 14 Nov 2011 08:02:19 -0800 (PST)
+Return-Path: <BATV+f273fab3737168e2a79b+3004+infradead.org+hch@bombadil.srs.infradead.org>
+Received: from bombadil.infradead.org (173-166-109-252-newengland.hfc.comcastbusiness.net. [173.166.109.252])
+        by mx.google.com with ESMTPS id l7si5065356qcw.108.2011.11.14.08.02.18
+        (version=TLSv1/SSLv3 cipher=OTHER);
+        Mon, 14 Nov 2011 08:02:18 -0800 (PST)
+Received-SPF: neutral (google.com: 173.166.109.252 is neither permitted nor denied by best guess record for domain of BATV+f273fab3737168e2a79b+3004+infradead.org+hch@bombadil.srs.infradead.org) client-ip=173.166.109.252;
+Authentication-Results: mx.google.com; spf=neutral (google.com: 173.166.109.252 is neither permitted nor denied by best guess record for domain of BATV+f273fab3737168e2a79b+3004+infradead.org+hch@bombadil.srs.infradead.org) smtp.mail=BATV+f273fab3737168e2a79b+3004+infradead.org+hch@bombadil.srs.infradead.org
+Received: from hch by bombadil.infradead.org with local (Exim 4.76 #1 (Red Hat Linux))
+	id 1RPyzB-00079E-KT; Mon, 14 Nov 2011 16:02:17 +0000
+Message-Id: <20111114160217.591812422@bombadil.infradead.org>
+User-Agent: quilt/0.48-1
+Date: Mon, 14 Nov 2011 10:57:45 -0500
+From: Christoph Hellwig <hch@infradead.org>
+To: xfs@oss.sgi.com
+Cc: arekm@maven.pl
+Subject: [PATCH 3/3] xfsprogs: allow linking against libtcmalloc
+References: <20111114155742.285135418@bombadil.infradead.org>
+Content-Disposition: inline; filename=xfsprogs-use-tcmalloc
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org
+	See http://www.infradead.org/rpr.html
+Status: R
+X-Status: NT
+X-KMail-EncryptionState:  
+X-KMail-SignatureState:  
+X-KMail-MDN-Sent:  
+
+Allow linking against the libtcmalloc library from Google's performance
+tools, which at least for repair reduces the memory usage dramatically.
+
+Signed-off-by: Christoph Hellwig <hch@lst.de>
+
+--- xfsprogs-3.1.7/configure.in.org	2011-11-18 07:58:49.815439699 +0100
++++ xfsprogs-3.1.7/configure.in	2011-11-18 07:59:49.360093001 +0100
+@@ -31,6 +31,26 @@
+ AC_SUBST(libeditline)
+ AC_SUBST(enable_editline)
+ 
++AC_ARG_ENABLE(tcmalloc,
++[ --enable-tcmalloc=[yes/no] Enable tcmalloc [default=no]],,
++	enable_tcmalloc=check)
++
++if test x$enable_tcmalloc != xno; then
++    saved_CPPFLAGS="$CPPFLAGS"
++    CPPFLAGS="$CPPFLAGS -fno-builtin-malloc"
++    AC_CHECK_LIB([tcmalloc_minimal], [malloc], [libtcmalloc="-ltcmalloc_minimal"],
++      [AC_CHECK_LIB([tcmalloc], [malloc], [libtcmalloc="-ltcmalloc"], [
++	if test x$enable_tcmalloc = xyes; then
++		AC_MSG_ERROR([libtcmalloc_minimal or libtcmalloc library not found], 1)
++	fi]
++      )]
++    )
++    if test x$libtcmalloc = x; then
++	CPPFLAGS="$saved_CPPFLAGS"
++    fi
++fi
++AC_SUBST(libtcmalloc)
++
+ AC_ARG_ENABLE(termcap,
+ [ --enable-termcap=[yes/no] Enable terminal capabilities library [default=no]],
+ 	test $enable_termcap = yes && libtermcap="-ltermcap",)
+Index: xfsprogs-dev/include/builddefs.in
+===================================================================
+--- xfsprogs-dev.orig/include/builddefs.in	2011-08-14 17:00:02.000000000 +0000
++++ xfsprogs-dev/include/builddefs.in	2011-11-14 12:09:52.000000000 +0000
+@@ -22,7 +22,7 @@ _BUILDDEFS_INCLUDED_ = 1
+ 
+ DEBUG = @debug_build@
+ OPTIMIZER = @opt_build@
+-MALLOCLIB = @malloc_lib@
++MALLOCLIB = @malloc_lib@ @libtcmalloc@
+ LOADERFLAGS = @LDFLAGS@
+ LTLDFLAGS = @LDFLAGS@
+ CFLAGS = @CFLAGS@
+
