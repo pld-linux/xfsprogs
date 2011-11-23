@@ -2,6 +2,7 @@
 # Conditional build:
 %bcond_without	initrd		# don't build initrd version
 %bcond_without	dietlibc	# link initrd version with static glibc instead of dietlibc
+%bcond_without	tcmalloc	# don't use tcmalloc
 #
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
@@ -35,14 +36,14 @@ BuildRequires:	libuuid-static
 	%endif
 %endif
 BuildRequires:	gettext-devel
-BuildRequires:	google-perftools-devel
 BuildRequires:	libblkid-devel
+%{?with_tcmalloc:BuildRequires:	libtcmalloc-devel}
 BuildRequires:	libtool
 BuildRequires:	libuuid-devel
 BuildRequires:	readline-devel
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpmbuild(macros) >= 1.402
-Requires:	google-perftools >= 1.8.3-2
+Requires:	libtcmalloc >= 1.8.3-3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %if "%{pld_release}" == "ac"
@@ -128,12 +129,12 @@ Zbiór komend do użytku z systemem plików XFS, włączając w to mkfs.xfs
 %setup -q
 %patch0 -p1
 %patch2 -p1
-#%patch3 -p1
+%patch3 -p1
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
-%patch8 -p1
+%{?with_tcmalloc:%patch8 -p1}
 
 %build
 %{__aclocal} -I m4
