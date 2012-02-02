@@ -19,9 +19,9 @@ Patch2:		%{name}-sharedlibs.patch
 Patch3:		%{name}-pl.po-update.patch
 Patch4:		%{name}-dynamic_exe.patch
 Patch5:		%{name}-diet.patch
-Patch6:		xfsprogs-repair-mem.patch
-Patch7:		xfsprogs-repair-nofutexhang.patch
-Patch8:		xfsprogs-repair-tcmalloc.patch
+Patch6:		%{name}-repair-mem.patch
+Patch7:		%{name}-repair-nofutexhang.patch
+Patch8:		%{name}-repair-tcmalloc.patch
 Patch9:		%{name}-noquotasync.patch
 URL:		http://www.xfs.org/
 BuildRequires:	autoconf
@@ -44,7 +44,7 @@ BuildRequires:	libuuid-devel
 BuildRequires:	readline-devel
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpmbuild(macros) >= 1.402
-Requires:	libtcmalloc >= 1.8.3-3
+%{?with_tcmalloc:Requires:	libtcmalloc >= 1.8.3-3}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %if "%{pld_release}" == "ac"
