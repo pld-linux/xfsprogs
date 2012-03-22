@@ -7,22 +7,20 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	3.1.7
-Release:	2
+Version:	3.1.8
+Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/cmd_tars/%{name}-%{version}.tar.gz
-# Source0-md5:	049cf9873794ea49d0bb3f12d45748a4
+# Source0-md5:	f70b2e7200d4c29f0af1cf70e7be1db6
 Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch2:		%{name}-sharedlibs.patch
 Patch3:		%{name}-pl.po-update.patch
 Patch4:		%{name}-dynamic_exe.patch
 Patch5:		%{name}-diet.patch
-Patch6:		%{name}-repair-mem.patch
-Patch7:		%{name}-repair-nofutexhang.patch
-Patch8:		%{name}-repair-tcmalloc.patch
-Patch9:		%{name}-noquotasync.patch
+Patch6:		%{name}-repair-tcmalloc.patch
+Patch7:		%{name}-noquotasync.patch
 URL:		http://www.xfs.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -130,13 +128,11 @@ Zbiór komend do użytku z systemem plików XFS, włączając w to mkfs.xfs
 %setup -q
 %patch0 -p1
 %patch2 -p1
-%patch3 -p1
+#%patch3 -p1
 %patch4 -p1
 %patch5 -p1
-%patch6 -p1
+%{?with_tcmalloc:%patch6 -p1}
 %patch7 -p1
-%{?with_tcmalloc:%patch8 -p1}
-%patch9 -p1
 
 %build
 %{__aclocal} -I m4
