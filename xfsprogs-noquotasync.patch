@@ -1,3 +1,4 @@
+NOTE: this got fixed by kernel change in 3.4 making sync a no-op operation.
 
 In 2005 commit master-melb:xfs-cmds:23840a from Nathan added calls to
 XFS_QSYNC/Q_XQUOTASYNC to xfs_quota, with the following rather sparse
