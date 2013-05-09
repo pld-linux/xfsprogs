@@ -138,7 +138,15 @@ Zbiór komend do użytku z systemem plików XFS, włączając w to mkfs.xfs
 %{__aclocal} -I m4
 
 %if %{with initrd}
+oldPATH="$PATH"
 %if %{with dietlibc}
+# gold (2.23.52.0.2) on x86 fails with:
+# /usr/bin/ld: internal error in set_offset, at output.cc:4665
+if [ -x /usr/bin/ld.bfd ]; then
+	install -d ld-dir
+	ln -sf /usr/bin/ld.bfd ld-dir/ld
+	export PATH="$(pwd)/ld-dir:$PATH"
+fi
 # dietlibc doesn't have aio.h (and xfsprogs does not need it really)
 # dietlibc has needed librt stuff in libc/libpthread
 sed -i -e 's|^AC_PACKAGE_NEED_AIO_H|dnl AC_PACKAGE_NEED_AIO_H|' \
@@ -182,6 +190,7 @@ sed -i -e 's|\(^LLDLIBS.*=.*\) -lcompat|\1|' db/Makefile mkfs/Makefile
 %endif
 
 %{__make} clean
+PATH="$oldPATH"
 %endif
 
 %{__autoconf}
