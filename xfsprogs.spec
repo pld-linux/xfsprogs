@@ -1,14 +1,12 @@
 #
 # Conditional build:
-%bcond_without	initrd		# don't build initrd version
-%bcond_without	dietlibc	# link initrd version with static glibc instead of dietlibc
 %bcond_without	tcmalloc	# don't use tcmalloc
 #
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
 Version:	3.1.11
-Release:	1
+Release:	2
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/cmd_tars/%{name}-%{version}.tar.gz
@@ -25,15 +23,6 @@ URL:		http://www.xfs.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bash
-%if %{with initrd}
-	%if %{with dietlibc}
-BuildRequires:	dietlibc-static >= 2:0.31-6
-BuildRequires:	libuuid-dietlibc
-	%else
-BuildRequires:	glibc-static
-BuildRequires:	libuuid-static
-	%endif
-%endif
 BuildRequires:	gettext-devel
 BuildRequires:	libblkid-devel
 %{?with_tcmalloc:BuildRequires:	libtcmalloc-devel}
@@ -43,6 +32,7 @@ BuildRequires:	readline-devel
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpmbuild(macros) >= 1.402
 %{?with_tcmalloc:Requires:	libtcmalloc >= 1.8.3-3}
+Obsoletes:	xfsprogs-initrd
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %if "%{pld_release}" == "ac"
@@ -111,19 +101,6 @@ Static XFS software libraries.
 %description static -l pl.UTF-8
 Biblioteki statyczne do XFS.
 
-%package initrd
-Summary:	Tools for the XFS filesystem - initrd version
-Summary(pl.UTF-8):	Narzędzia do systemu plików XFS - wersja dla initrd
-Group:		Base
-
-%description initrd
-A set of commands to use the XFS filesystem, including mkfs.xfs
- - initrd version.
-
-%description initrd -l pl.UTF-8
-Zbiór komend do użytku z systemem plików XFS, włączając w to mkfs.xfs
- - wersja dla initrd.
-
 %prep
 %setup -q
 %patch0 -p1
@@ -136,63 +113,6 @@ Zbiór komend do użytku z systemem plików XFS, włączając w to mkfs.xfs
 
 %build
 %{__aclocal} -I m4
-
-%if %{with initrd}
-oldPATH="$PATH"
-%if %{with dietlibc}
-# gold (2.23.52.0.2) on x86 fails with:
-# /usr/bin/ld: internal error in set_offset, at output.cc:4665
-if [ -x /usr/bin/ld.bfd ]; then
-	install -d ld-dir
-	ln -sf /usr/bin/ld.bfd ld-dir/ld
-	export PATH="$(pwd)/ld-dir:$PATH"
-fi
-# dietlibc doesn't have aio.h (and xfsprogs does not need it really)
-# dietlibc has needed librt stuff in libc/libpthread
-sed -i -e 's|^AC_PACKAGE_NEED_AIO_H|dnl AC_PACKAGE_NEED_AIO_H|' \
-	-e 's|^AC_PACKAGE_NEED_LIO_LISTIO|dnl AC_PACKAGE_NEED_LIO_LISTIO|' \
-	configure.ac
-sed -i -e 's|\(^LIBRT.*=.*\)|# \1|' include/builddefs.in
-sed -i -e 's|\(^LLDLIBS.*=.*\)|\1 -lcompat|' db/Makefile mkfs/Makefile
-%endif
-
-%{__autoconf}
-%configure \
-	%{?with_dietlibc:CC="diet %{__cc} -static"} \
-	--sbindir=%{_bindir} \
-	--disable-gettext \
-	--disable-readline \
-	DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}" \
-	OPTIMIZER="%{rpmcflags} -Wno-deprecated-declarations -Os -D_BSD_SOURCE -D__USE_XOPEN_EXTENDED"
-
-%{__make} -j1 include libxfs libxlog libxcmd libhandle libdisk \
-	LIBUUID="%{dietlibdir}/libuuid.a" \
-	V=1
-%{__make} -j1 db growfs logprint mkfs mdrestore repair \
-	LDFLAGS="%{rpmldflags} -all-static" \
-	LIBUUID="%{dietlibdir}/libuuid.a" \
-	V=1
-
-mkdir -p initrd
-mv -f db/xfs_db initrd/xfs_db
-mv -f growfs/xfs_growfs initrd/xfs_growfs
-mv -f logprint/xfs_logprint initrd/xfs_logprint
-mv -f mkfs/mkfs.xfs initrd/mkfs.xfs
-mv -f mdrestore/xfs_mdrestore initrd/xfs_mdrestore
-mv -f repair/xfs_repair initrd/xfs_repair
-
-%if %{with dietlibc}
-sed -i -e 's|^dnl AC_PACKAGE_NEED_AIO_H|AC_PACKAGE_NEED_AIO_H|' \
-	-e 's|^dnl AC_PACKAGE_NEED_LIO_LISTIO|AC_PACKAGE_NEED_LIO_LISTIO|' \
-	configure.ac
-sed -i -e 's|^# \(LIBRT.*=.*\)|\1|' include/builddefs.in
-sed -i -e 's|\(^LLDLIBS.*=.*\) -lcompat|\1|' db/Makefile mkfs/Makefile
-%endif
-
-%{__make} clean
-PATH="$oldPATH"
-%endif
-
 %{__autoconf}
 %configure \
 	--sbindir=%{_bindir}\
@@ -237,11 +157,6 @@ mv $RPM_BUILD_ROOT%{_libdir}/lib*.a $RPM_BUILD_ROOT%{_libexecdir}
 	$RPM_BUILD_ROOT%{_libexecdir}/lib{handle,xcmd,xfs,xlog}.la
 %{__sed} -i -e "s| %{_libdir}/libxfs.la | %{_libexecdir}/libxfs.la |" \
 	$RPM_BUILD_ROOT%{_libexecdir}/libxlog.la
-
-%if %{with initrd}
-install -d $RPM_BUILD_ROOT%{_libexecdir}/initrd
-install initrd/* $RPM_BUILD_ROOT%{_libexecdir}/initrd
-%endif
 
 echo "#10:/mnt/ftp/roman"  >> $RPM_BUILD_ROOT/etc/projects
 echo "#ftproman:10" >> $RPM_BUILD_ROOT/etc/projid
@@ -303,14 +218,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_libexecdir}/libxcmd.a
 %{_libexecdir}/libxfs.a
 %{_libexecdir}/libxlog.a
-
-%if %{with initrd}
-%files initrd
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libexecdir}/initrd/mkfs.xfs
-%attr(755,root,root) %{_libexecdir}/initrd/xfs_db
-%attr(755,root,root) %{_libexecdir}/initrd/xfs_growfs
-%attr(755,root,root) %{_libexecdir}/initrd/xfs_logprint
-%attr(755,root,root) %{_libexecdir}/initrd/xfs_mdrestore
-%attr(755,root,root) %{_libexecdir}/initrd/xfs_repair
-%endif
