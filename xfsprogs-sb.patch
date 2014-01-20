@@ -106,10 +106,10 @@ index b0f38ba..53e47b6 100644
 -				do_warn(
 -		_("would zero unused portion of %s superblock (AG #%u)\n"),
 -					!i ? _("primary") : _("secondary"), i);
-+	if (xfs_sb_version_hascrc(sb))
-+		size = offsetof(xfs_sb_t, sb_lsn)
-+			+ sizeof(sb->sb_lsn);
-+	else if (xfs_sb_version_hasmorebits(sb))
++
++
++
++	if (xfs_sb_version_hasmorebits(sb))
 +		size = offsetof(xfs_sb_t, sb_bad_features2)
 +			+ sizeof(sb->sb_bad_features2);
 +	else if (xfs_sb_version_haslogv2(sb))
