@@ -6,7 +6,7 @@ Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
 Version:	3.1.11
-Release:	2
+Release:	3
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/cmd_tars/%{name}-%{version}.tar.gz
@@ -19,6 +19,7 @@ Patch4:		%{name}-dynamic_exe.patch
 Patch5:		%{name}-diet.patch
 Patch6:		%{name}-repair-tcmalloc.patch
 Patch7:		%{name}-noquotasync.patch
+Patch8:		%{name}-sb.patch
 URL:		http://www.xfs.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -110,6 +111,7 @@ Biblioteki statyczne do XFS.
 %patch5 -p1
 %{?with_tcmalloc:%patch6 -p1}
 %patch7 -p1
+%patch8 -p1
 
 %build
 %{__aclocal} -I m4
