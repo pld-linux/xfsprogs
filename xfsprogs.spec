@@ -5,21 +5,20 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	3.1.11
-Release:	4
+Version:	3.2.0
+Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/cmd_tars/%{name}-%{version}.tar.gz
-# Source0-md5:	de9f1f45026c2f4e0776058d429ff4b6
+# Source0-md5:	400047b2f6af87c0345b8f0cc00c13db
 Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch2:		%{name}-sharedlibs.patch
 Patch3:		%{name}-pl.po-update.patch
 Patch4:		%{name}-dynamic_exe.patch
-Patch5:		%{name}-diet.patch
+
 Patch6:		%{name}-repair-tcmalloc.patch
 Patch7:		%{name}-noquotasync.patch
-Patch8:		%{name}-sb.patch
 URL:		http://www.xfs.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -49,9 +48,6 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_bindir		/usr/sbin
 %define		_libdir		/%{_lib}
 %define		_libexecdir	/usr/%{_lib}
-# for some reason known only to rpm there must be "\\|" not "\|" here
-%define         dietarch        %(echo %{_target_cpu} | sed -e 's/i.86\\|pentium.\\|athlon/i386/;s/amd64/x86_64/;s/armv.*/arm/')
-%define         dietlibdir      %{_prefix}/lib/dietlibc/lib-%{dietarch}
 
 %description
 A set of commands to use the XFS filesystem, including mkfs.xfs.
@@ -108,10 +104,9 @@ Biblioteki statyczne do XFS.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p1
+
 %{?with_tcmalloc:%patch6 -p1}
 %patch7 -p1
-%patch8 -p1
 
 %build
 %{__aclocal} -I m4

@@ -30,3 +30,14 @@
  		mdrestore repair rtcp m4 man doc po debian
  
 
+--- xfsprogs-3.2.0/libxfs/Makefile~	2014-01-28 07:19:44.000000000 +0100
++++ xfsprogs-3.2.0/libxfs/Makefile	2014-05-17 20:01:36.257560519 +0200
+@@ -56,7 +56,7 @@
+ 
+ FCFLAGS = -I.
+ 
+-LTLIBS = $(LIBPTHREAD) $(LIBRT)
++LTLIBS = $(LIBPTHREAD) $(LIBRT) $(LIBUUID)
+ 
+ # don't try linking xfs_repair with a debug libxfs.
+ DEBUG = -DNDEBUG
