@@ -6,12 +6,13 @@ Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
 Version:	3.2.0
-Release:	2
+Release:	3
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/cmd_tars/%{name}-%{version}.tar.gz
 # Source0-md5:	400047b2f6af87c0345b8f0cc00c13db
 Source1:	xfs_lsprojid
+Patch100:	%{name}-git.patch
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-repair-tcmalloc.patch
@@ -93,8 +94,9 @@ Biblioteki statyczne do XFS.
 
 %prep
 %setup -q
+%patch100 -p1
 %patch0 -p1
-%patch1 -p1
+#%patch1 -p1
 
 %{?with_tcmalloc:%patch2 -p1}
 %patch3 -p1
