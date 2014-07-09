@@ -27178,3 +27178,306 @@ index 08b25f0..9eb2fa4 100644
  
  	/*
  	 * If the log is allocated in the first allocation group we need to
+From david@fromorbit.com Wed Jul  9 01:41:39 2014
+Delivered-To: arekm@maven.pl
+Received: from gmail-pop.l.google.com [74.125.136.109]
+	by localhost with POP3 (fetchmail-6.3.26)
+	for <arekm@localhost> (single-drop); Wed, 09 Jul 2014 06:18:29 +0200 (CEST)
+Received: by 10.194.191.201 with SMTP id ha9csp1192023wjc;
+        Tue, 8 Jul 2014 16:42:10 -0700 (PDT)
+X-Received: by 10.236.139.76 with SMTP id b52mr12176131yhj.114.1404862929726;
+        Tue, 08 Jul 2014 16:42:09 -0700 (PDT)
+Return-Path: <xfs-bounces@oss.sgi.com>
+Received: from oss.sgi.com (oss.sgi.com. [192.48.182.195])
+        by mx.google.com with ESMTPS id l45si53478628yhk.154.2014.07.08.16.42.09
+        for <arekm@maven.pl>
+        (version=TLSv1 cipher=RC4-SHA bits=128/128);
+        Tue, 08 Jul 2014 16:42:09 -0700 (PDT)
+Received-SPF: none (google.com: xfs-bounces@oss.sgi.com does not designate permitted sender hosts) client-ip=192.48.182.195;
+Authentication-Results: mx.google.com;
+       spf=neutral (google.com: xfs-bounces@oss.sgi.com does not designate permitted sender hosts) smtp.mail=xfs-bounces@oss.sgi.com
+Received: from oss.sgi.com (localhost [IPv6:::1])
+	by oss.sgi.com (Postfix) with ESMTP id 654047F63;
+	Tue,  8 Jul 2014 18:41:52 -0500 (CDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on oss.sgi.com
+X-Spam-Level: 
+X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
+	version=3.3.1
+X-Original-To: xfs@oss.sgi.com
+Delivered-To: xfs@oss.sgi.com
+Received: from relay.sgi.com (relay3.corp.sgi.com [198.149.34.15])
+	by oss.sgi.com (Postfix) with ESMTP id 0DF707F5A
+	for <xfs@oss.sgi.com>; Tue,  8 Jul 2014 18:41:51 -0500 (CDT)
+Received: from cuda.sgi.com (cuda1.sgi.com [192.48.157.11])
+	by relay3.corp.sgi.com (Postfix) with ESMTP id 9A538AC003
+	for <xfs@oss.sgi.com>; Tue,  8 Jul 2014 16:41:47 -0700 (PDT)
+X-ASG-Debug-ID: 1404862904-04bdf0566889e7a0002-NocioJ
+Received: from ipmail06.adl6.internode.on.net (ipmail06.adl6.internode.on.net
+	[150.101.137.145]) by cuda.sgi.com with ESMTP id
+	NO9rCI22qd0qqNhk for <xfs@oss.sgi.com>;
+	Tue, 08 Jul 2014 16:41:46 -0700 (PDT)
+X-Barracuda-Envelope-From: dave@fromorbit.com
+X-Barracuda-Apparent-Source-IP: 150.101.137.145
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: AoMMAOKAvFN5LAMnPGdsb2JhbABSCIMOiFKkWQEBAQEBAQabdxcEAQEBATg1hAMBAQUnLzMIGDE5AwcUGYhByEiFeohyc4QtBbJXKw
+Received: from ppp121-44-3-39.lns20.syd6.internode.on.net (HELO dastard)
+	([121.44.3.39])
+	by ipmail06.adl6.internode.on.net with ESMTP; 09 Jul 2014 09:11:44 +0930
+Received: from disappointment.disaster.area ([192.168.1.110]
+	helo=disappointment) by dastard with esmtp (Exim 4.80)
+	(envelope-from <dave@fromorbit.com>) id 1X4f14-0006T2-Kv
+	for xfs@oss.sgi.com; Wed, 09 Jul 2014 09:41:42 +1000
+Received: from dave by disappointment with local (Exim 4.82_1-5b7a7c0-XX)
+	(envelope-from <dave@disappointment.disaster>) id 1X4f14-0000t4-K3
+	for xfs@oss.sgi.com; Wed, 09 Jul 2014 09:41:42 +1000
+From: Dave Chinner <david@fromorbit.com>
+To: xfs@oss.sgi.com
+Subject: [PATCH 1/2] libxfs: clear the buffer error while the buffer is locked
+Date: Wed,  9 Jul 2014 09:41:39 +1000
+X-ASG-Orig-Subj: [PATCH 1/2] libxfs: clear the buffer error while the buffer
+	is locked
+Message-Id: <1404862900-3369-2-git-send-email-david@fromorbit.com>
+X-Mailer: git-send-email 2.0.0
+In-Reply-To: <1404862900-3369-1-git-send-email-david@fromorbit.com>
+References: <1404862900-3369-1-git-send-email-david@fromorbit.com>
+X-Barracuda-Connect: ipmail06.adl6.internode.on.net[150.101.137.145]
+X-Barracuda-Start-Time: 1404862905
+X-Barracuda-URL: http://192.48.157.11:80/cgi-mod/mark.cgi
+X-Virus-Scanned: by bsmtpd at sgi.com
+X-Barracuda-BRTS-Status: 1
+X-Barracuda-Spam-Score: 0.00
+X-Barracuda-Spam-Status: No,
+	SCORE=0.00 using per-user scores of TAG_LEVEL=1000.0
+	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=2.7 tests=
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.7352
+	Rule breakdown below
+	pts rule name              description
+	---- ----------------------
+	--------------------------------------------------
+X-BeenThere: xfs@oss.sgi.com
+X-Mailman-Version: 2.1.14
+Precedence: list
+List-Id: XFS Filesystem from SGI <xfs.oss.sgi.com>
+List-Unsubscribe: <http://oss.sgi.com/mailman/options/xfs>,
+	<mailto:xfs-request@oss.sgi.com?subject=unsubscribe>
+List-Archive: <http://oss.sgi.com/pipermail/xfs>
+List-Post: <mailto:xfs@oss.sgi.com>
+List-Help: <mailto:xfs-request@oss.sgi.com?subject=help>
+List-Subscribe: <http://oss.sgi.com/mailman/listinfo/xfs>,
+	<mailto:xfs-request@oss.sgi.com?subject=subscribe>
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Errors-To: xfs-bounces@oss.sgi.com
+Sender: xfs-bounces@oss.sgi.com
+Status: R
+X-Status: N
+X-KMail-EncryptionState:  
+X-KMail-SignatureState:  
+X-KMail-MDN-Sent:  
+
+From: Dave Chinner <dchinner@redhat.com>
+
+When releasing a buffer, the error shoul dbe cleared while the lock
+is still held on the buffer to avoid racing with a new user of the
+buffer.
+
+This was pointed out in review of commit 6af7c1e ("libxfs: reused
+invalidated buffers leak state and data") but the version committed
+didn't have the fix. Thanks to Christoph Hellwig for checking and
+pointing out the oversight.
+
+Reported-by: Christoph Hellwig <hch@lst.de>
+Signed-off-by: Dave Chinner <dchinner@redhat.com>
+---
+ libxfs/rdwr.c | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
+
+diff --git a/libxfs/rdwr.c b/libxfs/rdwr.c
+index 0294c98..9ee89d3 100644
+--- a/libxfs/rdwr.c
++++ b/libxfs/rdwr.c
+@@ -648,6 +648,12 @@ libxfs_getbuf_map(struct xfs_buftarg *btp, struct xfs_buf_map *map,
+ void
+ libxfs_putbuf(xfs_buf_t *bp)
+ {
++	/*
++	 * ensure that any errors on this use of the buffer don't carry
++	 * over to the next user.
++	 */
++	bp->b_error = 0;
++
+ #ifdef XFS_BUF_TRACING
+ 	pthread_mutex_lock(&libxfs_bcache->c_mutex);
+ 	lock_buf_count--;
+@@ -663,11 +669,6 @@ libxfs_putbuf(xfs_buf_t *bp)
+ 			pthread_mutex_unlock(&bp->b_lock);
+ 		}
+ 	}
+-	/*
+-	 * ensure that any errors on this use of the buffer don't carry
+-	 * over to the next user.
+-	 */
+-	bp->b_error = 0;
+ 
+ 	cache_node_put(libxfs_bcache, (struct cache_node *)bp);
+ }
+-- 
+2.0.0
+
+_______________________________________________
+xfs mailing list
+xfs@oss.sgi.com
+http://oss.sgi.com/mailman/listinfo/xfs
+From david@fromorbit.com Wed Jul  9 01:41:40 2014
+Delivered-To: arekm@maven.pl
+Received: from gmail-pop.l.google.com [74.125.136.109]
+	by localhost with POP3 (fetchmail-6.3.26)
+	for <arekm@localhost> (single-drop); Wed, 09 Jul 2014 06:18:29 +0200 (CEST)
+Received: by 10.194.191.201 with SMTP id ha9csp1191996wjc;
+        Tue, 8 Jul 2014 16:41:54 -0700 (PDT)
+X-Received: by 10.236.71.65 with SMTP id q41mr18864963yhd.84.1404862914373;
+        Tue, 08 Jul 2014 16:41:54 -0700 (PDT)
+Return-Path: <xfs-bounces@oss.sgi.com>
+Received: from oss.sgi.com (oss.sgi.com. [192.48.182.195])
+        by mx.google.com with ESMTPS id d44si53454586yhg.185.2014.07.08.16.41.53
+        for <arekm@maven.pl>
+        (version=TLSv1 cipher=RC4-SHA bits=128/128);
+        Tue, 08 Jul 2014 16:41:54 -0700 (PDT)
+Received-SPF: none (google.com: xfs-bounces@oss.sgi.com does not designate permitted sender hosts) client-ip=192.48.182.195;
+Authentication-Results: mx.google.com;
+       spf=neutral (google.com: xfs-bounces@oss.sgi.com does not designate permitted sender hosts) smtp.mail=xfs-bounces@oss.sgi.com
+Received: from oss.sgi.com (localhost [IPv6:::1])
+	by oss.sgi.com (Postfix) with ESMTP id 0E9307F59;
+	Tue,  8 Jul 2014 18:41:50 -0500 (CDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on oss.sgi.com
+X-Spam-Level: 
+X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
+	version=3.3.1
+X-Original-To: xfs@oss.sgi.com
+Delivered-To: xfs@oss.sgi.com
+Received: from relay.sgi.com (relay3.corp.sgi.com [198.149.34.15])
+	by oss.sgi.com (Postfix) with ESMTP id 926F47F54
+	for <xfs@oss.sgi.com>; Tue,  8 Jul 2014 18:41:48 -0500 (CDT)
+Received: from cuda.sgi.com (cuda1.sgi.com [192.48.157.11])
+	by relay3.corp.sgi.com (Postfix) with ESMTP id 2B056AC005
+	for <xfs@oss.sgi.com>; Tue,  8 Jul 2014 16:41:48 -0700 (PDT)
+X-ASG-Debug-ID: 1404862906-04bdf0566689e7a0001-NocioJ
+Received: from ipmail06.adl6.internode.on.net (ipmail06.adl6.internode.on.net
+	[150.101.137.145]) by cuda.sgi.com with ESMTP id
+	3ZLnBPuN5nAdFeY3 for <xfs@oss.sgi.com>;
+	Tue, 08 Jul 2014 16:41:46 -0700 (PDT)
+X-Barracuda-Envelope-From: dave@fromorbit.com
+X-Barracuda-Apparent-Source-IP: 150.101.137.145
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: AoMMAOKAvFN5LAMnPGdsb2JhbABagw6IUqRZAQEBAQEBBpt3FwQBAQEBODWEAwEBBScvMwgYMTkDBxQZiC4DEMhIhXqHHoJHhC0FslcrLw
+Received: from ppp121-44-3-39.lns20.syd6.internode.on.net (HELO dastard)
+	([121.44.3.39])
+	by ipmail06.adl6.internode.on.net with ESMTP; 09 Jul 2014 09:11:44 +0930
+Received: from disappointment.disaster.area ([192.168.1.110]
+	helo=disappointment) by dastard with esmtp (Exim 4.80)
+	(envelope-from <dave@fromorbit.com>) id 1X4f14-0006T3-LQ
+	for xfs@oss.sgi.com; Wed, 09 Jul 2014 09:41:42 +1000
+Received: from dave by disappointment with local (Exim 4.82_1-5b7a7c0-XX)
+	(envelope-from <dave@disappointment.disaster>) id 1X4f14-0000tA-KY
+	for xfs@oss.sgi.com; Wed, 09 Jul 2014 09:41:42 +1000
+From: Dave Chinner <david@fromorbit.com>
+To: xfs@oss.sgi.com
+Subject: [PATCH 2/2] repair: handle uncorrected corruptions in phase 2
+Date: Wed,  9 Jul 2014 09:41:40 +1000
+X-ASG-Orig-Subj: [PATCH 2/2] repair: handle uncorrected corruptions in phase 2
+Message-Id: <1404862900-3369-3-git-send-email-david@fromorbit.com>
+X-Mailer: git-send-email 2.0.0
+In-Reply-To: <1404862900-3369-1-git-send-email-david@fromorbit.com>
+References: <1404862900-3369-1-git-send-email-david@fromorbit.com>
+X-Barracuda-Connect: ipmail06.adl6.internode.on.net[150.101.137.145]
+X-Barracuda-Start-Time: 1404862906
+X-Barracuda-URL: http://192.48.157.11:80/cgi-mod/mark.cgi
+X-Virus-Scanned: by bsmtpd at sgi.com
+X-Barracuda-BRTS-Status: 1
+X-Barracuda-Spam-Score: 0.00
+X-Barracuda-Spam-Status: No,
+	SCORE=0.00 using per-user scores of TAG_LEVEL=1000.0
+	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=2.7 tests=
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.7352
+	Rule breakdown below
+	pts rule name              description
+	---- ----------------------
+	--------------------------------------------------
+X-BeenThere: xfs@oss.sgi.com
+X-Mailman-Version: 2.1.14
+Precedence: list
+List-Id: XFS Filesystem from SGI <xfs.oss.sgi.com>
+List-Unsubscribe: <http://oss.sgi.com/mailman/options/xfs>,
+	<mailto:xfs-request@oss.sgi.com?subject=unsubscribe>
+List-Archive: <http://oss.sgi.com/pipermail/xfs>
+List-Post: <mailto:xfs@oss.sgi.com>
+List-Help: <mailto:xfs-request@oss.sgi.com?subject=help>
+List-Subscribe: <http://oss.sgi.com/mailman/listinfo/xfs>,
+	<mailto:xfs-request@oss.sgi.com?subject=subscribe>
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Errors-To: xfs-bounces@oss.sgi.com
+Sender: xfs-bounces@oss.sgi.com
+Status: R
+X-Status: N
+X-KMail-EncryptionState:  
+X-KMail-SignatureState:  
+X-KMail-MDN-Sent:  
+
+From: Dave Chinner <dchinner@redhat.com>
+
+Some of the AG header corruptions detected by the IO verifiers
+cannot be corrected in phase 2 when we do the initial scan of the
+AGs. Correcting some errors cannot be done until a full rebuild of
+the trees is done in phase 5.
+
+Hence we can end up with a "clean" AGF/AGI buffer but have a
+EFSCORRUPTED error on the buffer. This results in an assert failing:
+
+	ASSERT(agf_dirty || agfbuf->b_error != EFSCORRUPTED);
+
+and repair not beign able to fix the problems it has tripped over.
+Hence the assert that we corrected all corruptions in the buffers
+is not valid and should be removed.
+
+Reported-by: Hans Kraus <hans.w.kraus@gmx.at>
+Signed-off-by: Dave Chinner <dchinner@redhat.com>
+---
+ repair/scan.c | 11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
+
+diff --git a/repair/scan.c b/repair/scan.c
+index f29ff8d..142d8d7 100644
+--- a/repair/scan.c
++++ b/repair/scan.c
+@@ -1572,14 +1572,13 @@ scan_ag(
+ 
+ 	/*
+ 	 * Only pay attention to CRC/verifier errors if we can correct them.
+-	 * While there, ensure that we corrected a corruption error if the
+-	 * verifier detected one.
++	 * Note that we can get uncorrected EFSCORRUPTED errors here because
++	 * the verifier will flag on out of range values that we can't correct
++	 * until phase 5 when we have all the information necessary to rebuild
++	 * the freespace/inode btrees. We can correct bad CRC errors
++	 * immediately, though.
+ 	 */
+ 	if (!no_modify) {
+-		ASSERT(agi_dirty || agibuf->b_error != EFSCORRUPTED);
+-		ASSERT(agf_dirty || agfbuf->b_error != EFSCORRUPTED);
+-		ASSERT(sb_dirty || sbbuf->b_error != EFSCORRUPTED);
+-
+ 		agi_dirty += (agibuf->b_error == EFSBADCRC);
+ 		agf_dirty += (agfbuf->b_error == EFSBADCRC);
+ 		sb_dirty += (sbbuf->b_error == EFSBADCRC);
+-- 
+2.0.0
+
+_______________________________________________
+xfs mailing list
+xfs@oss.sgi.com
+http://oss.sgi.com/mailman/listinfo/xfs
