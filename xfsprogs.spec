@@ -20,7 +20,7 @@ URL:		http://www.xfs.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bash
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	libblkid-devel
 %{?with_tcmalloc:BuildRequires:	libtcmalloc-devel}
 BuildRequires:	libtool
