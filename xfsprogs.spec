@@ -1,7 +1,11 @@
 #
 # Conditional build:
 %bcond_without	tcmalloc	# don't use tcmalloc
-#
+
+%ifarch x32
+%undefine	with_tcmalloc
+%endif
+
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
