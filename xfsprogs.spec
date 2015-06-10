@@ -9,17 +9,16 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	3.2.2
-Release:	2
+Version:	3.2.3
+Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/cmd_tars/%{name}-%{version}.tar.gz
-# Source0-md5:	b6b0db5e3ee71ceba26d0a5accbd0666
+# Source0-md5:	9f383e36682709e62b12c125e5d8b895
 Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-pl.po-update.patch
-Patch2:		%{name}-repair-tcmalloc.patch
-Patch3:		%{name}-noquotasync.patch
+Patch2:		%{name}-noquotasync.patch
 URL:		http://www.xfs.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -99,9 +98,7 @@ Biblioteki statyczne do XFS.
 %setup -q
 %patch0 -p1
 #%patch1 -p1
-
-%{?with_tcmalloc:%patch2 -p1}
-%patch3 -p1
+%patch2 -p1
 
 %build
 %{__aclocal} -I m4
