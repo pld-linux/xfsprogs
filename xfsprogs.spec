@@ -10,7 +10,7 @@ Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
 Version:	3.2.3
-Release:	1
+Release:	2
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	ftp://linux-xfs.sgi.com/projects/xfs/cmd_tars/%{name}-%{version}.tar.gz
@@ -24,10 +24,12 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bash
 BuildRequires:	gettext-tools
+BuildRequires:	glibc-static
 BuildRequires:	libblkid-devel
 %{?with_tcmalloc:BuildRequires:	libtcmalloc-devel}
 BuildRequires:	libtool
 BuildRequires:	libuuid-devel
+BuildRequires:	libuuid-static
 BuildRequires:	readline-devel
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpmbuild(macros) >= 1.402
