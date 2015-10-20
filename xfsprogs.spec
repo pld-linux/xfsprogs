@@ -1,11 +1,3 @@
-#
-# Conditional build:
-%bcond_without	tcmalloc	# don't use tcmalloc
-
-%ifarch x32
-%undefine	with_tcmalloc
-%endif
-
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
@@ -26,14 +18,12 @@ BuildRequires:	bash
 BuildRequires:	gettext-tools
 BuildRequires:	glibc-static
 BuildRequires:	libblkid-devel
-%{?with_tcmalloc:BuildRequires:	libtcmalloc-devel}
 BuildRequires:	libtool
 BuildRequires:	libuuid-devel
 BuildRequires:	libuuid-static
 BuildRequires:	readline-devel
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpmbuild(macros) >= 1.402
-%{?with_tcmalloc:Requires:	libtcmalloc >= 1.8.3-3}
 Obsoletes:	xfsprogs-initrd
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
