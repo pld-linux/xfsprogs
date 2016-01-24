@@ -12,7 +12,7 @@ Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-noquotasync.patch
 URL:		http://www.xfs.org/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	bash
 BuildRequires:	gettext-tools
@@ -89,7 +89,7 @@ Biblioteki statyczne do XFS.
 %prep
 %setup -q
 %patch0 -p1
-#%patch1 -p1
+%patch1 -p1
 %patch2 -p1
 
 %build
@@ -125,8 +125,8 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}/xfs_lsprojid
 ln -sf %{_libdir}/$(basename $RPM_BUILD_ROOT%{_libdir}/libhandle.so.*.*.*) \
 	 $RPM_BUILD_ROOT%{_libexecdir}/libhandle.so
 
-mv $RPM_BUILD_ROOT%{_libdir}/lib*.la $RPM_BUILD_ROOT%{_libexecdir}
-mv $RPM_BUILD_ROOT%{_libdir}/lib*.a $RPM_BUILD_ROOT%{_libexecdir}
+%{__mv} $RPM_BUILD_ROOT%{_libdir}/lib*.la $RPM_BUILD_ROOT%{_libexecdir}
+%{__mv} $RPM_BUILD_ROOT%{_libdir}/lib*.a $RPM_BUILD_ROOT%{_libexecdir}
 
 %{__sed} -i -e "s|libdir='%{_libdir}'|libdir='%{_libexecdir}'|" \
 	$RPM_BUILD_ROOT%{_libexecdir}/libhandle.la
