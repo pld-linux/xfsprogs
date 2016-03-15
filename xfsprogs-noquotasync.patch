@@ -73,18 +73,16 @@ Index: xfsprogs-dev/quota/quota.c
  	if (xfsquotactl(XFS_GETQUOTA, dev, type, id, (void *)&d) < 0)
  		return 0;
  
-Index: xfsprogs-dev/quota/quota.h
-===================================================================
---- xfsprogs-dev.orig/quota/quota.h	2012-01-27 11:11:10.000000000 +0000
-+++ xfsprogs-dev/quota/quota.h	2012-01-27 11:11:20.000000000 +0000
-@@ -41,7 +41,6 @@ enum {
+--- xfsprogs-4.5.0/quota/quota.h~	2016-02-29 00:39:26.000000000 +0100
++++ xfsprogs-4.5.0/quota/quota.h	2016-03-15 08:29:58.643935671 +0100
+@@ -42,7 +42,6 @@ enum {
  	XFS_SETQLIM,	/* set disk limits */
  	XFS_GETQSTAT,	/* get quota subsystem status */
  	XFS_QUOTARM,	/* free disk space used by dquots */
 -	XFS_QSYNC,	/* flush delayed allocate space */
+ 	XFS_GETQSTATV,	/* newer version of quota stats */
+ 	XFS_GETNEXTQUOTA, /* get disk limits and usage */
  };
- 
- /*
 Index: xfsprogs-dev/quota/report.c
 ===================================================================
 --- xfsprogs-dev.orig/quota/report.c	2012-01-27 11:09:41.000000000 +0000
