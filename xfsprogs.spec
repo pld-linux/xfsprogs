@@ -89,7 +89,7 @@ Biblioteki statyczne do XFS.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
+%patch1 -p1 -b .orig
 %patch2 -p1
 
 %build
