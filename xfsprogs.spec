@@ -1,12 +1,12 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	4.11.0
+Version:	4.12.0
 Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	https://kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{version}.tar.gz
-# Source0-md5:	46dfa200ffcc0be8c44d7f634c191148
+# Source0-md5:	d6700a7b2e6fc5cdcb91fcbeb2444c5f
 Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-pl.po-update.patch
@@ -88,7 +88,7 @@ Biblioteki statyczne do XFS.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1 -b .orig
+#%patch1 -p1 -b .orig
 
 %build
 %{__aclocal} -I m4
