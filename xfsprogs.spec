@@ -1,12 +1,12 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	4.14.0
+Version:	4.15.0
 Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	https://kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{version}.tar.gz
-# Source0-md5:	e3d6d26bb7842b443e09d6d3363a7160
+# Source0-md5:	62096a4a7487bf3b24a6b67be99402f8
 Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-pl.po-update.patch
@@ -23,6 +23,7 @@ BuildRequires:	libuuid-static
 BuildRequires:	readline-devel
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpmbuild(macros) >= 1.402
+Requires:	systemd-units >= 38
 Obsoletes:	xfsprogs-initrd
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -106,7 +107,7 @@ Biblioteki statyczne do XFS.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_libexecdir},/etc}
+install -d $RPM_BUILD_ROOT{%{_libexecdir},/etc/cron.d}
 
 DIST_ROOT=$RPM_BUILD_ROOT
 DIST_INSTALL=$(pwd)/install.manifest
@@ -118,7 +119,7 @@ export DIST_ROOT DIST_INSTALL DIST_INSTALL_DEV
 %{__make} install-dev \
 	DIST_MANIFEST="$DIST_INSTALL_DEV"
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}/xfs_lsprojid
+cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}/xfs_lsprojid
 
 ln -sf %{_libdir}/$(basename $RPM_BUILD_ROOT%{_libdir}/libhandle.so.*.*.*) \
 	 $RPM_BUILD_ROOT%{_libexecdir}/libhandle.so
@@ -139,10 +140,15 @@ echo "#ftproman:10" >> $RPM_BUILD_ROOT/etc/projid
 # already in /usr
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libhandle.so
 
+mv $RPM_BUILD_ROOT{%{_libdir}/%{name}/xfs_scrub_all.cron,/etc/cron.d/xfs_scrub_all}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /sbin/ldconfig
+%post
+/sbin/ldconfig
+%systemd_reload
+
 %postun -p /sbin/ldconfig
 
 %files -f %{name}.lang
@@ -152,10 +158,19 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not md5 mtime size) /etc/projid
 %attr(755,root,root) %{_sbindir}/fsck.xfs
 %attr(755,root,root) %{_sbindir}/mkfs.xfs
+%attr(755,root,root) %{_sbindir}/xfs_scrub
+%attr(755,root,root) %{_sbindir}/xfs_scrub_all
 %attr(755,root,root) %{_sbindir}/xfs_repair
 %attr(755,root,root) %{_bindir}/xfs_*
 %attr(755,root,root) %{_libdir}/libhandle.so.*.*
 %attr(755,root,root) %ghost %{_libdir}/libhandle.so.1
+%dir %{_libdir}/%{name}
+%attr(755,root,root) %{_libdir}/%{name}/xfs_scrub_fail
+%{systemdunitdir}/xfs_scrub@.service
+%{systemdunitdir}/xfs_scrub_all.service
+%{systemdunitdir}/xfs_scrub_all.timer
+%{systemdunitdir}/xfs_scrub_fail@.service
+%config(noreplace) %verify(not md5 mtime size) /etc/cron.d/xfs_scrub_all
 %{_mandir}/man5/projects.5*
 %{_mandir}/man5/projid.5*
 %{_mandir}/man5/xfs.5*
@@ -168,6 +183,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libexecdir}/libhandle.so
 %{_libexecdir}/libhandle.la
 %{_includedir}/xfs
+%{_mandir}/man2/ioctl_xfs_scrub_metadata.2*
 %{_mandir}/man3/*handle.3*
 %{_mandir}/man3/xfsctl.3*
 
