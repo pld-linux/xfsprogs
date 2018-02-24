@@ -2,7 +2,7 @@ Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
 Version:	4.15.0
-Release:	1
+Release:	2
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	https://kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{version}.tar.gz
@@ -166,11 +166,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libhandle.so.1
 %dir %{_libdir}/%{name}
 %attr(755,root,root) %{_libdir}/%{name}/xfs_scrub_fail
-%{systemdunitdir}/xfs_scrub@.service
-%{systemdunitdir}/xfs_scrub_all.service
-%{systemdunitdir}/xfs_scrub_all.timer
-%{systemdunitdir}/xfs_scrub_fail@.service
-%config(noreplace) %verify(not md5 mtime size) /etc/cron.d/xfs_scrub_all
+# [36960.754044] XFS (dm-0): EXPERIMENTAL online scrub feature in use. Use at your own risk!
+# so don't enable these by default
+#%{systemdunitdir}/xfs_scrub@.service
+#%{systemdunitdir}/xfs_scrub_all.service
+#%{systemdunitdir}/xfs_scrub_all.timer
+#%{systemdunitdir}/xfs_scrub_fail@.service
+#%config(noreplace) %verify(not md5 mtime size) /etc/cron.d/xfs_scrub_all
 %{_mandir}/man5/projects.5*
 %{_mandir}/man5/projid.5*
 %{_mandir}/man5/xfs.5*
