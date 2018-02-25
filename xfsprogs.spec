@@ -32,11 +32,6 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		filterout_ld -Wl,--as-needed
 %endif
 
-%define		_sbindir	/sbin
-%define		_bindir		/usr/sbin
-%define		_libdir		/%{_lib}
-%define		_libexecdir	/usr/%{_lib}
-
 %description
 A set of commands to use the XFS filesystem, including mkfs.xfs.
 
@@ -95,19 +90,18 @@ Biblioteki statyczne do XFS.
 %{__aclocal} -I m4
 %{__autoconf}
 %configure \
-	--sbindir=%{_bindir}\
-	--enable-gettext \
-	--enable-readline \
-	--enable-blkid \
 	DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}" \
-	OPTIMIZER="%{rpmcflags}"
+	OPTIMIZER="%{rpmcflags}" \
+	--enable-blkid \
+	--enable-gettext \
+	--enable-readline
 
 %{__make} -j1 \
 	V=1
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_libexecdir},/etc/cron.d}
+install -d $RPM_BUILD_ROOT/etc/cron.d
 
 DIST_ROOT=$RPM_BUILD_ROOT
 DIST_INSTALL=$(pwd)/install.manifest
@@ -119,28 +113,27 @@ export DIST_ROOT DIST_INSTALL DIST_INSTALL_DEV
 %{__make} install-dev \
 	DIST_MANIFEST="$DIST_INSTALL_DEV"
 
-cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}/xfs_lsprojid
+install -p %{SOURCE1} $RPM_BUILD_ROOT%{_sbindir}/xfs_lsprojid
 
-ln -sf %{_libdir}/$(basename $RPM_BUILD_ROOT%{_libdir}/libhandle.so.*.*.*) \
-	 $RPM_BUILD_ROOT%{_libexecdir}/libhandle.so
+# adjust symlink to point to actual library, not libhandle.so symlink, which we remove afterwards
+ln -sf /%{_lib}/$(basename $RPM_BUILD_ROOT/%{_lib}/libhandle.so.*.*.*) \
+	 $RPM_BUILD_ROOT%{_libdir}/libhandle.so
+# adjust library path used at link time
+%{__sed} -i -e "s|libdir='/%{_lib}'|libdir='%{_libdir}'|" \
+	$RPM_BUILD_ROOT%{_libdir}/libhandle.la
+# already in /usr
+%{__rm} $RPM_BUILD_ROOT/%{_lib}/libhandle.{so,la,a}
 
-%{__mv} $RPM_BUILD_ROOT%{_libdir}/lib*.la $RPM_BUILD_ROOT%{_libexecdir}
-%{__mv} $RPM_BUILD_ROOT%{_libdir}/lib*.a $RPM_BUILD_ROOT%{_libexecdir}
+# install cron file
+%{__mv} $RPM_BUILD_ROOT{%{_libdir}/%{name}/xfs_scrub_all.cron,/etc/cron.d/xfs_scrub_all}
 
-%{__sed} -i -e "s|libdir='%{_libdir}'|libdir='%{_libexecdir}'|" \
-	$RPM_BUILD_ROOT%{_libexecdir}/libhandle.la
-
+# (config file paths are specified in libfrog/projects.c)
 echo "#10:/mnt/ftp/roman"  >> $RPM_BUILD_ROOT/etc/projects
 echo "#ftproman:10" >> $RPM_BUILD_ROOT/etc/projid
 
-%find_lang %{name}
-
 %{__rm} -r $RPM_BUILD_ROOT%{_docdir}/%{name}
 
-# already in /usr
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/libhandle.so
-
-mv $RPM_BUILD_ROOT{%{_libdir}/%{name}/xfs_scrub_all.cron,/etc/cron.d/xfs_scrub_all}
+%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -156,14 +149,14 @@ rm -rf $RPM_BUILD_ROOT
 %doc README doc/{CHANGES,CREDITS}
 %config(noreplace) %verify(not md5 mtime size) /etc/projects
 %config(noreplace) %verify(not md5 mtime size) /etc/projid
-%attr(755,root,root) %{_sbindir}/fsck.xfs
-%attr(755,root,root) %{_sbindir}/mkfs.xfs
-%attr(755,root,root) %{_sbindir}/xfs_scrub
-%attr(755,root,root) %{_sbindir}/xfs_scrub_all
-%attr(755,root,root) %{_sbindir}/xfs_repair
-%attr(755,root,root) %{_bindir}/xfs_*
-%attr(755,root,root) %{_libdir}/libhandle.so.*.*
-%attr(755,root,root) %ghost %{_libdir}/libhandle.so.1
+%attr(755,root,root) /sbin/fsck.xfs
+%attr(755,root,root) /sbin/mkfs.xfs
+%attr(755,root,root) /sbin/xfs_scrub
+%attr(755,root,root) /sbin/xfs_scrub_all
+%attr(755,root,root) /sbin/xfs_repair
+%attr(755,root,root) %{_sbindir}/xfs_*
+%attr(755,root,root) /%{_lib}/libhandle.so.*.*
+%attr(755,root,root) %ghost /%{_lib}/libhandle.so.1
 %dir %{_libdir}/%{name}
 %attr(755,root,root) %{_libdir}/%{name}/xfs_scrub_fail
 # [36960.754044] XFS (dm-0): EXPERIMENTAL online scrub feature in use. Use at your own risk!
@@ -182,8 +175,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libexecdir}/libhandle.so
-%{_libexecdir}/libhandle.la
+%attr(755,root,root) %{_libdir}/libhandle.so
+%{_libdir}/libhandle.la
 %{_includedir}/xfs
 %{_mandir}/man2/ioctl_xfs_scrub_metadata.2*
 %{_mandir}/man3/*handle.3*
@@ -191,4 +184,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files static
 %defattr(644,root,root,755)
-%{_libexecdir}/libhandle.a
+%{_libdir}/libhandle.a
