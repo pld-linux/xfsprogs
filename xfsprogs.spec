@@ -23,7 +23,7 @@ BuildRequires:	libuuid-static
 BuildRequires:	readline-devel
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpmbuild(macros) >= 1.402
-Requires:	systemd-units >= 38
+BuildRequires:	sed >= 4.0
 Obsoletes:	xfsprogs-initrd
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -53,6 +53,24 @@ był używany na platformie SGI IRIX. Jest to w pełni wielowątkowy,
 obsługujący wielkie pliki oraz wielkie systemy, o rozszerzonych
 atrybutach, zmiennych wielkościach bloków, mocno wykorzystujący
 B-drzewa by uzyskać wysoką wydajność oraz skalowalność.
+
+%package scrub
+Summary:	xfs_scrub - XFS online check and repair feature (EXPERIMENTAL!)
+Summary(pl.UTF-8):	xfs_scrub - sprawdzanie i naprawianie zamontowanego systemu plików XFS (EKSPERYMENTALNE!)
+Group:		Applications/System
+Requires:	%{name} = %{version}-%{release}
+Requires:	systemd-units >= 38
+
+%description scrub
+xfs_scrub is an XFS online check and repair feature.
+
+WARNING: EXPERIMENTAL, use at your own risk!
+
+%description scrub -l pl.UTF-8
+xfs_scrub służy do sprawdzania i naprawiania zamontowanego systmeu
+plików XFS w locie.
+
+UWAGA: EXPERIMENTALNE, użycie na własne ryzyko!
 
 %package devel
 Summary:	Header files and libraries to develop XFS software
@@ -85,6 +103,8 @@ Biblioteki statyczne do XFS.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+
+%{__sed} -i -e '1s,/usr/bin/env python3,%{__python3},' scrub/xfs_scrub_all.in tools/xfsbuflock.py
 
 %build
 %{__aclocal} -I m4
@@ -138,11 +158,11 @@ echo "#ftproman:10" >> $RPM_BUILD_ROOT/etc/projid
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post
-/sbin/ldconfig
-%systemd_reload
-
+%post	-p /sbin/ldconfig
 %postun -p /sbin/ldconfig
+
+%post scrub
+%systemd_reload
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
@@ -151,27 +171,31 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not md5 mtime size) /etc/projid
 %attr(755,root,root) /sbin/fsck.xfs
 %attr(755,root,root) /sbin/mkfs.xfs
-%attr(755,root,root) /sbin/xfs_scrub
-%attr(755,root,root) /sbin/xfs_scrub_all
 %attr(755,root,root) /sbin/xfs_repair
 %attr(755,root,root) %{_sbindir}/xfs_*
 %attr(755,root,root) /%{_lib}/libhandle.so.*.*
 %attr(755,root,root) %ghost /%{_lib}/libhandle.so.1
 %dir %{_libdir}/%{name}
 %attr(755,root,root) %{_libdir}/%{name}/xfs_scrub_fail
-# [36960.754044] XFS (dm-0): EXPERIMENTAL online scrub feature in use. Use at your own risk!
-# so don't enable these by default
-#%{systemdunitdir}/xfs_scrub@.service
-#%{systemdunitdir}/xfs_scrub_all.service
-#%{systemdunitdir}/xfs_scrub_all.timer
-#%{systemdunitdir}/xfs_scrub_fail@.service
-#%config(noreplace) %verify(not md5 mtime size) /etc/cron.d/xfs_scrub_all
 %{_mandir}/man5/projects.5*
 %{_mandir}/man5/projid.5*
 %{_mandir}/man5/xfs.5*
 %{_mandir}/man8/fsck.xfs.8*
 %{_mandir}/man8/mkfs.xfs.8*
 %{_mandir}/man8/xfs_*.8*
+%exclude %{_mandir}/man8/xfs_scrub*.8*
+
+%files scrub
+%defattr(644,root,root,755)
+%attr(755,root,root) /sbin/xfs_scrub
+%attr(755,root,root) /sbin/xfs_scrub_all
+%{systemdunitdir}/xfs_scrub@.service
+%{systemdunitdir}/xfs_scrub_all.service
+%{systemdunitdir}/xfs_scrub_all.timer
+%{systemdunitdir}/xfs_scrub_fail@.service
+%config(noreplace) %verify(not md5 mtime size) /etc/cron.d/xfs_scrub_all
+%{_mandir}/man8/xfs_scrub.8*
+%{_mandir}/man8/xfs_scrub_all.8*
 
 %files devel
 %defattr(644,root,root,755)
