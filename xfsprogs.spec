@@ -2,7 +2,7 @@ Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
 Version:	4.18.0
-Release:	1
+Release:	2
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	https://kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{version}.tar.gz
@@ -112,6 +112,7 @@ Biblioteki statyczne do XFS.
 %configure \
 	DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}" \
 	OPTIMIZER="%{rpmcflags}" \
+	--enable-lto=no \
 	--enable-blkid \
 	--enable-gettext \
 	--enable-readline
