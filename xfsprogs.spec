@@ -1,3 +1,5 @@
+%bcond_without	debug_asserts
+#
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
@@ -110,7 +112,7 @@ Biblioteki statyczne do XFS.
 %{__aclocal} -I m4
 %{__autoconf}
 %configure \
-	DEBUG="%{?debug:-DDEBUG}%{!?debug:-DNDEBUG}" \
+	DEBUG="%{?with_debug_asserts:-DDEBUG}%{!?with_debug_asserts:-DNDEBUG}" \
 	OPTIMIZER="%{rpmcflags}" \
 	--enable-lto=no \
 	--enable-blkid \
