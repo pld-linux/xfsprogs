@@ -1,3 +1,5 @@
+#
+# Conditional build:
 %bcond_without	debug_asserts
 #
 Summary:	Tools for the XFS filesystem
@@ -7,11 +9,12 @@ Version:	4.19.0
 Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
-Source0:	https://kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{version}.tar.gz
+Source0:	https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{version}.tar.gz
 # Source0-md5:	955b3dad9cbe01d6b21a562cc0100e04
 Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-pl.po-update.patch
+# Patch1-md5:	28832d2c0aefb92ec17ebfe924c156e3
 URL:		http://www.xfs.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
