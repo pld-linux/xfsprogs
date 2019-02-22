@@ -5,24 +5,26 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	4.19.0
-Release:	2
+Version:	4.20.0
+Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{version}.tar.gz
-# Source0-md5:	955b3dad9cbe01d6b21a562cc0100e04
+# Source0-md5:	449e475ff861a184606c7d1500de7fb6
 Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-pl.po-update.patch
-Patch2:		xfsprogs-small_fixes.patch
 # Patch1-md5:	28832d2c0aefb92ec17ebfe924c156e3
+Patch2:		xfsprogs-small_fixes.patch
 URL:		http://www.xfs.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	bash
+BuildRequires:	device-mapper-devel
 BuildRequires:	gettext-tools
 BuildRequires:	glibc-static
 BuildRequires:	libblkid-devel
+BuildRequires:	libicu-devel
 BuildRequires:	libtool
 BuildRequires:	libuuid-devel
 BuildRequires:	libuuid-static
@@ -119,10 +121,12 @@ Biblioteki statyczne do XFS.
 %configure \
 	DEBUG="%{?with_debug_asserts:-DDEBUG}%{!?with_debug_asserts:-DNDEBUG}" \
 	OPTIMIZER="%{rpmcflags}" \
+	--enable-libicu=yes \
 	--enable-lto=no \
 	--enable-blkid \
 	--enable-gettext \
-	--enable-readline
+	--enable-readline \
+	--enable-scrub=yes
 
 %{__make} -j1 \
 	V=1
@@ -181,6 +185,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /sbin/mkfs.xfs
 %attr(755,root,root) /sbin/xfs_repair
 %attr(755,root,root) %{_sbindir}/xfs_*
+%exclude %{_sbindir}/xfs_scrub*
 %attr(755,root,root) /%{_lib}/libhandle.so.*.*
 %attr(755,root,root) %ghost /%{_lib}/libhandle.so.1
 %dir %{_libdir}/%{name}
@@ -195,8 +200,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files scrub
 %defattr(644,root,root,755)
-%attr(755,root,root) /sbin/xfs_scrub
-%attr(755,root,root) /sbin/xfs_scrub_all
+%attr(755,root,root) %{_sbindir}/xfs_scrub
+%attr(755,root,root) %{_sbindir}/xfs_scrub_all
 %{systemdunitdir}/xfs_scrub@.service
 %{systemdunitdir}/xfs_scrub_all.service
 %{systemdunitdir}/xfs_scrub_all.timer
