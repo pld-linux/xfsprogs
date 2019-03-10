@@ -14,7 +14,7 @@ Source0:	https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{versio
 Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-pl.po-update.patch
-# Patch1-md5:	28832d2c0aefb92ec17ebfe924c156e3
+# Patch1-md5:	5fa89df413162a272aadfb3bdfe2330d
 Patch2:		xfsprogs-small_fixes.patch
 URL:		http://www.xfs.org/
 BuildRequires:	autoconf >= 2.50
