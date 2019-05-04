@@ -5,17 +5,16 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	4.20.0
-Release:	2
+Version:	5.0.0
+Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{version}.tar.gz
-# Source0-md5:	449e475ff861a184606c7d1500de7fb6
+# Source0-md5:	364f04af3708520bf3e6fb04dc19dc00
 Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-pl.po-update.patch
-# Patch1-md5:	5fa89df413162a272aadfb3bdfe2330d
-Patch2:		xfsprogs-small_fixes.patch
+# Patch1-md5:	28832d2c0aefb92ec17ebfe924c156e3
 URL:		http://www.xfs.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -111,7 +110,6 @@ Biblioteki statyczne do XFS.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %{__sed} -i -e '1s,/usr/bin/env python3,%{__python3},' scrub/xfs_scrub_all.in tools/xfsbuflock.py
 
