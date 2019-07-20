@@ -5,12 +5,12 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	5.0.0
+Version:	5.1.0
 Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{version}.tar.gz
-# Source0-md5:	364f04af3708520bf3e6fb04dc19dc00
+# Source0-md5:	d6b9d77398b55d5cc46872f59d9baf04
 Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-pl.po-update.patch
@@ -215,6 +215,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libhandle.so
 %{_libdir}/libhandle.la
 %{_includedir}/xfs
+%{_mandir}/man2/ioctl_xfs_fsbulkstat.2*
+%{_mandir}/man2/ioctl_xfs_fscounts.2*
+%{_mandir}/man2/ioctl_xfs_fsgetxattr.2*
+%{_mandir}/man2/ioctl_xfs_fsinumbers.2*
+%{_mandir}/man2/ioctl_xfs_fsop_geometry.2*
+%{_mandir}/man2/ioctl_xfs_getbmapx.2*
+%{_mandir}/man2/ioctl_xfs_getresblks.2*
+%{_mandir}/man2/ioctl_xfs_goingdown.2*
 %{_mandir}/man2/ioctl_xfs_scrub_metadata.2*
 %{_mandir}/man3/*handle.3*
 %{_mandir}/man3/xfsctl.3*
