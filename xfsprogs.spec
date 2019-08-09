@@ -5,16 +5,16 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	5.1.0
+Version:	5.2.0
 Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{version}.tar.gz
-# Source0-md5:	d6b9d77398b55d5cc46872f59d9baf04
+# Source0-md5:	60778c23bd19308cfd0386ad037c343a
 Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-pl.po-update.patch
-# Patch1-md5:	982e2509e52818baca10b4b270880ca4
+# Patch1-md5:	bdb70b0a4e906a99e52e04450f8cdd23
 URL:		http://www.xfs.org/
 # for <attr/attributes.h>
 BuildRequires:	attr-devel
