@@ -5,12 +5,12 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	5.2.1
-Release:	3
+Version:	5.3.0
+Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{version}.tar.gz
-# Source0-md5:	dc1b169cf2d8edc4366391dc5c2a2c60
+# Source0-md5:	04da67bde6faa87cb4ae3d96b0028fd4
 Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-pl.po-update.patch
@@ -111,7 +111,7 @@ Biblioteki statyczne do XFS.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
+#%patch1 -p1
 
 %{__sed} -i -e '1s,/usr/bin/env python3,%{__python3},' scrub/xfs_scrub_all.in tools/xfsbuflock.py
 
@@ -215,6 +215,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libhandle.so
 %{_libdir}/libhandle.la
 %{_includedir}/xfs
+%{_mandir}/man2/ioctl_xfs_ag_geometry.2*
+%{_mandir}/man2/ioctl_xfs_bulkstat.2*
 %{_mandir}/man2/ioctl_xfs_fsbulkstat.2*
 %{_mandir}/man2/ioctl_xfs_fscounts.2*
 %{_mandir}/man2/ioctl_xfs_fsgetxattr.2*
@@ -223,6 +225,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man2/ioctl_xfs_getbmapx.2*
 %{_mandir}/man2/ioctl_xfs_getresblks.2*
 %{_mandir}/man2/ioctl_xfs_goingdown.2*
+%{_mandir}/man2/ioctl_xfs_inumbers.2*
 %{_mandir}/man2/ioctl_xfs_scrub_metadata.2*
 %{_mandir}/man3/*handle.3*
 %{_mandir}/man3/xfsctl.3*
