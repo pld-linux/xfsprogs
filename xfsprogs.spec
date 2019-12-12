@@ -14,8 +14,8 @@ Source0:	https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{versio
 Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-pl.po-update.patch
-# Patch1-md5:	697215f7fd4c25a3f883861ed971896c
-URL:		http://www.xfs.org/
+# Patch1-md5:	8e3322fb60c0cf6912861e3e4ea10228
+URL:		https://www.xfs.org/
 # for <attr/attributes.h>
 BuildRequires:	attr-devel
 BuildRequires:	autoconf >= 2.50
@@ -111,7 +111,7 @@ Biblioteki statyczne do XFS.
 %prep
 %setup -q
 %patch0 -p1
-#%patch1 -p1
+%patch1 -p1
 
 %{__sed} -i -e '1s,/usr/bin/env python3,%{__python3},' scrub/xfs_scrub_all.in tools/xfsbuflock.py
 
