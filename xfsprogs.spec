@@ -15,7 +15,7 @@ Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-pl.po-update.patch
 # Patch1-md5:	8e3322fb60c0cf6912861e3e4ea10228
-URL:		https://www.xfs.org/
+URL:		https://xfs.wiki.kernel.org/
 # for <attr/attributes.h>
 BuildRequires:	attr-devel
 BuildRequires:	autoconf >= 2.50
