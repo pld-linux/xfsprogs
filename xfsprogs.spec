@@ -5,16 +5,16 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	5.7.0
+Version:	5.8.0
 Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
-Source0:	https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{version}.tar.gz
-# Source0-md5:	daea3ef5200d437041ba5318d59cdc1b
+Source0:	https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{version}.tar.xz
+# Source0-md5:	8227438c870493f95613b3d9c5e3fa2a
 Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-pl.po-update.patch
-# Patch1-md5:	a3ed4cd4404c20820811a6724afc9cfb
+# Patch1-md5:	e7f9f6330b61b45043302af7b7b33357
 URL:		https://xfs.wiki.kernel.org/
 # for <attr/attributes.h>
 BuildRequires:	attr-devel
@@ -25,14 +25,17 @@ BuildRequires:	device-mapper-devel
 BuildRequires:	gettext-tools
 BuildRequires:	glibc-static
 BuildRequires:	libblkid-devel
+# without .la file so that -static-libtool-libs won't take libedit.a
+BuildRequires:	libedit-devel >= 3.1-1.20191231.1
 BuildRequires:	libicu-devel
 BuildRequires:	libtool
 BuildRequires:	libuuid-devel
 BuildRequires:	libuuid-static
-BuildRequires:	readline-devel
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpmbuild(macros) >= 1.402
 BuildRequires:	sed >= 4.0
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
 Obsoletes:	xfsprogs-initrd
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -121,11 +124,11 @@ Biblioteki statyczne do XFS.
 %configure \
 	DEBUG="%{?with_debug_asserts:-DDEBUG}%{!?with_debug_asserts:-DNDEBUG}" \
 	OPTIMIZER="%{rpmcflags}" \
-	--enable-libicu=yes \
-	--enable-lto=no \
 	--enable-blkid \
+	--enable-editline \
 	--enable-gettext \
-	--enable-readline \
+	--enable-libicu \
+	--disable-lto \
 	--enable-scrub=yes
 
 %{__make} -j1 \
