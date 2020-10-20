@@ -5,16 +5,16 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	5.8.0
+Version:	5.9.0
 Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{version}.tar.xz
-# Source0-md5:	8227438c870493f95613b3d9c5e3fa2a
+# Source0-md5:	5edd6f3d34b1e9950c326c961b5b84c4
 Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-pl.po-update.patch
-# Patch1-md5:	e7f9f6330b61b45043302af7b7b33357
+# Patch1-md5:	e2816d80d75b69905d21b88e90cab3dd
 URL:		https://xfs.wiki.kernel.org/
 # for <attr/attributes.h>
 BuildRequires:	attr-devel
@@ -222,14 +222,19 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man2/ioctl_xfs_bulkstat.2*
 %{_mandir}/man2/ioctl_xfs_fsbulkstat.2*
 %{_mandir}/man2/ioctl_xfs_fscounts.2*
+%{_mandir}/man2/ioctl_xfs_fsgeometry.2*
 %{_mandir}/man2/ioctl_xfs_fsgetxattr.2*
+%{_mandir}/man2/ioctl_xfs_fsgetxattra.2*
 %{_mandir}/man2/ioctl_xfs_fsinumbers.2*
-%{_mandir}/man2/ioctl_xfs_fsop_geometry.2*
+%{_mandir}/man2/ioctl_xfs_fssetxattr.2*
+%{_mandir}/man2/ioctl_xfs_getbmap.2*
+%{_mandir}/man2/ioctl_xfs_getbmapa.2*
 %{_mandir}/man2/ioctl_xfs_getbmapx.2*
 %{_mandir}/man2/ioctl_xfs_getresblks.2*
 %{_mandir}/man2/ioctl_xfs_goingdown.2*
 %{_mandir}/man2/ioctl_xfs_inumbers.2*
 %{_mandir}/man2/ioctl_xfs_scrub_metadata.2*
+%{_mandir}/man2/ioctl_xfs_setresblks.2*
 %{_mandir}/man3/*handle.3*
 %{_mandir}/man3/xfsctl.3*
 
