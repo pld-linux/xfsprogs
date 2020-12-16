@@ -5,16 +5,16 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	5.9.0
+Version:	5.10.0
 Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{version}.tar.xz
-# Source0-md5:	5edd6f3d34b1e9950c326c961b5b84c4
+# Source0-md5:	f4156af67a0e247833be88efaa2869f9
 Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-pl.po-update.patch
-# Patch1-md5:	e2816d80d75b69905d21b88e90cab3dd
+# Patch1-md5:	1b41527cf19426d6059615c7d82b71e8
 URL:		https://xfs.wiki.kernel.org/
 # for <attr/attributes.h>
 BuildRequires:	attr-devel
@@ -24,6 +24,7 @@ BuildRequires:	bash
 BuildRequires:	device-mapper-devel
 BuildRequires:	gettext-tools
 BuildRequires:	glibc-static
+BuildRequires:	inih-devel
 BuildRequires:	libblkid-devel
 # without .la file so that -static-libtool-libs won't take libedit.a
 BuildRequires:	libedit-devel >= 3.1-1.20191231.1
