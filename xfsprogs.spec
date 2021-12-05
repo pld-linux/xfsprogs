@@ -5,12 +5,12 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	5.13.0
+Version:	5.14.1
 Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{version}.tar.xz
-# Source0-md5:	86777a5762f2e524bb9acfdead5a9045
+# Source0-md5:	e294efdf72a1871fa91eb02a500c555a
 Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-pl.po-update.patch
@@ -34,6 +34,8 @@ BuildRequires:	libuuid-devel
 BuildRequires:	libuuid-static
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpmbuild(macros) >= 1.402
+BuildRequires:	userspace-rcu-devel
+BuildRequires:	userspace-rcu-static
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
@@ -132,7 +134,7 @@ Biblioteki statyczne do XFS.
 	--disable-lto \
 	--enable-scrub=yes
 
-%{__make} -j1 \
+%{__make} \
 	V=1
 
 %install
