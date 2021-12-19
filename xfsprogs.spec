@@ -14,7 +14,7 @@ Source0:	https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{versio
 Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-pl.po-update.patch
-# Patch1-md5:	5996ff94e993eb0f956376bffce8d77d
+# Patch1-md5:	64eeb6dd8b449b952afa5e49a744447f
 URL:		https://xfs.wiki.kernel.org/
 # for <attr/attributes.h>
 BuildRequires:	attr-devel
@@ -39,7 +39,7 @@ BuildRequires:	userspace-rcu-static
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
-Obsoletes:	xfsprogs-initrd
+Obsoletes:	xfsprogs-initrd < 3.1.11-2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %if "%{pld_release}" == "ac"
