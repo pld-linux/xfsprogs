@@ -6,7 +6,7 @@ Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
 Version:	5.19.0
-Release:	2
+Release:	3
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{version}.tar.xz
@@ -93,6 +93,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe i biblioteki
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	libuuid-devel
+Requires:	linux-libc-headers
 
 %description devel
 Header files and libraries to develop software which operates on XFS
