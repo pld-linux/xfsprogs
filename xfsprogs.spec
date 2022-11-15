@@ -30,8 +30,10 @@ BuildRequires:	libicu-devel
 BuildRequires:	libtool
 BuildRequires:	libuuid-devel
 BuildRequires:	libuuid-static
+BuildRequires:	pkgconfig
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpmbuild(macros) >= 1.402
+BuildRequires:	systemd-devel
 BuildRequires:	userspace-rcu-devel
 BuildRequires:	userspace-rcu-static
 BuildRequires:	sed >= 4.0
