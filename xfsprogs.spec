@@ -1,6 +1,7 @@
 #
 # Conditional build:
 %bcond_without	debug_asserts
+%bcond_without	scrub
 #
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
@@ -35,7 +36,7 @@ BuildRequires:	libuuid-static
 BuildRequires:	pkgconfig
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpmbuild(macros) >= 1.402
-BuildRequires:	systemd-devel
+%{?with_scrub:BuildRequires:	systemd-devel}
 BuildRequires:	userspace-rcu-devel
 BuildRequires:	userspace-rcu-static
 BuildRequires:	sed >= 4.0
@@ -135,7 +136,7 @@ Biblioteki statyczne do XFS.
 	--enable-gettext \
 	--enable-libicu \
 	--disable-lto \
-	--enable-scrub=yes
+	%{?with_scrub:--enable-scrub=yes}
 
 %{__make} \
 	V=1
@@ -166,7 +167,11 @@ ln -sf /%{_lib}/$(basename $RPM_BUILD_ROOT/%{_lib}/libhandle.so.*.*.*) \
 %{__rm} $RPM_BUILD_ROOT/%{_lib}/libhandle.{so,la,a}
 
 # install cron file
+%if %{with scrub}
 %{__mv} $RPM_BUILD_ROOT{%{_libdir}/%{name}/xfs_scrub_all.cron,/etc/cron.d/xfs_scrub_all}
+%else
+%{__rm} $RPM_BUILD_ROOT/%{_libdir}/%{name}/xfs_scrub_all.cron
+%endif
 
 # (config file paths are specified in libfrog/projects.c)
 echo "#10:/mnt/ftp/roman"  >> $RPM_BUILD_ROOT/etc/projects
@@ -194,20 +199,27 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /sbin/mkfs.xfs
 %attr(755,root,root) /sbin/xfs_repair
 %attr(755,root,root) %{_sbindir}/xfs_*
+%if %{with scrub}
 %exclude %{_sbindir}/xfs_scrub*
+%endif
 %attr(755,root,root) /%{_lib}/libhandle.so.*.*
 %attr(755,root,root) %ghost /%{_lib}/libhandle.so.1
 %{_datadir}/%{name}
 %dir %{_libdir}/%{name}
+%if %{with scrub}
 %attr(755,root,root) %{_libdir}/%{name}/xfs_scrub_fail
+%endif
 %{_mandir}/man5/projects.5*
 %{_mandir}/man5/projid.5*
 %{_mandir}/man5/xfs.5*
 %{_mandir}/man8/fsck.xfs.8*
 %{_mandir}/man8/mkfs.xfs.8*
 %{_mandir}/man8/xfs_*.8*
+%if %{with scrub}
 %exclude %{_mandir}/man8/xfs_scrub*.8*
+%endif
 
+%if %{with scrub}
 %files scrub
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_sbindir}/xfs_scrub
@@ -219,6 +231,7 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not md5 mtime size) /etc/cron.d/xfs_scrub_all
 %{_mandir}/man8/xfs_scrub.8*
 %{_mandir}/man8/xfs_scrub_all.8*
+%endif
 
 %files devel
 %defattr(644,root,root,755)
