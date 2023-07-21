@@ -15,7 +15,7 @@ Source0:	https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{versio
 Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-pl.po-update.patch
-# Patch1-md5:	ec989fa2cc45cb5ff8b4cba2b5eb0fa7
+# Patch1-md5:	55cb49efcff3c0610da1c6408d936c58
 URL:		https://xfs.wiki.kernel.org/
 # for <attr/attributes.h>
 BuildRequires:	attr-devel
