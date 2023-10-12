@@ -6,12 +6,12 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	6.4.0
+Version:	6.5.0
 Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{version}.tar.xz
-# Source0-md5:	81c09e5ea47412c3a109a316cf4dd39d
+# Source0-md5:	312d4f63c02c63a6b8b8b80a9ada11c6
 Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-pl.po-update.patch
@@ -136,7 +136,8 @@ Biblioteki statyczne do XFS.
 	--enable-gettext \
 	--enable-libicu \
 	--disable-lto \
-	%{?with_scrub:--enable-scrub=yes}
+	%{?with_scrub:--enable-scrub=yes} \
+	--with-udev-rule-dir=/lib/udev/rules.d
 
 %{__make} \
 	V=1
@@ -224,6 +225,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_sbindir}/xfs_scrub
 %attr(755,root,root) %{_sbindir}/xfs_scrub_all
+/lib/udev/rules.d/64-xfs.rules
 %{systemdunitdir}/xfs_scrub@.service
 %{systemdunitdir}/xfs_scrub_all.service
 %{systemdunitdir}/xfs_scrub_all.timer
