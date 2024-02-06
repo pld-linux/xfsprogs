@@ -6,16 +6,15 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	6.5.0
+Version:	6.6.0
 Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{version}.tar.xz
-# Source0-md5:	312d4f63c02c63a6b8b8b80a9ada11c6
+# Source0-md5:	c008a752fae65aaf761096eb4698df86
 Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
-Patch1:		%{name}-pl.po-update.patch
-# Patch1-md5:	3c78f00b0e93eb10c4866216a2d0409b
+# Patch1-md5:	55cb49efcff3c0610da1c6408d936c58
 URL:		https://xfs.wiki.kernel.org/
 # for <attr/attributes.h>
 BuildRequires:	attr-devel
@@ -121,7 +120,6 @@ Biblioteki statyczne do XFS.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %{__sed} -i -e '1s,/usr/bin/env python3,%{__python3},' scrub/xfs_scrub_all.in tools/xfsbuflock.py
 
@@ -169,9 +167,9 @@ ln -sf /%{_lib}/$(basename $RPM_BUILD_ROOT/%{_lib}/libhandle.so.*.*.*) \
 
 # install cron file
 %if %{with scrub}
-%{__mv} $RPM_BUILD_ROOT{%{_libdir}/%{name}/xfs_scrub_all.cron,/etc/cron.d/xfs_scrub_all}
+%{__mv} $RPM_BUILD_ROOT{%{_datadir}/%{name}/xfs_scrub_all.cron,/etc/cron.d/xfs_scrub_all}
 %else
-%{__rm} $RPM_BUILD_ROOT/%{_libdir}/%{name}/xfs_scrub_all.cron
+%{__rm} $RPM_BUILD_ROOT/%{_datadir}/%{name}/xfs_scrub_all.cron
 %endif
 
 # (config file paths are specified in libfrog/projects.c)
@@ -206,9 +204,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /%{_lib}/libhandle.so.*.*
 %attr(755,root,root) %ghost /%{_lib}/libhandle.so.1
 %{_datadir}/%{name}
-%dir %{_libdir}/%{name}
+%dir %{_libexecdir}/%{name}
 %if %{with scrub}
-%attr(755,root,root) %{_libdir}/%{name}/xfs_scrub_fail
+%attr(755,root,root) %{_libexecdir}/%{name}/xfs_scrub_fail
 %endif
 %{_mandir}/man5/projects.5*
 %{_mandir}/man5/projid.5*
