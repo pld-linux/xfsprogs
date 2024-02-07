@@ -1,0 +1,409 @@
+--- xfsprogs-6.6.0/po/pl.po.orig	2024-02-05 13:42:58.000000000 +0100
++++ xfsprogs-6.6.0/po/pl.po	2024-02-07 22:03:00.183263603 +0100
+@@ -1,13 +1,13 @@
+ # Polish translation for xfsprogs.
+ # This file is distributed under the same license as the xfsprogs package.
+-# Jakub Bogusz <qboosh@pld-linux.org>, 2006-2023.
++# Jakub Bogusz <qboosh@pld-linux.org>, 2006-2024.
+ #
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: xfsprogs 6.5.0\n"
++"Project-Id-Version: xfsprogs 6.6.0\n"
+ "Report-Msgid-Bugs-To: \n"
+-"POT-Creation-Date: 2023-10-12 13:31+0200\n"
+-"PO-Revision-Date: 2023-10-18 19:10+0200\n"
++"POT-Creation-Date: 2024-02-05 13:58+0100\n"
++"PO-Revision-Date: 2024-02-06 17:02+0100\n"
+ "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
+ "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
+ "Language: pl\n"
+@@ -301,7 +251,12 @@ msgstr ""
+ msgid "\tIs target \"%s\" too small?\n"
+ msgstr "\tCzy cel \"%s\" jest zbyt mały?\n"
+ 
+-#: .././copy/xfs_copy.c:910
++#: .././copy/xfs_copy.c:902
++#, c-format
++msgid "%s:  short write to last block: %zd bytes, %zu expected\n"
++msgstr "%s: skrócony zapis do ostatniego bloku: bajtów %zd, oczekiwano %zu\n"
++
++#: .././copy/xfs_copy.c:915
+ msgid "Couldn't initialize global thread mask\n"
+ msgstr "Nie udało się zainicjować globalnej maski wątków\n"
+ 
+@@ -576,10 +581,10 @@ msgstr ""
+ msgid "\tbyte offset %lld, length %d\n"
+ msgstr "\toffset w bajtach %lld, długość %d\n"
+ 
+-#: .././db/io.c:149
++#: .././db/io.c:177
+ #, c-format
+-msgid "\tbuffer block %lld (fsbno %lld), %d bb%s\n"
+-msgstr "\tblok bufora %lld (fsbno %lld), %d bb%s\n"
++msgid "\tbuffer block %lld (%s %lld), %d bb%s\n"
++msgstr "\tblok bufora %lld (%s %lld), %d bb%s\n"
+ 
+ #: .././db/io.c:153 .././db/io.c:541
+ #, c-format
+@@ -1246,7 +1251,17 @@ msgstr ""
+ " 'daddr 102' ustawia pozycję na 102. (bezwzględnie) blok dysku\n"
+ " (blok 512-bajtowy).\n"
+ 
+-#: .././db/block.c:129
++#: .././db/block.c:132
++#, c-format
++msgid "datadev daddr is %lld\n"
++msgstr "datadev daddr to %lld\n"
++
++#: .././db/block.c:134
++#, c-format
++msgid "logdev daddr is %lld\n"
++msgstr "logdev daddr to %lld\n"
++
++#: .././db/block.c:136
+ #, c-format
+ msgid "current daddr is %lld\n"
+ msgstr "bieżący daddr to %lld\n"
+@@ -1299,7 +1314,11 @@ msgstr ""
+ " trakcie wykonywania mkfs. Offset jest bezwzględny (nie względem AG).\n"
+ "\n"
+ 
+-#: .././db/block.c:223
++#: .././db/block.c:232
++msgid "cursor does not point to data device\n"
++msgstr "kursor nie wskazuje na urządzenie danych\n"
++
++#: .././db/block.c:235
+ #, c-format
+ msgid "current fsblock is %lld\n"
+ msgstr "bieżący fsblock to %lld\n"
+@@ -3858,8 +3877,8 @@ msgid "Bad btree magic 0x%x; coercing to
+ msgstr "Niewłaściwa liczba magiczna b-drzewa 0x%x; wymuszenie na %s.\n"
+ 
+ #: .././db/metadump.c:41
+-msgid "[-a] [-e] [-g] [-m max_extent] [-w] [-o] filename"
+-msgstr "[-a] [-e] [-g] [-m max_extent] [-w] [-o] nazwa-pliku"
++msgid "[-a] [-e] [-g] [-m max_extent] [-w] [-o] [-v 1|2] filename"
++msgstr "[-a] [-e] [-g] [-m max_extent] [-w] [-o] [-v 1|2] nazwa-pliku"
+ 
+ #: .././db/metadump.c:42
+ msgid "dump metadata to a file"
+@@ -3879,6 +3898,7 @@ msgid ""
+ "   -g -- Display dump progress\n"
+ "   -m -- Specify max extent size in blocks to copy (default = %d blocks)\n"
+ "   -o -- Don't obfuscate names and extended attributes\n"
++"   -v -- Metadump version to be used\n"
+ "   -w -- Show warnings of bad metadata information\n"
+ "\n"
+ msgstr ""
+@@ -3898,10 +3918,11 @@ msgstr ""
+ "skopiowania\n"
+ "        (domyślnie %d bloków)\n"
+ "   -o - bez zaciemniania nazw i rozszerzonych atrybutów\n"
++"   -v - wersja metadanych, jaka ma być użyta\n"
+ "   -w - wyświetlanie ostrzeżeń o błędnych metadanych\n"
+ "\n"
+ 
+-#: .././db/metadump.c:2633
++#: .././db/metadump.c:2640
+ msgid ""
+ "Warning: log recovery of an obfuscated metadata image can leak unobfuscated "
+ "metadata and/or cause image corruption.  If possible, please mount the "
+@@ -6477,22 +6498,24 @@ msgid ""
+ " or (optionally) take an inode number and generation number to act upon as\n"
+ " the second and third parameters.\n"
+ "\n"
++" Flags are -R to force rebuilding metadata.\n"
++"\n"
+ " Example:\n"
+ " 'repair inobt 3' - repairs the inode btree in AG 3.\n"
+ " 'repair bmapbtd 128 13525' - repairs the extent map of inode 128 gen "
+ "13525.\n"
+ "\n"
+-" Known metadata repairs types are:"
++" Known metadata repair types are:"
+ msgstr ""
+ "\n"
+ " Naprawienie fragmentu metadanych systemu plików XFS. Pierwszy argument to\n"
+-" typ metadanych do zbadania. Typy metadanych AG przyjmują jeden numer AG "
+-"jako\n"
+-" drugi parametr. Typy metadanych i-węzłów działają na aktualnie otwartym "
+-"pliku\n"
+-" lub (opcjonalnie) przyjmują numer i-węzła i numer generacji do działania "
+-"jako\n"
+-" drugi i trzeci parametr.\n"
++" typ metadanych do zbadania. Typy metadanych grup alokacji przyjmują jeden\n"
++" numer AG jako drugi parametr. Typy metadanych i-węzłów działają na "
++"aktualnie\n"
++" otwartym pliku lub (opcjonalnie) przyjmują numer i-węzła i numer generacji\n"
++" do działania jako drugi i trzeci parametr.\n"
++"\n"
++" Flagi to -R, aby wymusić przebudowanie metadanych.\n"
+ "\n"
+ " Przykład:\n"
+ " 'repair inobt 3' - naprawienie b-drzewa i-węzła w AG 3.\n"
+@@ -6991,6 +7014,7 @@ msgid ""
+ " -c MODE -- contents encryption mode\n"
+ " -n MODE -- filenames encryption mode\n"
+ " -f FLAGS -- policy flags\n"
++" -s LOG2_DUSIZE -- log2 of data unit size\n"
+ " -v VERSION -- policy version\n"
+ "\n"
+ " MODE can be numeric or one of the following predefined values:\n"
+@@ -7013,6 +7037,7 @@ msgstr ""
+ " -c TRYB - tryb szyfrowania zawartości\n"
+ " -n TRYB - tryb szyfrowania nazw plików\n"
+ " -f FLAGI - flagi polityki\n"
++" -s LOG2_ROZMJEDN - log2 rozmiaru jednostki danych\n"
+ " -v WERSJA - wersja polityki\n"
+ "\n"
+ " TRYB może być liczbą lub jedną z następujących wartości:\n"
+@@ -7224,96 +7249,102 @@ msgstr ""
+ msgid "invalid flags: %s\n"
+ msgstr "nieprawidłowe flagi: %s\n"
+ 
+-#: .././io/encrypt.c:632
++#: .././io/encrypt.c:650
++#, c-format
++msgid "invalid log2_dusize: %s\n"
++msgstr "nieprawidłowy log2 rozmiaru jednostki: %s\n"
++
++#: .././io/encrypt.c:661
+ #, c-format
+ msgid "invalid policy version: %s\n"
+ msgstr "nieprawidłowa wersja polityki: %s\n"
+ 
+-#: .././io/encrypt.c:691
++#: .././io/encrypt.c:727
+ #, c-format
+ msgid "%s: failed to set encryption policy: %s\n"
+ msgstr "%s: nie udało się ustawić polityki szyfrowania: %s\n"
+ 
+-#: .././io/encrypt.c:765
++#: .././io/encrypt.c:801
+ #, c-format
+ msgid "Error reading key from stdin: %s\n"
+ msgstr "Błąd podczas odczytu klucza ze standardowego wejścia: %s\n"
+ 
+-#: .././io/encrypt.c:772
++#: .././io/encrypt.c:808
+ #, c-format
+ msgid "Invalid key; got > FSCRYPT_MAX_KEY_SIZE (%d) bytes on stdin!\n"
+ msgstr ""
+ "Błędny klucz; otrzymano > FSCRYPT_MAX_KEY_SIZE (%d) bajtów ze standardowego "
+ "wejścia!\n"
+ 
+-#: .././io/encrypt.c:781
++#: .././io/encrypt.c:817
+ #, c-format
+ msgid "Error adding encryption key: %s\n"
+ msgstr "Błąd podczas dodawania klucza szyfrującego: %s\n"
+ 
+-#: .././io/encrypt.c:786
++#: .././io/encrypt.c:822
+ #, c-format
+ msgid "Added encryption key with %s %s\n"
+ msgstr "Dodano klucz szyfrujący, mający %s %s\n"
+ 
+-#: .././io/encrypt.c:827
++#: .././io/encrypt.c:863
+ #, c-format
+ msgid "Error removing encryption key: %s\n"
+ msgstr "Błąd podczas usuwania klucza szyfrującego: %s\n"
+ 
+-#: .././io/encrypt.c:834
++#: .././io/encrypt.c:870
+ #, c-format
+ msgid "Removed user's claim to encryption key with %s %s\n"
+ msgstr "Usunięto prawo użytkownika do klucza szyfrującego, mającego %s %s\n"
+ 
+-#: .././io/encrypt.c:838
++#: .././io/encrypt.c:874
+ #, c-format
+ msgid "Removed encryption key with %s %s, but files still busy\n"
+ msgstr "Usunięto klucz szyfrujący, mający %s %s, ale pliki są nadal zajęte\n"
+ 
+-#: .././io/encrypt.c:841
++#: .././io/encrypt.c:877
+ #, c-format
+ msgid "Removed encryption key with %s %s\n"
+ msgstr "Usunięto klucz szyfrujący, mający %s %s\n"
+ 
+-#: .././io/encrypt.c:860
++#: .././io/encrypt.c:896
+ #, c-format
+ msgid "Error getting encryption key status: %s\n"
+ msgstr "Błąd podczas pobierania stanu klucza szyfrującego: %s\n"
+ 
+-#: .././io/encrypt.c:868
++#: .././io/encrypt.c:904
+ #, c-format
+ msgid "Present"
+ msgstr "Obecny"
+ 
+-#: .././io/encrypt.c:884
++#: .././io/encrypt.c:920
+ #, c-format
+ msgid "Absent\n"
+ msgstr "Nieobecny\n"
+ 
+-#: .././io/encrypt.c:887
++#: .././io/encrypt.c:923
+ #, c-format
+ msgid "Incompletely removed\n"
+ msgstr "Usunięty częściowo\n"
+ 
+-#: .././io/encrypt.c:890
++#: .././io/encrypt.c:926
+ #, c-format
+ msgid "Unknown status (%u)\n"
+ msgstr "Nieznany stan (%u)\n"
+ 
+-#: .././io/encrypt.c:900
++#: .././io/encrypt.c:936
+ msgid "[-1] [-t]"
+ msgstr "[-1] [-t]"
+ 
+-#: .././io/encrypt.c:905
++#: .././io/encrypt.c:941
+ msgid "display the encryption policy of the current file"
+ msgstr "wyświetlenie polityki szyfrowania bieżącego pliku"
+ 
+-#: .././io/encrypt.c:911
+-msgid "[-c mode] [-n mode] [-f flags] [-v version] [keyspec]"
+-msgstr "[-c tryb] [-n tryb] [-f flagi] [-v wersja] [opis_klucza]"
++#: .././io/encrypt.c:947
++msgid "[-c mode] [-n mode] [-f flags] [-s log2_dusize] [-v version] [keyspec]"
++msgstr ""
++"[-c tryb] [-n tryb] [-f flagi] [-s log2_rozmjedn] [-v wersja] [opis_klucza]"
+ 
+-#: .././io/encrypt.c:916
++#: .././io/encrypt.c:952
+ msgid "assign an encryption policy to the current file"
+ msgstr "przypisanie polityki szyfrowania do bieżącego pliku"
+ 
+@@ -8391,56 +8422,16 @@ msgstr "odczytano %s %lld/%lld bajtów o
+ msgid "%s, %d ops; %s (%s/sec and %.4f ops/sec)\n"
+ msgstr "%s, %d operacji; %s (%s/sek i %.4f operacji/sek)\n"
+ 
+-#: .././libxfs/init.c:86 .././libxfs/init.c:194
+-#, c-format
+-msgid "%s: %s: device %lld is not open\n"
+-msgstr "%s: %s: urządzenie %lld nie jest otwarte\n"
+-
+ #: .././libxfs/init.c:122
+ #, c-format
+ msgid "%s: cannot stat %s: %s\n"
+ msgstr "%s: nie można wykonać stat na %s: %s\n"
+ 
+-#: .././libxfs/init.c:151
+-#, c-format
+-msgid "%s: device %lld is already open\n"
+-msgstr "%s: urządzenie %lld jest już otwarte\n"
+-
+-#: .././libxfs/init.c:164
+-#, c-format
+-msgid "%s: %s: too many open devices\n"
+-msgstr "%s: %s: zbyt dużo otwartych urządzeń\n"
+-
+ #: .././libxfs/init.c:186
+ #, c-format
+ msgid "%s: flush of device %lld failed, err=%d"
+ msgstr "%s: opróżnienie buforów urządzenia %lld nie powiódł się, błąd=%d"
+ 
+-#: .././libxfs/init.c:212
+-#, c-format
+-msgid "%s: can't find a character device matching %s\n"
+-msgstr "%s: nie można odnaleźć urządzenia znakowego odpowiadającego %s\n"
+-
+-#: .././libxfs/init.c:218
+-#, c-format
+-msgid "%s: can't find a block device matching %s\n"
+-msgstr "%s: nie można odnaleźć urządzenia blokowego odpowiadającego %s\n"
+-
+-#: .././libxfs/init.c:398
+-#, c-format
+-msgid "%s: can't get size for data subvolume\n"
+-msgstr "%s: nie można pobrać rozmiaru podwolumenu danych\n"
+-
+-#: .././libxfs/init.c:403
+-#, c-format
+-msgid "%s: can't get size for log subvolume\n"
+-msgstr "%s: nie można pobrać rozmiaru podwolumenu logu\n"
+-
+-#: .././libxfs/init.c:408
+-#, c-format
+-msgid "%s: can't get size for realtime subvolume\n"
+-msgstr "%s: nie można pobrać rozmiaru podwolumenu realtime\n"
+-
+ #: .././libxfs/init.c:454
+ #, c-format
+ msgid ""
+@@ -8772,11 +8763,6 @@ msgstr "uwaga: nie udało się odczytać
+ msgid "%s: cannot find log head/tail (xlog_find_tail=%d)\n"
+ msgstr "%s: nie odnaleziono początku/końca logu (xlog_find_tail=%d)\n"
+ 
+-#: .././libxlog/util.c:63
+-#, c-format
+-msgid "%s: head block %<PRId64> tail block %<PRId64>\n"
+-msgstr "%s: blok początku %<PRId64> blok końca %<PRId64>\n"
+-
+ #: .././libxlog/util.c:85
+ #, c-format
+ msgid ""
+@@ -10492,16 +10478,7 @@ msgstr ""
+ "Uwaga: rozmiar sektora podwolumenu danych %u jest mniejszy od rozmiaru\n"
+ "sektora zgłaszanego przez urządzenie (%u).\n"
+ 
+-#: .././mkfs/xfs_mkfs.c:2949
+-msgid "volume log"
+-msgstr "log na wolumenie"
+-
+-#: .././mkfs/xfs_mkfs.c:2958
+-#, c-format
+-msgid "can't have both external and internal logs\n"
+-msgstr "nie można mieć jednocześnie zewnętrznego i wewnętrznego logu\n"
+-
+-#: .././mkfs/xfs_mkfs.c:2974
++#: .././mkfs/xfs_mkfs.c:2943
+ #, c-format
+ msgid "data and log sector sizes must be equal for internal logs\n"
+ msgstr ""
+@@ -10549,11 +10526,7 @@ msgstr ""
+ msgid "Invalid zero length rt subvolume found\n"
+ msgstr "Znaleziono błędną zerową długość podwolumenu rt\n"
+ 
+-#: .././mkfs/xfs_mkfs.c:3048
+-msgid "volume rt"
+-msgstr "wolumen rt"
+-
+-#: .././mkfs/xfs_mkfs.c:3055
++#: .././mkfs/xfs_mkfs.c:3011
+ #, c-format
+ msgid ""
+ "size %s specified for rt subvolume is too large, maxi->um is %lld blocks\n"
+@@ -17983,6 +17956,10 @@ msgstr "Zamykanie systemu plików!"
+ msgid "closing mountpoint fd"
+ msgstr "zamykanie deskryptora punktu montowania"
+ 
++#: .././scrub/phase1.c:89
++msgid "force_repair"
++msgstr "force_repair"
++
+ #: .././scrub/phase1.c:92
+ msgid "Must be root to run scrub."
+ msgstr "Do uruchomienia procesu scrub trzeba być rootem."
+@@ -18130,7 +18107,11 @@ msgstr "Znikł podczas raportowania bł�
+ msgid "disk offset %<PRIu64>"
+ msgstr "offset na dysku %<PRIu64>"
+ 
+-#: .././scrub/phase6.c:400
++#: .././scrub/phase6.c:408
++msgid "media error detected."
++msgstr "wykryto błąd nośnika."
++
++#: .././scrub/phase6.c:410
+ #, c-format
+ msgid "media error in %s."
+ msgstr "błąd nośnika: %s."
