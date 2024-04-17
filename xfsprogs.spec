@@ -2,6 +2,7 @@
 # Conditional build:
 %bcond_without	debug_asserts
 %bcond_without	scrub
+%bcond_without	static_libs	# static library
 #
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
@@ -34,7 +35,7 @@ BuildRequires:	libuuid-devel
 BuildRequires:	libuuid-static
 BuildRequires:	pkgconfig
 BuildRequires:	rpm >= 4.4.9-56
-BuildRequires:	rpmbuild(macros) >= 1.402
+BuildRequires:	rpmbuild(macros) >= 1.527
 %{?with_scrub:BuildRequires:	systemd-devel}
 BuildRequires:	userspace-rcu-devel
 BuildRequires:	userspace-rcu-static
@@ -135,6 +136,7 @@ Biblioteki statyczne do XFS.
 	--enable-libicu \
 	--disable-lto \
 	%{?with_scrub:--enable-scrub=yes} \
+	%{__enable_disable static_libs static} \
 	--with-udev-rule-dir=/lib/udev/rules.d
 
 %{__make} \
@@ -258,6 +260,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*handle.3*
 %{_mandir}/man3/xfsctl.3*
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libhandle.a
+%endif
