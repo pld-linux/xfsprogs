@@ -6,12 +6,12 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	6.6.0
+Version:	6.7.0
 Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{version}.tar.xz
-# Source0-md5:	c008a752fae65aaf761096eb4698df86
+# Source0-md5:	0bde7bc8b3d8cbbd01064f756f67911f
 Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-pl.po-update.patch
@@ -130,7 +130,6 @@ Biblioteki statyczne do XFS.
 %configure \
 	DEBUG="%{?with_debug_asserts:-DDEBUG}%{!?with_debug_asserts:-DNDEBUG}" \
 	OPTIMIZER="%{rpmcflags}" \
-	--enable-blkid \
 	--enable-editline \
 	--enable-gettext \
 	--enable-libicu \
