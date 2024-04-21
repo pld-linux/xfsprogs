@@ -121,7 +121,14 @@ Biblioteki statyczne do XFS.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
+
+# files order in pot changes in every version, making diff huge - sort entries first
+%{__mv} po/xfsprogs.pot po/xfsprogs.pot.upstream
+msgcat -F po/xfsprogs.pot.upstream -o po/xfsprogs.pot
+# update line numbers etc.
+%{__mv} po/pl.po po/pl.po.upstream
+msgmerge po/pl.po.upstream po/xfsprogs.pot -o po/pl.po
+%patch1 -p1 -b .orig
 
 %{__sed} -i -e '1s,/usr/bin/env python3,%{__python3},' scrub/xfs_scrub_all.in tools/xfsbuflock.py
 
