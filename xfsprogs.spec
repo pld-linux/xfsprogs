@@ -213,8 +213,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /%{_lib}/libhandle.so.*.*
 %attr(755,root,root) %ghost /%{_lib}/libhandle.so.1
 %{_datadir}/%{name}
-%dir %{_libexecdir}/%{name}
 %if %{with scrub}
+%dir %{_libexecdir}/%{name}
 %attr(755,root,root) %{_libexecdir}/%{name}/xfs_scrub_fail
 %endif
 %{_mandir}/man5/projects.5*
