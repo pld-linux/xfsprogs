@@ -1,7 +1,8 @@
 #
 # Conditional build:
 %bcond_without	debug_asserts
-%bcond_without	scrub
+%bcond_without	libicu		# libicu (unicode scanning in xfs_scrub)
+%bcond_without	scrub		# xfs_scrub utility
 %bcond_without	static_libs	# static library
 #
 Summary:	Tools for the XFS filesystem
@@ -29,7 +30,7 @@ BuildRequires:	inih-devel
 BuildRequires:	libblkid-devel
 # without .la file so that -static-libtool-libs won't take libedit.a
 BuildRequires:	libedit-devel >= 3.1-1.20191231.1
-BuildRequires:	libicu-devel
+%{?with_libicu:BuildRequires:	libicu-devel}
 BuildRequires:	libtool
 BuildRequires:	libuuid-devel
 BuildRequires:	libuuid-static
@@ -140,7 +141,7 @@ msgmerge po/pl.po.upstream po/xfsprogs.pot -o po/pl.po
 	OPTIMIZER="%{rpmcflags}" \
 	--enable-editline \
 	--enable-gettext \
-	--enable-libicu \
+	%{__enable_disable libicu libicu} \
 	--disable-lto \
 	%{?with_scrub:--enable-scrub=yes} \
 	%{__enable_disable static_libs static} \
