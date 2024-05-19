@@ -11,7 +11,7 @@
 -"Project-Id-Version: xfsprogs 6.5.0\n"
 +"Project-Id-Version: xfsprogs 6.7.0\n"
  "Report-Msgid-Bugs-To: \n"
- "POT-Creation-Date: 2024-04-17 10:04+0200\n"
+ "POT-Creation-Date: 2024-05-17 13:36+0200\n"
 -"PO-Revision-Date: 2023-10-18 19:10+0200\n"
 +"PO-Revision-Date: 2024-04-21 09:12+0200\n"
  "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
@@ -137,7 +137,7 @@
 @@ -7656,7 +7657,7 @@ msgid "scrubs filesystem metadata"
  msgstr "doczyszczenie metadanych systemu plików"
  
- #: .././io/scrub.c:249
+ #: .././io/scrub.c:250
 -#, fuzzy, c-format
 +#, c-format
  msgid ""
@@ -167,18 +167,19 @@
 @@ -12782,13 +12783,13 @@ msgstr ""
  "Do naprawy tego systemu plików niezbędny jest system 64-bitowy.\n"
  
- #: .././repair/bmap.c:298
+ #: .././repair/bmap.c:299
 -#, fuzzy, c-format
 +#, c-format
  msgid ""
- "Number of extents requested in blkmap_grow (%d) overflowed the\n"
- "maximum number of supported extents (%ld).\n"
+ "Number of extents requested in blkmap_grow (%llu) overflowed the\n"
+ "maximum number of supported extents (%llu).\n"
  msgstr ""
- "Liczba ekstentów żądanych w blkmap_grow (%d) przepełniła maksymalną\n"
+-"Liczba ekstentów żądanych w blkmap_grow (%d) przepełniła maksymalną\n"
 -"liczbę obsługiwanych ekstentów (%d).\n"
-+"liczbę obsługiwanych ekstentów (%ld).\n"
++"Liczba ekstentów żądanych w blkmap_grow (%llu) przepełniła maksymalną\n"
++"liczbę obsługiwanych ekstentów (%llu).\n"
  
- #: .././repair/bmap.c:307
+ #: .././repair/bmap.c:308
  msgid "realloc failed in blkmap_grow\n"
 @@ -17900,9 +17901,8 @@ msgid "closing mountpoint fd"
  msgstr "zamykanie deskryptora punktu montowania"
@@ -194,15 +195,15 @@
 @@ -18073,9 +18073,8 @@ msgid "disk offset %<PRIu64>"
  msgstr "offset na dysku %<PRIu64>"
  
- #: .././scrub/phase6.c:408
+ #: .././scrub/phase6.c:418
 -#, fuzzy
  msgid "media error detected."
 -msgstr "błąd nośnika w mapie ekstentów"
 +msgstr "wykryto błąd nośnika."
  
- #: .././scrub/phase6.c:410
+ #: .././scrub/phase6.c:420
  #, c-format
-@@ -18934,49 +18933,3 @@ msgstr ""
+@@ -19158,59 +19158,3 @@
  #: .././spaceman/trim.c:117
  msgid "Discard filesystem free space"
  msgstr "przeszukiwanie wolnego miejsca w systemie plików"
@@ -240,6 +241,10 @@
 -#~ msgstr "%s: nie można pobrać rozmiaru podwolumenu realtime\n"
 -
 -#, c-format
+-#~ msgid "%s: Warning: trying to probe topology of a file %s!\n"
+-#~ msgstr "%s: uwaga: próba sprawdzenia topologii pliku %s!\n"
+-
+-#, c-format
 -#~ msgid "%s: head block %<PRId64> tail block %<PRId64>\n"
 -#~ msgstr "%s: blok początku %<PRId64> blok końca %<PRId64>\n"
 -
@@ -252,3 +257,9 @@
 -
 -#~ msgid "volume rt"
 -#~ msgstr "wolumen rt"
+-
+-#~ msgid "queueing per-FS scrub work"
+-#~ msgstr "kolejkowanie zadania scrub dla FS"
+-
+-#~ msgid "Disappeared during read error reporting."
+-#~ msgstr "Znikł podczas raportowania błędu odczytu."
