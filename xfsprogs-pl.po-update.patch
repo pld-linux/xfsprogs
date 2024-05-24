@@ -1,5 +1,5 @@
---- xfsprogs-6.7.0/po/pl.po.orig	2024-04-21 10:13:21.246018700 +0200
-+++ xfsprogs-6.7.0/po/pl.po	2024-04-21 10:12:59.812801480 +0200
+--- xfsprogs-6.8.0/po/pl.po.orig	2024-05-23 14:10:39.218690650 +0200
++++ xfsprogs-6.8.0/po/pl.po	2024-05-23 22:30:58.819393845 +0200
 @@ -1,13 +1,13 @@
  # Polish translation for xfsprogs.
  # This file is distributed under the same license as the xfsprogs package.
@@ -9,11 +9,11 @@
  msgid ""
  msgstr ""
 -"Project-Id-Version: xfsprogs 6.5.0\n"
-+"Project-Id-Version: xfsprogs 6.7.0\n"
++"Project-Id-Version: xfsprogs 6.8.0\n"
  "Report-Msgid-Bugs-To: \n"
  "POT-Creation-Date: 2024-05-17 13:36+0200\n"
 -"PO-Revision-Date: 2023-10-18 19:10+0200\n"
-+"PO-Revision-Date: 2024-04-21 09:12+0200\n"
++"PO-Revision-Date: 2024-05-23 22:30+0200\n"
  "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
  "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
  "Language: pl\n"
@@ -26,7 +26,7 @@
  
  #: .././copy/xfs_copy.c:915
  msgid "Couldn't initialize global thread mask\n"
-@@ -707,14 +707,14 @@ msgstr ""
+@@ -708,14 +708,14 @@ msgstr ""
  " (blok 512-bajtowy).\n"
  
  #: .././db/block.c:133
@@ -45,7 +45,7 @@
  
  #: .././db/block.c:137
  #, c-format
-@@ -771,7 +771,7 @@ msgstr ""
+@@ -772,7 +772,7 @@ msgstr ""
  
  #: .././db/block.c:233
  msgid "cursor does not point to data device\n"
@@ -54,7 +54,112 @@
  
  #: .././db/block.c:236
  #, c-format
-@@ -2941,9 +2941,9 @@ msgid "\tbyte offset %lld, length %d\n"
+@@ -831,68 +831,71 @@ msgid ""
+ " -n nr  Create this many copies of the mapping.\n"
+ "\n"
+ msgstr ""
++"\n"
++" Uczynienie bmbt naprawdę dużym poprzez wielokrotne klonowanie pierwszego\n"
++" odwzorowania gałęzi danych.\n"
++" -d     Ograniczenie brudnych buforów do podanej liczby bajtów.\n"
++" -e     Wypisanie rozmiaru i wysokości b-drzewa i zakończenie.\n"
++" -n nr  Utworzenie podanej liczby kopii odwzorowania.\n"
++"\n"
+ 
+ #: .././db/bmap_inflate.c:37
+-#, fuzzy
+ msgid "filesystem does not support reflink\n"
+-msgstr "System plików nie obsługuje b-drzewa odwrotnego odwzorowania.\n"
++msgstr "system plików nie obsługuje funkcji reflink\n"
+ 
+ #: .././db/bmap_inflate.c:42
+ msgid "inode must have only one data fork mapping\n"
+-msgstr ""
++msgstr "i-węzeł musi mieć tylko jedno odwzorowanie gałęzi danych\n"
+ 
+ #: .././db/bmap_inflate.c:48
+-#, fuzzy, c-format
++#, c-format
+ msgid "could not read data fork, err %d\n"
+-msgstr "nie udało się wymusić needsrepair, błąd=%d\n"
++msgstr "nie udało się odczytać gałęzi danych, błąd %d\n"
+ 
+ #: .././db/bmap_inflate.c:54
+-#, fuzzy
+ msgid "could not read data fork mapping\n"
+-msgstr "nie udało się dodać odwzorowania odwrotnego\n"
++msgstr "nie udało się odczytać odwzorowania gałęzi danych\n"
+ 
+ #: .././db/bmap_inflate.c:59
+-#, fuzzy
+ msgid "cannot duplicate unwritten extent\n"
+-msgstr ": powtórzony przedział ekstentów bno\n"
++msgstr "nie można powielić nie zapisago ekstentu\n"
+ 
+ #: .././db/bmap_inflate.c:378
+-#, fuzzy
+ msgid "filesystem is now inconsistent, xfs_repair required!\n"
+-msgstr "system plików wymaga xfs_repair\n"
++msgstr "system plików jest niespójny, wymaga xfs_repair!\n"
+ 
+ #: .././db/bmap_inflate.c:419
+ #, c-format
+ msgid "ino 0x%llx nextents %llu btblocks %llu btheight %u dirty %u\n"
+-msgstr ""
++msgstr "i-węzeł 0x%llx nextents %llu btblocks %llu btheight %u dirty %u\n"
+ 
+ #: .././db/bmap_inflate.c:482
+-#, fuzzy, c-format
++#, c-format
+ msgid "could not grab inode 0x%llx, err %d\n"
+-msgstr "nie udało się wykonać iget dla głównego i-węzła - błąd %d\n"
++msgstr "nie udało się pobrać i-węzła 0x%llx, błąd %d\n"
+ 
+ #: .././db/bmap_inflate.c:497
+-#, fuzzy, c-format
++#, c-format
+ msgid "could not allocate transaction, err %d\n"
+-msgstr "Nie udało się przydzielić tablicy nlink\n"
++msgstr "nie udało się przydzielić transakcji, błąd %d\n"
+ 
+ #: .././db/bmap_inflate.c:508
+-#, fuzzy, c-format
++#, c-format
+ msgid "could not build new data fork, err %d\n"
+-msgstr "nie udało się wykonać iget dla głównego i-węzła - błąd %d\n"
++msgstr "nie udało się zbudować nowej gałęzi danych, błąd %d\n"
+ 
+ #: .././db/bmap_inflate.c:516
+-#, fuzzy, c-format
++#, c-format
+ msgid "could not commit transaction, err %d\n"
+-msgstr "nie udało się wykonać iget dla głównego i-węzła - błąd %d\n"
++msgstr "nie udało się zatwierdzić transakcji, błąd %d\n"
+ 
+ #: .././db/bmap_inflate.c:539
+ msgid "[-n copies] [-e] [-d maxdirty]"
+-msgstr ""
++msgstr "[-n kopii] [-e] [-d maxdirty]"
+ 
+ #: .././db/bmap_inflate.c:540
+ msgid "inflate bmbt by copying mappings"
+-msgstr ""
++msgstr "rozdymanie bmbt poprzez kopiowanie odwzorowań"
+ 
+ #: .././db/btblock.c:152
+ #, c-format
+@@ -1878,9 +1881,8 @@ msgid "bad id %u for %s dqblk %lld entry
+ msgstr "błędne id %u dla dqblk %s %lld, wpis %d, id %u\n"
+ 
+ #: .././db/check.c:3636
+-#, fuzzy
+ msgid "could not allocate rtwords buffer\n"
+-msgstr "nie udało się przydzielić bufora: %s\n"
++msgstr "nie udało się przydzielić bufora rtwords\n"
+ 
+ #: .././db/check.c:3652
+ #, c-format
+@@ -3020,9 +3022,9 @@ msgid "\tbyte offset %lld, length %d\n"
  msgstr "\toffset w bajtach %lld, długość %d\n"
  
  #: .././db/io.c:177
@@ -66,7 +171,7 @@
  
  #: .././db/io.c:182 .././db/io.c:571
  #, c-format
-@@ -3298,16 +3298,15 @@ msgid "%s: out of memory\n"
+@@ -3377,16 +3379,15 @@ msgid "%s: out of memory\n"
  msgstr "%s: brak pamięci\n"
  
  #: .././db/metadump.c:41
@@ -85,7 +190,7 @@
  msgid ""
  "\n"
  " The 'metadump' command dumps the known metadata to a compact file suitable\n"
-@@ -3340,6 +3339,7 @@ msgstr ""
+@@ -3419,6 +3420,7 @@ msgstr ""
  "skopiowania\n"
  "        (domyślnie %d bloków)\n"
  "   -o - bez zaciemniania nazw i rozszerzonych atrybutów\n"
@@ -93,7 +198,39 @@
  "   -w - wyświetlanie ostrzeżeń o błędnych metadanych\n"
  "\n"
  
-@@ -5436,7 +5436,7 @@ msgstr ""
+@@ -4249,24 +4251,24 @@ msgid "%s: Stats not yet supported for X
+ msgstr "%s: statystyki nie są jeszcze obsługiwane dla XFS-a\n"
+ 
+ #: .././fsr/xfs_fsr.c:170
+-#, fuzzy, c-format
++#, c-format
+ msgid "%s: invalid runtime: %s\n"
+-msgstr "%s: nieprawidłowa nazwa %s: %s\n"
++msgstr "%s: błędny czas działania: %s\n"
+ 
+ #: .././fsr/xfs_fsr.c:176
+ #, c-format
+ msgid "%s: the maximum runtime is %d seconds.\n"
+-msgstr ""
++msgstr "%s: maksymalny czas działania w sekundach to %d.\n"
+ 
+ #: .././fsr/xfs_fsr.c:192
+-#, fuzzy, c-format
++#, c-format
+ msgid "%s: invalid block size: %s\n"
+-msgstr "%s: nieprawidłowa nazwa %s: %s\n"
++msgstr "%s: błędny rozmiar boku: %s\n"
+ 
+ #: .././fsr/xfs_fsr.c:202
+-#, fuzzy, c-format
++#, c-format
+ msgid "%s: invalid number of passes: %s\n"
+-msgstr "write %s: błędna liczba argumentów\n"
++msgstr "%s: błędna liczba przebiegów: %s\n"
+ 
+ #: .././fsr/xfs_fsr.c:252 .././scrub/xfs_scrub.c:754
+ #, c-format
+@@ -5535,7 +5537,7 @@ msgstr ""
  "\n"
  
  #: .././io/encrypt.c:212
@@ -102,7 +239,7 @@
  msgid ""
  "\n"
  " assign an encryption policy to the currently open file\n"
-@@ -5478,6 +5478,7 @@ msgstr ""
+@@ -5577,6 +5579,7 @@ msgstr ""
  " -c TRYB - tryb szyfrowania zawartości\n"
  " -n TRYB - tryb szyfrowania nazw plików\n"
  " -f FLAGI - flagi polityki\n"
@@ -110,7 +247,7 @@
  " -v WERSJA - wersja polityki\n"
  "\n"
  " TRYB może być liczbą lub jedną z następujących wartości:\n"
-@@ -5690,9 +5691,9 @@ msgid "invalid flags: %s\n"
+@@ -5789,9 +5792,9 @@ msgid "invalid flags: %s\n"
  msgstr "nieprawidłowe flagi: %s\n"
  
  #: .././io/encrypt.c:650
@@ -122,7 +259,7 @@
  
  #: .././io/encrypt.c:661
  #, c-format
-@@ -5780,9 +5781,9 @@ msgid "display the encryption policy of
+@@ -5879,9 +5882,9 @@ msgid "display the encryption policy of
  msgstr "wyświetlenie polityki szyfrowania bieżącego pliku"
  
  #: .././io/encrypt.c:947
@@ -134,7 +271,56 @@
  
  #: .././io/encrypt.c:952
  msgid "assign an encryption policy to the current file"
-@@ -7656,7 +7657,7 @@ msgid "scrubs filesystem metadata"
+@@ -6465,7 +6468,7 @@ msgid "create mark <mark> in the dm-log-
+ msgstr "utworzenie <znacznika> w logu dm-log-writes określonym <urządzeniem>"
+ 
+ #: .././io/madvise.c:20
+-#, fuzzy, c-format
++#, c-format
+ msgid ""
+ "\n"
+ " advise the page cache about access patterns expected for a mapping\n"
+@@ -6500,18 +6503,32 @@ msgid ""
+ "\n"
+ msgstr ""
+ "\n"
+-" doradzenie buforowi stron w sprawie oczekiwanych schematów dostępu do "
+-"odwzorowań\n"
++" doradzenie pamięci podręcznej stron odnośnie oczekiwanych schematów dostępu\n"
++" do odwzorowań\n"
+ "\n"
+ " madvise modyfikuje zachowanie bufora stron przy operacjach na bieżącym\n"
+-" odwzorowaniu. Niektóre polecenia madvise ([*] poniżej) wymagają podania "
+-"zakresu.\n"
++" odwzorowaniu. Niektóre polecenia madvise ([*] poniżej) wymagają podania\n"
++" zakresu.\n"
+ " Bez argumentów zakłada się doradzenie POSIX_MADV_NORMAL.\n"
+ " -d - podane strony nie są wymagane (POSIX_MADV_DONTNEED) [*]\n"
+-" -r - należy oczekiwać losowych odwołań do stron (POSIX_MADV_RANDOM)\n"
+-" -s - należy oczekiwać sekwencyjnych odwołań do stron "
+-"(POSIX_MADV_SEQUENTIAL)\n"
++" -r - oczekiwanie losowych odwołań do stron (POSIX_MADV_RANDOM)\n"
++" -s - oczekiwanie sekwencyjnych odwołań do stron (POSIX_MADV_SEQUENTIAL)\n"
+ " -w - podane strony będą potrzebne (POSIX_MADV_WILLNEED) [*]\n"
++"\n"
++"Dostępne są następujące opcje specyficzne dla Linuksa:\n"
++" -c - próba zwinięcia przedziału do przezroczystych dużych stron (MADV_COLLAPSE)\n"
++" -D - wyłączenie przedziału (MADV_COLD)\n"
++" -f - zwolnienie przedziału (MADV_FREE)\n"
++" -h - wyłączenie przezroczystych dużych stron (MADV_NOHUGEPAGE)\n"
++" -H - włączenie przezroczystych dużych stron (MADV_HUGEPAGE)\n"
++" -m - oznaczenie przedziału jako złączalnego (MADV_MERGEABLE)\n"
++" -M - oznaczenie przedziału jako niezłączalnego (MADV_UNMERGEABLE)\n"
++" -o - oznaczenie przedziału jako niedostępnego (MADV_SOFT_OFFLINE)\n"
++" -p - wykonanie dziury w pliku (MADV_REMOVE)\n"
++" -P - zatrucie pamięci podręcznej stron (MADV_HWPOISON)\n"
++" -R - zasiedlenie przedziału do odczytu (MADV_POPULATE_READ)\n"
++" -W - zasiedlenie przedziału do zapisu (MADV_POPULATE_WRITE)\n"
++" -X - ponowne żądanie przedziału (MADV_PAGEOUT)\n"
+ " Uwagi:\n"
+ "  NORMAL ustawia domyślną wartość czytania z wyprzedzeniem dla pliku.\n"
+ "  RANDOM ustawia czytanie z wyprzedzeniem dla pliku na zero.\n"
+@@ -7770,7 +7787,7 @@ msgid "scrubs filesystem metadata"
  msgstr "doczyszczenie metadanych systemu plików"
  
  #: .././io/scrub.c:250
@@ -143,7 +329,7 @@
  msgid ""
  "\n"
  " Repairs a piece of XFS filesystem metadata.  The first argument is the "
-@@ -7679,13 +7680,13 @@ msgid ""
+@@ -7793,13 +7810,13 @@ msgid ""
  msgstr ""
  "\n"
  " Naprawienie fragmentu metadanych systemu plików XFS. Pierwszy argument to\n"
@@ -164,7 +350,101 @@
  "\n"
  " Przykład:\n"
  " 'repair inobt 3' - naprawienie b-drzewa i-węzła w AG 3.\n"
-@@ -12782,13 +12783,13 @@ msgstr ""
+@@ -8540,9 +8557,9 @@ msgid "%s: cannot stat %s: %s\n"
+ msgstr "%s: nie można wykonać stat na %s: %s\n"
+ 
+ #: .././libxfs/init.c:174
+-#, fuzzy, c-format
++#, c-format
+ msgid "%s: flush of device %s failed, err=%d"
+-msgstr "%s: opróżnienie buforów urządzenia %lld nie powiódł się, błąd=%d"
++msgstr "%s: opróżnienie buforów urządzenia %s nie powiodło się, błąd=%d"
+ 
+ #: .././libxfs/init.c:301
+ #, c-format
+@@ -10138,7 +10155,7 @@ msgid "Initialization of the realtime sp
+ msgstr "Inicjowanie przestrzeni realtime nie powiodło się"
+ 
+ #: .././mkfs/xfs_mkfs.c:1017
+-#, fuzzy, c-format
++#, c-format
+ msgid ""
+ "Usage: %s\n"
+ "/* blocksize */\t\t[-b size=num]\n"
+@@ -10172,20 +10189,18 @@ msgstr ""
+ "Składnia: %s\n"
+ "/* rozmiar bloku */     [-b size=ile]\n"
+ "/* plik konfiguracji */ [-c options=xxx]\n"
+-"/* metadane */          [-m crc=0|1,finobt=0|1,uuid=xxx,rmapbt=0|1,reflink=0|"
+-"1,\n"
++"/* metadane */          [-m crc=0|1,finobt=0|1,uuid=xxx,rmapbt=0|1,reflink=0|1,\n"
+ "                          inobtcount=0|1,bigtime=0|1]\n"
+ "/* podwolumen danych */ [-d agcount=n,agsize=n,file,name=xxx,size=ile,\n"
+-"                           (sunit=wartość,swidth=wartość|su=ile,sw=ile|"
+-"noalign),\n"
+-"                           sectsize=ile]\n"
++"                           (sunit=wartość,swidth=wartość|su=ile,sw=ile|noalign),\n"
++"                           sectsize=ile,concurrency=ile]\n"
+ "/* wym. nadpisania */   [-f]\n"
+ "/* rozmiar i-węzła */   [-i perblock=n|size=ile,maxpct=n,attr=0|1|2,\n"
+ "                           projid32bit=0|1,sparse=0|1,nrext64=0|1]\n"
+ "/* bez porzucania */    [-K]\n"
+ "/* podwolumen logu */   [-l agnum=n,internal,size=ile,logdev=xxx,version=n\n"
+-"                           sunit=wartość|su=ile,sectsize=ile,lazy-count=0|"
+-"1]\n"
++"                           sunit=wartość|su=ile,sectsize=ile,lazy-count=0|1,\n"
++"                           concurrency=ile]\n"
+ "/* etykieta */          [-L etykieta (maksymalnie 12 znaków)]\n"
+ "/* nazwy */             [-n size=ile,version=2|ci,ftype=0|1]\n"
+ "/* tylko info no-op */  [-N]\n"
+@@ -10795,7 +10810,7 @@ msgstr ""
+ #: .././mkfs/xfs_mkfs.c:3121
+ #, c-format
+ msgid "cannot have an rt subvolume with zero extents\n"
+-msgstr ""
++msgstr "nie można mieć podwolumenu rt o zerowej liczbie ekstentów\n"
+ 
+ #: .././mkfs/xfs_mkfs.c:3227
+ #, c-format
+@@ -12196,9 +12211,9 @@ msgid "%s: fdopen on %s failed: %s\n"
+ msgstr "%s: fdopen dla %s nie powiodło się: %s\n"
+ 
+ #: .././repair/agbtree.c:87
+-#, fuzzy, c-format
++#, c-format
+ msgid "could not open perag structure for agno 0x%x\n"
+-msgstr "nie udało się otworzyć pliku frag: %s: %s\n"
++msgstr "nie udało się otworzyć struktury perag dla agno 0x%x\n"
+ 
+ #: .././repair/agbtree.c:104
+ #, c-format
+@@ -12605,12 +12620,12 @@ msgstr ""
+ #, c-format
+ msgid ""
+ "inode %<PRIu64> shortform attr verifier failure, would have cleared attrs\n"
+-msgstr ""
++msgstr "sprawdzenie krótkich atrybutów i-węzła %<PRIu64> nie powiodło się, atrybuty zostałyby wyczyszczone\n"
+ 
+ #: .././repair/attr_repair.c:385
+ #, c-format
+ msgid "inode %<PRIu64> shortform attr verifier failure, cleared attrs\n"
+-msgstr ""
++msgstr "sprawdzenie krótkich atrybutów i-węzła %<PRIu64> nie powiodło się, wyczyszczono atrybuty\n"
+ 
+ #: .././repair/attr_repair.c:420
+ #, c-format
+@@ -12904,22 +12919,22 @@ msgid "blkmap_getn malloc failed (%<PRIu
+ msgstr "malloc w blkmap_getn nie powiodło się (%<PRIu64> bajtów)\n"
+ 
+ #: .././repair/bmap.c:291
+-#, fuzzy, c-format
++#, c-format
+ msgid ""
+ "Number of extents requested in blkmap_grow (%llu) overflows 32 bits.\n"
+ "You need a 64 bit system to repair this filesystem.\n"
+ msgstr ""
+-"Liczba ekstentów żądanych w blkmap_grow (%d) przepełnia 32 bity.\n"
++"Liczba ekstentów żądanych w blkmap_grow (%llu) przepełnia 32 bity.\n"
  "Do naprawy tego systemu plików niezbędny jest system 64-bitowy.\n"
  
  #: .././repair/bmap.c:299
@@ -181,7 +461,200 @@
  
  #: .././repair/bmap.c:308
  msgid "realloc failed in blkmap_grow\n"
-@@ -17900,9 +17901,8 @@ msgid "closing mountpoint fd"
+@@ -12931,6 +12946,7 @@ msgid ""
+ "Unable to re-grab inode cluster buffer after failed repair of inode %llu, "
+ "error %d.\n"
+ msgstr ""
++"Nie udało się ponoownie pobrać bufora klastra i-węzłów po niepowodzeniu naprawy i-węzła %llu, błąd %d.\n"
+ 
+ #: .././repair/da_util.c:56 .././repair/prefetch.c:243
+ msgid "couldn't malloc dir2 buffer list\n"
+@@ -13860,19 +13876,19 @@ msgid "bad data fork in inode %<PRIu64>\
+ msgstr "błędna gałąź danych w i-węźle %<PRIu64>\n"
+ 
+ #: .././repair/dinode.c:1976
+-#, fuzzy, c-format
++#, c-format
+ msgid "rebuilding inode %<PRIu64> data fork\n"
+-msgstr "przebudowywanie i-węzła katalogu %<PRIu64>\n"
++msgstr "przebudowywanie gałęzi danych i-węzła %<PRIu64>\n"
+ 
+ #: .././repair/dinode.c:1986
+ #, c-format
+ msgid "inode %<PRIu64> data fork rebuild failed, error %d, clearing\n"
+-msgstr ""
++msgstr "przebudowanie gałęzi danych i-węzła %<PRIu64> nie powiodło się, błąd %d, czyszczenie\n"
+ 
+ #: .././repair/dinode.c:1994
+-#, fuzzy, c-format
++#, c-format
+ msgid "would have tried to rebuild inode %<PRIu64> data fork\n"
+-msgstr "atrybuty i-węzła %<PRIu64> zostałyby wyczyszczone\n"
++msgstr "próbowanoby przebudować gałąź danych i-węzła %<PRIu64>\n"
+ 
+ #: .././repair/dinode.c:2068
+ #, c-format
+@@ -13888,30 +13904,28 @@ msgid "would reset value\n"
+ msgstr "wartość zostałaby przestawiona\n"
+ 
+ #: .././repair/dinode.c:2129
+-#, fuzzy, c-format
++#, c-format
+ msgid "bad attribute fork in inode %<PRIu64>\n"
+-msgstr "błędna gałąź atrybutów w i-węźle %<PRIu64>"
++msgstr "błędna gałąź atrybutów w i-węźle %<PRIu64>\n"
+ 
+ #: .././repair/dinode.c:2134
+-#, fuzzy, c-format
++#, c-format
+ msgid "rebuilding inode %<PRIu64> attr fork\n"
+-msgstr "przebudowywanie i-węzła katalogu %<PRIu64>\n"
++msgstr "przebudowywanie gałęzi atrybutów i-węzła %<PRIu64>\n"
+ 
+ #: .././repair/dinode.c:2144
+-#, fuzzy, c-format
++#, c-format
+ msgid "inode %<PRIu64> attr fork rebuild failed, error %d"
+-msgstr ""
+-"gałąź atrybutów lokalnego i-węzła %<PRIu64> zbyt duża (rozmiar %d, maksimum "
+-"= %zu)\n"
++msgstr "przebudowanie gałęzi atrybutów i-węzła %<PRIu64> nie powiodło się, błąd %d"
+ 
+ #: .././repair/dinode.c:2147
+ msgid ", clearing attr fork\n"
+ msgstr ", wyczyszczono gałąź atrybutów\n"
+ 
+ #: .././repair/dinode.c:2152
+-#, fuzzy, c-format
++#, c-format
+ msgid "would have tried to rebuild inode %<PRIu64> attr fork or cleared it\n"
+-msgstr "atrybuty i-węzła %<PRIu64> zostałyby wyczyszczone\n"
++msgstr "próbowanoby przebudować gałąź atrybutów iwęzła %<PRIu64> lub wyczyszczonoby ją\n"
+ 
+ #: .././repair/dinode.c:2155
+ msgid ", would clear attr fork\n"
+@@ -15599,12 +15613,12 @@ msgstr ""
+ "%s (i-węzeł %<PRIu64>) w katalogu głównym (%<PRIu64>) nie jest katalogiem, "
+ 
+ #: .././repair/phase6.c:1762 .././repair/phase6.c:2671
+-#, fuzzy, c-format
++#, c-format
+ msgid ""
+ "entry \"%s\" (ino %<PRIu64>) in dir %<PRIu64> already points to ino "
+ "%<PRIu64>, "
+ msgstr ""
+-"wpis \"%s\" (i-węzeł %<PRIu64>) w katalogu %<PRIu64> jest powtórzoną nazwą, "
++"wpis \"%s\" (i-węzeł %<PRIu64>) w katalogu %<PRIu64> już wskazuje na i-węzeł %<PRIu64>, "
+ 
+ #: .././repair/phase6.c:1793
+ #, c-format
+@@ -16115,11 +16129,11 @@ msgid "%s"
+ msgstr "%s"
+ 
+ #: .././repair/progress.c:268
+-#, fuzzy, c-format
++#, c-format
+ msgid ""
+ "\t- %02d:%02d:%02d: Phase %d: elapsed time %s - processed %ld %s per minute\n"
+ msgstr ""
+-"\t- %02d:%02d:%02d: Faza %d: miniony czas %s - przetworzono %d %s na minutę\n"
++"\t- %02d:%02d:%02d: Faza %d: miniony czas %s - przetworzono %ld %s na minutę\n"
+ 
+ #: .././repair/progress.c:273
+ #, c-format
+@@ -17514,54 +17528,54 @@ msgid "-o bhash requires a parameter\n"
+ msgstr "-o bhash wymaga parametru\n"
+ 
+ #: .././repair/xfs_repair.c:259
+-#, fuzzy, c-format
++#, c-format
+ msgid "-o bhash invalid parameter: %s\n"
+-msgstr "błędne parametry\n"
++msgstr "błędny parametr opcji -o bhash: %s\n"
+ 
+ #: .././repair/xfs_repair.c:265
+ msgid "-o ag_stride requires a parameter\n"
+ msgstr "-o ag_stride wymaga parametru\n"
+ 
+ #: .././repair/xfs_repair.c:270
+-#, fuzzy, c-format
++#, c-format
+ msgid "-o ag_stride invalid parameter: %s\n"
+-msgstr "-o ag_stride wymaga parametru\n"
++msgstr "błędny parametr opcji -o ag_stride: %s\n"
+ 
+ #: .././repair/xfs_repair.c:282
+ msgid "-o phase2_threads requires a parameter\n"
+ msgstr "-o phase2_threads wymaga parametru\n"
+ 
+ #: .././repair/xfs_repair.c:287
+-#, fuzzy, c-format
++#, c-format
+ msgid "-o phase2_threads invalid parameter: %s\n"
+-msgstr "-o phase2_threads wymaga parametru\n"
++msgstr "błędny parametr opcji -o phase2_threads: %s\n"
+ 
+ #: .././repair/xfs_repair.c:292
+ msgid "-o debug_bload_leaf_slack requires a parameter\n"
+ msgstr "-o debug_bload_leaf_slack wymaga parametru\n"
+ 
+ #: .././repair/xfs_repair.c:297
+-#, fuzzy, c-format
++#, c-format
+ msgid "-o debug_bload_leaf_slack invalid parameter: %s\n"
+-msgstr "-o debug_bload_leaf_slack wymaga parametru\n"
++msgstr "błędny parametr opcji -o debug_bload_leaf_slack: %s\n"
+ 
+ #: .././repair/xfs_repair.c:302
+ msgid "-o debug_bload_node_slack requires a parameter\n"
+ msgstr "-o debug_bload_node_slack wymaga parametru\n"
+ 
+ #: .././repair/xfs_repair.c:307
+-#, fuzzy, c-format
++#, c-format
+ msgid "-o debug_bload_node_slack invalid parameter: %s\n"
+-msgstr "-o debug_bload_node_slack wymaga parametru\n"
++msgstr "błędny parametr -o debug_bload_node_slack: %s\n"
+ 
+ #: .././repair/xfs_repair.c:327
+ msgid "-c lazycount requires a parameter\n"
+ msgstr "-c lazycount wymaga parametru\n"
+ 
+ #: .././repair/xfs_repair.c:332
+-#, fuzzy, c-format
++#, c-format
+ msgid "-o lazycount invalid parameter: %s\n"
+-msgstr "-c lazycount wymaga parametru\n"
++msgstr "błędny parametr opcji -o lazycount: %s\n"
+ 
+ #: .././repair/xfs_repair.c:338
+ msgid "-c inobtcount requires a parameter\n"
+@@ -17592,19 +17606,19 @@ msgid "-m option cannot be used with -o
+ msgstr "opcja -m nie może być użyta wraz z opcją -o bhash\n"
+ 
+ #: .././repair/xfs_repair.c:387
+-#, fuzzy, c-format
++#, c-format
+ msgid "%s: invalid memory amount: %s\n"
+-msgstr "%s: nieprawidłowa nazwa %s: %s\n"
++msgstr "%s: błędna ilość pamięci: %s\n"
+ 
+ #: .././repair/xfs_repair.c:412
+-#, fuzzy, c-format
++#, c-format
+ msgid "%s: invalid interval: %s\n"
+-msgstr "%s: nieprawidłowa nazwa %s: %s\n"
++msgstr "%s: błędny przedział: %s\n"
+ 
+ #: .././repair/xfs_repair.c:437
+ #, c-format
+ msgid "%s: invalid phase in XFS_REPAIR_FAIL_AFTER_PHASE: %s\n"
+-msgstr ""
++msgstr "%s: błędna faza w XFS_REPAIR_FAIL_AFTER_PHASE: %s\n"
+ 
+ #: .././repair/xfs_repair.c:447
+ #, c-format
+@@ -18117,9 +18131,8 @@ msgid "closing mountpoint fd"
  msgstr "zamykanie deskryptora punktu montowania"
  
  #: .././scrub/phase1.c:89
@@ -192,7 +665,36 @@
  
  #: .././scrub/phase1.c:114
  msgid "Must be root to run scrub."
-@@ -18073,9 +18073,8 @@ msgid "disk offset %<PRIu64>"
+@@ -18202,14 +18215,12 @@ msgid "queueing per-AG scrub work"
+ msgstr "kolejkowanie zadania scrub dla AG"
+ 
+ #: .././scrub/phase2.c:210
+-#, fuzzy
+ msgid "queueing whole-fs scrub work"
+-msgstr "kolejkowanie zadania scrub dla AG"
++msgstr "kolejkowanie zadania scrub dla całego systemu plików"
+ 
+ #: .././scrub/phase2.c:232
+-#, fuzzy
+ msgid "queueing rtsummary scrub work"
+-msgstr "kolejkowanie zadania scrub dla AG"
++msgstr "kolejkowanie zadania scrub dla rtsummary"
+ 
+ #: .././scrub/phase2.c:239
+ msgid "finishing scrub work"
+@@ -18287,9 +18298,9 @@ msgid "(unlinked)"
+ msgstr "(odłączony)"
+ 
+ #: .././scrub/phase6.c:300 .././scrub/phase6.c:367
+-#, fuzzy, c-format
++#, c-format
+ msgid "Could not open to report read errors: %s."
+-msgstr "nie udało się otworzyć pliku tymczasowego: %s: %s\n"
++msgstr "Nie udało się otworzyć w celu raportowania błędów odczytu: %s."
+ 
+ #: .././scrub/phase6.c:407
+ #, c-format
+@@ -18297,9 +18308,8 @@ msgid "disk offset %<PRIu64>"
  msgstr "offset na dysku %<PRIu64>"
  
  #: .././scrub/phase6.c:418
@@ -203,7 +705,7 @@
  
  #: .././scrub/phase6.c:420
  #, c-format
-@@ -19158,59 +19158,3 @@
+@@ -19158,59 +19168,3 @@ msgstr ""
  #: .././spaceman/trim.c:117
  msgid "Discard filesystem free space"
  msgstr "przeszukiwanie wolnego miejsca w systemie plików"
