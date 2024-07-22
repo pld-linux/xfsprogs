@@ -1,5 +1,5 @@
---- xfsprogs-6.8.0/po/pl.po.orig	2024-05-23 14:10:39.218690650 +0200
-+++ xfsprogs-6.8.0/po/pl.po	2024-05-23 22:30:58.819393845 +0200
+--- xfsprogs-6.9.0/po/pl.po.orig	2024-07-22 15:34:35.217693473 +0200
++++ xfsprogs-6.9.0/po/pl.po	2024-07-22 19:12:51.126746848 +0200
 @@ -1,13 +1,13 @@
  # Polish translation for xfsprogs.
  # This file is distributed under the same license as the xfsprogs package.
@@ -9,11 +9,11 @@
  msgid ""
  msgstr ""
 -"Project-Id-Version: xfsprogs 6.5.0\n"
-+"Project-Id-Version: xfsprogs 6.8.0\n"
++"Project-Id-Version: xfsprogs 6.9.0\n"
  "Report-Msgid-Bugs-To: \n"
  "POT-Creation-Date: 2024-07-22 11:13+0200\n"
 -"PO-Revision-Date: 2023-10-18 19:10+0200\n"
-+"PO-Revision-Date: 2024-05-23 22:30+0200\n"
++"PO-Revision-Date: 2024-07-22 18:30+0200\n"
  "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
  "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
  "Language: pl\n"
@@ -271,7 +271,36 @@
  
  #: .././io/encrypt.c:952
  msgid "assign an encryption policy to the current file"
-@@ -6465,7 +6468,7 @@ msgid "create mark <mark> in the dm-log-
+@@ -6322,6 +6325,13 @@ msgid ""
+ " -d\t-- return the path in debugfs, if any\n"
+ "\n"
+ msgstr ""
++"\n"
++" wypisanie ścieżki sysfs otwartego pliku\n"
++"\n"
++" Wypisuje ścieżkę w sysfs, gdzie można znaleźć informacje o systemie\n"
++" plików przechowującym otwarte pliki. Ścieżka nie musi istnieć.\n"
++" -d\t-- zwrócenie ścieżki w debugfs, jeśli istnieje\n"
++"\n"
+ 
+ #: .././io/fsuuid.c:103
+ msgid "get mounted filesystem UUID"
+@@ -6329,12 +6339,11 @@ msgstr "odczyt UUID-a zamontowanego syst
+ 
+ #: .././io/fsuuid.c:111
+ msgid "-d"
+-msgstr ""
++msgstr "-d"
+ 
+ #: .././io/fsuuid.c:113
+-#, fuzzy
+ msgid "get mounted filesystem sysfs path"
+-msgstr "odczyt UUID-a zamontowanego systemu plików"
++msgstr "pobranie ścieżki sysfs zamontowanego systemu plików"
+ 
+ #: .././io/fsync.c:49
+ msgid "calls fsync(2) to flush all in-core file state to disk"
+@@ -6486,7 +6495,7 @@ msgid "create mark <mark> in the dm-log-
  msgstr "utworzenie <znacznika> w logu dm-log-writes określonym <urządzeniem>"
  
  #: .././io/madvise.c:20
@@ -280,7 +309,7 @@
  msgid ""
  "\n"
  " advise the page cache about access patterns expected for a mapping\n"
-@@ -6500,18 +6503,32 @@ msgid ""
+@@ -6521,18 +6530,32 @@ msgid ""
  "\n"
  msgstr ""
  "\n"
@@ -320,7 +349,7 @@
  " Uwagi:\n"
  "  NORMAL ustawia domyślną wartość czytania z wyprzedzeniem dla pliku.\n"
  "  RANDOM ustawia czytanie z wyprzedzeniem dla pliku na zero.\n"
-@@ -7770,7 +7787,7 @@ msgid "scrubs filesystem metadata"
+@@ -7791,7 +7814,7 @@ msgid "scrubs filesystem metadata"
  msgstr "doczyszczenie metadanych systemu plików"
  
  #: .././io/scrub.c:251
@@ -329,7 +358,7 @@
  msgid ""
  "\n"
  " Repairs a piece of XFS filesystem metadata.  The first argument is the "
-@@ -7793,13 +7810,13 @@ msgid ""
+@@ -7814,13 +7837,13 @@ msgid ""
  msgstr ""
  "\n"
  " Naprawienie fragmentu metadanych systemu plików XFS. Pierwszy argument to\n"
@@ -350,7 +379,19 @@
  "\n"
  " Przykład:\n"
  " 'repair inobt 3' - naprawienie b-drzewa i-węzła w AG 3.\n"
-@@ -8540,9 +8557,9 @@ msgid "%s: cannot stat %s: %s\n"
+@@ -8556,9 +8579,9 @@ msgid "exit the program"
+ msgstr "wyjście z programu"
+ 
+ #: .././libxfs/buf_mem.c:79
+-#, fuzzy, c-format
++#, c-format
+ msgid "%s: %s can't mmap %u bytes at xfile offset %llu: %s\n"
+-msgstr "%s: %s nie można wykonać memalign dla %u bajtów: %s\n"
++msgstr "%s: %s nie można wykonać mmap %u bajtów w pozycji xfile %llu: %s\n"
+ 
+ #: .././libxfs/init.c:137
+ #, c-format
+@@ -8566,9 +8589,9 @@ msgid "%s: cannot stat %s: %s\n"
  msgstr "%s: nie można wykonać stat na %s: %s\n"
  
  #: .././libxfs/init.c:175
@@ -362,7 +403,19 @@
  
  #: .././libxfs/init.c:301
  #, c-format
-@@ -10138,7 +10155,7 @@ msgid "Initialization of the realtime sp
+@@ -10059,9 +10082,9 @@ msgid "committing space for a file faile
+ msgstr "zatwierdzanie przestrzeni na plik nie powiodło się"
+ 
+ #: .././mkfs/proto.c:258
+-#, fuzzy, c-format
++#, c-format
+ msgid "%s: error %d creating symlink to '%s'.\n"
+-msgstr "Błąd %d podczas tworzenia b-drzewa inobt dla AG %u.\n"
++msgstr "%s: błąd %d podczas tworzenia dowiązania symbolicznego do '%s'.\n"
+ 
+ #: .././mkfs/proto.c:287
+ #, c-format
+@@ -10169,7 +10192,7 @@ msgid "Initialization of the realtime sp
  msgstr "Inicjowanie przestrzeni realtime nie powiodło się"
  
  #: .././mkfs/xfs_mkfs.c:1017
@@ -371,7 +424,7 @@
  msgid ""
  "Usage: %s\n"
  "/* blocksize */\t\t[-b size=num]\n"
-@@ -10172,20 +10189,18 @@ msgstr ""
+@@ -10203,20 +10226,18 @@ msgstr ""
  "Składnia: %s\n"
  "/* rozmiar bloku */     [-b size=ile]\n"
  "/* plik konfiguracji */ [-c options=xxx]\n"
@@ -397,7 +450,7 @@
  "/* etykieta */          [-L etykieta (maksymalnie 12 znaków)]\n"
  "/* nazwy */             [-n size=ile,version=2|ci,ftype=0|1]\n"
  "/* tylko info no-op */  [-N]\n"
-@@ -10795,7 +10810,7 @@ msgstr ""
+@@ -10826,7 +10847,7 @@ msgstr ""
  #: .././mkfs/xfs_mkfs.c:3121
  #, c-format
  msgid "cannot have an rt subvolume with zero extents\n"
@@ -406,7 +459,7 @@
  
  #: .././mkfs/xfs_mkfs.c:3227
  #, c-format
-@@ -12196,9 +12211,9 @@ msgid "%s: fdopen on %s failed: %s\n"
+@@ -12227,9 +12248,9 @@ msgid "%s: fdopen on %s failed: %s\n"
  msgstr "%s: fdopen dla %s nie powiodło się: %s\n"
  
  #: .././repair/agbtree.c:87
@@ -418,7 +471,19 @@
  
  #: .././repair/agbtree.c:104
  #, c-format
-@@ -12605,12 +12620,12 @@ msgstr ""
+@@ -12294,9 +12315,9 @@ msgid "Error %d while creating finobt bt
+ msgstr "Błąd %d podczas tworzenia b-drzewa finobt dla AG %u.\n"
+ 
+ #: .././repair/agbtree.c:617
+-#, fuzzy, c-format
++#, c-format
+ msgid "ran out of records while rebuilding AG %u rmap btree\n"
+-msgstr "Zabrakło pamięci w trakcie działania quotacheck!\n"
++msgstr "zabrakło rekordów przy przebudowywaniu b-drzewa rmap AG %u\n"
+ 
+ #: .././repair/agbtree.c:653
+ #, c-format
+@@ -12641,12 +12662,12 @@ msgstr ""
  #, c-format
  msgid ""
  "inode %<PRIu64> shortform attr verifier failure, would have cleared attrs\n"
@@ -433,7 +498,35 @@
  
  #: .././repair/attr_repair.c:420
  #, c-format
-@@ -12904,22 +12919,22 @@ msgid "blkmap_getn malloc failed (%<PRIu
+@@ -12836,11 +12857,9 @@ msgstr ""
+ "%<PRIu64>\n"
+ 
+ #: .././repair/attr_repair.c:875
+-#, fuzzy, c-format
++#, c-format
+ msgid "bad checksum for block %u in attribute fork for inode %<PRIu64>\n"
+-msgstr ""
+-"błędny wskaźnik wsteczny dla bloku %u w gałęzi atrybutów dla i-węzła "
+-"%<PRIu64>\n"
++msgstr "błędna suma kontrolna dla bloku %u w gałęzi atrybutów dla i-węzła %<PRIu64>\n"
+ 
+ #: .././repair/attr_repair.c:894
+ #, c-format
+@@ -12902,11 +12921,9 @@ msgid "corrupt block 0 of inode %<PRIu64
+ msgstr "uszkodzony blok 0 i-węzła %<PRIu64> gałęzi atrybutów\n"
+ 
+ #: .././repair/attr_repair.c:1161
+-#, fuzzy, c-format
++#, c-format
+ msgid "bad checksum for block 0 in attribute fork for inode %<PRIu64>\n"
+-msgstr ""
+-"błędny wskaźnik wsteczny dla bloku %u w gałęzi atrybutów dla i-węzła "
+-"%<PRIu64>\n"
++msgstr "błędna suma kontrolna dla bloku 0 w gałęzi atrybutów dla i-węzła %<PRIu64>\n"
+ 
+ #: .././repair/attr_repair.c:1190
+ #, c-format
+@@ -12954,22 +12971,22 @@ msgid "blkmap_getn malloc failed (%<PRIu
  msgstr "malloc w blkmap_getn nie powiodło się (%<PRIu64> bajtów)\n"
  
  #: .././repair/bmap.c:291
@@ -461,7 +554,7 @@
  
  #: .././repair/bmap.c:308
  msgid "realloc failed in blkmap_grow\n"
-@@ -12931,6 +12946,7 @@ msgid ""
+@@ -12981,6 +12998,7 @@ msgid ""
  "Unable to re-grab inode cluster buffer after failed repair of inode %llu, "
  "error %d.\n"
  msgstr ""
@@ -469,7 +562,19 @@
  
  #: .././repair/da_util.c:56 .././repair/prefetch.c:243
  msgid "couldn't malloc dir2 buffer list\n"
-@@ -13860,19 +13876,19 @@ msgid "bad data fork in inode %<PRIu64>\
+@@ -13097,9 +13115,9 @@ msgid "bad level %d in %s block %u for i
+ msgstr "błędny poziom %d w bloku %su %u dla i-węzła %<PRIu64>\n"
+ 
+ #: .././repair/da_util.c:630
+-#, fuzzy, c-format
++#, c-format
+ msgid "bad checksum in %s tree block %u for inode %<PRIu64>\n"
+-msgstr "uszkodzony blok drzewa %su %u w i-węźle %<PRIu64>\n"
++msgstr "błędna suma kontrolna w bloku drzewa %s %u dla i-węzła %<PRIu64>\n"
+ 
+ #: .././repair/da_util.c:676
+ #, c-format
+@@ -13911,19 +13929,19 @@ msgid "bad data fork in inode %<PRIu64>\
  msgstr "błędna gałąź danych w i-węźle %<PRIu64>\n"
  
  #: .././repair/dinode.c:1971
@@ -494,7 +599,7 @@
  
  #: .././repair/dinode.c:2063
  #, c-format
-@@ -13888,30 +13904,28 @@ msgid "would reset value\n"
+@@ -13939,30 +13957,28 @@ msgid "would reset value\n"
  msgstr "wartość zostałaby przestawiona\n"
  
  #: .././repair/dinode.c:2124
@@ -533,7 +638,31 @@
  
  #: .././repair/dinode.c:2150
  msgid ", would clear attr fork\n"
-@@ -15599,12 +15613,12 @@ msgstr ""
+@@ -14652,9 +14668,9 @@ msgid "bad sibling back pointer for bloc
+ msgstr "błędny wskaźnik wstecz dla bloku %u w i-węźle katalogu %<PRIu64>\n"
+ 
+ #: .././repair/dir2.c:1218
+-#, fuzzy, c-format
++#, c-format
+ msgid "bad checksum for directory leafn block %u for inode %<PRIu64>\n"
+-msgstr "uszkodzony blok leafn katalogu %u dla i-węzła %<PRIu64>\n"
++msgstr "błędna suma kontrolna dla bloku %u leafn katalogu dla i-węzła %<PRIu64>\n"
+ 
+ #: .././repair/dir2.c:1236
+ #, c-format
+@@ -14686,9 +14702,9 @@ msgstr ""
+ "katalogu %<PRIu64>\n"
+ 
+ #: .././repair/dir2.c:1390
+-#, fuzzy, c-format
++#, c-format
+ msgid "bad checksum in directory data block %<PRIu64> for inode %<PRIu64>\n"
+-msgstr "uszkodzony blok danych katalogu %<PRIu64> dla i-węzła %<PRIu64>\n"
++msgstr "błędna suma kontrolna w bloku danych katalogu %<PRIu64> dla i-węzła %<PRIu64>\n"
+ 
+ #: .././repair/dir2.c:1466
+ #, c-format
+@@ -15641,12 +15657,12 @@ msgstr ""
  "%s (i-węzeł %<PRIu64>) w katalogu głównym (%<PRIu64>) nie jest katalogiem, "
  
  #: .././repair/phase6.c:1758 .././repair/phase6.c:2667
@@ -548,7 +677,7 @@
  
  #: .././repair/phase6.c:1789
  #, c-format
-@@ -16115,11 +16129,11 @@ msgid "%s"
+@@ -16157,11 +16173,11 @@ msgid "%s"
  msgstr "%s"
  
  #: .././repair/progress.c:268
@@ -562,7 +691,157 @@
  
  #: .././repair/progress.c:273
  #, c-format
-@@ -17514,54 +17528,54 @@ msgid "-o bhash requires a parameter\n"
+@@ -16349,87 +16365,78 @@ msgstr ""
+ "%<PRIu64> icount %<PRIu64>)\n"
+ 
+ #: .././repair/rcbag.c:100 .././repair/rcbag.c:222
+-#, fuzzy
+ msgid "allocating tx for refcount bag update\n"
+-msgstr "licznik postępu alokacji"
++msgstr "przydzielanie tx do uaktualnienia kontenera liczników odwołań\n"
+ 
+ #: .././repair/rcbag.c:105
+-#, fuzzy
+ msgid "looking up refcount bag records\n"
+-msgstr "%s podczas przeliczania rekordów licznika odwołań.\n"
++msgstr "wyszukiwanie rekordów kontenera liczników odwołań\n"
+ 
+ #: .././repair/rcbag.c:110
+-#, fuzzy
+ msgid "reading refcount bag records\n"
+-msgstr "%s podczas przeliczania rekordów licznika odwołań.\n"
++msgstr "odczyt rekordów kontenera liczników odwołań\n"
+ 
+ #: .././repair/rcbag.c:115
+-#, fuzzy
+ msgid "updating refcount bag record\n"
+-msgstr "%s podczas przeliczania rekordów licznika odwołań.\n"
++msgstr "aktualizacja rekordów kontenera liczników odwołań\n"
+ 
+ #: .././repair/rcbag.c:124
+ #, c-format
+ msgid "adding refcount bag record, err %d\n"
+-msgstr ""
++msgstr "dodawanie rekordów kontenera liczników odwołań, błąd %d\n"
+ 
+ #: .././repair/rcbag.c:132
+-#, fuzzy
+ msgid "committing refcount bag record\n"
+-msgstr "%s podczas przeliczania rekordów licznika odwołań.\n"
++msgstr "zatwierdzanie rekordu kontenera liczników odwołań\n"
+ 
+ #: .././repair/rcbag.c:175 .././repair/rcbag.c:229 .././repair/rcbag.c:283
+ #: .././repair/rcbag.c:347
+ msgid "seeking refcount bag btree cursor\n"
+-msgstr ""
++msgstr "przesuwanie kursora b-drzewa kontenera liczników odwołań\n"
+ 
+ #: .././repair/rcbag.c:180 .././repair/rcbag.c:317 .././repair/rcbag.c:352
+-#, fuzzy
+ msgid "incrementing refcount bag btree cursor\n"
+-msgstr "Błąd %d podczas tworzenia b-drzewa zliczania odwołań dla AG %u.\n"
++msgstr "zwiększanie kursora b-drzewa kontenera liczników odwołań\n"
+ 
+ #: .././repair/rcbag.c:186 .././repair/rcbag.c:240 .././repair/rcbag.c:323
+ #: .././repair/rcbag.c:358
+ msgid "reading refcount bag btree record\n"
+-msgstr ""
++msgstr "odczyt rekordu b-drzewa kontenera liczników odwołań\n"
+ 
+ #: .././repair/rcbag.c:188 .././repair/rcbag.c:242 .././repair/rcbag.c:325
+ #: .././repair/rcbag.c:360
+ msgid "refcount bag btree record disappeared?\n"
+-msgstr ""
++msgstr "rekord b-drzewa kontenera liczników odwołań znikł?\n"
+ 
+ #: .././repair/rcbag.c:200
+ msgid "next refcount bag edge not found?\n"
+-msgstr ""
++msgstr "nie znaleziono krawędzi następnego kontenera liczników odwołań?\n"
+ 
+ #: .././repair/rcbag.c:234
+-#, fuzzy
+ msgid "decrementing refcount bag btree cursor\n"
+-msgstr "Błąd %d podczas tworzenia b-drzewa zliczania odwołań dla AG %u.\n"
++msgstr "zmniejszanie kursora b-drzewa kontenera liczników odwołań\n"
+ 
+ #: .././repair/rcbag.c:249
+-#, fuzzy, c-format
++#, c-format
+ msgid "deleting refcount bag btree record, err %d\n"
+-msgstr "Nie można wyliczyć geometrii b-drzewa zliczania odwołań, błąd %d.\n"
++msgstr "usuwanie rekordu b-drzewa kontenera liczników odwołań, błąd %d\n"
+ 
+ #: .././repair/rcbag.c:252
+-#, fuzzy
+ msgid "couldn't delete refcount bag record?\n"
+-msgstr "nie udało się przydzielić bitmapy realtime, błąd = %d\n"
++msgstr "nie udało się usunąć rekordu kontenera liczników odwołań?\n"
+ 
+ #: .././repair/rcbag.c:261
+ msgid "committing refcount bag deletions\n"
+-msgstr ""
++msgstr "zatwierdzanie usunięć w kontenerze liczników odwołań\n"
+ 
+ #: .././repair/rcbag_btree.c:191
+-#, fuzzy, c-format
++#, c-format
+ msgid "refcount bag btree block 0x%llx corrupted at %p\n"
+-msgstr "błędna liczba bloków refcountbt %u, widziano %u\n"
++msgstr "blok b-drzewa kontenera liczników odwołań 0x%llx uszkodzony pod %p\n"
+ 
+ #: .././repair/rmap.c:123
+-#, fuzzy
+ msgid "Insufficient memory while allocating realtime reverse mapping btree."
+-msgstr "Za mało pamięci podczas przydzielania płyt odwrotnych odwzorowań."
++msgstr "Za mało pamięci podczas przydzielania b-drzewa odwrotnego odwzorowania realtime."
+ 
+ #: .././repair/rmap.c:140
+ msgid "couldn't allocate per-AG reverse map roots\n"
+@@ -16437,34 +16444,34 @@ msgstr "nie udało się przydzielić kor
+ 
+ #: .././repair/rmap.c:252
+ msgid "allocating tx for in-memory rmap update\n"
+-msgstr ""
++msgstr "przydzielanie tx dla uaktualnienia rmap w pamięci\n"
+ 
+ #: .././repair/rmap.c:256
+ msgid "reading in-memory rmap btree head\n"
+-msgstr ""
++msgstr "odczyt początku b-drzewa rmap w pamięci\n"
+ 
+ #: .././repair/rmap.c:260
+ #, c-format
+ msgid "adding rmap to in-memory btree, err %d\n"
+-msgstr ""
++msgstr "dodawanie rmap do b-drzewa w pamięci, błąd %d\n"
+ 
+ #: .././repair/rmap.c:265
+ msgid "committing in-memory rmap record\n"
+-msgstr ""
++msgstr "zatwierdzanie rekordu rmap w pamięci\n"
+ 
+ #: .././repair/rmap.c:803
+ msgid "Insufficient memory while recreating refcount tree."
+ msgstr "Za mało pamięci podczas ponownego tworzenia drzewa zliczania odwołań."
+ 
+ #: .././repair/rmap.c:1043
+-#, fuzzy, c-format
++#, c-format
+ msgid "%s while reading in-memory rmap btree\n"
+-msgstr "Błąd %d podczas tworzenia b-drzewa rmap dla AG %u.\n"
++msgstr "%s podczas odczytu b-drzewa rmap w pamięci\n"
+ 
+ #: .././repair/rmap.c:1049
+-#, fuzzy, c-format
++#, c-format
+ msgid "%s while counting in-memory rmap records\n"
+-msgstr "%s podczas przeliczania rekordów licznika odwołań.\n"
++msgstr "%s podczas liczenia rekordów rmap w pamięci\n"
+ 
+ #: .././repair/rmap.c:1152
+ msgid "would rebuild corrupt rmap btrees.\n"
+@@ -17643,54 +17650,54 @@ msgid "-o bhash requires a parameter\n"
  msgstr "-o bhash wymaga parametru\n"
  
  #: .././repair/xfs_repair.c:260
@@ -629,7 +908,7 @@
  
  #: .././repair/xfs_repair.c:339
  msgid "-c inobtcount requires a parameter\n"
-@@ -17592,19 +17606,19 @@ msgid "-m option cannot be used with -o
+@@ -17721,19 +17728,19 @@ msgid "-m option cannot be used with -o
  msgstr "opcja -m nie może być użyta wraz z opcją -o bhash\n"
  
  #: .././repair/xfs_repair.c:388
@@ -654,7 +933,26 @@
  
  #: .././repair/xfs_repair.c:448
  #, c-format
-@@ -18117,9 +18131,8 @@ msgid "closing mountpoint fd"
+@@ -17947,9 +17954,8 @@ msgid "Found unsupported filesystem feat
+ msgstr "Znaleziono nie obsługiwane cechy systemu plików. Zakończono.\n"
+ 
+ #: .././repair/xfs_repair.c:1303
+-#, fuzzy
+ msgid "could not allocate btree cursor memory\n"
+-msgstr "nie udało się przydzielić tablicy ftypes\n"
++msgstr "nie udało się przydzielić pamięci kursora b-drzewa\n"
+ 
+ #: .././repair/xfs_repair.c:1309
+ #, c-format
+@@ -18248,16 +18254,15 @@ msgstr "Zamykanie systemu plików!"
+ 
+ #: .././scrub/phase1.c:74
+ msgid "Couldn't upload clean bill of health."
+-msgstr ""
++msgstr "Nie udało się przesłać czystego raportu o zdrowiu."
+ 
+ #: .././scrub/phase1.c:104
+ msgid "closing mountpoint fd"
  msgstr "zamykanie deskryptora punktu montowania"
  
  #: .././scrub/phase1.c:127
@@ -665,7 +963,7 @@
  
  #: .././scrub/phase1.c:152
  msgid "Must be root to run scrub."
-@@ -18202,14 +18215,12 @@ msgid "queueing per-AG scrub work"
+@@ -18340,14 +18345,12 @@ msgid "queueing per-AG scrub work"
  msgstr "kolejkowanie zadania scrub dla AG"
  
  #: .././scrub/phase2.c:210
@@ -682,7 +980,48 @@
  
  #: .././scrub/phase2.c:239
  msgid "finishing scrub work"
-@@ -18287,9 +18298,9 @@ msgid "(unlinked)"
+@@ -18399,34 +18402,28 @@ msgid "filesystem label"
+ msgstr "etykieta systemu plików"
+ 
+ #: .././scrub/phase5.c:419
+-#, fuzzy
+ msgid "checking fs scan metadata"
+-msgstr "Sprawdzanie metadanych wewnętrznych."
++msgstr "sprawdzanie metadanych skanowania systemu plików"
+ 
+ #: .././scrub/phase5.c:427
+-#, fuzzy
+ msgid "repairing fs scan metadata"
+-msgstr "naprawienie metadanych systemu plików"
++msgstr "naprawienie metadanych skanowania systemu plików"
+ 
+ #: .././scrub/phase5.c:452
+-#, fuzzy
+ msgid "setting up fs scan"
+-msgstr "przydzielanie licznika bloków"
++msgstr "ustawianie skanowania systemu plików"
+ 
+ #: .././scrub/phase5.c:461
+-#, fuzzy
+ msgid "queuing fs scan work"
+-msgstr "kolejkowanie zadania skanowania katalogu"
++msgstr "kolejkowanie zadania skanowania systemu plików"
+ 
+ #: .././scrub/phase5.c:480
+-#, fuzzy
+ msgid "setting up fs scan workqueue"
+-msgstr "tworzenie kolejki zadań fsmap"
++msgstr "ustawianie kolejki zadań skanowania systemu plików"
+ 
+ #: .././scrub/phase5.c:502
+-#, fuzzy
+ msgid "joining fs scan workqueue"
+-msgstr "tworzenie kolejki zadań fsmap"
++msgstr "łączenie kolejki zadań skanowania systemu plików"
+ 
+ #: .././scrub/phase5.c:532
+ msgid "Filesystem has errors, skipping connectivity checks."
+@@ -18455,9 +18452,9 @@ msgid "(unlinked)"
  msgstr "(odłączony)"
  
  #: .././scrub/phase6.c:300 .././scrub/phase6.c:367
@@ -694,7 +1033,7 @@
  
  #: .././scrub/phase6.c:407
  #, c-format
-@@ -18297,9 +18308,8 @@ msgid "disk offset %<PRIu64>"
+@@ -18465,9 +18462,8 @@ msgid "disk offset %<PRIu64>"
  msgstr "offset na dysku %<PRIu64>"
  
  #: .././scrub/phase6.c:418
@@ -705,7 +1044,7 @@
  
  #: .././scrub/phase6.c:420
  #, c-format
-@@ -19158,93 +19168,3 @@ msgstr ""
+@@ -19326,93 +19322,3 @@ msgstr ""
  #: .././spaceman/trim.c:117
  msgid "Discard filesystem free space"
  msgstr "przeszukiwanie wolnego miejsca w systemie plików"
