@@ -11,7 +11,7 @@
 -"Project-Id-Version: xfsprogs 6.5.0\n"
 +"Project-Id-Version: xfsprogs 6.8.0\n"
  "Report-Msgid-Bugs-To: \n"
- "POT-Creation-Date: 2024-05-17 13:36+0200\n"
+ "POT-Creation-Date: 2024-07-22 11:13+0200\n"
 -"PO-Revision-Date: 2023-10-18 19:10+0200\n"
 +"PO-Revision-Date: 2024-05-23 22:30+0200\n"
  "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
@@ -96,52 +96,52 @@
 -msgstr ": powtórzony przedział ekstentów bno\n"
 +msgstr "nie można powielić nie zapisago ekstentu\n"
  
- #: .././db/bmap_inflate.c:378
+ #: .././db/bmap_inflate.c:380
 -#, fuzzy
  msgid "filesystem is now inconsistent, xfs_repair required!\n"
 -msgstr "system plików wymaga xfs_repair\n"
 +msgstr "system plików jest niespójny, wymaga xfs_repair!\n"
  
- #: .././db/bmap_inflate.c:419
+ #: .././db/bmap_inflate.c:423
  #, c-format
  msgid "ino 0x%llx nextents %llu btblocks %llu btheight %u dirty %u\n"
 -msgstr ""
 +msgstr "i-węzeł 0x%llx nextents %llu btblocks %llu btheight %u dirty %u\n"
  
- #: .././db/bmap_inflate.c:482
+ #: .././db/bmap_inflate.c:486
 -#, fuzzy, c-format
 +#, c-format
  msgid "could not grab inode 0x%llx, err %d\n"
 -msgstr "nie udało się wykonać iget dla głównego i-węzła - błąd %d\n"
 +msgstr "nie udało się pobrać i-węzła 0x%llx, błąd %d\n"
  
- #: .././db/bmap_inflate.c:497
+ #: .././db/bmap_inflate.c:501
 -#, fuzzy, c-format
 +#, c-format
  msgid "could not allocate transaction, err %d\n"
 -msgstr "Nie udało się przydzielić tablicy nlink\n"
 +msgstr "nie udało się przydzielić transakcji, błąd %d\n"
  
- #: .././db/bmap_inflate.c:508
+ #: .././db/bmap_inflate.c:512
 -#, fuzzy, c-format
 +#, c-format
  msgid "could not build new data fork, err %d\n"
 -msgstr "nie udało się wykonać iget dla głównego i-węzła - błąd %d\n"
 +msgstr "nie udało się zbudować nowej gałęzi danych, błąd %d\n"
  
- #: .././db/bmap_inflate.c:516
+ #: .././db/bmap_inflate.c:520
 -#, fuzzy, c-format
 +#, c-format
  msgid "could not commit transaction, err %d\n"
 -msgstr "nie udało się wykonać iget dla głównego i-węzła - błąd %d\n"
 +msgstr "nie udało się zatwierdzić transakcji, błąd %d\n"
  
- #: .././db/bmap_inflate.c:539
+ #: .././db/bmap_inflate.c:543
  msgid "[-n copies] [-e] [-d maxdirty]"
 -msgstr ""
 +msgstr "[-n kopii] [-e] [-d maxdirty]"
  
- #: .././db/bmap_inflate.c:540
+ #: .././db/bmap_inflate.c:544
  msgid "inflate bmbt by copying mappings"
 -msgstr ""
 +msgstr "rozdymanie bmbt poprzez kopiowanie odwzorowań"
@@ -323,7 +323,7 @@
 @@ -7770,7 +7787,7 @@ msgid "scrubs filesystem metadata"
  msgstr "doczyszczenie metadanych systemu plików"
  
- #: .././io/scrub.c:250
+ #: .././io/scrub.c:251
 -#, fuzzy, c-format
 +#, c-format
  msgid ""
@@ -353,7 +353,7 @@
 @@ -8540,9 +8557,9 @@ msgid "%s: cannot stat %s: %s\n"
  msgstr "%s: nie można wykonać stat na %s: %s\n"
  
- #: .././libxfs/init.c:174
+ #: .././libxfs/init.c:175
 -#, fuzzy, c-format
 +#, c-format
  msgid "%s: flush of device %s failed, err=%d"
@@ -472,46 +472,46 @@
 @@ -13860,19 +13876,19 @@ msgid "bad data fork in inode %<PRIu64>\
  msgstr "błędna gałąź danych w i-węźle %<PRIu64>\n"
  
- #: .././repair/dinode.c:1976
+ #: .././repair/dinode.c:1971
 -#, fuzzy, c-format
 +#, c-format
  msgid "rebuilding inode %<PRIu64> data fork\n"
 -msgstr "przebudowywanie i-węzła katalogu %<PRIu64>\n"
 +msgstr "przebudowywanie gałęzi danych i-węzła %<PRIu64>\n"
  
- #: .././repair/dinode.c:1986
+ #: .././repair/dinode.c:1981
  #, c-format
  msgid "inode %<PRIu64> data fork rebuild failed, error %d, clearing\n"
 -msgstr ""
 +msgstr "przebudowanie gałęzi danych i-węzła %<PRIu64> nie powiodło się, błąd %d, czyszczenie\n"
  
- #: .././repair/dinode.c:1994
+ #: .././repair/dinode.c:1989
 -#, fuzzy, c-format
 +#, c-format
  msgid "would have tried to rebuild inode %<PRIu64> data fork\n"
 -msgstr "atrybuty i-węzła %<PRIu64> zostałyby wyczyszczone\n"
 +msgstr "próbowanoby przebudować gałąź danych i-węzła %<PRIu64>\n"
  
- #: .././repair/dinode.c:2068
+ #: .././repair/dinode.c:2063
  #, c-format
 @@ -13888,30 +13904,28 @@ msgid "would reset value\n"
  msgstr "wartość zostałaby przestawiona\n"
  
- #: .././repair/dinode.c:2129
+ #: .././repair/dinode.c:2124
 -#, fuzzy, c-format
 +#, c-format
  msgid "bad attribute fork in inode %<PRIu64>\n"
 -msgstr "błędna gałąź atrybutów w i-węźle %<PRIu64>"
 +msgstr "błędna gałąź atrybutów w i-węźle %<PRIu64>\n"
  
- #: .././repair/dinode.c:2134
+ #: .././repair/dinode.c:2129
 -#, fuzzy, c-format
 +#, c-format
  msgid "rebuilding inode %<PRIu64> attr fork\n"
 -msgstr "przebudowywanie i-węzła katalogu %<PRIu64>\n"
 +msgstr "przebudowywanie gałęzi atrybutów i-węzła %<PRIu64>\n"
  
- #: .././repair/dinode.c:2144
+ #: .././repair/dinode.c:2139
 -#, fuzzy, c-format
 +#, c-format
  msgid "inode %<PRIu64> attr fork rebuild failed, error %d"
@@ -520,23 +520,23 @@
 -"= %zu)\n"
 +msgstr "przebudowanie gałęzi atrybutów i-węzła %<PRIu64> nie powiodło się, błąd %d"
  
- #: .././repair/dinode.c:2147
+ #: .././repair/dinode.c:2142
  msgid ", clearing attr fork\n"
  msgstr ", wyczyszczono gałąź atrybutów\n"
  
- #: .././repair/dinode.c:2152
+ #: .././repair/dinode.c:2147
 -#, fuzzy, c-format
 +#, c-format
  msgid "would have tried to rebuild inode %<PRIu64> attr fork or cleared it\n"
 -msgstr "atrybuty i-węzła %<PRIu64> zostałyby wyczyszczone\n"
 +msgstr "próbowanoby przebudować gałąź atrybutów iwęzła %<PRIu64> lub wyczyszczonoby ją\n"
  
- #: .././repair/dinode.c:2155
+ #: .././repair/dinode.c:2150
  msgid ", would clear attr fork\n"
 @@ -15599,12 +15613,12 @@ msgstr ""
  "%s (i-węzeł %<PRIu64>) w katalogu głównym (%<PRIu64>) nie jest katalogiem, "
  
- #: .././repair/phase6.c:1762 .././repair/phase6.c:2671
+ #: .././repair/phase6.c:1758 .././repair/phase6.c:2667
 -#, fuzzy, c-format
 +#, c-format
  msgid ""
@@ -546,7 +546,7 @@
 -"wpis \"%s\" (i-węzeł %<PRIu64>) w katalogu %<PRIu64> jest powtórzoną nazwą, "
 +"wpis \"%s\" (i-węzeł %<PRIu64>) w katalogu %<PRIu64> już wskazuje na i-węzeł %<PRIu64>, "
  
- #: .././repair/phase6.c:1793
+ #: .././repair/phase6.c:1789
  #, c-format
 @@ -16115,11 +16129,11 @@ msgid "%s"
  msgstr "%s"
@@ -565,105 +565,105 @@
 @@ -17514,54 +17528,54 @@ msgid "-o bhash requires a parameter\n"
  msgstr "-o bhash wymaga parametru\n"
  
- #: .././repair/xfs_repair.c:259
+ #: .././repair/xfs_repair.c:260
 -#, fuzzy, c-format
 +#, c-format
  msgid "-o bhash invalid parameter: %s\n"
 -msgstr "błędne parametry\n"
 +msgstr "błędny parametr opcji -o bhash: %s\n"
  
- #: .././repair/xfs_repair.c:265
+ #: .././repair/xfs_repair.c:266
  msgid "-o ag_stride requires a parameter\n"
  msgstr "-o ag_stride wymaga parametru\n"
  
- #: .././repair/xfs_repair.c:270
+ #: .././repair/xfs_repair.c:271
 -#, fuzzy, c-format
 +#, c-format
  msgid "-o ag_stride invalid parameter: %s\n"
 -msgstr "-o ag_stride wymaga parametru\n"
 +msgstr "błędny parametr opcji -o ag_stride: %s\n"
  
- #: .././repair/xfs_repair.c:282
+ #: .././repair/xfs_repair.c:283
  msgid "-o phase2_threads requires a parameter\n"
  msgstr "-o phase2_threads wymaga parametru\n"
  
- #: .././repair/xfs_repair.c:287
+ #: .././repair/xfs_repair.c:288
 -#, fuzzy, c-format
 +#, c-format
  msgid "-o phase2_threads invalid parameter: %s\n"
 -msgstr "-o phase2_threads wymaga parametru\n"
 +msgstr "błędny parametr opcji -o phase2_threads: %s\n"
  
- #: .././repair/xfs_repair.c:292
+ #: .././repair/xfs_repair.c:293
  msgid "-o debug_bload_leaf_slack requires a parameter\n"
  msgstr "-o debug_bload_leaf_slack wymaga parametru\n"
  
- #: .././repair/xfs_repair.c:297
+ #: .././repair/xfs_repair.c:298
 -#, fuzzy, c-format
 +#, c-format
  msgid "-o debug_bload_leaf_slack invalid parameter: %s\n"
 -msgstr "-o debug_bload_leaf_slack wymaga parametru\n"
 +msgstr "błędny parametr opcji -o debug_bload_leaf_slack: %s\n"
  
- #: .././repair/xfs_repair.c:302
+ #: .././repair/xfs_repair.c:303
  msgid "-o debug_bload_node_slack requires a parameter\n"
  msgstr "-o debug_bload_node_slack wymaga parametru\n"
  
- #: .././repair/xfs_repair.c:307
+ #: .././repair/xfs_repair.c:308
 -#, fuzzy, c-format
 +#, c-format
  msgid "-o debug_bload_node_slack invalid parameter: %s\n"
 -msgstr "-o debug_bload_node_slack wymaga parametru\n"
 +msgstr "błędny parametr -o debug_bload_node_slack: %s\n"
  
- #: .././repair/xfs_repair.c:327
+ #: .././repair/xfs_repair.c:328
  msgid "-c lazycount requires a parameter\n"
  msgstr "-c lazycount wymaga parametru\n"
  
- #: .././repair/xfs_repair.c:332
+ #: .././repair/xfs_repair.c:333
 -#, fuzzy, c-format
 +#, c-format
  msgid "-o lazycount invalid parameter: %s\n"
 -msgstr "-c lazycount wymaga parametru\n"
 +msgstr "błędny parametr opcji -o lazycount: %s\n"
  
- #: .././repair/xfs_repair.c:338
+ #: .././repair/xfs_repair.c:339
  msgid "-c inobtcount requires a parameter\n"
 @@ -17592,19 +17606,19 @@ msgid "-m option cannot be used with -o
  msgstr "opcja -m nie może być użyta wraz z opcją -o bhash\n"
  
- #: .././repair/xfs_repair.c:387
+ #: .././repair/xfs_repair.c:388
 -#, fuzzy, c-format
 +#, c-format
  msgid "%s: invalid memory amount: %s\n"
 -msgstr "%s: nieprawidłowa nazwa %s: %s\n"
 +msgstr "%s: błędna ilość pamięci: %s\n"
  
- #: .././repair/xfs_repair.c:412
+ #: .././repair/xfs_repair.c:413
 -#, fuzzy, c-format
 +#, c-format
  msgid "%s: invalid interval: %s\n"
 -msgstr "%s: nieprawidłowa nazwa %s: %s\n"
 +msgstr "%s: błędny przedział: %s\n"
  
- #: .././repair/xfs_repair.c:437
+ #: .././repair/xfs_repair.c:438
  #, c-format
  msgid "%s: invalid phase in XFS_REPAIR_FAIL_AFTER_PHASE: %s\n"
 -msgstr ""
 +msgstr "%s: błędna faza w XFS_REPAIR_FAIL_AFTER_PHASE: %s\n"
  
- #: .././repair/xfs_repair.c:447
+ #: .././repair/xfs_repair.c:448
  #, c-format
 @@ -18117,9 +18131,8 @@ msgid "closing mountpoint fd"
  msgstr "zamykanie deskryptora punktu montowania"
  
- #: .././scrub/phase1.c:89
+ #: .././scrub/phase1.c:127
 -#, fuzzy
  msgid "force_repair"
 -msgstr "naprawy"
 +msgstr "force_repair"
  
- #: .././scrub/phase1.c:114
+ #: .././scrub/phase1.c:152
  msgid "Must be root to run scrub."
 @@ -18202,14 +18215,12 @@ msgid "queueing per-AG scrub work"
  msgstr "kolejkowanie zadania scrub dla AG"
@@ -705,7 +705,7 @@
  
  #: .././scrub/phase6.c:420
  #, c-format
-@@ -19158,59 +19168,3 @@ msgstr ""
+@@ -19158,93 +19168,3 @@ msgstr ""
  #: .././spaceman/trim.c:117
  msgid "Discard filesystem free space"
  msgstr "przeszukiwanie wolnego miejsca w systemie plików"
@@ -759,6 +759,40 @@
 -
 -#~ msgid "volume rt"
 -#~ msgstr "wolumen rt"
+-
+-#~ msgid ""
+-#~ "Insufficient memory while allocating raw metadata reverse mapping slabs."
+-#~ msgstr ""
+-#~ "Za mało pamięci podczas przydzielania płyt odwrotnych odwzorowań surowych "
+-#~ "metadanych."
+-
+-#~ msgid "Insufficient memory while allocating refcount item slabs."
+-#~ msgstr ""
+-#~ "Za mało pamięci podczas przydzielania płyt elementów zliczania odwołań."
+-
+-#, c-format
+-#~ msgid ""
+-#~ "couldn't add inode %<PRIu64> bmbt block %<PRIu64> reverse-mapping data."
+-#~ msgstr ""
+-#~ "nie udało się dodać i-węzła %<PRIu64>, dane odwrotnego odwzorowania bloku "
+-#~ "bmbt %<PRIu64>."
+-
+-#, c-format
+-#~ msgid ""
+-#~ "unable to finish adding attr/data fork reverse-mapping data for AG %u.\n"
+-#~ msgstr ""
+-#~ "nie udało się ukończyć dodawania danych odwrotnego odwzorowania gałęzi "
+-#~ "atrybutów/danych dla AG %u.\n"
+-
+-#, c-format
+-#~ msgid "unable to add AG %u metadata reverse-mapping data.\n"
+-#~ msgstr ""
+-#~ "nie udało się dodać danych odwrotnego odwzorowania metadanych AG %u.\n"
+-
+-#, c-format
+-#~ msgid "unable to merge AG %u metadata reverse-mapping data.\n"
+-#~ msgstr ""
+-#~ "nie udało się dołączyć danych odwrotnego odwzorowania metadanych AG %u.\n"
 -
 -#~ msgid "queueing per-FS scrub work"
 -#~ msgstr "kolejkowanie zadania scrub dla FS"
