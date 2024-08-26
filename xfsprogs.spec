@@ -8,12 +8,12 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	6.9.0
+Version:	6.10.0
 Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{version}.tar.xz
-# Source0-md5:	8744b22c73764320bcdb577d98dbc4f2
+# Source0-md5:	e910005ceccdd4a6fb3c5874d22b9ba7
 Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-pl.po-update.patch
@@ -152,7 +152,7 @@ msgmerge po/pl.po.upstream po/xfsprogs.pot -o po/pl.po
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/etc/cron.d
+install -d $RPM_BUILD_ROOT{/etc/cron.d,/sbin,/%{_lib}}
 
 DIST_ROOT=$RPM_BUILD_ROOT
 DIST_INSTALL=$(pwd)/install.manifest
@@ -164,6 +164,9 @@ export DIST_ROOT DIST_INSTALL DIST_INSTALL_DEV
 %{__make} install-dev \
 	DIST_MANIFEST="$DIST_INSTALL_DEV"
 
+%{__mv} $RPM_BUILD_ROOT%{_sbindir}/{fsck.xfs,mkfs.xfs,xfs_repair} $RPM_BUILD_ROOT/sbin
+%{__mv} $RPM_BUILD_ROOT%{_libdir}/libhandle.so.* $RPM_BUILD_ROOT/%{_lib}
+
 install -p %{SOURCE1} $RPM_BUILD_ROOT%{_sbindir}/xfs_lsprojid
 
 # adjust symlink to point to actual library, not libhandle.so symlink, which we remove afterwards
@@ -172,8 +175,6 @@ ln -sf /%{_lib}/$(basename $RPM_BUILD_ROOT/%{_lib}/libhandle.so.*.*.*) \
 # adjust library path used at link time
 %{__sed} -i -e "s|libdir='/%{_lib}'|libdir='%{_libdir}'|" \
 	$RPM_BUILD_ROOT%{_libdir}/libhandle.la
-# already in /usr
-%{__rm} $RPM_BUILD_ROOT/%{_lib}/libhandle.{so,la,a}
 
 # install cron file
 %if %{with scrub}
@@ -234,10 +235,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_sbindir}/xfs_scrub
 %attr(755,root,root) %{_sbindir}/xfs_scrub_all
 /lib/udev/rules.d/64-xfs.rules
+%{systemdunitdir}/system-xfs_scrub.slice
 %{systemdunitdir}/xfs_scrub@.service
 %{systemdunitdir}/xfs_scrub_all.service
 %{systemdunitdir}/xfs_scrub_all.timer
+%{systemdunitdir}/xfs_scrub_all_fail.service
 %{systemdunitdir}/xfs_scrub_fail@.service
+%{systemdunitdir}/xfs_scrub_media@.service
+%{systemdunitdir}/xfs_scrub_media_fail@.service
 %config(noreplace) %verify(not md5 mtime size) /etc/cron.d/xfs_scrub_all
 %{_mandir}/man8/xfs_scrub.8*
 %{_mandir}/man8/xfs_scrub_all.8*
@@ -250,6 +255,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/xfs
 %{_mandir}/man2/ioctl_xfs_ag_geometry.2*
 %{_mandir}/man2/ioctl_xfs_bulkstat.2*
+%{_mandir}/man2/ioctl_xfs_exchange_range.2*
 %{_mandir}/man2/ioctl_xfs_fsbulkstat.2*
 %{_mandir}/man2/ioctl_xfs_fscounts.2*
 %{_mandir}/man2/ioctl_xfs_fsgeometry.2*
@@ -260,10 +266,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man2/ioctl_xfs_getbmap.2*
 %{_mandir}/man2/ioctl_xfs_getbmapa.2*
 %{_mandir}/man2/ioctl_xfs_getbmapx.2*
+%{_mandir}/man2/ioctl_xfs_getparents.2*
 %{_mandir}/man2/ioctl_xfs_getresblks.2*
 %{_mandir}/man2/ioctl_xfs_goingdown.2*
 %{_mandir}/man2/ioctl_xfs_inumbers.2*
 %{_mandir}/man2/ioctl_xfs_scrub_metadata.2*
+%{_mandir}/man2/ioctl_xfs_scrubv_metadata.2*
 %{_mandir}/man2/ioctl_xfs_setresblks.2*
 %{_mandir}/man3/*handle.3*
 %{_mandir}/man3/xfsctl.3*
