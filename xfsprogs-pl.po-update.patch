@@ -1,5 +1,5 @@
---- xfsprogs-6.9.0/po/pl.po.orig	2024-07-22 15:34:35.217693473 +0200
-+++ xfsprogs-6.9.0/po/pl.po	2024-07-22 19:12:51.126746848 +0200
+--- xfsprogs-6.10.1/po/pl.po.orig	2024-09-07 15:59:41.266979937 +0200
++++ xfsprogs-6.10.1/po/pl.po	2024-09-08 20:07:06.211822337 +0200
 @@ -1,13 +1,13 @@
  # Polish translation for xfsprogs.
  # This file is distributed under the same license as the xfsprogs package.
@@ -9,11 +9,11 @@
  msgid ""
  msgstr ""
 -"Project-Id-Version: xfsprogs 6.5.0\n"
-+"Project-Id-Version: xfsprogs 6.9.0\n"
++"Project-Id-Version: xfsprogs 6.10.0\n"
  "Report-Msgid-Bugs-To: \n"
  "POT-Creation-Date: 2024-09-04 13:03+0200\n"
 -"PO-Revision-Date: 2023-10-18 19:10+0200\n"
-+"PO-Revision-Date: 2024-07-22 18:30+0200\n"
++"PO-Revision-Date: 2024-09-07 16:45+0200\n"
  "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
  "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
  "Language: pl\n"
@@ -26,7 +26,284 @@
  
  #: .././copy/xfs_copy.c:915
  msgid "Couldn't initialize global thread mask\n"
-@@ -708,14 +708,14 @@ msgstr ""
+@@ -524,38 +524,32 @@ msgid "Writing unknown attribute buffer
+ msgstr "Zapis nieznanego typu bufora atrybutów!\n"
+ 
+ #: .././db/attrset.c:34
+-#, fuzzy
+ msgid "[-r|-s|-u|-p|-Z] [-v]"
+-msgstr "[-r|-s|-u] [-n] nazwa"
++msgstr "[-r|-s|-u|-p|-Z] [-v]"
+ 
+ #: .././db/attrset.c:35
+-#, fuzzy
+ msgid "list attributes on the current inode"
+-msgstr "ustawienie atrybutu o podanej nazwie w bieżącym i-węźle"
++msgstr "lista atrybutów w bieżącym i-węźle"
+ 
+ #: .././db/attrset.c:38
+-#, fuzzy
+ msgid "[-r|-s|-u|-p|-Z] name"
+-msgstr "[-r|-s|-u] [-n] nazwa"
++msgstr "[-r|-s|-u|-p|-Z] nazwa"
+ 
+ #: .././db/attrset.c:39
+-#, fuzzy
+ msgid "get the named attribute on the current inode"
+-msgstr "ustawienie atrybutu o podanej nazwie w bieżącym i-węźle"
++msgstr "pobranie atrybutu o podanej nazwie w bieżącym i-węźle"
+ 
+ #: .././db/attrset.c:42
+-#, fuzzy
+ msgid "[-r|-s|-u|-p|-Z] [-n] [-R|-C] [-v n] name"
+-msgstr "[-r|-s|-u] [-n] [-R|-C] [-v n] nazwa"
++msgstr "[-r|-s|-u|-p|-Z] [-n] [-R|-C] [-v n] nazwa"
+ 
+ #: .././db/attrset.c:43
+ msgid "set the named attribute on the current inode"
+ msgstr "ustawienie atrybutu o podanej nazwie w bieżącym i-węźle"
+ 
+ #: .././db/attrset.c:46
+-#, fuzzy
+ msgid "[-r|-s|-u|-p|-Z] [-n] name"
+-msgstr "[-r|-s|-u] [-n] nazwa"
++msgstr "[-r|-s|-u|-p|-Z] [-n] nazwa"
+ 
+ #: .././db/attrset.c:47
+ msgid "remove the named attribute from the current inode"
+@@ -577,6 +571,18 @@ msgid ""
+ "  -v -- print the value of the attributes\n"
+ "\n"
+ msgstr ""
++"\n"
++" Polecenie attr_list zapewnia interfejs do wypisywania wszystkich rozszerzonych\n"
++" atrybutów podłączonych do i-węzła.\n"
++" Istnieją 4 flagi przestrzeni nazw:\n"
++"  -r - \"root\"\n"
++"  -u - \"user\" (domyślna)\n"
++"  -s - \"secure\"\n"
++"  -p - \"parent\"\n"
++"  -Z - własność systemu plików\n"
++"\n"
++"  -v - wypisanie wartości atrybutów\n"
++"\n"
+ 
+ #: .././db/attrset.c:71
+ msgid ""
+@@ -593,9 +599,18 @@ msgid ""
+ "  -Z -- fs property\n"
+ "\n"
+ msgstr ""
++"\n"
++" Polecenie attr_get zapewnia interfejs do odczytywania wartości rozszerzonych"
++" atrybutów pliku. Polecenie wymaga podania nazw atrybutów.\n"
++" Istnieją 4 flagi przestrzeni nazw:\n"
++"  -r - \"root\"\n"
++"  -u - \"user\" (domyślna)\n"
++"  -s - \"secure\"\n"
++"  -p - \"parent\"\n"
++"  -Z - własność systemu plików\n"
++"\n"
+ 
+ #: .././db/attrset.c:87
+-#, fuzzy
+ msgid ""
+ "\n"
+ " The 'attr_set' and 'attr_remove' commands provide interfaces for debugging\n"
+@@ -620,48 +635,48 @@ msgid ""
+ "\n"
+ msgstr ""
+ "\n"
+-" Polecenia 'attr_set' i 'attr_remove' udostępniają interfejsy do "
+-"diagnostyki\n"
++" Polecenia 'attr_set' i 'attr_remove' zapewniają interfejsy do diagnostyki\n"
+ " kodu przydzielania i usuwania rozszerzonych atrybutów.\n"
+ " Oba polecenia wymagają podania nazwy atrybutu, a polecenie attr_set\n"
+ " pozwala dodatkowo podać opcjonalną długość wartości (-v).\n"
+-" Są 4 flagi przestrzeni nazw:\n"
++" Istnieją 4 flagi przestrzeni nazw:\n"
+ "  -r - 'root'\n"
+ "  -u - 'user'   (domyślna)\n"
+ "  -s - 'secure'\n"
++"  -p - 'parent'\n"
++"  -Z - własność systemu plików\n"
+ "\n"
+ " Dla attr_set poniższe opcje określają rodzaj operacji ustawiania:\n"
+-"  -C - 'create'  - utworzenie atrybutu; nie powiedzie się, jeśli już "
+-"istnieje\n"
+-"  -R - 'replace' - zastąpienie atrybutu; nie powiedzie się, jeśli nie "
+-"istnieje\n"
+-" Możliwa jest także emulacja trybu kompatybilności wstecznej 'noattr2' (-"
+-"n).\n"
++"  -C - 'create'  - utworzenie atrybutu; nie powiedzie się, jeśli już istnieje\n"
++"  -R - 'replace' - zastąpienie atrybutu; nie powiedzie się, jeśli nie istnieje\n"
++"\n"
++" Jeśli wartość atrybutu jest łańcuchem, można ją podać po nazwie atrybutu.\n"
++"\n"
++" Możliwa jest także emulacja trybu kompatybilności wstecznej 'noattr2' (-n).\n"
+ "\n"
+ 
+ #: .././db/attrset.c:175 .././db/attrset.c:817
+ msgid "fs properties must be ATTR_ROOT\n"
+-msgstr ""
++msgstr "własności systemu plików muszą być ATTR_ROOT\n"
+ 
+ #: .././db/attrset.c:181
+-#, fuzzy
+ msgid "could not allocate fs property name string\n"
+-msgstr "nie udało się przydzielić tablicy ftypes\n"
++msgstr "nie udało się przydzielić łańcucha nazwy własności systemu plików\n"
+ 
+ #: .././db/attrset.c:192
+-#, fuzzy, c-format
++#, c-format
+ msgid "%s: name too long\n"
+-msgstr "nazwa zbyt długa\n"
++msgstr "%s: nazwa zbyt długa\n"
+ 
+ #: .././db/attrset.c:197
+-#, fuzzy, c-format
++#, c-format
+ msgid "%s: value too long\n"
+-msgstr "nazwa zbyt długa\n"
++msgstr "%s: wartość zbyt długa\n"
+ 
+ #: .././db/attrset.c:214
+-#, fuzzy, c-format
++#, c-format
+ msgid "%s: not a fs property?\n"
+-msgstr "%s: nie można odnaleźć projektu %s\n"
++msgstr "%s: nie jest własnością systemu plików?\n"
+ 
+ #: .././db/attrset.c:241 .././db/attrset.c:442 .././db/attrset.c:572
+ #: .././db/attrset.c:780
+@@ -669,28 +684,25 @@ msgid "current type is not inode\n"
+ msgstr "bieżący typ nie jest i-węzłem\n"
+ 
+ #: .././db/attrset.c:289
+-#, fuzzy
+ msgid "already set value file\n"
+-msgstr "wartość zostałaby przestawiona\n"
++msgstr "plik wartości już ustawiony\n"
+ 
+ #: .././db/attrset.c:296
+ #, c-format
+ msgid "bad attr_set valuelen %s\n"
+-msgstr "błędna długość wartości %s dla attr_set\n"
++msgstr "błędna długość wartości attr_set %s\n"
+ 
+ #: .././db/attrset.c:303
+-#, fuzzy
+ msgid "already set valuelen\n"
+-msgstr "błędna długość wartości %s dla attr_set\n"
++msgstr "długość wartości już ustawiona\n"
+ 
+ #: .././db/attrset.c:311
+ msgid "bad option for attr_set command\n"
+ msgstr "błędna opcja dla polecenia attr_set\n"
+ 
+ #: .././db/attrset.c:320 .././db/attrset.c:489
+-#, fuzzy
+ msgid "too many options for attr_set (no name needed)\n"
+-msgstr "za mało opcji dla attr_set (nie podano nazwy)\n"
++msgstr "za dużo opcji dla attr_set (wartość nie jest potrzebna)\n"
+ 
+ #: .././db/attrset.c:333
+ msgid "too few options for attr_set (no name given)\n"
+@@ -710,9 +722,9 @@ msgid "cannot allocate buffer (%d)\n"
+ msgstr "nie udało się przydzielić bufora (%d)\n"
+ 
+ #: .././db/attrset.c:379
+-#, fuzzy, c-format
++#, c-format
+ msgid "%s: invalid value \"%s\"\n"
+-msgstr "%s: nieprawidłowa nazwa %s: %s\n"
++msgstr "%s: nieprawidłowa nazwa \"%s\"\n"
+ 
+ #: .././db/attrset.c:389 .././db/attrset.c:523 .././db/attrset.c:642
+ #, c-format
+@@ -720,9 +732,9 @@ msgid "failed to iget inode %llu\n"
+ msgstr "operacja iget na i-węźle %llu nie powiodła się\n"
+ 
+ #: .././db/attrset.c:399
+-#, fuzzy, c-format
++#, c-format
+ msgid "failed to set attr %s on inode %llu: %s\n"
+-msgstr "ustawianie atrybutu %s w i-węźle %llu nie powiodło się\n"
++msgstr "nie udało się ustawić atrybutu %s w i-węźle %llu: %s\n"
+ 
+ #: .././db/attrset.c:480
+ msgid "bad option for attr_remove command\n"
+@@ -733,54 +745,48 @@ msgid "too few options for attr_remove (
+ msgstr "za mało opcji dla attr_remove (nie podano nazwy)\n"
+ 
+ #: .././db/attrset.c:533
+-#, fuzzy, c-format
++#, c-format
+ msgid "failed to remove attr %s from inode %llu: %s\n"
+-msgstr "usunięcie atrybutu %s z i-węzła %llu nie powiodło się\n"
++msgstr "nie udało się usunąć atrybutu %s z i-węzła %llu: %s\n"
+ 
+ #: .././db/attrset.c:602
+-#, fuzzy
+ msgid "bad option for attr_get command\n"
+-msgstr "błędna opcja dla polecenia attr_set\n"
++msgstr "błędna opcja polecenia attr_get\n"
+ 
+ #: .././db/attrset.c:611
+-#, fuzzy
+ msgid "too many options for attr_get (no name needed)\n"
+-msgstr "za mało opcji dla attr_set (nie podano nazwy)\n"
++msgstr "za dużo opcji dla attr_get (nazwa nie jest potrzebna)\n"
+ 
+ #: .././db/attrset.c:624
+-#, fuzzy
+ msgid "too few options for attr_get (no name given)\n"
+-msgstr "za mało opcji dla attr_set (nie podano nazwy)\n"
++msgstr "za mało opcji dla attr_get (nie podano nazwy)\n"
+ 
+ #: .././db/attrset.c:660 .././db/attrset.c:751
+-#, fuzzy, c-format
++#, c-format
+ msgid "failed to get attr %s on inode %llu: %s\n"
+-msgstr "ustawianie atrybutu %s w i-węźle %llu nie powiodło się\n"
++msgstr "nie udało się pobrać atrybutu %s w i-węźle %llu: %s\n"
+ 
+ #: .././db/attrset.c:810
+-#, fuzzy
+ msgid "bad option for attr_list command\n"
+-msgstr "błędna opcja dla polecenia attr_set\n"
++msgstr "błędna opcja polecenia attr_list\n"
+ 
+ #: .././db/attrset.c:822
+-#, fuzzy
+ msgid "too many options for attr_list (no name needed)\n"
+-msgstr "za mało opcji dla attr_set (nie podano nazwy)\n"
++msgstr "za dużo opcji dla attr_list (nazwa nie jest potrzebna)\n"
+ 
+ #: .././db/attrset.c:828
+-#, fuzzy
+ msgid "failed to allocate empty transaction\n"
+-msgstr "nie udało się przydzielić %zd bajtów pamięci\n"
++msgstr "nie udało się przydzielić pustej transakcji\n"
+ 
+ #: .././db/attrset.c:834
+-#, fuzzy, c-format
++#, c-format
+ msgid "failed to iget inode %llu: %s\n"
+-msgstr "operacja iget na i-węźle %llu nie powiodła się\n"
++msgstr "nie udała się operacja iget na i-węźle %llu: %s\n"
+ 
+ #: .././db/attrset.c:842
+-#, fuzzy, c-format
++#, c-format
+ msgid "walking inode %llu xattrs: %s\n"
+-msgstr "nie udało się uzyskać atrybutów i-węzła: %s\n"
++msgstr "przechodzenie atrybutów rozszerzonych i-węzła %llu: %s\n"
+ 
+ #: .././db/block.c:31 .././db/block.c:37
+ msgid "filoff"
+@@ -861,14 +867,14 @@ msgstr ""
  " (blok 512-bajtowy).\n"
  
  #: .././db/block.c:133
@@ -45,7 +322,7 @@
  
  #: .././db/block.c:137
  #, c-format
-@@ -772,7 +772,7 @@ msgstr ""
+@@ -925,7 +931,7 @@ msgstr ""
  
  #: .././db/block.c:233
  msgid "cursor does not point to data device\n"
@@ -54,7 +331,7 @@
  
  #: .././db/block.c:236
  #, c-format
-@@ -831,68 +831,71 @@ msgid ""
+@@ -984,68 +990,71 @@ msgid ""
  " -n nr  Create this many copies of the mapping.\n"
  "\n"
  msgstr ""
@@ -148,7 +425,7 @@
  
  #: .././db/btblock.c:152
  #, c-format
-@@ -1878,9 +1881,8 @@ msgid "bad id %u for %s dqblk %lld entry
+@@ -2031,9 +2040,8 @@ msgid "bad id %u for %s dqblk %lld entry
  msgstr "błędne id %u dla dqblk %s %lld, wpis %d, id %u\n"
  
  #: .././db/check.c:3636
@@ -159,7 +436,50 @@
  
  #: .././db/check.c:3652
  #, c-format
-@@ -3020,9 +3022,9 @@ msgid "\tbyte offset %lld, length %d\n"
+@@ -2731,19 +2739,16 @@ msgid "invalid numrecs (%u) in %s block\
+ msgstr "błędne numrecs (%u) w bloku %s\n"
+ 
+ #: .././db/freesp.c:90 .././spaceman/freesp.c:317
+-#, fuzzy
+ msgid "total free blocks"
+-msgstr "razem wolnych bloków: %lld\n"
++msgstr "razem wolnych bloków"
+ 
+ #: .././db/freesp.c:91 .././spaceman/freesp.c:318
+-#, fuzzy
+ msgid "total free extents"
+-msgstr "razem wolnych ekstentów: %lld\n"
++msgstr "razem wolnych ekstentów"
+ 
+ #: .././db/freesp.c:92 .././spaceman/freesp.c:319
+-#, fuzzy
+ msgid "average free extent size"
+-msgstr "średni rozmiar wolnego ekstentu: %g\n"
++msgstr "średni rozmiar wolnego ekstentu"
+ 
+ #: .././db/freesp.c:186
+ msgid ""
+@@ -2919,7 +2924,6 @@ msgid "calculate hash value"
+ msgstr "obliczenie wartości skrótu"
+ 
+ #: .././db/hash.c:35
+-#, fuzzy
+ msgid ""
+ "\n"
+ " 'hash' prints out the calculated hash value for a string using the\n"
+@@ -2930,9 +2934,9 @@ msgid ""
+ msgstr ""
+ "\n"
+ " 'hash' wypisuje wartość skrótu dla łańcucha obliczoną przy użyciu funkcji\n"
+-" haszującej dla katalogów/atrybutów.\n"
++" haszującej kodu katalogów/atrybutów.\n"
+ "\n"
+-" Składnia: \"hash <łańcuch>\"\n"
++" Składnia: \"hash [-d|-p iwęzeł_rodzica] <łańcuch>\"\n"
+ "\n"
+ 
+ #: .././db/hash.c:111
+@@ -3162,9 +3166,9 @@ msgid "\tbyte offset %lld, length %d\n"
  msgstr "\toffset w bajtach %lld, długość %d\n"
  
  #: .././db/io.c:177
@@ -171,7 +491,7 @@
  
  #: .././db/io.c:182 .././db/io.c:571
  #, c-format
-@@ -3377,16 +3379,15 @@ msgid "%s: out of memory\n"
+@@ -3519,16 +3523,15 @@ msgid "%s: out of memory\n"
  msgstr "%s: brak pamięci\n"
  
  #: .././db/metadump.c:49
@@ -190,7 +510,7 @@
  msgid ""
  "\n"
  " The 'metadump' command dumps the known metadata to a compact file suitable\n"
-@@ -3419,6 +3420,7 @@ msgstr ""
+@@ -3561,6 +3564,7 @@ msgstr ""
  "skopiowania\n"
  "        (domyślnie %d bloków)\n"
  "   -o - bez zaciemniania nazw i rozszerzonych atrybutów\n"
@@ -198,7 +518,69 @@
  "   -w - wyświetlanie ostrzeżeń o błędnych metadanych\n"
  "\n"
  
-@@ -4249,24 +4251,24 @@ msgid "%s: Stats not yet supported for X
+@@ -3632,6 +3636,11 @@ msgid ""
+ " Parent pointers will be listed in the format:\n"
+ " inode_number:inode_gen\tondisk_namehash:namehash\tname_length\tname\n"
+ msgstr ""
++"\n"
++" Lista rodziców aktualnie wybranego pliku.\n"
++"\n"
++" Wskaźniki rodziców zostaną wypisane w formacie:\n"
++" numer_iwęzła:gen_iwęzła\thasz_nazwy_na_dysku:hasz_nazwy\tdługość_nazwy\tnazwa\n"
+ 
+ #: .././db/namei.c:923
+ msgid ""
+@@ -3645,6 +3654,14 @@ msgid ""
+ "   -t   -- Set the file type to this value.\n"
+ "   name -- Create this directory entry with this name.\n"
+ msgstr ""
++"\n"
++" Utworzenie w bieżącym katalogu wpisu katalogu wskazującego na podany plik.\n"
++"\n"
++" Opcje:\n"
++"   -i    - wskazanie na podany numer i-węzła.\n"
++"   -p    - wskazanie na i-węzeł podany tą ścieżką.\n"
++"   -t    - ustawienie typu pliku na podaną wartość.\n"
++"   nazwa - utworzenie wpisu katalogu o podanej nazwie.\n"
+ 
+ #: .././db/namei.c:1137
+ msgid ""
+@@ -3654,6 +3671,11 @@ msgid ""
+ " Options:\n"
+ "   name -- Remove the directory entry with this name.\n"
+ msgstr ""
++"\n"
++" Usunięcie wpisu katalogu z bieżącego katalogu.\n"
++"\n"
++" Opcje:\n"
++"   nazwa - usunięcie wpisu katalogu o podanej nazwie.\n"
+ 
+ #: .././db/namei.c:1292
+ msgid "navigate to an inode by path"
+@@ -3664,19 +3686,16 @@ msgid "list directory contents"
+ msgstr "lista zawartości katalogu"
+ 
+ #: .././db/namei.c:1298
+-#, fuzzy
+ msgid "list parent pointers"
+-msgstr "lista aktualnie otwartych plików"
++msgstr "lista wskaźników rodziców"
+ 
+ #: .././db/namei.c:1302
+-#, fuzzy
+ msgid "create directory link"
+-msgstr "tworzenie blokady skanowania katalogu"
++msgstr "utworzenie dowiązania do katalogu"
+ 
+ #: .././db/namei.c:1305
+-#, fuzzy
+ msgid "remove directory link"
+-msgstr "odczyt wpisów katalogu"
++msgstr "usunięcie dowiązania do katalogu"
+ 
+ #: .././db/output.c:18
+ msgid "[stop|start <filename>]"
+@@ -4437,24 +4456,24 @@ msgid "%s: Stats not yet supported for X
  msgstr "%s: statystyki nie są jeszcze obsługiwane dla XFS-a\n"
  
  #: .././fsr/xfs_fsr.c:190
@@ -230,7 +612,7 @@
  
  #: .././fsr/xfs_fsr.c:272 .././scrub/xfs_scrub.c:882
  #, c-format
-@@ -5535,7 +5537,7 @@ msgstr ""
+@@ -5718,7 +5737,7 @@ msgstr ""
  "\n"
  
  #: .././io/encrypt.c:212
@@ -239,7 +621,7 @@
  msgid ""
  "\n"
  " assign an encryption policy to the currently open file\n"
-@@ -5577,6 +5579,7 @@ msgstr ""
+@@ -5760,6 +5779,7 @@ msgstr ""
  " -c TRYB - tryb szyfrowania zawartości\n"
  " -n TRYB - tryb szyfrowania nazw plików\n"
  " -f FLAGI - flagi polityki\n"
@@ -247,7 +629,7 @@
  " -v WERSJA - wersja polityki\n"
  "\n"
  " TRYB może być liczbą lub jedną z następujących wartości:\n"
-@@ -5789,9 +5792,9 @@ msgid "invalid flags: %s\n"
+@@ -5972,9 +5992,9 @@ msgid "invalid flags: %s\n"
  msgstr "nieprawidłowe flagi: %s\n"
  
  #: .././io/encrypt.c:650
@@ -259,7 +641,7 @@
  
  #: .././io/encrypt.c:661
  #, c-format
-@@ -5879,9 +5882,9 @@ msgid "display the encryption policy of
+@@ -6062,9 +6082,9 @@ msgid "display the encryption policy of
  msgstr "wyświetlenie polityki szyfrowania bieżącego pliku"
  
  #: .././io/encrypt.c:947
@@ -271,7 +653,140 @@
  
  #: .././io/encrypt.c:952
  msgid "assign an encryption policy to the current file"
-@@ -6322,6 +6325,13 @@ msgid ""
+@@ -6110,11 +6130,21 @@ msgid ""
+ " -t   -- Print timing information\n"
+ " -w   -- Only exchange written ranges in the supplied file\n"
+ msgstr ""
++"\n"
++" Wymiana danych pliku między otwartym deskryptorem pliku a podaną nazwą pliku.\n"
++" -C   - wypisanie informacji o czasie w zwartym formacie\n"
++" -d N - rozpoczęciw wymiany zawartości od podanego miejsca w otwartym pliku\n"
++" -f   - zrzut zmienionych danych i metadanych pliku na dysk\n"
++" -l N - wymiana podanej liczby bajtów plików zamiast do końca pliku\n"
++" -n   - sprawdzenie poprawności parametrów bez wykonywania podmiany\n"
++" -s N - rozpoczęcie wymiany zawartości od podanego miejsca w podanym pliku\n"
++" -t     wypisanie informacji o czasie\n"
++" -w   - wymiana tylko zapisanych przedziałów w podanym pliku\n"
+ 
+ #: .././io/exchrange.c:60
+-#, fuzzy, c-format
++#, c-format
+ msgid "non-numeric open file offset argument -- %s\n"
+-msgstr "nieliczbowy argument będący offsetem - %s\n"
++msgstr "nieliczbowy argument położenia w otwartym pliku - %s\n"
+ 
+ #: .././io/exchrange.c:72 .././io/fadvise.c:90 .././io/madvise.c:163
+ #: .././io/mincore.c:42 .././io/mmap.c:233 .././io/mmap.c:348
+@@ -6123,21 +6153,20 @@ msgstr "nieliczbowy argument będący of
+ #: .././io/sendfile.c:127 .././io/sync_file_range.c:73
+ #, c-format
+ msgid "non-numeric length argument -- %s\n"
+-msgstr "nieliczbowy argument będący długością - %s\n"
++msgstr "nieliczbowy argument długości - %s\n"
+ 
+ #: .././io/exchrange.c:85
+-#, fuzzy, c-format
++#, c-format
+ msgid "non-numeric supplied file offset argument -- %s\n"
+-msgstr "nieliczbowy argument będący offsetem docelowym - %s\n"
++msgstr "nieliczbowy argument położenia w podanym pliku - %s\n"
+ 
+ #: .././io/exchrange.c:152
+ msgid "[-Cfntw] [-d dest_offset] [-s src_offset] [-l length] <donorfile>"
+-msgstr ""
++msgstr "[-Cfntw] [-d położenie_celu] [-s położenie_źródła] [-l długość] <plik_dawcy>"
+ 
+ #: .././io/exchrange.c:153
+-#, fuzzy
+ msgid "Exchange contents between files."
+-msgstr "Zamiana ekstentów między plikami."
++msgstr "Podmiana zawartości między plikami."
+ 
+ #: .././io/fadvise.c:18
+ #, c-format
+@@ -6537,6 +6566,8 @@ msgid ""
+ "Print the names of the filesystem properties stored in this filesystem.\n"
+ "\n"
+ msgstr ""
++"Wypisanie nazw własności systemu plików zapisanych w tym systemie plików.\n"
++"\n"
+ 
+ #: .././io/fsproperties.c:42 .././io/fsproperties.c:66
+ #: .././scrub/xfs_scrub.c:905 .././spaceman/info.c:32
+@@ -6552,6 +6583,10 @@ msgid ""
+ "Pass property names as the arguments.\n"
+ "\n"
+ msgstr ""
++"Wypisanie wartości własności systemu plików zapisanych w tym systemie plików.\n"
++"\n"
++"Nazwy własności należy przekazać jako argumenty.\n"
++"\n"
+ 
+ #: .././io/fsproperties.c:217
+ #, c-format
+@@ -6563,16 +6598,22 @@ msgid ""
+ "Provide name=value tuples as the arguments.\n"
+ "\n"
+ msgstr ""
++"Ustawienie wartości własności systemu plików zapisanych w tym systemie plików.\n"
++"\n"
++" -f    Bez próby sprawdzania wartości własności.\n"
++"\n"
++"Jako argumenty należy przekazać krotku nazwa=wartość.\n"
++"\n"
+ 
+ #: .././io/fsproperties.c:255
+-#, fuzzy, c-format
++#, c-format
+ msgid "%s: property value required.\n"
+-msgstr "Wymagane są naprawy."
++msgstr "%s: wymagane są wartości własności.\n"
+ 
+ #: .././io/fsproperties.c:264
+-#, fuzzy, c-format
++#, c-format
+ msgid "%s: invalid value \"%s\".\n"
+-msgstr "%s: nieprawidłowa nazwa %s: %s\n"
++msgstr "%s: nieprawidłowa wartość \"%s\".\n"
+ 
+ #: .././io/fsproperties.c:302
+ #, c-format
+@@ -6582,26 +6623,26 @@ msgid ""
+ "Pass property names as the arguments.\n"
+ "\n"
+ msgstr ""
++"Usunięcie ustawień własności systemu plików.\n"
++"\n"
++"Jako argumenty należy przekazać nazwy własności.\n"
++"\n"
+ 
+ #: .././io/fsproperties.c:356
+-#, fuzzy
+ msgid "list file system properties"
+-msgstr "przeszukiwanie wolnego miejsca w systemie plików"
++msgstr "lista własności systemu plików"
+ 
+ #: .././io/fsproperties.c:357
+-#, fuzzy
+ msgid "print file system properties"
+-msgstr "Sprawdzanie geometrii systemu plików."
++msgstr "wypisanie własności systemu plików"
+ 
+ #: .././io/fsproperties.c:358
+-#, fuzzy
+ msgid "set file system properties"
+-msgstr "Opóźnienie napraw systemu plików."
++msgstr "ustawienie własności systemu plików"
+ 
+ #: .././io/fsproperties.c:359
+-#, fuzzy
+ msgid "unset file system properties"
+-msgstr "Opóźnienie napraw systemu plików."
++msgstr "usunięcie ustawień własności systemu plików"
+ 
+ #: .././io/fsuuid.c:51
+ #, c-format
+@@ -6614,6 +6655,13 @@ msgid ""
  " -d\t-- return the path in debugfs, if any\n"
  "\n"
  msgstr ""
@@ -285,7 +800,7 @@
  
  #: .././io/fsuuid.c:103
  msgid "get mounted filesystem UUID"
-@@ -6329,12 +6339,11 @@ msgstr "odczyt UUID-a zamontowanego syst
+@@ -6621,12 +6669,11 @@ msgstr "odczyt UUID-a zamontowanego syst
  
  #: .././io/fsuuid.c:111
  msgid "-d"
@@ -300,7 +815,7 @@
  
  #: .././io/fsync.c:49
  msgid "calls fsync(2) to flush all in-core file state to disk"
-@@ -6486,7 +6495,7 @@ msgid "create mark <mark> in the dm-log-
+@@ -6778,7 +6825,7 @@ msgid "create mark <mark> in the dm-log-
  msgstr "utworzenie <znacznika> w logu dm-log-writes określonym <urządzeniem>"
  
  #: .././io/madvise.c:20
@@ -309,7 +824,7 @@
  msgid ""
  "\n"
  " advise the page cache about access patterns expected for a mapping\n"
-@@ -6521,18 +6530,32 @@ msgid ""
+@@ -6813,18 +6860,32 @@ msgid ""
  "\n"
  msgstr ""
  "\n"
@@ -349,7 +864,81 @@
  " Uwagi:\n"
  "  NORMAL ustawia domyślną wartość czytania z wyprzedzeniem dla pliku.\n"
  "  RANDOM ustawia czytanie z wyprzedzeniem dla pliku na zero.\n"
-@@ -7791,7 +7814,7 @@ msgid "scrubs filesystem metadata"
+@@ -7361,31 +7422,33 @@ msgid "change the read/write permissions
+ msgstr "zmiana uprawnień do odczytu/zapisu aktualnie otwartego pliku"
+ 
+ #: .././io/parent.c:34
+-#, fuzzy, c-format
++#, c-format
+ msgid "Root directory.\n"
+-msgstr "katalog"
++msgstr "Katalog główny.\n"
+ 
+ #: .././io/parent.c:52
+-#, fuzzy, c-format
++#, c-format
+ msgid "p_ino     = %llu\n"
+-msgstr "p_ino    = %llu\n"
++msgstr "p_ino     = %llu\n"
+ 
+ #: .././io/parent.c:53
+-#, fuzzy, c-format
++#, c-format
+ msgid "p_gen     = %u\n"
+-msgstr "p_gen    = %u\n"
++msgstr "p_gen     = %u\n"
+ 
+ #: .././io/parent.c:54
+-#, fuzzy, c-format
++#, c-format
+ msgid "p_namelen = %zu\n"
+-msgstr "p_reclen = %u\n"
++msgstr "p_namelen = %zu\n"
+ 
+ #: .././io/parent.c:55
+-#, fuzzy, c-format
++#, c-format
+ msgid ""
+ "p_name    = \"%s\"\n"
+ "\n"
+-msgstr "p_name   = \"%s\"\n"
++msgstr ""
++"p_name   = \"%s\"\n"
++"\n"
+ 
+ #: .././io/parent.c:138
+ #, c-format
+@@ -7418,15 +7481,26 @@ msgid ""
+ "If ino and gen are supplied, use them instead.\n"
+ "\n"
+ msgstr ""
++"\n"
++" lista rodziców bieżącego pliku i ich nazw plików\n"
++"\n"
++" -b - użycie tej liczby bajtów do trzymiania rekordów wskaźników rodziców\n"
++" -i - tylko rekordy wskaźników rodziców zawierające podany i-węzeł\n"
++" -n - tylko rekordy wskaźników rodziców zawierające podaną nazwę pliku\n"
++" -p - lista ścieżek bieżącego pliku do korzenia\n"
++" -s - wypisanie rekordów w krótkim formacie: ino/gen/dł_nazwy/nazwa_pliku\n"
++" -z - wypisanie tylko pierwszej ścieżki od korzenia\n"
++"\n"
++"Jeśli podano ino i gen, zostaną użyte zamiast bieżącego pliku.\n"
++"\n"
+ 
+ #: .././io/parent.c:277
+ msgid "[-psz] [-b bufsize] [-i ino] [-n name] [ino gen]"
+-msgstr ""
++msgstr "[-psz] [-b rozm_bufora] [-i ino] [-n nazwa] [ino gen]"
+ 
+ #: .././io/parent.c:279
+-#, fuzzy
+ msgid "print parent inodes"
+-msgstr "wypisanie lub sprawdzenie i-węzłów nadrzędnych"
++msgstr "wypisanie i-węzłów rodziców"
+ 
+ #: .././io/pread.c:22
+ #, c-format
+@@ -7949,7 +8023,7 @@ msgid "scrubs filesystem metadata"
  msgstr "doczyszczenie metadanych systemu plików"
  
  #: .././io/scrub.c:262
@@ -358,7 +947,7 @@
  msgid ""
  "\n"
  " Repairs a piece of XFS filesystem metadata.  The first argument is the "
-@@ -7814,13 +7837,13 @@ msgid ""
+@@ -7972,13 +8046,13 @@ msgid ""
  msgstr ""
  "\n"
  " Naprawienie fragmentu metadanych systemu plików XFS. Pierwszy argument to\n"
@@ -379,7 +968,150 @@
  "\n"
  " Przykład:\n"
  " 'repair inobt 3' - naprawienie b-drzewa i-węzła w AG 3.\n"
-@@ -8556,9 +8579,9 @@ msgid "exit the program"
+@@ -8038,59 +8112,82 @@ msgid ""
+ " 'scrubv probe' - check for presence of online scrub.\n"
+ " 'scrubv summary' - scrub all summary metadata.\n"
+ msgstr ""
++"\n"
++" Doczyszczanie elementów metadanych systemu plików XFS. Pierwszy argument to\n"
++" grupa metadanych do zbadania. Jeśli grupa to \"ag\", drugi parametr powinien\n"
++" być numerem AG. Jeśli grupa to \"inode\", drugi i trzeci parametr powinien\n"
++" być numerem i-węzła oraz numerem jego generacji do operowania; jeśli te\n"
++" zostaną pominięte, operacja scrub zostanie wykonana na otwartym pliku. Jeśli\n"
++" grupa to \"fs\", \"summary\" lub \"probe\", nie ma więcej parametrów.\n"
++"\n"
++" Flagi to: -d do diagnostyki, -r aby zezwolić na naprawę.\n"
++" -b NN wstawia barierę doczyszczania po każdych NN krokach, -n ustawia\n"
++" żądaną maskę uszkodzeń we wszystkich barierach. -w dodaje pauzę na trochę\n"
++" milisekund po każdym wywołaniu scrub.\n"
++"\n"
++" Przykłady:\n"
++" 'scrubv ag 3' - doczyszczenie wszystkich metadanych w AG 3.\n"
++" 'scrubv ag 3 -b 2 -m 0x4' - doczyszczenie wszystkich metadanych w AG 3,\n"
++"            użycie barier po każdym trzecim czyszczeniu, aby wcześnie\n"
++"            zakończyć, jeśli są optymalizacje.\n"
++" 'scrubv fs' - doczyszczenie wszystkich metadanych poza plikami i AG.\n"
++" 'scrubv inode' - doczyszczenie wszystkich metadanych dla otwartego pliku.\n"
++" 'scrubv inode 128 13525' - doczyszczenie metadanych i-węzła 128 gen 13525.\n"
++" 'scrubv probe' - sprawdzenie obecności doczyszczania online.\n"
++" 'scrubv summary' - doczyszczenie wszystkich metadanych podsumowania.\n"
+ 
+ #: .././io/scrub.c:419
+ #, c-format
+ msgid "Negative barrier interval makes no sense.\n"
+-msgstr ""
++msgstr "Ujemny okres bariery nie ma sensu.\n"
+ 
+ #: .././io/scrub.c:440
+ #, c-format
+ msgid "API version must be 'single' or 'vector'.\n"
+-msgstr ""
++msgstr "Wersją API musi być 'single' lub 'vector'.\n"
+ 
+ #: .././io/scrub.c:449
+ #, c-format
+ msgid "Rest time must be positive.\n"
+-msgstr ""
++msgstr "Czas odpoczynku musi być dodatni.\n"
+ 
+ #: .././io/scrub.c:461
+ #, c-format
+ msgid "Must have at least one positional argument.\n"
+-msgstr ""
++msgstr "Musi być przynajmniej jeden argument pozycyjny.\n"
+ 
+ #: .././io/scrub.c:467
+-#, fuzzy, c-format
++#, c-format
+ msgid "Repair flag requires expert mode.\n"
+-msgstr "Wymagane są naprawy."
++msgstr "Flaga naprawy wymaga trybu eksperta.\n"
+ 
+ #: .././io/scrub.c:491
+-#, fuzzy, c-format
++#, c-format
+ msgid "Unknown group '%s'.\n"
+-msgstr "Nieznany typ '%s'.\n"
++msgstr "Nieznana grupa '%s'.\n"
+ 
+ #: .././io/scrub.c:559
+ msgid "barrier"
+-msgstr ""
++msgstr "bariera"
+ 
+ #: .././io/scrub.c:562
+ #, c-format
+ msgid "[%02u] %-25s: flags 0x%x ret %d\n"
+-msgstr ""
++msgstr "[%02u] %-25s: flagi 0x%x ret %d\n"
+ 
+ #: .././io/scrub.c:572
+ #, c-format
+ msgid "barrier: FAILED\n"
+-msgstr ""
++msgstr "bariera: NIEPOWODZENIE\n"
+ 
+ #: .././io/scrub.c:587
+ #, c-format
+ msgid "OK.\n"
+-msgstr ""
++msgstr "OK.\n"
+ 
+ #: .././io/scrub.c:603
+ msgid "vectored metadata scrub"
+-msgstr ""
++msgstr "nakierowane przeczyszczenie metadanych"
+ 
+ #: .././io/seek.c:20
+ #, c-format
+@@ -8653,7 +8750,7 @@ msgid "Found something\n"
+ msgstr "Znaleziono coś\n"
+ 
+ #: .././libfrog/fsgeom.c:58
+-#, fuzzy, c-format
++#, c-format
+ msgid ""
+ "meta-data=%-22s isize=%-6d agcount=%u, agsize=%u blks\n"
+ "         =%-22s sectsz=%-5u attr=%u, projid32bit=%u\n"
+@@ -8669,11 +8766,12 @@ msgid ""
+ msgstr ""
+ "metadane=%-22s isize=%-6d agcount=%u, agsize=%u bloków\n"
+ "        =%-22s sectsz=%-5u attr=%u, projid32bit=%u\n"
+-"        =%-22s crc=%-8u finobt=%u sparse=%u rmapbt=%u\n"
++"        =%-22s crc=%-8u finobt=%u, sparse=%u, rmapbt=%u\n"
+ "        =%-22s reflink=%-4u bigtime=%u inobtcount=%u nrext64=%u\n"
++"        =%-22s exchange=%-3u\n"
+ "dane    =%-22s bsize=%-6u blocks=%llu, imaxpct=%u\n"
+ "        =%-22s sunit=%-6u swidth=%u bloków\n"
+-"nazwy   =wersja %-14u bsize=%-6u ascii-ci=%d, ftype=%d\n"
++"nazwy   =wersja %-14u bsize=%-6u ascii-ci=%d, ftype=%d, rodzic=%d\n"
+ "log     =%-22s bsize=%-6d blocks=%u, wersja=%d\n"
+ "        =%-22s sectsz=%-5u sunit=%d bloków, lazy-count=%d\n"
+ "realtime=%-22s extsz=%-6d blocks=%lld, rtextents=%lld\n"
+@@ -8684,7 +8782,7 @@ msgstr "log wewnętrzny"
+ 
+ #: .././libfrog/histogram.c:176
+ msgid "histogram cdf"
+-msgstr ""
++msgstr "histogram cdf"
+ 
+ #: .././libfrog/histogram.c:200
+ msgid "from"
+@@ -8696,11 +8794,11 @@ msgstr "do"
+ 
+ #: .././libfrog/histogram.c:203
+ msgid "blkcdf"
+-msgstr ""
++msgstr "blkcdf"
+ 
+ #: .././libfrog/histogram.c:203
+ msgid "extcdf"
+-msgstr ""
++msgstr "extcdf"
+ 
+ #: .././libfrog/histogram.c:203
+ msgid "pct"
+@@ -8820,9 +8918,9 @@ msgid "exit the program"
  msgstr "wyjście z programu"
  
  #: .././libxfs/buf_mem.c:79
@@ -391,7 +1123,7 @@
  
  #: .././libxfs/init.c:137
  #, c-format
-@@ -8566,9 +8589,9 @@ msgid "%s: cannot stat %s: %s\n"
+@@ -8830,9 +8928,9 @@ msgid "%s: cannot stat %s: %s\n"
  msgstr "%s: nie można wykonać stat na %s: %s\n"
  
  #: .././libxfs/init.c:175
@@ -403,7 +1135,110 @@
  
  #: .././libxfs/init.c:304
  #, c-format
-@@ -10059,9 +10082,9 @@ msgid "committing space for a file faile
+@@ -10157,6 +10255,9 @@ msgid ""
+ "name_len: %u, new_name_len: %u, value_len: %u, new_value_len: %u  id: "
+ "0x%llx\n"
+ msgstr ""
++"ATTRI:  #regs: %d\tf: 0x%x, ino: 0x%llx, igen: 0x%x, attr_filter: 0x%x, "
++"name_len: %u, new_name_len: %u, value_len: %u, new_value_len: %u  id: "
++"0x%llx\n"
+ 
+ #: .././logprint/log_redo.c:794 .././logprint/log_redo.c:806
+ #: .././logprint/log_redo.c:818 .././logprint/log_redo.c:830
+@@ -10165,9 +10266,9 @@ msgid "\n"
+ msgstr "\n"
+ 
+ #: .././logprint/log_redo.c:859 .././logprint/log_redo.c:876
+-#, fuzzy, c-format
++#, c-format
+ msgid "ATTRI:  %s len:%u\n"
+-msgstr "ATTRI:  długość nazwy: %u\n"
++msgstr "ATTRI:  długość %s: %u\n"
+ 
+ #: .././logprint/log_redo.c:910
+ #, c-format
+@@ -10181,6 +10282,9 @@ msgid ""
+ "name_len: %u, new_name_len: %u, value_len: %d, new_value_len: %u  id: "
+ "0x%llx\n"
+ msgstr ""
++"ATTRI:  #regs: %d\tf: 0x%x, ino: 0x%llx, igen: 0x%x, attr_filter: 0x%x, "
++"name_len: %u, new_name_len: %u, value_len: %d, new_value_len: %u  id: "
++"0x%llx\n"
+ 
+ #: .././logprint/log_redo.c:941
+ #, c-format
+@@ -10188,9 +10292,9 @@ msgid "ATTRI:  name len:%u\n"
+ msgstr "ATTRI:  długość nazwy: %u\n"
+ 
+ #: .././logprint/log_redo.c:949
+-#, fuzzy, c-format
++#, c-format
+ msgid "ATTRI:  newname len:%u\n"
+-msgstr "ATTRI:  długość nazwy: %u\n"
++msgstr "ATTRI:  długość nowej nazwy: %u\n"
+ 
+ #: .././logprint/log_redo.c:959
+ #, c-format
+@@ -10198,9 +10302,9 @@ msgid "ATTRI:  value len:%u\n"
+ msgstr "ATTRI:  długość wartości: %u\n"
+ 
+ #: .././logprint/log_redo.c:968
+-#, fuzzy, c-format
++#, c-format
+ msgid "ATTRI:  newvalue len:%u\n"
+-msgstr "ATTRI:  długość wartości: %u\n"
++msgstr "ATTRI:  długość nowej wartości: %u\n"
+ 
+ #: .././logprint/log_redo.c:995
+ #, c-format
+@@ -10218,34 +10322,34 @@ msgid "\tATTRD:  #regs: %d\tid: 0x%llx\n
+ msgstr "\tATTRD:  #regs: %d\tid: 0x%llx\n"
+ 
+ #: .././logprint/log_redo.c:1031
+-#, fuzzy, c-format
++#, c-format
+ msgid "%s: bad size of XMI format: %u; expected %zu\n"
+-msgstr "%s: błędny rozmiar formatu attri: %u; oczekiwano %u\n"
++msgstr "%s: błędny rozmiar formatu XMI: %u; oczekiwano %zu\n"
+ 
+ #: .././logprint/log_redo.c:1056
+-#, fuzzy, c-format
++#, c-format
+ msgid "XMI: Not enough data to decode further\n"
+-msgstr "EFI: Za mało danych do dalszego dekodowania\n"
++msgstr "XMI: Za mało danych do dalszego dekodowania\n"
+ 
+ #: .././logprint/log_redo.c:1072
+-#, fuzzy, c-format
++#, c-format
+ msgid "XMI:  #regs: %d\tnum_extents: 1  id: 0x%llx\n"
+-msgstr "EFI:  #regs: %d\tnum_extents: %d  id: 0x%llx\n"
++msgstr "XMI:  #regs: %d\tnum_extents: 1  id: 0x%llx\n"
+ 
+ #: .././logprint/log_redo.c:1076
+-#, fuzzy, c-format
++#, c-format
+ msgid "XMI extent data skipped (CONTINUE set, no space)\n"
+-msgstr "Pominięto dane ekstentu RUI (ustawiona KONTYNUACJA, brak miejsca)\n"
++msgstr "Pominięto dane ekstentu XMI (ustawiona KONTYNUACJA, brak miejsca)\n"
+ 
+ #: .././logprint/log_redo.c:1123
+-#, fuzzy, c-format
++#, c-format
+ msgid "XMD:  #regs: %d\t                 id: 0x%llx\n"
+-msgstr "RUD:  #regs: %d\t                 id: 0x%llx\n"
++msgstr "XMD:  #regs: %d\t                 id: 0x%llx\n"
+ 
+ #: .././logprint/log_redo.c:1131
+-#, fuzzy, c-format
++#, c-format
+ msgid "XMD: Not enough data to decode further\n"
+-msgstr "EFD: Za mało danych do dalszego dekodowania\n"
++msgstr "XMD: Za mało danych do dalszego dekodowania\n"
+ 
+ #: .././logprint/logprint.c:33
+ #, c-format
+@@ -10381,9 +10485,9 @@ msgid "committing space for a file faile
  msgstr "zatwierdzanie przestrzeni na plik nie powiodło się"
  
  #: .././mkfs/proto.c:259
@@ -415,7 +1250,28 @@
  
  #: .././mkfs/proto.c:288
  #, c-format
-@@ -10169,7 +10192,7 @@ msgid "Initialization of the realtime sp
+@@ -10415,18 +10519,16 @@ msgid "directory createname error"
+ msgstr "błąd tworzenia nazwy katalogu"
+ 
+ #: .././mkfs/proto.c:376
+-#, fuzzy
+ msgid "parent addname error"
+-msgstr "błąd tworzenia nazwy katalogu"
++msgstr "błąd dodawania nazwy rodzica"
+ 
+ #: .././mkfs/proto.c:391
+ msgid "directory create error"
+ msgstr "błąd tworzenia katalogu"
+ 
+ #: .././mkfs/proto.c:403
+-#, fuzzy
+ msgid "initializing parent pointer"
+-msgstr "ponowne inicjowanie głównego katalogu\n"
++msgstr "inicjowanie wskaźnika rodzica"
+ 
+ #: .././mkfs/proto.c:469 .././mkfs/proto.c:481 .././mkfs/proto.c:492
+ #: .././mkfs/proto.c:499
+@@ -10501,7 +10603,7 @@ msgid "Initialization of the realtime sp
  msgstr "Inicjowanie przestrzeni realtime nie powiodło się"
  
  #: .././mkfs/xfs_mkfs.c:1047
@@ -424,7 +1280,7 @@
  msgid ""
  "Usage: %s\n"
  "/* blocksize */\t\t[-b size=num]\n"
-@@ -10203,20 +10226,18 @@ msgstr ""
+@@ -10536,20 +10638,18 @@ msgstr ""
  "Składnia: %s\n"
  "/* rozmiar bloku */     [-b size=ile]\n"
  "/* plik konfiguracji */ [-c options=xxx]\n"
@@ -450,7 +1306,48 @@
  "/* etykieta */          [-L etykieta (maksymalnie 12 znaków)]\n"
  "/* nazwy */             [-n size=ile,version=2|ci,ftype=0|1]\n"
  "/* tylko info no-op */  [-N]\n"
-@@ -10826,7 +10847,7 @@ msgstr ""
+@@ -10840,12 +10940,12 @@ msgstr "Pole ftype katalogu jest zawsze
+ #: .././mkfs/xfs_mkfs.c:2360
+ #, c-format
+ msgid "-m autofsck=%s is less effective without reverse mapping\n"
+-msgstr ""
++msgstr "-m autofsck=%s jest mniej efektywne bez odwrotnego odwzorowania\n"
+ 
+ #: .././mkfs/xfs_mkfs.c:2369
+ #, c-format
+ msgid "-m autofsck=%s is less effective without parent pointers\n"
+-msgstr ""
++msgstr "-m autofsck=%s jest mniej efektywne bez wskaśników rodziców\n"
+ 
+ #: .././mkfs/xfs_mkfs.c:2385
+ #, c-format
+@@ -10892,19 +10992,19 @@ msgid "64 bit extent count not supported
+ msgstr "64-bitowe liczby ekstentów nie są obsługiwane bez obsługi CRC\n"
+ 
+ #: .././mkfs/xfs_mkfs.c:2448
+-#, fuzzy, c-format
++#, c-format
+ msgid "exchange-range not supported without CRC support\n"
+-msgstr "rmapbt nie jest obsługiwane bez obsługi CRC\n"
++msgstr "exchange-range nie jest obsługiwane bez obsługi CRC\n"
+ 
+ #: .././mkfs/xfs_mkfs.c:2456
+-#, fuzzy, c-format
++#, c-format
+ msgid "parent pointers not supported without CRC support\n"
+-msgstr "i-węzły rzadkie nie są obsługiwane bez obsługi CRC\n"
++msgstr "wskaźniki rodziców nie są obsługiwane bez obsługi CRC\n"
+ 
+ #: .././mkfs/xfs_mkfs.c:2464
+-#, fuzzy, c-format
++#, c-format
+ msgid "autofsck not supported without CRC support\n"
+-msgstr "rmapbt nie jest obsługiwane bez obsługi CRC\n"
++msgstr "autofsck nie jest obsługiwane bez obsługi CRC\n"
+ 
+ #: .././mkfs/xfs_mkfs.c:2473
+ #, c-format
+@@ -11184,7 +11284,7 @@ msgstr ""
  #: .././mkfs/xfs_mkfs.c:3232
  #, c-format
  msgid "cannot have an rt subvolume with zero extents\n"
@@ -459,7 +1356,39 @@
  
  #: .././mkfs/xfs_mkfs.c:3338
  #, c-format
-@@ -12227,9 +12248,9 @@ msgid "%s: fdopen on %s failed: %s\n"
+@@ -11346,24 +11446,24 @@ msgid "Parameters parsed from config fil
+ msgstr "Poprawnie odczytano parametry z pliku konfiguracyjnego %s\n"
+ 
+ #: .././mkfs/xfs_mkfs.c:4413
+-#, fuzzy, c-format
++#, c-format
+ msgid "%s: error %d while allocating fs property name\n"
+-msgstr "błąd podczas przydzielania miejsca na plik"
++msgstr "%s: błąd %d podczas przydzielania nazwy własności systemu plików\n"
+ 
+ #: .././mkfs/xfs_mkfs.c:4423
+ #, c-format
+ msgid "%s: not sure what to do with autofsck value %u\n"
+-msgstr ""
++msgstr "%s: nie wiem co zrobić z wartością autofsck %u\n"
+ 
+ #: .././mkfs/xfs_mkfs.c:4433
+-#, fuzzy, c-format
++#, c-format
+ msgid "%s: error %d while opening root directory\n"
+-msgstr "błąd %d podczas poprawiania katalogu krótkiego %llu\n"
++msgstr "%s: błąd %d podczas otwierania katalogu głównego\n"
+ 
+ #: .././mkfs/xfs_mkfs.c:4443
+-#, fuzzy, c-format
++#, c-format
+ msgid "%s: error %d while setting autofsck property\n"
+-msgstr "Błąd %d podczas odpytywania b-drzewa fsmap.\n"
++msgstr "%s: błąd %d podczas ustawiania własności autofsck\n"
+ 
+ #: .././mkfs/xfs_mkfs.c:4497
+ msgid "package build definitions"
+@@ -12605,9 +12705,9 @@ msgid "%s: fdopen on %s failed: %s\n"
  msgstr "%s: fdopen dla %s nie powiodło się: %s\n"
  
  #: .././repair/agbtree.c:87
@@ -471,7 +1400,7 @@
  
  #: .././repair/agbtree.c:104
  #, c-format
-@@ -12294,9 +12315,9 @@ msgid "Error %d while creating finobt bt
+@@ -12672,9 +12772,9 @@ msgid "Error %d while creating finobt bt
  msgstr "Błąd %d podczas tworzenia b-drzewa finobt dla AG %u.\n"
  
  #: .././repair/agbtree.c:617
@@ -483,7 +1412,37 @@
  
  #: .././repair/agbtree.c:653
  #, c-format
-@@ -12641,12 +12662,12 @@ msgstr ""
+@@ -12973,16 +13073,14 @@ msgid "name or value attribute lengths a
+ msgstr "długości nazwy lub wartości atrybutów są zbyt duże,\n"
+ 
+ #: .././repair/attr_repair.c:296
+-#, fuzzy, c-format
++#, c-format
+ msgid "unknown flags 0x%x in shortform attribute %d in inode %<PRIu64>\n"
+-msgstr ""
+-"wyczyszczono wskaźniki forw/back w bloku 0 dla atrybutów w i-węźle "
+-"%<PRIu64>\n"
++msgstr "nieznane flagi 0x%x w atrybucie krótkim %d w i-węźle %<PRIu64>\n"
+ 
+ #: .././repair/attr_repair.c:303
+-#, fuzzy, c-format
++#, c-format
+ msgid "multiple namespaces for shortform attribute %d in inode %<PRIu64>\n"
+-msgstr "Uszkodzony odległy blok dla atrybutów i-węzła %<PRIu64>\n"
++msgstr "wiele przestrzeni nazw dla atrybutu krótkiego %d w i-węźle %<PRIu64>\n"
+ 
+ #: .././repair/attr_repair.c:313
+ msgid "entry contains illegal character in shortform attribute name\n"
+@@ -12995,7 +13093,7 @@ msgstr "wpis ma flagę NIEPEŁNY w atryb
+ #: .././repair/attr_repair.c:333
+ msgid ""
+ "parent pointer found on filesystem that doesn't support parent pointers\n"
+-msgstr ""
++msgstr "napotkano wskaźnik rodzica w systemie plików bez obsługi wskaźników rodziców\n"
+ 
+ #: .././repair/attr_repair.c:344
+ #, c-format
+@@ -13036,12 +13134,12 @@ msgstr ""
  #, c-format
  msgid ""
  "inode %<PRIu64> shortform attr verifier failure, would have cleared attrs\n"
@@ -498,7 +1457,65 @@
  
  #: .././repair/attr_repair.c:442
  #, c-format
-@@ -12836,11 +12857,9 @@ msgstr ""
+@@ -13084,13 +13182,12 @@ msgstr ""
+ "węźle %<PRIu64>\n"
+ 
+ #: .././repair/attr_repair.c:540 .././repair/attr_repair.c:584
+-#, fuzzy, c-format
++#, c-format
+ msgid ""
+ "parent pointer found in attribute entry %d in attr block %u, inode %<PRIu64> "
+ "on filesystem that doesn't support parent pointers\n"
+ msgstr ""
+-"wpis atrybutu %d w bloku atrybutów %u, i-węźle %<PRIu64> odwołuje się do "
+-"używanego miejsca\n"
++"napotkano wskaźnik rodzica we wpisie atrybutu %d w bloku atrybutów %u, i-węzeł %<PRIu64> w systemie plików bez obsługi wskaźników rodziców\n"
+ 
+ #: .././repair/attr_repair.c:577
+ #, c-format
+@@ -13101,13 +13198,12 @@ msgstr ""
+ "%<PRIu64>\n"
+ 
+ #: .././repair/attr_repair.c:589
+-#, fuzzy, c-format
++#, c-format
+ msgid ""
+ "parent pointer found in attribute entry %d in attr block %u, inode %<PRIu64> "
+ "with bogus remote value\n"
+ msgstr ""
+-"wpis atrybutu %d w bloku atrybutów %u, i-węźle %<PRIu64> odwołuje się do "
+-"używanego miejsca\n"
++"napotkano wskaźnik rodzica we wpisie atrybutu %d w bloku atrybutów %u, i-węzeł %<PRIu64> z błędną wartością zdalną\n"
+ 
+ #: .././repair/attr_repair.c:598
+ #, c-format
+@@ -13157,21 +13253,19 @@ msgid "bad attribute nameidx %d in attr
+ msgstr "błędny nameidx atrybutu %d w bloku atrybutów %u, i-węźle %<PRIu64>\n"
+ 
+ #: .././repair/attr_repair.c:696
+-#, fuzzy, c-format
++#, c-format
+ msgid ""
+ "unknown flags 0x%x in attribute entry #%d in attr block %u, inode %<PRIu64>\n"
+ msgstr ""
+-"błędna wartość hasza dla wpisu atrybutu %d w bloku atrybutów %u, i-węźle "
+-"%<PRIu64>\n"
++"nieznane flagi 0x%x we wpisie atrybutu #%d w bloku atrybutów %u, i-węzeł %<PRIu64>\n"
+ 
+ #: .././repair/attr_repair.c:704
+-#, fuzzy, c-format
++#, c-format
+ msgid ""
+ "multiple namespaces for attribute entry %d in attr block %u, inode "
+ "%<PRIu64>\n"
+ msgstr ""
+-"błędna wartość hasza dla wpisu atrybutu %d w bloku atrybutów %u, i-węźle "
+-"%<PRIu64>\n"
++"wiele przestrzeni nazw dla wpisu atrybutu %d w bloku atrybutów %u, i-węzeł %<PRIu64>\n"
+ 
+ #: .././repair/attr_repair.c:713
+ #, c-format
+@@ -13266,11 +13360,9 @@ msgstr ""
  "%<PRIu64>\n"
  
  #: .././repair/attr_repair.c:942
@@ -512,7 +1529,7 @@
  
  #: .././repair/attr_repair.c:961
  #, c-format
-@@ -12902,11 +12921,9 @@ msgid "corrupt block 0 of inode %<PRIu64
+@@ -13332,11 +13424,9 @@ msgid "corrupt block 0 of inode %<PRIu64
  msgstr "uszkodzony blok 0 i-węzła %<PRIu64> gałęzi atrybutów\n"
  
  #: .././repair/attr_repair.c:1228
@@ -526,7 +1543,7 @@
  
  #: .././repair/attr_repair.c:1257
  #, c-format
-@@ -12954,22 +12971,22 @@ msgid "blkmap_getn malloc failed (%<PRIu
+@@ -13384,22 +13474,22 @@ msgid "blkmap_getn malloc failed (%<PRIu
  msgstr "malloc w blkmap_getn nie powiodło się (%<PRIu64> bajtów)\n"
  
  #: .././repair/bmap.c:291
@@ -554,7 +1571,7 @@
  
  #: .././repair/bmap.c:308
  msgid "realloc failed in blkmap_grow\n"
-@@ -12981,6 +12998,7 @@ msgid ""
+@@ -13411,6 +13501,7 @@ msgid ""
  "Unable to re-grab inode cluster buffer after failed repair of inode %llu, "
  "error %d.\n"
  msgstr ""
@@ -562,7 +1579,7 @@
  
  #: .././repair/da_util.c:56 .././repair/prefetch.c:243
  msgid "couldn't malloc dir2 buffer list\n"
-@@ -13097,9 +13115,9 @@ msgid "bad level %d in %s block %u for i
+@@ -13527,9 +13618,9 @@ msgid "bad level %d in %s block %u for i
  msgstr "błędny poziom %d w bloku %su %u dla i-węzła %<PRIu64>\n"
  
  #: .././repair/da_util.c:630
@@ -574,7 +1591,7 @@
  
  #: .././repair/da_util.c:676
  #, c-format
-@@ -13911,19 +13929,19 @@ msgid "bad data fork in inode %<PRIu64>\
+@@ -14341,19 +14432,19 @@ msgid "bad data fork in inode %<PRIu64>\
  msgstr "błędna gałąź danych w i-węźle %<PRIu64>\n"
  
  #: .././repair/dinode.c:1972
@@ -599,7 +1616,7 @@
  
  #: .././repair/dinode.c:2064
  #, c-format
-@@ -13939,30 +13957,28 @@ msgid "would reset value\n"
+@@ -14369,30 +14460,28 @@ msgid "would reset value\n"
  msgstr "wartość zostałaby przestawiona\n"
  
  #: .././repair/dinode.c:2125
@@ -638,7 +1655,7 @@
  
  #: .././repair/dinode.c:2151
  msgid ", would clear attr fork\n"
-@@ -14652,9 +14668,9 @@ msgid "bad sibling back pointer for bloc
+@@ -15082,9 +15171,9 @@ msgid "bad sibling back pointer for bloc
  msgstr "błędny wskaźnik wstecz dla bloku %u w i-węźle katalogu %<PRIu64>\n"
  
  #: .././repair/dir2.c:1218
@@ -650,7 +1667,7 @@
  
  #: .././repair/dir2.c:1236
  #, c-format
-@@ -14686,9 +14702,9 @@ msgstr ""
+@@ -15116,9 +15205,9 @@ msgstr ""
  "katalogu %<PRIu64>\n"
  
  #: .././repair/dir2.c:1390
@@ -662,7 +1679,139 @@
  
  #: .././repair/dir2.c:1466
  #, c-format
-@@ -15641,12 +15657,12 @@ msgstr ""
+@@ -15504,60 +15593,59 @@ msgid "Adding nrext64 to filesystem.\n"
+ msgstr "Dodawanie nrext64 do systemu plików.\n"
+ 
+ #: .././repair/phase2.c:191
+-#, fuzzy, c-format
++#, c-format
+ msgid "Filesystem already supports exchange-range.\n"
+-msgstr "System plików już obsługuje nrext64.\n"
++msgstr "System plików już obsługuje exchange-range.\n"
+ 
+ #: .././repair/phase2.c:197
+-#, fuzzy, c-format
++#, c-format
+ msgid "File exchange-range feature only supported on V5 filesystems.\n"
+-msgstr ""
+-"Liczniki b-drzewa i-węzłów są obsługiwane tylko w systemach plików V5.\n"
++msgstr "Funkcja plików exchange-range jest obsługiwana tylko w systemach plików V5.\n"
+ 
+ #: .././repair/phase2.c:203
+ #, c-format
+ msgid "File exchange-range feature cannot be added without reflink.\n"
+-msgstr ""
++msgstr "Funkcja plików exchange-range nie może być dodana bez funkcji reflink.\n"
+ 
+ #: .././repair/phase2.c:207
+-#, fuzzy, c-format
++#, c-format
+ msgid "Adding file exchange-range support to filesystem.\n"
+-msgstr "Dodawanie do systemu plików obsługi dużych znaczników czasu.\n"
++msgstr "Dodawanie do systemu plików obsługi exchange-range plików.\n"
+ 
+ #: .././repair/phase2.c:300
+-#, fuzzy, c-format
++#, c-format
+ msgid "Cannot reserve resources for upgrade check, err=%d.\n"
+-msgstr "Nie można wyczyścić needsrepair z głównego superbloku, błąd=%d.\n"
++msgstr "Nie można zarezerwować zasobów do sprawdzenia aktualizacji, błąd=%d.\n"
+ 
+ #: .././repair/phase2.c:306
+-#, fuzzy, c-format
++#, c-format
+ msgid "Cannot read AGI %u for upgrade check, err=%d.\n"
+-msgstr "Nie można pobrać bufora AGI AG %u, błąd=%d"
++msgstr "Nie można odczytać AGI %u do sprawdzenia aktualizacji, błąd=%d.\n"
+ 
+ #: .././repair/phase2.c:312
+-#, fuzzy, c-format
++#, c-format
+ msgid "Cannot read AGF %u for upgrade check, err=%d.\n"
+-msgstr "Nie można pobrać bufora AGF AG %u, błąd=%d"
++msgstr "Nie można odczytać AGF %u do sprawdzenia aktualizacji, błąd=%d.\n"
+ 
+ #: .././repair/phase2.c:328
+ #, c-format
+ msgid "Not enough free space would remain in AG %u for metadata.\n"
+-msgstr ""
++msgstr "W AG %u zostałoby za mało wolnego miejsca na metadane.\n"
+ 
+ #: .././repair/phase2.c:334
+-#, fuzzy, c-format
++#, c-format
+ msgid "Error %d while checking AG %u space reservation.\n"
+-msgstr "Błąd %d podczas odpytywania b-drzewa fsmap.\n"
++msgstr "Błąd %d podczas sprawdzania rezerwacji miejsca w AG %u.\n"
+ 
+ #: .././repair/phase2.c:347
+ #, c-format
+ msgid "AG %u will be low on space after upgrade.\n"
+-msgstr ""
++msgstr "AG %u będzie miała mało miejsca po aktualizacji.\n"
+ 
+ #: .././repair/phase2.c:359
+ #, c-format
+ msgid "Filesystem will be low on space after upgrade.\n"
+-msgstr ""
++msgstr "System plików będzie miał mało miejsca po aktualizacji.\n"
+ 
+ #: .././repair/phase2.c:407
+ #, c-format
+@@ -15919,9 +16007,9 @@ msgid "could not iget root inode -- erro
+ msgstr "nie udało się wykonać iget dla głównego i-węzła - błąd %d\n"
+ 
+ #: .././repair/phase6.c:911
+-#, fuzzy, c-format
++#, c-format
+ msgid "%d - couldn't allocate parent pointer for %s\n"
+-msgstr "nie udało się przydzielić bitmapy realtime, błąd = %d\n"
++msgstr "%d - nie udało się przydzielić wskaźnika rodzica dla %s\n"
+ 
+ #: .././repair/phase6.c:922
+ #, c-format
+@@ -15939,9 +16027,9 @@ msgid "can't make %s, createname error %
+ msgstr "nie można zrobić %s, błąd createname %d\n"
+ 
+ #: .././repair/phase6.c:1009
+-#, fuzzy, c-format
++#, c-format
+ msgid "can't make %s, parent addname error %d\n"
+-msgstr "nie można zrobić %s, błąd createname %d\n"
++msgstr "nie można zrobić %s, błąd dodawania nazwy rodzica %d\n"
+ 
+ #: .././repair/phase6.c:1029
+ #, c-format
+@@ -15951,22 +16039,22 @@ msgstr "tworzenie katalogu %s nie powiod
+ #: .././repair/phase6.c:1063
+ #, c-format
+ msgid "cannot look up parent pointer for '%.*s', err %d\n"
+-msgstr ""
++msgstr "nie można odszukać wskaźnika rodzica dla '%.*s', błąd %d\n"
+ 
+ #: .././repair/phase6.c:1070
+-#, fuzzy, c-format
++#, c-format
+ msgid "can't add attr fork to inode 0x%llx\n"
+-msgstr "nie można odczytać bloku 0 dla i-węzła katalogu %lld\n"
++msgstr "nie można dodać gałęzi atrybutów do i-węzła 0x%llx\n"
+ 
+ #: .././repair/phase6.c:1077
+ #, c-format
+ msgid "can't add parent pointer for '%.*s', error %d\n"
+-msgstr ""
++msgstr "nie można dodać wskaźnika rodzica dla '%.*s', błąd %d\n"
+ 
+ #: .././repair/phase6.c:1106
+-#, fuzzy, c-format
++#, c-format
+ msgid "%d - couldn't allocate parent pointer for lost inode\n"
+-msgstr "nie udało się przydzielić bitmapy realtime, błąd = %d\n"
++msgstr "%d - nie udało się przydzielić wskaźnika rodzica dla utraconego i-węzła\n"
+ 
+ #: .././repair/phase6.c:1115
+ #, c-format
+@@ -16157,12 +16245,12 @@ msgstr ""
  "%s (i-węzeł %<PRIu64>) w katalogu głównym (%<PRIu64>) nie jest katalogiem, "
  
  #: .././repair/phase6.c:1845 .././repair/phase6.c:2756
@@ -677,7 +1826,355 @@
  
  #: .././repair/phase6.c:1876
  #, c-format
-@@ -16157,11 +16173,11 @@ msgid "%s"
+@@ -16532,102 +16620,101 @@ msgid "unable to set up quotacheck, err=
+ msgstr "nie udało się skonfigurować quotacheck, błąd=%d\n"
+ 
+ #: .././repair/pptr.c:335
+-#, fuzzy, c-format
++#, c-format
+ msgid "init parent pointer names failed: %s\n"
+-msgstr "%s: open dla %s nie powiodło się: %s\n"
++msgstr "inicjowanie nazw wskaśnika rodzica nie powiodło się: %s\n"
+ 
+ #: .././repair/pptr.c:341
+ #, c-format
+ msgid "init parent pointer per-AG record array failed: %s\n"
+-msgstr ""
++msgstr "inicjowanie tablicy rekordów wskaźnika rodzica dla AG nie powiodło się: %s\n"
+ 
+ #: .././repair/pptr.c:348
+-#, fuzzy, c-format
++#, c-format
+ msgid "init agno %u parent pointer lock failed: %s\n"
+-msgstr "%s: open dla %s nie powiodło się: %s\n"
++msgstr "inicjowanie blokady wskaźnika rodzica agno %u nie powiodło się: %s\n"
+ 
+ #: .././repair/pptr.c:355
+-#, fuzzy, c-format
++#, c-format
+ msgid "init agno %u parent pointer recs failed: %s\n"
+-msgstr "%s: open dla %s nie powiodło się: %s\n"
++msgstr "inicjowanie rekordów wskaźnika rodzica agno %u nie powiodło się: %s\n"
+ 
+ #: .././repair/pptr.c:396
+-#, fuzzy, c-format
++#, c-format
+ msgid "storing name '%s' failed: %s\n"
+-msgstr "%s: open dla %s nie powiodło się: %s\n"
++msgstr "zapisanie nazwy '%s' nie powiodło się: %s\n"
+ 
+ #: .././repair/pptr.c:404
+-#, fuzzy, c-format
++#, c-format
+ msgid "storing name '%s' key failed: %s\n"
+-msgstr "%s: open dla %s nie powiodło się: %s\n"
++msgstr "zapisanie klucza nazwy '%s' nie powiodło się: %s\n"
+ 
+ #: .././repair/pptr.c:408
+ #, c-format
+ msgid ""
+ "%s: dp %llu gen 0x%x fname '%s' namehash 0x%x ino %llu namecookie 0x%llx\n"
+ msgstr ""
++"%s: dp %llu gen 0x%x fname '%s' namehash 0x%x ino %llu namecookie 0x%llx\n"
+ 
+ #: .././repair/pptr.c:432
+-#, fuzzy, c-format
++#, c-format
+ msgid "init garbage xattr cursor failed: %s\n"
+-msgstr "%s: pobranie atrybutów %s nie powiodło się: %s\n"
++msgstr "inicjowanie kursora śmieciowych xattr nie powiodło się: %s\n"
+ 
+ #: .././repair/pptr.c:453
+ #, c-format
+ msgid "allocating %zu bytes to remove ino %llu garbage xattr failed: %s\n"
+-msgstr ""
++msgstr "przydzielenie %zu bajtów do usunięcia śmieciowego xattr i-węzła %llu nie powiodło się: %s\n"
+ 
+ #: .././repair/pptr.c:467
+-#, fuzzy, c-format
++#, c-format
+ msgid "loading garbage xattr name failed: %s\n"
+-msgstr "sprawdzenie blokowania nie powiodło się: %s\n"
++msgstr "ładowanie nazwy śmieciowego xattr nie powiodło się: %s\n"
+ 
+ #: .././repair/pptr.c:475
+ #, c-format
+ msgid "loading garbage xattr value failed: %s\n"
+-msgstr ""
++msgstr "ładowanie wartości śmieciowego xattr nie powiodło się: %s\n"
+ 
+ #: .././repair/pptr.c:482
+ #, c-format
+ msgid "removing ino %llu garbage xattr failed: %s\n"
+-msgstr ""
++msgstr "usuwanie śmieciowego xattr i-węzła %llu nie powiodło się: %s\n"
+ 
+ #: .././repair/pptr.c:517
+-#, fuzzy, c-format
++#, c-format
+ msgid "would delete garbage parent pointer extended attributes in ino %llu\n"
+-msgstr ""
+-"wskaźniki forw/back w bloku 0 dla atrybutów w i-węźle %<PRIu64> zostałyby "
+-"wyczyszczone\n"
++msgstr "śmieciowe atrybuty rozszerzone wskaźnika rodzica w i-węźle %llu zostałyby usunięte\n"
+ 
+ #: .././repair/pptr.c:528
+ #, c-format
+ msgid "deleting garbage parent pointer extended attributes in ino %llu\n"
+-msgstr ""
++msgstr "usuwanie śmieciowych atrybutów rozszerzonych wskaźnika rodzica w i-węźle %llu\n"
+ 
+ #: .././repair/pptr.c:534
+-#, fuzzy, c-format
++#, c-format
+ msgid "init garbage xattr recs failed: %s\n"
+-msgstr "%s: pobranie atrybutów %s nie powiodło się: %s\n"
++msgstr "inicjowanie rekordów śmieciowych atrybutów rozszerzonych nie powiodło się: %s\n"
+ 
+ #: .././repair/pptr.c:549 .././repair/pptr.c:556
+ #, c-format
+ msgid "storing ino %llu garbage xattr failed: %s\n"
+-msgstr ""
++msgstr "zapisywanie śmieciowych atrybutów rozszerzonych i-węzła %llu nie powiodło się: %s\n"
+ 
+ #: .././repair/pptr.c:562
+ #, c-format
+ msgid "storing ino %llu garbage xattr rec failed: %s\n"
+-msgstr ""
++msgstr "zapisywanie rekordów śmieciowych atrybutów rozszerzonych i-węzła %llu nie powiodło się: %s\n"
+ 
+ #: .././repair/pptr.c:629
+-#, fuzzy, c-format
++#, c-format
+ msgid "storing ino %llu parent pointer '%.*s' failed: %s\n"
+-msgstr "%s: open dla %s nie powiodło się: %s\n"
++msgstr "zapisywnie wskaźnika rodzica i-węzła %llu '%.*s' nie powiodło się: %s\n"
+ 
+ #: .././repair/pptr.c:637
+-#, fuzzy, c-format
++#, c-format
+ msgid "storing ino %llu parent pointer rec failed: %s\n"
+-msgstr "%s: open dla %s nie powiodło się: %s\n"
++msgstr "zapisywanie rekordu wskaźnika rodzica i-węzła %llu nie powiodło się: %s\n"
+ 
+ #: .././repair/pptr.c:642
+ #, c-format
+@@ -16635,21 +16722,23 @@ msgid ""
+ "%s: dp %llu gen 0x%x fname '%.*s' namelen %u namehash 0x%x ino %llu "
+ "namecookie 0x%llx global? %d\n"
+ msgstr ""
++"%s: dp %llu gen 0x%x fname '%.*s' namelen %u namehash 0x%x ino %llu "
++"namecookie 0x%llx global? %d\n"
+ 
+ #: .././repair/pptr.c:726
+-#, fuzzy, c-format
++#, c-format
+ msgid "would delete unlinked ino %llu parent pointers\n"
+-msgstr "Utworzono odłączony i-węzeł %llu w agno %u\n"
++msgstr "odłączone wskaźniki rodziców i-węzła %llu zostałyby usunięte\n"
+ 
+ #: .././repair/pptr.c:731
+-#, fuzzy, c-format
++#, c-format
+ msgid "deleting unlinked ino %llu parent pointers\n"
+-msgstr "Utworzono odłączony i-węzeł %llu w agno %u\n"
++msgstr "usuwanie odłączonych wskaźników rodziców i-węzła %llu\n"
+ 
+ #: .././repair/pptr.c:736
+-#, fuzzy, c-format
++#, c-format
+ msgid "init ino %llu pptr cursor failed: %s\n"
+-msgstr "%s: otwarcie źródła %s nie powiodło się: %s\n"
++msgstr "inicjowanie kursora pptr i-węzła %llu: %s\n"
+ 
+ #: .././repair/pptr.c:746 .././repair/pptr.c:831
+ #, c-format
+@@ -16657,11 +16746,12 @@ msgid ""
+ "loading incorrect name for ino %llu parent pointer (ino %llu gen 0x%x "
+ "namecookie 0x%llx) failed: %s\n"
+ msgstr ""
++"załadowanie niepoprawnej nazwy wskaźnika rodzica dla i-węzła %llu (ino %llu gen 0x%x namecookie 0x%llx) nie powiodło się: %s\n"
+ 
+ #: .././repair/pptr.c:756
+ #, c-format
+ msgid "wiping ino %llu pptr (ino %llu gen 0x%x) failed: %s\n"
+-msgstr ""
++msgstr "wyczyszczenie pptr i-węzła %llu (ino %llu gen 0x%x) nie powiodło się: %s\n"
+ 
+ #: .././repair/pptr.c:780
+ #, c-format
+@@ -16669,39 +16759,44 @@ msgid ""
+ "loading missing name for ino %llu parent pointer (ino %llu gen 0x%x "
+ "namecookie 0x%llx) failed: %s\n"
+ msgstr ""
++"załadowanie brakującej nazwy wskaźnika rodzica dla i-węzła %llu (ino %llu gen 0x%x namecookie 0x%llx) nie powiodło się: %s\n"
+ 
+ #: .././repair/pptr.c:789
+ #, c-format
+ msgid ""
+ "would add missing ino %llu parent pointer (ino %llu gen 0x%x name '%.*s')\n"
+ msgstr ""
++"brakujący wskaźnik rodzica ino %llu (ino %llu gen 0x%x nazwa '%.*s') zostałby dodany\n"
+ 
+ #: .././repair/pptr.c:798
+ #, c-format
+ msgid ""
+ "adding missing ino %llu parent pointer (ino %llu gen 0x%x name '%.*s')\n"
+ msgstr ""
++"dodawanie brakującego wskaźnika rodzica ino %llu (ino %llu gen 0x%x nazwa '%.*s')\n"
+ 
+ #: .././repair/pptr.c:809
+ #, c-format
+ msgid "adding ino %llu pptr (ino %llu gen 0x%x name '%.*s') failed: %s\n"
+-msgstr ""
++msgstr "dodanie pptr ino %llu (ino %llu gen 0x%x nazwa '%.*s') nie powiodło się: %s\n"
+ 
+ #: .././repair/pptr.c:840
+ #, c-format
+ msgid ""
+ "would remove bad ino %llu parent pointer (ino %llu gen 0x%x name '%.*s')\n"
+ msgstr ""
++"nieprawidłowy wskaźnik rodzica ino %llu (ino %llu gen 0x%x nazwa '%.*s') zostałby usunięty\n"
+ 
+ #: .././repair/pptr.c:850
+ #, c-format
+ msgid "removing bad ino %llu parent pointer (ino %llu gen 0x%x name '%.*s')\n"
+ msgstr ""
++"usuwanie nieprawidłowego wskaźnika rodzica ino %llu (ino %llu gen 0x%x nazwa '%.*s')\n"
+ 
+ #: .././repair/pptr.c:860
+ #, c-format
+ msgid "removing ino %llu pptr (ino %llu gen 0x%x name '%.*s') failed: %s\n"
+-msgstr ""
++msgstr "usunięcie pptr ino %llu (ino %llu gen 0x%x nazwa '%.*s') nie powiodło się: %s\n"
+ 
+ #: .././repair/pptr.c:888
+ #, c-format
+@@ -16709,6 +16804,7 @@ msgid ""
+ "loading master-list name for ino %llu parent pointer (ino %llu gen 0x%x "
+ "namecookie 0x%llx namelen %u) failed: %s\n"
+ msgstr ""
++"załadowanie nazwy master-list dla wskaźnika rodzica i-węzła %llu (ino %llu gen 0x%x namecookie 0x%llx namelen %u) nie powiodło się: %s\n"
+ 
+ #: .././repair/pptr.c:899
+ #, c-format
+@@ -16716,6 +16812,7 @@ msgid ""
+ "loading file-list name for ino %llu parent pointer (ino %llu gen 0x%x "
+ "namecookie 0x%llx namelen %u) failed: %s\n"
+ msgstr ""
++"załadowanie nazwy file-list dla wskaźnika rodzica i-węzła %llu (ino %llu gen 0x%x namecookie 0x%llx namelen %u) nie powiodło się: %s\n"
+ 
+ #: .././repair/pptr.c:921
+ #, c-format
+@@ -16723,6 +16820,7 @@ msgid ""
+ "would update ino %llu parent pointer (ino %llu gen 0x%x name '%.*s') -> (ino "
+ "%llu gen 0x%x name '%.*s')\n"
+ msgstr ""
++"wskaźnik rodzica i-węzła %llu zostałby uaktualniony (ino %llu gen 0x%x nazwa '%.*s') -> (ino %llu gen 0x%x nazwa '%.*s')\n"
+ 
+ #: .././repair/pptr.c:935
+ #, c-format
+@@ -16730,16 +16828,17 @@ msgid ""
+ "updating ino %llu parent pointer (ino %llu gen 0x%x name '%.*s') -> (ino "
+ "%llu gen 0x%x name '%.*s')\n"
+ msgstr ""
++"uaktualnianie wskaźnika rodzica i-węzła %llu (ino %llu gen 0x%x nazwa '%.*s') -> (ino %llu gen 0x%x nazwa '%.*s')\n"
+ 
+ #: .././repair/pptr.c:950
+ #, c-format
+ msgid "erasing ino %llu pptr (ino %llu gen 0x%x name '%.*s') failed: %s\n"
+-msgstr ""
++msgstr "wymazanie pptr ino %llu (ino %llu gen 0x%x nazwa '%.*s') nie powiodło się: %s\n"
+ 
+ #: .././repair/pptr.c:966
+ #, c-format
+ msgid "updating ino %llu pptr (ino %llu gen 0x%x name '%.*s') failed: %s\n"
+-msgstr ""
++msgstr "uaktualnienie pptr ino %llu (ino %llu gen 0x%x nazwa '%.*s') nie powiodło się: %s\n"
+ 
+ #: .././repair/pptr.c:1081
+ #, c-format
+@@ -16747,64 +16846,68 @@ msgid ""
+ "found dirent referring to ino %llu even though inobt scan moved on to ino "
+ "%llu?!\n"
+ msgstr ""
++"znaleziono wpis katalogu odwołujący się do ino %llu, mimo że skanowanie inobt przeniosło do ino %llu?!\n"
+ 
+ #: .././repair/pptr.c:1098
+-#, fuzzy, c-format
++#, c-format
+ msgid "init ino %llu parent pointer cursor failed: %s\n"
+-msgstr "%s: open dla %s nie powiodło się: %s\n"
++msgstr "inicjowanie kursora wskaźnika rodzica i-węzła %llu nie powiodło się: %s\n"
+ 
+ #: .././repair/pptr.c:1112
+ #, c-format
+ msgid ""
+ "%s: dp %llu dp_gen 0x%x namelen %u ino %llu namecookie 0x%llx (skip_dup)\n"
+ msgstr ""
++"%s: dp %llu dp_gen 0x%x namelen %u ino %llu namecookie 0x%llx (skip_dup)\n"
+ 
+ #: .././repair/pptr.c:1129
+ #, c-format
+ msgid ""
+ "%s: dp %llu dp_gen 0x%x namelen %u ino %llu namecookie 0x%llx (master)\n"
+ msgstr ""
++"%s: dp %llu dp_gen 0x%x namelen %u ino %llu namecookie 0x%llx (nadrzędny)\n"
+ 
+ #: .././repair/pptr.c:1139
+ #, c-format
+ msgid "%s: dp %llu dp_gen 0x%x namelen %u ino %llu namecookie 0x%llx (file)\n"
+-msgstr ""
++msgstr "%s: dp %llu dp_gen 0x%x namelen %u ino %llu namecookie 0x%llx (plik)\n"
+ 
+ #: .././repair/pptr.c:1148
+ #, c-format
+ msgid "%s: ran out of parent pointers for ino %llu (file)\n"
+-msgstr ""
++msgstr "%s: zabrakło wskaźników rodziców dla i-węzła %llu (plik)\n"
+ 
+ #: .././repair/pptr.c:1186
+ #, c-format
+ msgid ""
+ "%s: dp %llu dp_gen 0x%x namelen %u ino %llu namecookie 0x%llx (excess)\n"
+ msgstr ""
++"%s: dp %llu dp_gen 0x%x namelen %u ino %llu namecookie 0x%llx (nadmiar)\n"
+ 
+ #: .././repair/pptr.c:1214
+-#, fuzzy, c-format
++#, c-format
+ msgid "init file parent pointer recs failed: %s\n"
+-msgstr "%s: fopen na %s nie powiodło się: %s\n"
++msgstr "inicjowanie rekordów wskaźnika rodzica pliku nie powiodło się: %s\n"
+ 
+ #: .././repair/pptr.c:1225 .././repair/pptr.c:1229
+-#, fuzzy, c-format
++#, c-format
+ msgid "ino %llu parent pointer scan failed: %s\n"
+-msgstr "%s: open dla %s nie powiodło się: %s\n"
++msgstr "skanowanie wskaźników rodzica i-węzła %llu nie powiodło się: %s\n"
+ 
+ #: .././repair/pptr.c:1267
+ #, c-format
+ msgid "init agno %u parent pointer slab cursor failed: %s\n"
+-msgstr ""
++msgstr "inicjowanie kursora płyty wskaźnika rodzica w agno %u nie powiodło się: %s\n"
+ 
+ #: .././repair/pptr.c:1277
+ #, c-format
+ msgid "init agno %u file parent pointer names failed: %s\n"
+-msgstr ""
++msgstr "inicjowanie nazw wskaźnika rodzica pliku w agno %u nie powiodło się: %s\n"
+ 
+ #: .././repair/pptr.c:1299 .././repair/pptr.c:1304
+ #, c-format
+ msgid "loading ino %llu for parent pointer check failed: %s\n"
+-msgstr ""
++msgstr "załadowanie i-węzła %llu do sprawdzenia wskaźnika rodzica nie powiodło się: %s\n"
+ 
+ #: .././repair/prefetch.c:553
+ msgid "prefetch corruption\n"
+@@ -16948,11 +17051,11 @@ msgid "%s"
  msgstr "%s"
  
  #: .././repair/progress.c:268
@@ -691,7 +2188,7 @@
  
  #: .././repair/progress.c:273
  #, c-format
-@@ -16349,87 +16365,78 @@ msgstr ""
+@@ -17140,87 +17243,78 @@ msgstr ""
  "%<PRIu64> icount %<PRIu64>)\n"
  
  #: .././repair/rcbag.c:100 .././repair/rcbag.c:222
@@ -798,7 +2295,7 @@
  
  #: .././repair/rmap.c:140
  msgid "couldn't allocate per-AG reverse map roots\n"
-@@ -16437,34 +16444,34 @@ msgstr "nie udało się przydzielić kor
+@@ -17228,34 +17322,34 @@ msgstr "nie udało się przydzielić kor
  
  #: .././repair/rmap.c:252
  msgid "allocating tx for in-memory rmap update\n"
@@ -841,7 +2338,7 @@
  
  #: .././repair/rmap.c:1152
  msgid "would rebuild corrupt rmap btrees.\n"
-@@ -17643,54 +17650,54 @@ msgid "-o bhash requires a parameter\n"
+@@ -18434,54 +18528,54 @@ msgid "-o bhash requires a parameter\n"
  msgstr "-o bhash wymaga parametru\n"
  
  #: .././repair/xfs_repair.c:262
@@ -908,7 +2405,23 @@
  
  #: .././repair/xfs_repair.c:341
  msgid "-c inobtcount requires a parameter\n"
-@@ -17721,19 +17728,19 @@ msgid "-m option cannot be used with -o
+@@ -18508,33 +18602,31 @@ msgid "-c nrext64 only supports upgrades
+ msgstr "-c nrext64 obsługuje tylko uaktualnienie\n"
+ 
+ #: .././repair/xfs_repair.c:368
+-#, fuzzy
+ msgid "-c exchange requires a parameter\n"
+-msgstr "-c bigtime wymaga parametru\n"
++msgstr "-c exchange wymaga parametru\n"
+ 
+ #: .././repair/xfs_repair.c:371
+-#, fuzzy
+ msgid "-c exchange only supports upgrades\n"
+-msgstr "-c bigtime obsługuje tylko uaktualnienie\n"
++msgstr "-c exchange obsługuje tylko uaktualnienia\n"
+ 
+ #: .././repair/xfs_repair.c:393
+ msgid "-m option cannot be used with -o bhash option\n"
  msgstr "opcja -m nie może być użyta wraz z opcją -o bhash\n"
  
  #: .././repair/xfs_repair.c:399
@@ -933,7 +2446,7 @@
  
  #: .././repair/xfs_repair.c:459
  #, c-format
-@@ -17947,9 +17954,8 @@ msgid "Found unsupported filesystem feat
+@@ -18748,9 +18840,8 @@ msgid "Found unsupported filesystem feat
  msgstr "Znaleziono nie obsługiwane cechy systemu plików. Zakończono.\n"
  
  #: .././repair/xfs_repair.c:1314
@@ -944,7 +2457,7 @@
  
  #: .././repair/xfs_repair.c:1320
  #, c-format
-@@ -18248,16 +18254,15 @@ msgstr "Zamykanie systemu plików!"
+@@ -19049,37 +19140,36 @@ msgstr "Zamykanie systemu plików!"
  
  #: .././scrub/phase1.c:77
  msgid "Couldn't upload clean bill of health."
@@ -963,7 +2476,84 @@
  
  #: .././scrub/phase1.c:171
  #, c-format
-@@ -18340,14 +18345,12 @@ msgid "queueing per-AG scrub work"
+ msgid "Unknown autofsck directive \"%s\"."
+-msgstr ""
++msgstr "Nieznana dyrektywa autofsck \"%s\"."
+ 
+ #: .././scrub/phase1.c:185
+ msgid "Disabling scrub per autofsck directive."
+-msgstr ""
++msgstr "Wyłączanie operacji scrub zgodnie z dyrektywą autofsck."
+ 
+ #: .././scrub/phase1.c:189
+ msgid "Checking per autofsck directive."
+-msgstr ""
++msgstr "Sprawdzanie zgodnie z dyrektywą autofsck."
+ 
+ #: .././scrub/phase1.c:193
+ msgid "Optimizing per autofsck directive."
+-msgstr ""
++msgstr "Optymalizacja zgodnie z dyrektywą autofsck."
+ 
+ #: .././scrub/phase1.c:197
+ msgid "Checking and repairing per autofsck directive."
+-msgstr ""
++msgstr "Sprawdzanie i naprawa zgodnie z dyrektywą autofsck."
+ 
+ #: .././scrub/phase1.c:237
+ msgid "Must be root to run scrub."
+@@ -19090,14 +19180,12 @@ msgid "Not an XFS filesystem."
+ msgstr "To nie jest system plików XFS."
+ 
+ #: .././scrub/phase1.c:275
+-#, fuzzy
+ msgid "allocating fs repair list"
+-msgstr "przydzielanie list akcji"
++msgstr "przydzielanie listy napraw systemu plików"
+ 
+ #: .././scrub/phase1.c:281
+-#, fuzzy
+ msgid "allocating file repair list"
+-msgstr "przydzielanie list akcji"
++msgstr "przydzielanie listy napraw plików"
+ 
+ #: .././scrub/phase1.c:288
+ msgid "getting fshandle"
+@@ -19111,6 +19199,7 @@ msgstr "Funkcja doczyszczania metadanych
+ msgid ""
+ "Filesystem cannot be repaired in service mode, downgrading to dry-run mode."
+ msgstr ""
++"System plików nie może być naprawiony w trybie serwisowym, degradowanie do przebiegu próbnego."
+ 
+ #: .././scrub/phase1.c:328
+ msgid "Kernel metadata repair facility is not available.  Use -n to scrub."
+@@ -19148,14 +19237,12 @@ msgid "Invoking online scrub."
+ msgstr "Wywoływanie czyszczenia online."
+ 
+ #: .././scrub/phase2.c:47
+-#, fuzzy
+ msgid "Corrupt primary and secondary metadata."
+-msgstr "Uszkodzone metadane pierwszego i drugiego odwzorowania bloków."
++msgstr "Uszkodzone metadane główne i zapasowe."
+ 
+ #: .././scrub/phase2.c:49
+-#, fuzzy
+ msgid "Corrupt secondary metadata."
+-msgstr "Uszkodzone metadane drugiego odwzorowania bloków."
++msgstr "Uszkodzone metadane zapasowe."
+ 
+ #: .././scrub/phase2.c:50
+ msgid "Filesystem might not be repairable."
+@@ -19163,7 +19250,7 @@ msgstr "System plików może nie nadawa�
+ 
+ #: .././scrub/phase2.c:109 .././scrub/phase3.c:144
+ msgid "Unable to make forward checking progress; will try again in phase 4."
+-msgstr ""
++msgstr "Nie można zwiększyć postępu sprawdzania; ponowna próba w fazie 4."
+ 
+ #: .././scrub/phase2.c:139 .././spaceman/health.c:214
+ #, c-format
+@@ -19179,50 +19266,44 @@ msgid "queueing per-AG scrub work"
  msgstr "kolejkowanie zadania scrub dla AG"
  
  #: .././scrub/phase2.c:320
@@ -980,7 +2570,72 @@
  
  #: .././scrub/phase2.c:349
  msgid "finishing scrub work"
-@@ -18399,34 +18402,28 @@ msgid "filesystem label"
+ msgstr "kończenie zadania scrub"
+ 
+ #: .././scrub/phase3.c:72
+-#, fuzzy
+ msgid "getting per-thread inode repair list"
+-msgstr "dodawanie elementu do listy do naprawy"
++msgstr "pobieranie listy napraw i-węzłów na wątek"
+ 
+ #: .././scrub/phase3.c:257
+ msgid "incrementing scanned inode counter"
+ msgstr "zwiększanie licznika przeskanowanych i-węzłów"
+ 
+ #: .././scrub/phase3.c:321
+-#, fuzzy
+ msgid "creating per-thread file repair item lists"
+-msgstr "tworzenie blokad listy naprawy AG"
++msgstr "tworzenie list elementów naprawy plików na wątek"
+ 
+ #: .././scrub/phase3.c:327
+ msgid "creating scanned inode counter"
+ msgstr "tworzenie licznika przeskanowanych i-węzłów"
+ 
+ #: .././scrub/phase3.c:353
+-#, fuzzy
+ msgid "collecting inode repair lists"
+-msgstr "tworzenie blokad listy naprawy AG"
++msgstr "gromadzenie list napraw i-węzłów"
+ 
+ #: .././scrub/phase3.c:360
+ msgid "summing scanned inode counter"
+ msgstr "sumowanie licznika przeskanowanych i-węzłów"
+ 
+ #: .././scrub/phase4.c:150
+-#, fuzzy
+ msgid "queueing repair list worker"
+-msgstr "kolejkowanie zadania naprawy"
++msgstr "kolejkowanie zadań listy naprawy"
+ 
+ #: .././scrub/phase4.c:189
+ msgid "creating repair workqueue"
+@@ -19234,7 +19315,7 @@ msgstr "kończenie zadania naprawy"
+ 
+ #: .././scrub/phase4.c:245
+ msgid "Corruptions found; will not optimize.  Re-run without -p.\n"
+-msgstr ""
++msgstr "Znaleziono uszkodzenia; optymalizacja nie zostanie wykonana. Proszę uruchomić bez -p.\n"
+ 
+ #: .././scrub/phase5.c:85
+ msgid "Zero length name found."
+@@ -19250,48 +19331,40 @@ msgid "extended attribute"
+ msgstr "atrybut rozszerzony"
+ 
+ #: .././scrub/phase5.c:330
+-#, fuzzy
+ msgid "checking directory loops"
+-msgstr "tworzenie blokady skanowania katalogu"
++msgstr "sprawdzanie pętli katalogów"
+ 
+ #: .././scrub/phase5.c:339
+-#, fuzzy
+ msgid "repairing directory loops"
+-msgstr "tworzenie blokady skanowania katalogu"
++msgstr "naprawianie pętli katalogów"
+ 
+ #: .././scrub/phase5.c:606 .././scrub/unicrash.c:1003
+ msgid "filesystem label"
  msgstr "etykieta systemu plików"
  
  #: .././scrub/phase5.c:644
@@ -1021,7 +2676,7 @@
  
  #: .././scrub/phase5.c:758
  msgid "Filesystem has errors, skipping connectivity checks."
-@@ -18455,9 +18452,9 @@ msgid "(unlinked)"
+@@ -19320,9 +19393,9 @@ msgid "(unlinked)"
  msgstr "(odłączony)"
  
  #: .././scrub/phase6.c:301 .././scrub/phase6.c:368
@@ -1033,7 +2688,7 @@
  
  #: .././scrub/phase6.c:428
  #, c-format
-@@ -18465,9 +18462,8 @@ msgid "disk offset %<PRIu64>"
+@@ -19330,9 +19403,8 @@ msgid "disk offset %<PRIu64>"
  msgstr "offset na dysku %<PRIu64>"
  
  #: .././scrub/phase6.c:439
@@ -1044,7 +2699,213 @@
  
  #: .././scrub/phase6.c:441
  #, c-format
-@@ -19326,240 +19322,3 @@ msgstr ""
+@@ -19341,7 +19413,7 @@ msgstr "błąd nośnika: %s."
+ 
+ #: .././scrub/phase6.c:449
+ msgid "bulkstat for media error report"
+-msgstr ""
++msgstr "bulkstat dla raportu błędów nośnika"
+ 
+ #: .././scrub/phase6.c:459
+ msgid "file data"
+@@ -19352,9 +19424,8 @@ msgid "media error in extent map"
+ msgstr "błąd nośnika w mapie ekstentów"
+ 
+ #: .././scrub/phase6.c:475
+-#, fuzzy
+ msgid "media error in extended attributes"
+-msgstr "błąd nośnika w danych rozszerzonych atrybutów."
++msgstr "błąd nośnika w rozszerzonych atrybutach"
+ 
+ #: .././scrub/phase6.c:549
+ msgid "walking datadev io errors"
+@@ -19479,24 +19550,22 @@ msgid "%.1f%s data counted; %.1f%s data
+ msgstr "naliczono danych %.1f%s; zweryfikowano danych %.1f%s.\n"
+ 
+ #: .././scrub/phase8.c:84
+-#, fuzzy, c-format
++#, c-format
+ msgid "fstrim start 0x%llx run 0x%llx minlen 0x%llx"
+-msgstr "atime 0x%llx mtime 0x%llx ctime 0x%llx\n"
++msgstr "fstrim start 0x%llx run 0x%llx minlen 0x%llx"
+ 
+ #: .././scrub/phase8.c:152
+-#, fuzzy
+ msgid "free space blocks"
+-msgstr "wolne miejsce"
++msgstr "bloki wolnego miejsca"
+ 
+ #: .././scrub/phase8.c:153
+-#, fuzzy
+ msgid "free space extents"
+-msgstr "wolne miejsce"
++msgstr "ekstenty wolnego miejsca"
+ 
+ #: .././scrub/phase8.c:163
+ #, c-format
+ msgid "fstrim minlen %lld threshold %lld ag_max_usable %u\n"
+-msgstr ""
++msgstr "fstrim minlen %lld threshold %lld ag_max_usable %u\n"
+ 
+ #: .././scrub/progress.c:81
+ #, c-format
+@@ -19550,21 +19619,19 @@ msgstr ""
+ 
+ #: .././scrub/repair.c:226
+ msgid "No modification needed."
+-msgstr ""
++msgstr "Modyfikacje nie są potrzebne."
+ 
+ #: .././scrub/repair.c:231
+ msgid "Repairs successful."
+ msgstr "Naprawy powiodły się."
+ 
+ #: .././scrub/repair.c:234
+-#, fuzzy
+ msgid "Repairs successful after discrepancy in cross-referencing."
+-msgstr "Niepowodzenie naprawy; wymagana naprawa offline."
++msgstr "Naprawy po wykryciu niespójności w odsyłaczach powiodły się."
+ 
+ #: .././scrub/repair.c:237
+-#, fuzzy
+ msgid "Repairs successful after cross-referencing failure."
+-msgstr "Tworzenie odsyłaczy nie powiodło się."
++msgstr "Naprawy po awarii odsyłaczy powiodły się."
+ 
+ #: .././scrub/repair.c:240
+ msgid "Optimization successful."
+@@ -19579,9 +19646,8 @@ msgid "Attempting optimization."
+ msgstr "Próba optymalizacji."
+ 
+ #: .././scrub/repair.c:872
+-#, fuzzy
+ msgid "creating repair action item"
+-msgstr "tworzenie kolejki zadań naprawy"
++msgstr "tworzenie elementu akcji naprawy"
+ 
+ #: .././scrub/scrub.c:81
+ #, c-format
+@@ -19688,9 +19754,9 @@ msgstr ""
+ "niewidoczne."
+ 
+ #: .././scrub/unicrash.c:816
+-#, fuzzy, c-format
++#, c-format
+ msgid "Unicode name \"%s\" in %s contains a possibly deceptive file extension."
+-msgstr "Nazwa unikodowa \"%s\" w %s zawiera podejrzane zmiany kierunku tekstu."
++msgstr "Nazwa unikodowa \"%s\" w %s zawiera potencjalnie oszukańcze rozszerzenie pliku."
+ 
+ #: .././scrub/unicrash.c:827
+ #, c-format
+@@ -19781,9 +19847,9 @@ msgid "  -n           Dry run.  Do not m
+ msgstr "  -n           Działanie \"na sucho\", bez modyfikowania niczego.\n"
+ 
+ #: .././scrub/xfs_scrub.c:187
+-#, fuzzy, c-format
++#, c-format
+ msgid "  -p           Only optimize, do not fix corruptions.\n"
+-msgstr "  -T           Wyświetlenie informacji o czasie/użyciu.\n"
++msgstr "  -p           Wyłącznie optymalizacja, bez naprawy uszkodzeń.\n"
+ 
+ #: .././scrub/xfs_scrub.c:188
+ #, c-format
+@@ -19877,18 +19943,16 @@ msgid "Check summary counters."
+ msgstr "Sprawdzenie liczników podsumowań."
+ 
+ #: .././scrub/xfs_scrub.c:437
+-#, fuzzy
+ msgid "Trim filesystem storage."
+-msgstr "Sprawdzanie geometrii systemu plików."
++msgstr "Obcięcie przestrzeni systemu plików."
+ 
+ #: .././scrub/xfs_scrub.c:465
+ msgid "Repair filesystem."
+ msgstr "Naprawa systemu plików."
+ 
+ #: .././scrub/xfs_scrub.c:470
+-#, fuzzy
+ msgid "Optimize filesystem."
+-msgstr "Naprawa systemu plików."
++msgstr "Optymalizacja systemu plików."
+ 
+ #: .././scrub/xfs_scrub.c:519
+ #, c-format
+@@ -19965,34 +20029,34 @@ msgid "%s: Unmount and run xfs_repair.\n
+ msgstr "%s: Konieczne odmontowanie i uruchomienie xfs_prepair.\n"
+ 
+ #: .././scrub/xfs_scrub.c:663
+-#, fuzzy, c-format
++#, c-format
+ msgid "iwarn does not take an argument\n"
+-msgstr "typ wyniku taki sam jak argument\n"
++msgstr "iwarn nie przyjmuje argumentu\n"
+ 
+ #: .././scrub/xfs_scrub.c:671
+-#, fuzzy, c-format
++#, c-format
+ msgid "-o fstrim_pct requires a parameter\n"
+-msgstr "-o ag_stride wymaga parametru\n"
++msgstr "-o fstrim_pct wymaga parametru\n"
+ 
+ #: .././scrub/xfs_scrub.c:680
+ #, c-format
+ msgid "-o fstrim_pct must be a floating point number\n"
+-msgstr ""
++msgstr "-o fstrim_pct musi być liczbą zmiennoprzecinkową\n"
+ 
+ #: .././scrub/xfs_scrub.c:685
+ #, c-format
+ msgid "-o fstrim_pct: %s\n"
+-msgstr ""
++msgstr "-o fstrim_pct: %s\n"
+ 
+ #: .././scrub/xfs_scrub.c:691
+ #, c-format
+ msgid "-o fstrim_pct must be larger than 0 and less than 100\n"
+-msgstr ""
++msgstr "-o fstrim_pct musi być większe od 0 i mniejsze niż 100\n"
+ 
+ #: .././scrub/xfs_scrub.c:700
+ #, c-format
+ msgid "-o autofsck does not take an argument\n"
+-msgstr ""
++msgstr "-o autofsck nie przyjmuje argumentu\n"
+ 
+ #: .././scrub/xfs_scrub.c:741
+ #, c-format
+@@ -20007,12 +20071,12 @@ msgstr "Nieznane zachowanie w przypadku
+ #: .././scrub/xfs_scrub.c:801
+ #, c-format
+ msgid "Cannot use -n with -p.\n"
+-msgstr ""
++msgstr "Nie można użyć -n z -p.\n"
+ 
+ #: .././scrub/xfs_scrub.c:811
+ #, c-format
+ msgid "Cannot use -p with -n.\n"
+-msgstr ""
++msgstr "Nie można użyć -p z -n.\n"
+ 
+ #: .././scrub/xfs_scrub.c:838
+ #, c-format
+@@ -20156,7 +20220,7 @@ msgid "Please run xfs_scrub(8) to remedy
+ msgstr "Proszę uruchomić xds_scrub(8), aby przynieść ulgę w tej sytuacji.\n"
+ 
+ #: .././spaceman/health.c:477
+-#, fuzzy, c-format
++#, c-format
+ msgid ""
+ "\n"
+ "Report all observed filesystem health problems.\n"
+@@ -20177,6 +20241,7 @@ msgstr ""
+ " -c       - raport o stanie zdrowia wszystkich i-węzłów.\n"
+ " -f       - raport o stanie zdrowia całego systemu plików.\n"
+ " -i inum  - raport o stanie zdrowia podanego i-węzła.\n"
++" -n       - próba raportowania nazw plików.\n"
+ " -q       - informowanie wyłącznie o niezdrowych metadanych.\n"
+ " ścieżki  - raport o stanie zdrowia pliku o podanej ścieżce.\n"
+ "\n"
+@@ -20287,240 +20352,3 @@ msgstr ""
  #: .././spaceman/trim.c:117
  msgid "Discard filesystem free space"
  msgstr "przeszukiwanie wolnego miejsca w systemie plików"
