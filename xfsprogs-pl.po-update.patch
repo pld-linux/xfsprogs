@@ -11,7 +11,7 @@
 -"Project-Id-Version: xfsprogs 6.5.0\n"
 +"Project-Id-Version: xfsprogs 6.10.0\n"
  "Report-Msgid-Bugs-To: \n"
- "POT-Creation-Date: 2024-09-04 13:03+0200\n"
+ "POT-Creation-Date: 2024-10-19 12:02+0200\n"
 -"PO-Revision-Date: 2023-10-18 19:10+0200\n"
 +"PO-Revision-Date: 2024-09-07 16:45+0200\n"
  "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
@@ -555,24 +555,24 @@
 +" Opcje:\n"
 +"   nazwa - usunięcie wpisu katalogu o podanej nazwie.\n"
  
- #: .././db/namei.c:1292
+ #: .././db/namei.c:1281
  msgid "navigate to an inode by path"
 @@ -3664,19 +3686,16 @@ msgid "list directory contents"
  msgstr "lista zawartości katalogu"
  
- #: .././db/namei.c:1298
+ #: .././db/namei.c:1287
 -#, fuzzy
  msgid "list parent pointers"
 -msgstr "lista aktualnie otwartych plików"
 +msgstr "lista wskaźników rodziców"
  
- #: .././db/namei.c:1302
+ #: .././db/namei.c:1291
 -#, fuzzy
  msgid "create directory link"
 -msgstr "tworzenie blokady skanowania katalogu"
 +msgstr "utworzenie dowiązania do katalogu"
  
- #: .././db/namei.c:1305
+ #: .././db/namei.c:1294
 -#, fuzzy
  msgid "remove directory link"
 -msgstr "odczyt wpisów katalogu"
@@ -615,7 +615,7 @@
 @@ -5718,7 +5737,7 @@ msgstr ""
  "\n"
  
- #: .././io/encrypt.c:212
+ #: .././io/encrypt.c:213
 -#, fuzzy, c-format
 +#, c-format
  msgid ""
@@ -632,26 +632,26 @@
 @@ -5972,9 +5992,9 @@ msgid "invalid flags: %s\n"
  msgstr "nieprawidłowe flagi: %s\n"
  
- #: .././io/encrypt.c:650
+ #: .././io/encrypt.c:651
 -#, fuzzy, c-format
 +#, c-format
  msgid "invalid log2_dusize: %s\n"
 -msgstr "nieprawidłowe flagi: %s\n"
 +msgstr "nieprawidłowy log2 rozmiaru jednostki: %s\n"
  
- #: .././io/encrypt.c:661
+ #: .././io/encrypt.c:662
  #, c-format
 @@ -6062,9 +6082,9 @@ msgid "display the encryption policy of
  msgstr "wyświetlenie polityki szyfrowania bieżącego pliku"
  
- #: .././io/encrypt.c:947
+ #: .././io/encrypt.c:948
 -#, fuzzy
  msgid "[-c mode] [-n mode] [-f flags] [-s log2_dusize] [-v version] [keyspec]"
 -msgstr "[-c tryb] [-n tryb] [-f flagi] [-v wersja] [opis_klucza]"
 +msgstr ""
 +"[-c tryb] [-n tryb] [-f flagi] [-s log2_rozmjedn] [-v wersja] [opis_klucza]"
  
- #: .././io/encrypt.c:952
+ #: .././io/encrypt.c:953
  msgid "assign an encryption policy to the current file"
 @@ -6110,11 +6130,21 @@ msgid ""
  " -t   -- Print timing information\n"
@@ -1269,8 +1269,8 @@
 -msgstr "ponowne inicjowanie głównego katalogu\n"
 +msgstr "inicjowanie wskaźnika rodzica"
  
- #: .././mkfs/proto.c:469 .././mkfs/proto.c:481 .././mkfs/proto.c:492
- #: .././mkfs/proto.c:499
+ #: .././mkfs/proto.c:537 .././mkfs/proto.c:549 .././mkfs/proto.c:560
+ #: .././mkfs/proto.c:567
 @@ -10501,7 +10603,7 @@ msgid "Initialization of the realtime sp
  msgstr "Inicjowanie przestrzeni realtime nie powiodło się"
  
@@ -1761,60 +1761,48 @@
 @@ -15919,9 +16007,9 @@ msgid "could not iget root inode -- erro
  msgstr "nie udało się wykonać iget dla głównego i-węzła - błąd %d\n"
  
- #: .././repair/phase6.c:911
+ #: .././repair/phase6.c:847
 -#, fuzzy, c-format
 +#, c-format
  msgid "%d - couldn't allocate parent pointer for %s\n"
 -msgstr "nie udało się przydzielić bitmapy realtime, błąd = %d\n"
 +msgstr "%d - nie udało się przydzielić wskaźnika rodzica dla %s\n"
  
- #: .././repair/phase6.c:922
- #, c-format
-@@ -15939,9 +16027,9 @@ msgid "can't make %s, createname error %
- msgstr "nie można zrobić %s, błąd createname %d\n"
- 
- #: .././repair/phase6.c:1009
--#, fuzzy, c-format
-+#, c-format
- msgid "can't make %s, parent addname error %d\n"
--msgstr "nie można zrobić %s, błąd createname %d\n"
-+msgstr "nie można zrobić %s, błąd dodawania nazwy rodzica %d\n"
- 
- #: .././repair/phase6.c:1029
+ #: .././repair/phase6.c:858
  #, c-format
 @@ -15951,22 +16039,22 @@ msgstr "tworzenie katalogu %s nie powiod
- #: .././repair/phase6.c:1063
+ #: .././repair/phase6.c:977
  #, c-format
  msgid "cannot look up parent pointer for '%.*s', err %d\n"
 -msgstr ""
 +msgstr "nie można odszukać wskaźnika rodzica dla '%.*s', błąd %d\n"
  
- #: .././repair/phase6.c:1070
+ #: .././repair/phase6.c:984
 -#, fuzzy, c-format
 +#, c-format
  msgid "can't add attr fork to inode 0x%llx\n"
 -msgstr "nie można odczytać bloku 0 dla i-węzła katalogu %lld\n"
 +msgstr "nie można dodać gałęzi atrybutów do i-węzła 0x%llx\n"
  
- #: .././repair/phase6.c:1077
+ #: .././repair/phase6.c:991
  #, c-format
  msgid "can't add parent pointer for '%.*s', error %d\n"
 -msgstr ""
 +msgstr "nie można dodać wskaźnika rodzica dla '%.*s', błąd %d\n"
  
- #: .././repair/phase6.c:1106
+ #: .././repair/phase6.c:1020
 -#, fuzzy, c-format
 +#, c-format
  msgid "%d - couldn't allocate parent pointer for lost inode\n"
 -msgstr "nie udało się przydzielić bitmapy realtime, błąd = %d\n"
 +msgstr "%d - nie udało się przydzielić wskaźnika rodzica dla utraconego i-węzła\n"
  
- #: .././repair/phase6.c:1115
+ #: .././repair/phase6.c:1029
  #, c-format
 @@ -16157,12 +16245,12 @@ msgstr ""
  "%s (i-węzeł %<PRIu64>) w katalogu głównym (%<PRIu64>) nie jest katalogiem, "
  
- #: .././repair/phase6.c:1845 .././repair/phase6.c:2756
+ #: .././repair/phase6.c:1759 .././repair/phase6.c:2670
 -#, fuzzy, c-format
 +#, c-format
  msgid ""
@@ -1824,7 +1812,7 @@
 -"wpis \"%s\" (i-węzeł %<PRIu64>) w katalogu %<PRIu64> jest powtórzoną nazwą, "
 +"wpis \"%s\" (i-węzeł %<PRIu64>) w katalogu %<PRIu64> już wskazuje na i-węzeł %<PRIu64>, "
  
- #: .././repair/phase6.c:1876
+ #: .././repair/phase6.c:1790
  #, c-format
 @@ -16532,102 +16620,101 @@ msgid "unable to set up quotacheck, err=
  msgstr "nie udało się skonfigurować quotacheck, błąd=%d\n"
@@ -2544,7 +2532,7 @@
  
  #: .././scrub/phase2.c:50
  msgid "Filesystem might not be repairable."
-@@ -19163,7 +19250,7 @@ msgstr "System plików może nie nadawa�
+@@ -19163,7 +19250,7 @@ msgstr "System plików może nie nadawa?
  
  #: .././scrub/phase2.c:109 .././scrub/phase3.c:144
  msgid "Unable to make forward checking progress; will try again in phase 4."
@@ -2617,64 +2605,64 @@
 -msgstr ""
 +msgstr "Znaleziono uszkodzenia; optymalizacja nie zostanie wykonana. Proszę uruchomić bez -p.\n"
  
- #: .././scrub/phase5.c:85
+ #: .././scrub/phase5.c:83
  msgid "Zero length name found."
 @@ -19250,48 +19331,40 @@ msgid "extended attribute"
  msgstr "atrybut rozszerzony"
  
- #: .././scrub/phase5.c:330
+ #: .././scrub/phase5.c:337
 -#, fuzzy
  msgid "checking directory loops"
 -msgstr "tworzenie blokady skanowania katalogu"
 +msgstr "sprawdzanie pętli katalogów"
  
- #: .././scrub/phase5.c:339
+ #: .././scrub/phase5.c:346
 -#, fuzzy
  msgid "repairing directory loops"
 -msgstr "tworzenie blokady skanowania katalogu"
 +msgstr "naprawianie pętli katalogów"
  
- #: .././scrub/phase5.c:606 .././scrub/unicrash.c:1003
+ #: .././scrub/phase5.c:613 .././scrub/unicrash.c:1003
  msgid "filesystem label"
  msgstr "etykieta systemu plików"
  
- #: .././scrub/phase5.c:644
+ #: .././scrub/phase5.c:651
 -#, fuzzy
  msgid "checking fs scan metadata"
 -msgstr "Sprawdzanie metadanych wewnętrznych."
 +msgstr "sprawdzanie metadanych skanowania systemu plików"
  
- #: .././scrub/phase5.c:651
+ #: .././scrub/phase5.c:658
 -#, fuzzy
  msgid "repairing fs scan metadata"
 -msgstr "naprawienie metadanych systemu plików"
 +msgstr "naprawienie metadanych skanowania systemu plików"
  
- #: .././scrub/phase5.c:676
+ #: .././scrub/phase5.c:683
 -#, fuzzy
  msgid "setting up fs scan"
 -msgstr "przydzielanie licznika bloków"
 +msgstr "ustawianie skanowania systemu plików"
  
- #: .././scrub/phase5.c:685
+ #: .././scrub/phase5.c:692
 -#, fuzzy
  msgid "queuing fs scan work"
 -msgstr "kolejkowanie zadania skanowania katalogu"
 +msgstr "kolejkowanie zadania skanowania systemu plików"
  
- #: .././scrub/phase5.c:704
+ #: .././scrub/phase5.c:711
 -#, fuzzy
  msgid "setting up fs scan workqueue"
 -msgstr "tworzenie kolejki zadań fsmap"
 +msgstr "ustawianie kolejki zadań skanowania systemu plików"
  
- #: .././scrub/phase5.c:727
+ #: .././scrub/phase5.c:734
 -#, fuzzy
  msgid "joining fs scan workqueue"
 -msgstr "tworzenie kolejki zadań fsmap"
 +msgstr "łączenie kolejki zadań skanowania systemu plików"
  
- #: .././scrub/phase5.c:758
+ #: .././scrub/phase5.c:765
  msgid "Filesystem has errors, skipping connectivity checks."
 @@ -19320,9 +19393,9 @@ msgid "(unlinked)"
  msgstr "(odłączony)"
@@ -2905,7 +2893,7 @@
  " -q       - informowanie wyłącznie o niezdrowych metadanych.\n"
  " ścieżki  - raport o stanie zdrowia pliku o podanej ścieżce.\n"
  "\n"
-@@ -20287,240 +20352,3 @@ msgstr ""
+@@ -20287,246 +20352,3 @@ msgstr ""
  #: .././spaceman/trim.c:117
  msgid "Discard filesystem free space"
  msgstr "przeszukiwanie wolnego miejsca w systemie plików"
@@ -3103,6 +3091,12 @@
 -
 -#~ msgid "volume rt"
 -#~ msgstr "wolumen rt"
+-
+-#~ msgid "Realtime summary inode allocation failed"
+-#~ msgstr "Tworzenie i-węzła opisu realtime nie powiodło się"
+-
+-#~ msgid "Completion of the realtime summary inode failed"
+-#~ msgstr "Uzupełnienie i-węzła opisu realtime nie powiodło się"
 -
 -#~ msgid ""
 -#~ "Insufficient memory while allocating raw metadata reverse mapping slabs."
