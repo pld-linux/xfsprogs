@@ -17,6 +17,7 @@ Source0:	https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{versio
 Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-pl.po-update.patch
+Patch2:		build-deps.patch
 URL:		https://xfs.wiki.kernel.org/
 # for <attr/attributes.h>
 BuildRequires:	attr-devel
@@ -122,6 +123,7 @@ Biblioteki statyczne do XFS.
 %prep
 %setup -q
 %patch0 -p1
+%patch2 -p1
 
 # files order in pot changes in every version, making diff huge - sort entries first
 %{__mv} po/xfsprogs.pot po/xfsprogs.pot.upstream
