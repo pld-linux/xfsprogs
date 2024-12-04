@@ -8,16 +8,16 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	6.11.0
+Version:	6.12.0
 Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{version}.tar.xz
-# Source0-md5:	01ac717e8ecffbbb313a20242da9c98d
+# Source0-md5:	c2f1ddf241f2ce7ea2669de595a4f766
 Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-pl.po-update.patch
-Patch2:		build-deps.patch
+Patch2:		man-page-name.patch
 URL:		https://xfs.wiki.kernel.org/
 # for <attr/attributes.h>
 BuildRequires:	attr-devel
@@ -257,6 +257,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/xfs
 %{_mandir}/man2/ioctl_xfs_ag_geometry.2*
 %{_mandir}/man2/ioctl_xfs_bulkstat.2*
+%{_mandir}/man2/ioctl_xfs_commit_range.2.gz
 %{_mandir}/man2/ioctl_xfs_exchange_range.2*
 %{_mandir}/man2/ioctl_xfs_fsbulkstat.2*
 %{_mandir}/man2/ioctl_xfs_fscounts.2*
@@ -275,6 +276,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man2/ioctl_xfs_scrub_metadata.2*
 %{_mandir}/man2/ioctl_xfs_scrubv_metadata.2*
 %{_mandir}/man2/ioctl_xfs_setresblks.2*
+%{_mandir}/man2/ioctl_xfs_start_commit.2
 %{_mandir}/man3/*handle.3*
 %{_mandir}/man3/xfsctl.3*
 

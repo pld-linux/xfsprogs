@@ -1,0 +1,12 @@
+--- xfsprogs-6.12.0/man/man2/ioctl_xfs_commit_range.2.orig	2024-12-02 22:18:19.000000000 +0100
++++ xfsprogs-6.12.0/man/man2/ioctl_xfs_commit_range.2	2024-12-04 22:43:41.523326476 +0100
+@@ -22,8 +22,8 @@
+ .\" %%%LICENSE_END
+ .TH IOCTL-XFS-COMMIT-RANGE 2  2024-02-18 "XFS"
+ .SH NAME
+-ioctl_xfs_start_commit \- prepare to exchange the contents of two files
+ ioctl_xfs_commit_range \- conditionally exchange the contents of parts of two files
++ioctl_xfs_start_commit \- prepare to exchange the contents of two files
+ .SH SYNOPSIS
+ .br
+ .B #include <sys/ioctl.h>
