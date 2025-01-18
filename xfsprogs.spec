@@ -18,6 +18,7 @@ Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-pl.po-update.patch
 Patch2:		man-page-name.patch
+Patch3:		icu76.spec
 URL:		https://xfs.wiki.kernel.org/
 # for <attr/attributes.h>
 BuildRequires:	attr-devel
@@ -122,8 +123,9 @@ Biblioteki statyczne do XFS.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch2 -p1
+%patch -P 0 -p1
+%patch -P 2 -p1
+%patch -P 3 -p1
 
 # files order in pot changes in every version, making diff huge - sort entries first
 %{__mv} po/xfsprogs.pot po/xfsprogs.pot.upstream
@@ -131,7 +133,7 @@ msgcat -F po/xfsprogs.pot.upstream -o po/xfsprogs.pot
 # update line numbers etc.
 %{__mv} po/pl.po po/pl.po.upstream
 msgmerge po/pl.po.upstream po/xfsprogs.pot -o po/pl.po
-%patch1 -p1 -b .orig
+%patch -P 1 -p1 -b .orig
 
 %{__sed} -i -e '1s,/usr/bin/env python3,%{__python3},' scrub/xfs_scrub_all.in tools/xfsbuflock.py
 
