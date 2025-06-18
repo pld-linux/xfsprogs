@@ -8,17 +8,15 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	6.12.0
-Release:	2
+Version:	6.14.0
+Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{version}.tar.xz
-# Source0-md5:	c2f1ddf241f2ce7ea2669de595a4f766
+# Source0-md5:	339b90d4716d5f1e3e9d31f3c68f830d
 Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-pl.po-update.patch
-Patch2:		man-page-name.patch
-Patch3:		icu76.spec
 URL:		https://xfs.wiki.kernel.org/
 # for <attr/attributes.h>
 BuildRequires:	attr-devel
@@ -124,8 +122,6 @@ Biblioteki statyczne do XFS.
 %prep
 %setup -q
 %patch -P 0 -p1
-%patch -P 2 -p1
-%patch -P 3 -p1
 
 # files order in pot changes in every version, making diff huge - sort entries first
 %{__mv} po/xfsprogs.pot po/xfsprogs.pot.upstream
@@ -133,9 +129,9 @@ msgcat -F po/xfsprogs.pot.upstream -o po/xfsprogs.pot
 # update line numbers etc.
 %{__mv} po/pl.po po/pl.po.upstream
 msgmerge po/pl.po.upstream po/xfsprogs.pot -o po/pl.po
-%patch -P 1 -p1 -b .orig
+#%%patch -P 1 -p1 -b .orig
 
-%{__sed} -i -e '1s,/usr/bin/env python3,%{__python3},' scrub/xfs_scrub_all.in tools/xfsbuflock.py
+%{__sed} -i -e '1s,/usr/bin/env python3,%{__python3},' tools/git-contributors.py tools/xfsbuflock.py
 
 %build
 %{__aclocal} -I m4
@@ -275,6 +271,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man2/ioctl_xfs_getresblks.2*
 %{_mandir}/man2/ioctl_xfs_goingdown.2*
 %{_mandir}/man2/ioctl_xfs_inumbers.2*
+%{_mandir}/man2/ioctl_xfs_rtgroup_geometry.2*
 %{_mandir}/man2/ioctl_xfs_scrub_metadata.2*
 %{_mandir}/man2/ioctl_xfs_scrubv_metadata.2*
 %{_mandir}/man2/ioctl_xfs_setresblks.2*
