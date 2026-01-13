@@ -8,16 +8,15 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	6.17.0
-Release:	3
+Version:	6.18.0
+Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{version}.tar.xz
-# Source0-md5:	86b74d5d24d3f2d3d3bd87bc712698dd
+# Source0-md5:	f538782c07c81db5607db8c435348166
 Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-pl.po-update.patch
-Patch2:		quota-project.patch
 URL:		https://xfs.wiki.kernel.org/
 # for <attr/attributes.h>
 BuildRequires:	attr-devel
@@ -131,8 +130,6 @@ msgcat -F po/xfsprogs.pot.upstream -o po/xfsprogs.pot
 %{__mv} po/pl.po po/pl.po.upstream
 msgmerge po/pl.po.upstream po/xfsprogs.pot -o po/pl.po
 #%%patch -P 1 -p1 -b .orig
-
-%patch -P 2 -p1
 
 %{__sed} -i -e '1s,/usr/bin/env python3,%{__python3},' tools/git-contributors.py tools/xfsbuflock.py
 
