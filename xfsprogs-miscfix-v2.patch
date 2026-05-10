@@ -5,8 +5,8 @@ diff -urNp -x '*.orig' xfsprogs-5.11.0.org/libxfs/Makefile xfsprogs-5.11.0/libxf
  
  FCFLAGS = -I.
  
--LTLIBS = $(LIBPTHREAD) $(LIBRT)
-+LTLIBS = $(LIBPTHREAD) $(LIBRT) $(LIBUUID)
+-LTLIBS = $(LIBPTHREAD) $(LIBRT) $(LIBFROG)
++LTLIBS = $(LIBPTHREAD) $(LIBRT) $(LIBFROG) $(LIBUUID)
  
  # don't try linking xfs_repair with a debug libxfs.
  DEBUG = -DNDEBUG

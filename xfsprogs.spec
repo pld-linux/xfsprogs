@@ -1,6 +1,7 @@
 #
 # Conditional build:
 %bcond_without	debug_asserts
+%bcond_without	healer		# xfs_healer utility
 %bcond_without	libicu		# libicu (unicode scanning in xfs_scrub)
 %bcond_without	scrub		# xfs_scrub utility
 %bcond_without	static_libs	# static library
@@ -9,12 +10,12 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	6.19.0
+Version:	7.0.0
 Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{version}.tar.xz
-# Source0-md5:	ca1e1fe285aa73d54c60aafc15ad3eec
+# Source0-md5:	6760dfa68406782681bc05995e5bd8b2
 Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-pl.po-update.patch
@@ -73,6 +74,21 @@ był używany na platformie SGI IRIX. Jest to w pełni wielowątkowy,
 obsługujący wielkie pliki oraz wielkie systemy, o rozszerzonych
 atrybutach, zmiennych wielkościach bloków, mocno wykorzystujący
 B-drzewa by uzyskać wysoką wydajność oraz skalowalność.
+
+%package healer
+Summary:	xfs_healer - automatically heal damage to XFS filesystem metadata
+Summary(pl.UTF-8):	xfs_healer - automatyczne naprawianie metadanych systemu plików XFS
+Group:		Applications/System
+Requires:	%{name} = %{version}-%{release}
+%{?with_systemd:Requires:	systemd-units >= 38}
+
+%description healer
+xfs_healer is a daemon that tries to automatically repair damaged XFS
+filesystem metadata.
+
+%description healer -l pl.UTF-8
+xfs_healer to demon który próbuje automatycznie naprawić uszkodzone
+metadane systemu plików XFS.
 
 %package scrub
 Summary:	xfs_scrub - XFS online check and repair feature
@@ -143,7 +159,8 @@ msgmerge po/pl.po.upstream po/xfsprogs.pot -o po/pl.po
 	%{__enable_disable scrub} \
 	%{__enable_disable static_libs static} \
 	--with-udev-rule-dir=/lib/udev/rules.d \
-	--with-systemd-unit-dir=%{?with_systemd:%{systemdunitdir}}%{!?with_systemd:no}
+	--with-systemd-unit-dir=%{?with_systemd:%{systemdunitdir}}%{!?with_systemd:no} \
+	%{__enable_disable healer}
 
 %{__make} \
 	V=1
@@ -220,8 +237,20 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/fsck.xfs.8*
 %{_mandir}/man8/mkfs.xfs.8*
 %{_mandir}/man8/xfs_*.8*
-%if %{with scrub}
-%exclude %{_mandir}/man8/xfs_scrub*.8*
+%{?with_healer:%exclude %{_mandir}/man8/xfs_healer*.8*}
+%{?with_scrub:%exclude %{_mandir}/man8/xfs_scrub*.8*}
+
+%if %{with healer}
+%files healer
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libexecdir}/%{name}/xfs_healer
+%if %{with systemd}
+%attr(755,root,root) %{_libexecdir}/%{name}/xfs_healer_start
+%{systemdunitdir}/system-xfs_healer.slice
+%{systemdunitdir}/xfs_healer@.service
+%{systemdunitdir}/xfs_healer_start.service
+%endif
+%{_mandir}/man8/xfs_healer.8*
 %endif
 
 %if %{with scrub}
@@ -268,12 +297,15 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man2/ioctl_xfs_getparents.2*
 %{_mandir}/man2/ioctl_xfs_getresblks.2*
 %{_mandir}/man2/ioctl_xfs_goingdown.2*
+%{_mandir}/man2/ioctl_xfs_health_fd_on_monitored_fs.2.gz
+%{_mandir}/man2/ioctl_xfs_health_monitor.2.gz
 %{_mandir}/man2/ioctl_xfs_inumbers.2*
 %{_mandir}/man2/ioctl_xfs_rtgroup_geometry.2*
 %{_mandir}/man2/ioctl_xfs_scrub_metadata.2*
 %{_mandir}/man2/ioctl_xfs_scrubv_metadata.2*
 %{_mandir}/man2/ioctl_xfs_setresblks.2*
 %{_mandir}/man2/ioctl_xfs_start_commit.2
+%{_mandir}/man2/ioctl_xfs_verify_media.2.gz
 %{_mandir}/man3/*handle.3*
 %{_mandir}/man3/xfsctl.3*
 
