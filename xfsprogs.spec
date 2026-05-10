@@ -152,7 +152,7 @@ msgmerge po/pl.po.upstream po/xfsprogs.pot -o po/pl.po
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{/etc/cron.d,/sbin,/%{_lib}}
+install -d $RPM_BUILD_ROOT{/etc/cron.d,/sbin,/%{_lib},%{_libexecdir}/%{name}}
 
 DIST_ROOT=$RPM_BUILD_ROOT
 DIST_INSTALL=$(pwd)/install.manifest
@@ -215,10 +215,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /%{_lib}/libhandle.so.*.*
 %attr(755,root,root) %ghost /%{_lib}/libhandle.so.1
 %{_datadir}/%{name}
-%if %{with scrub}
 %dir %{_libexecdir}/%{name}
-%attr(755,root,root) %{_libexecdir}/%{name}/xfs_scrub_fail
-%endif
 %{_mandir}/man5/projects.5*
 %{_mandir}/man5/projid.5*
 %{_mandir}/man5/xfs.5*
@@ -234,6 +231,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_sbindir}/xfs_scrub
 %attr(755,root,root) %{_sbindir}/xfs_scrub_all
+%attr(755,root,root) %{_libexecdir}/%{name}/xfs_scrub_fail
 /lib/udev/rules.d/64-xfs.rules
 %{systemdunitdir}/system-xfs_scrub.slice
 %{systemdunitdir}/xfs_scrub@.service
