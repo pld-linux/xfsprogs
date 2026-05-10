@@ -4,6 +4,7 @@
 %bcond_without	libicu		# libicu (unicode scanning in xfs_scrub)
 %bcond_without	scrub		# xfs_scrub utility
 %bcond_without	static_libs	# static library
+%bcond_without	systemd		# systemd units
 #
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
@@ -37,7 +38,7 @@ BuildRequires:	libuuid-static
 BuildRequires:	pkgconfig
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpmbuild(macros) >= 1.527
-%{?with_scrub:BuildRequires:	systemd-devel}
+%{?with_systemd:BuildRequires:	systemd-devel}
 BuildRequires:	userspace-rcu-devel
 BuildRequires:	userspace-rcu-static
 BuildRequires:	sed >= 4.0
@@ -78,7 +79,7 @@ Summary:	xfs_scrub - XFS online check and repair feature (EXPERIMENTAL!)
 Summary(pl.UTF-8):	xfs_scrub - sprawdzanie i naprawianie zamontowanego systemu plików XFS (EKSPERYMENTALNE!)
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
-Requires:	systemd-units >= 38
+%{?with_systemd:Requires:	systemd-units >= 38}
 
 %description scrub
 xfs_scrub is an XFS online check and repair feature.
@@ -145,7 +146,8 @@ msgmerge po/pl.po.upstream po/xfsprogs.pot -o po/pl.po
 	--disable-lto \
 	%{?with_scrub:--enable-scrub=yes} \
 	%{__enable_disable static_libs static} \
-	--with-udev-rule-dir=/lib/udev/rules.d
+	--with-udev-rule-dir=/lib/udev/rules.d \
+	--with-systemd-unit-dir=%{?with_systemd:%{systemdunitdir}}%{!?with_systemd:no}
 
 %{__make} \
 	V=1
@@ -198,7 +200,7 @@ rm -rf $RPM_BUILD_ROOT
 %postun -p /sbin/ldconfig
 
 %post scrub
-%systemd_reload
+%{?with_systemd:%systemd_reload}
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
@@ -231,8 +233,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_sbindir}/xfs_scrub
 %attr(755,root,root) %{_sbindir}/xfs_scrub_all
-%attr(755,root,root) %{_libexecdir}/%{name}/xfs_scrub_fail
+%{?with_systemd:%attr(755,root,root) %{_libexecdir}/%{name}/xfs_scrub_fail}
 /lib/udev/rules.d/64-xfs.rules
+%if %{with systemd}
 %{systemdunitdir}/system-xfs_scrub.slice
 %{systemdunitdir}/xfs_scrub@.service
 %{systemdunitdir}/xfs_scrub_all.service
@@ -241,6 +244,7 @@ rm -rf $RPM_BUILD_ROOT
 %{systemdunitdir}/xfs_scrub_fail@.service
 %{systemdunitdir}/xfs_scrub_media@.service
 %{systemdunitdir}/xfs_scrub_media_fail@.service
+%endif
 %config(noreplace) %verify(not md5 mtime size) /etc/cron.d/xfs_scrub_all
 %{_mandir}/man8/xfs_scrub.8*
 %{_mandir}/man8/xfs_scrub_all.8*
