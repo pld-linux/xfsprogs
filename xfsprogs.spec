@@ -75,8 +75,8 @@ atrybutach, zmiennych wielkościach bloków, mocno wykorzystujący
 B-drzewa by uzyskać wysoką wydajność oraz skalowalność.
 
 %package scrub
-Summary:	xfs_scrub - XFS online check and repair feature (EXPERIMENTAL!)
-Summary(pl.UTF-8):	xfs_scrub - sprawdzanie i naprawianie zamontowanego systemu plików XFS (EKSPERYMENTALNE!)
+Summary:	xfs_scrub - XFS online check and repair feature
+Summary(pl.UTF-8):	xfs_scrub - sprawdzanie i naprawianie zamontowanego systemu plików XFS
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 %{?with_systemd:Requires:	systemd-units >= 38}
@@ -84,13 +84,9 @@ Requires:	%{name} = %{version}-%{release}
 %description scrub
 xfs_scrub is an XFS online check and repair feature.
 
-WARNING: EXPERIMENTAL, use at your own risk!
-
 %description scrub -l pl.UTF-8
 xfs_scrub służy do sprawdzania i naprawiania zamontowanego systmeu
 plików XFS w locie.
-
-UWAGA: EXPERIMENTALNE, użycie na własne ryzyko!
 
 %package devel
 Summary:	Header files and libraries to develop XFS software
@@ -144,7 +140,7 @@ msgmerge po/pl.po.upstream po/xfsprogs.pot -o po/pl.po
 	--enable-gettext \
 	%{__enable_disable libicu libicu} \
 	--disable-lto \
-	%{?with_scrub:--enable-scrub=yes} \
+	%{__enable_disable scrub} \
 	%{__enable_disable static_libs static} \
 	--with-udev-rule-dir=/lib/udev/rules.d \
 	--with-systemd-unit-dir=%{?with_systemd:%{systemdunitdir}}%{!?with_systemd:no}
