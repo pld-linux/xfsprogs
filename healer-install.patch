@@ -1,0 +1,14 @@
+--- xfsprogs-7.1.0/healer/Makefile.orig	2026-07-10 13:06:28.000000000 +0200
++++ xfsprogs-7.1.0/healer/Makefile	2026-07-15 20:12:59.449147195 +0200
+@@ -69,7 +69,10 @@
+ 
+ install-healer: default
+ 	$(INSTALL) -m 755 -d $(PKG_LIBEXEC_DIR)
+-	$(LTINSTALL) -m 755 $(BUILD_TARGETS) $(PKG_LIBEXEC_DIR)
++	$(LTINSTALL) -m 755 $(LTCOMMAND) $(PKG_LIBEXEC_DIR)
++ifneq ($(filter-out $(LTCOMMAND),$(BUILD_TARGETS)),)
++	$(INSTALL) -m 755 $(filter-out $(LTCOMMAND),$(BUILD_TARGETS)) $(PKG_LIBEXEC_DIR)
++endif
+ 
+ install-systemd: default
+ 	$(INSTALL) -m 755 -d $(SYSTEMD_SYSTEM_UNIT_DIR)

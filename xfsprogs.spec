@@ -10,15 +10,16 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	7.0.1
+Version:	7.1.0
 Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{version}.tar.xz
-# Source0-md5:	9a275597276da2958d3d2fcb4525f8c6
+# Source0-md5:	576a70da5b617700b403009de2290361
 Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-pl.po-update.patch
+Patch2:		healer-install.patch
 URL:		https://xfs.wiki.kernel.org/
 # for <attr/attributes.h>
 BuildRequires:	attr-devel
@@ -135,6 +136,7 @@ Biblioteki statyczne do XFS.
 %prep
 %setup -q
 %patch -P 0 -p1
+%patch -P 2 -p1
 
 # files order in pot changes in every version, making diff huge - sort entries first
 %{__mv} po/xfsprogs.pot po/xfsprogs.pot.upstream
