@@ -10,16 +10,15 @@
 Summary:	Tools for the XFS filesystem
 Summary(pl.UTF-8):	Narzędzia do systemu plików XFS
 Name:		xfsprogs
-Version:	7.2.1
+Version:	7.3.0
 Release:	1
 License:	LGPL v2.1 (libhandle), GPL v2 (the rest)
 Group:		Applications/System
 Source0:	https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs/%{name}-%{version}.tar.xz
-# Source0-md5:	3e94a4f5ee8e732864548fc7615110b4
+# Source0-md5:	2aa8efbbdaa9cb0b7cfc1e0c54fa85c5
 Source1:	xfs_lsprojid
 Patch0:		%{name}-miscfix-v2.patch
 Patch1:		%{name}-pl.po-update.patch
-Patch2:		%{name}-trans-mod-sb-32bit.patch
 URL:		https://xfs.wiki.kernel.org/
 # for <attr/attributes.h>
 BuildRequires:	attr-devel
@@ -136,7 +135,6 @@ Biblioteki statyczne do XFS.
 %prep
 %setup -q
 %patch -P 0 -p1
-%patch -P 2 -p1
 
 # files order in pot changes in every version, making diff huge - sort entries first
 %{__mv} po/xfsprogs.pot po/xfsprogs.pot.upstream
@@ -144,7 +142,7 @@ msgcat -F po/xfsprogs.pot.upstream -o po/xfsprogs.pot
 # update line numbers etc.
 %{__mv} po/pl.po po/pl.po.upstream
 msgmerge po/pl.po.upstream po/xfsprogs.pot -o po/pl.po
-#%%patch -P 1 -p1 -b .orig
+%patch -P 1 -p1 -b .orig
 
 %{__sed} -i -e '1s,/usr/bin/env python3,%{__python3},' tools/git-contributors.py tools/xfsbuflock.py
 
